@@ -1,0 +1,83 @@
+:root { --accent:#000; --bg:#fff; --bg2:#f8f9fa; --text:#0a0a0a; --muted:#6b7280; --border:#e5e7eb; }
+*{box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+.t-hero{font-size:clamp(38px,6vw,72px);font-weight:700;letter-spacing:-0.025em;line-height:1.07}
+.t-h2{font-size:clamp(30px,4vw,48px);font-weight:600;letter-spacing:-0.015em;line-height:1.12}
+.t-h3{font-size:clamp(18px,2vw,22px);font-weight:600;line-height:1.25}
+
+.fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.fu.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}.d4{transition-delay:320ms}.d5{transition-delay:400ms}
+
+.ha{animation:hf .8s cubic-bezier(.16,1,.3,1) forwards;opacity:0}
+.ha.d1{animation-delay:.15s}.ha.d2{animation-delay:.3s}.ha.d3{animation-delay:.45s}
+@keyframes hf{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+#nav{background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .25s}
+#nav.scrolled{border-bottom:1px solid var(--border)}
+
+.btn-p{background:#000;color:#fff;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;text-decoration:none}
+.btn-p:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.22);background:#1a1a1a}
+.btn-s{background:transparent;border:1px solid #000;color:#000;transition:background .2s ease,transform .2s ease;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;text-decoration:none}
+.btn-s:hover{background:rgba(0,0,0,.04);transform:translateY(-1px)}
+
+.card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:32px;transition:transform .25s ease,box-shadow .25s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.07)}
+
+.logo-i{opacity:.4;filter:grayscale(1);transition:opacity .2s,filter .2s;cursor:pointer}
+.logo-i:hover{opacity:.85;filter:grayscale(0)}
+
+#mmenu{transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+#mmenu.open{transform:translateX(0)}
+
+.faq-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-body.open{max-height:600px}
+.faq-icon{transition:transform .3s ease;display:inline-block}
+.faq-row.open .faq-icon{transform:rotate(45deg)}
+
+.prod-card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+.prod-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,.08)}
+.prod-img{aspect-ratio:3/4;background:#f3f4f6;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.prod-badge{position:absolute;top:12px;left:12px;background:#000;color:#fff;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:6px}
+.prod-badge.sale{background:#dc2626}
+.size-btn{border:1px solid #e5e7eb;border-radius:7px;padding:6px 10px;font-size:12px;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;background:#fff;color:#374151}
+.size-btn:hover{border-color:#000}
+.size-btn.active{border-color:#000;background:#000;color:#fff}
+.add-btn{width:100%;background:#000;color:#fff;border:none;border-radius:9px;padding:12px;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s,transform .15s;letter-spacing:.01em}
+.add-btn:hover{background:#1a1a1a;transform:translateY(-1px)}
+.add-btn:active{transform:scale(.98)}
+.filter-tab{padding:8px 18px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid #e5e7eb;background:#fff;color:#6b7280;transition:all .15s}
+.filter-tab:hover{border-color:#000;color:#000}
+.filter-tab.active{background:#000;color:#fff;border-color:#000}
+#cart-drawer{transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);width:380px;max-width:100vw}
+#cart-drawer.open{transform:translateX(0)}
+.cart-badge{position:absolute;top:-6px;right:-6px;background:#000;color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;line-height:1;pointer-events:none}
+.cart-item-img{width:72px;height:88px;border-radius:10px;background:#f3f4f6;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.qty-btn{width:28px;height:28px;border:1px solid #e5e7eb;border-radius:7px;background:#fff;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:border-color .15s}
+.qty-btn:hover{border-color:#000}
+
+.form-input{width:100%;border:1px solid #e5e7eb;border-radius:10px;padding:12px 16px;font-size:14px;font-family:inherit;transition:border-color .15s,box-shadow .15s;outline:none;background:#fff}
+.form-input:focus{border-color:#000;box-shadow:0 0 0 3px rgba(0,0,0,.06)}
+.form-label{display:block;font-size:13px;font-weight:500;color:#374151;margin-bottom:6px}
+
+@media(prefers-reduced-motion:reduce){
+  .fu,.ha{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
+}
+:focus-visible{outline:2px solid #000;outline-offset:3px}
+
+/* ── Mobile global fixes ───────────────────────────────────────────── */
+@media(max-width:479px){
+  /* Reduce card padding on very small phones */
+  .card{padding:20px}
+  /* Tighten section horizontal padding */
+  .px-6{padding-left:16px!important;padding-right:16px!important}
+  /* Hero buttons stack on tiny screens */
+  .btn-p,.btn-s{padding:11px 18px;font-size:13px}
+  /* Product cards — keep 2-col but tighten gap */
+  .gap-5{gap:10px!important}
+  .gap-8{gap:16px!important}
+  /* Prevent text overflow in product card headings */
+  h3{font-size:14px!important}
+  .text-base{font-size:13px!important}
+}

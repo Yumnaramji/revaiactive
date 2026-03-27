@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym &amp; Training — REVAÍ</title>
+  <meta name="description" content="REVAÍ Gym &amp; Training collection. Versatile kit for every session — weights, classes, circuits. S–XXL, true to size.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body{font-family:'Inter',-apple-system,sans-serif;color:#0a0a0a;background:#fff;-webkit-font-smoothing:antialiased}
+    .fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+    .fu.in{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}.d4{transition-delay:320ms}
+    .btn-p{background:#000;color:#fff;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;text-decoration:none}
+    .btn-p:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.22);background:#1a1a1a}
+    .t-h2{font-size:clamp(30px,4vw,48px);font-weight:600;letter-spacing:-0.015em;line-height:1.12}
+    .t-hero{font-size:clamp(38px,6vw,64px);font-weight:700;letter-spacing:-0.025em;line-height:1.07}
+    .size-pill{display:inline-block;padding:4px 10px;border-radius:6px;border:1px solid #e5e7eb;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;background:#fff;color:#374151}
+    .size-pill:hover{border-color:#000}
+    .size-pill.sel{background:#000;color:#fff;border-color:#000}
+    .prod-card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+    .prod-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+    .add-btn{width:100%;background:#000;color:#fff;border:none;border-radius:9px;padding:12px;font-size:14px;font-weight:500;cursor:pointer;transition:background .2s}
+    .add-btn:hover{background:#1a1a1a}
+    .filter-pill{padding:8px 18px;border-radius:50px;border:1px solid #e5e7eb;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;background:#fff;color:#6b7280;white-space:nowrap}
+    .filter-pill:hover{border-color:#000;color:#000}
+    .filter-pill.active{background:#000;color:#fff;border-color:#000}
+    #nav.scrolled{border-bottom:1px solid #e5e7eb}
+    .related-card{background:#111;border-radius:16px;padding:28px;transition:transform .25s,box-shadow .25s;text-decoration:none;display:block}
+    .related-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+    *{box-sizing:border-box}
+    :focus-visible{outline:2px solid #000;outline-offset:3px}
+    @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded-lg text-sm">Skip to content</a>
+
+<!-- NAV -->
+<nav id="nav" class="fixed top-0 inset-x-0 z-50 h-16" style="background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .25s">
+  <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+    <a href="index.html" class="text-lg font-bold tracking-tight text-black">REVAÍ</a>
+    <div class="hidden md:flex items-center gap-8">
+      <div class="relative" id="shop-dropdown-wrap">
+        <button id="shop-dropdown-btn" class="text-sm font-medium text-gray-500 hover:text-black transition-colors flex items-center gap-1">Shop<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div id="shop-dropdown-menu" class="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 transition-all duration-200 z-50" style="opacity:0;pointer-events:none">
+          <a href="collection-new.html" class="block px-4 py-2.5 text-sm font-medium text-black hover:bg-gray-50">New Arrivals</a>
+          <div class="my-1 border-t border-gray-100"></div>
+          <a href="collections.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">All Products</a>
+          <a href="collection-gym.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Gym &amp; Training</a>
+          <a href="collection-running.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Running</a>
+          <a href="collection-padel.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Padel</a>
+          <a href="collection-golf.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Golf</a>
+          <a href="collection-yoga.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Yoga &amp; Pilates</a>
+        </div>
+      </div>
+      <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About</a>
+      <a href="stories.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Stories</a>
+      <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
+    </div>
+    <div class="hidden md:flex items-center gap-3">
+      <button onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+      <a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+      <button id="nav-cart-btn" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open cart" onclick="if(window.REVAI_CART)window.REVAI_CART.openDrawer()">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span id="cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span>
+      </button>
+    </div>
+    <button id="hbg" class="md:hidden p-2 rounded-lg hover:bg-gray-100" aria-label="Open menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="14" x2="17" y2="14"/></svg>
+    </button>
+  </div>
+</nav>
+<div id="mmenu" class="fixed top-0 right-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col" style="transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1)">
+  <div class="flex justify-between items-center mb-8"><span class="text-lg font-bold">REVAÍ</span><button id="mclose" class="p-2 hover:bg-gray-100 rounded-lg"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg></button></div>
+  <div class="flex flex-col gap-1 flex-1 overflow-y-auto">
+    <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Shop</p>
+    <a href="collection-new.html" class="mlink block py-2 text-sm font-medium text-black">New Arrivals</a>
+    <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
+    <a href="collection-gym.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Gym &amp; Training</a>
+    <a href="collection-running.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Running</a>
+    <a href="collection-padel.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Padel</a>
+    <a href="collection-golf.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Golf</a>
+    <a href="collection-yoga.html" class="mlink block py-2 text-sm font-medium text-gray-700 hover:text-black">Yoga &amp; Pilates</a>
+    <div class="my-3 border-t border-gray-100"></div>
+    <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About</a>
+    <a href="stories.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Stories</a>
+    <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
+  </div>
+</div>
+<div id="moverlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
+
+<!-- HERO -->
+<section id="main" class="pt-32 pb-20 px-6 text-center" style="position:relative;overflow:hidden;background:#0a0a0a;">
+  <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45;pointer-events:none;">
+    <source src="images/hero-gym.mp4" type="video/mp4">
+  </video>
+  <div class="max-w-4xl mx-auto" style="position:relative;">
+    <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Collection</p>
+    <h1 class="fu d1 t-hero text-white">Gym &amp; Training</h1>
+    <p class="fu d2 text-lg mt-5" style="color:#9ca3af">Versatile kit for every session — weights, classes, circuits.</p>
+    <div class="fu d3 flex items-center justify-center gap-4 mt-8">
+      <a href="collections.html" class="btn-p">Shop All</a>
+      <a href="#products" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">View collection &darr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="py-36 px-6 text-center">
+  <div class="max-w-xl mx-auto">
+    <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">Coming Soon</p>
+    <h2 style="font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;letter-spacing:-.02em;line-height:1.1" class="mb-6">Products launching soon.</h2>
+    <p class="text-gray-500 text-base leading-relaxed mb-10">We're putting the finishing touches on this collection. In the meantime, browse all available products.</p>
+    <a href="collections.html" class="btn-p">Shop All Products</a>
+  </div>
+</section>
+
+<!-- TECH STRIP -->
+<section class="py-16 bg-gray-50 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="t-h2 text-center mb-12 fu">Built for every session</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="fu text-center">
+        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg width="20" height="20" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2a10 10 0 11-10 10A10 10 0 0112 2z"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3 class="text-base font-semibold mb-2">All-Day Comfort</h3>
+        <p class="text-sm text-gray-500">Soft, breathable fabric that moves with you from warm-up to cool-down without restriction.</p>
+      </div>
+      <div class="fu d1 text-center">
+        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg width="20" height="20" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        </div>
+        <h3 class="text-base font-semibold mb-2">Sweat Management</h3>
+        <p class="text-sm text-gray-500">Wicks moisture fast so you stay dry through every set, class, or circuit.</p>
+      </div>
+      <div class="fu d2 text-center">
+        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg width="20" height="20" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <h3 class="text-base font-semibold mb-2">Four-Way Stretch</h3>
+        <p class="text-sm text-gray-500">Full range of motion in every direction. Squats, presses, stretches — nothing holds you back.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer style="background:#0a0a0a" class="px-6 pt-20 pb-10 border-t border-gray-800">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-12 mb-16">
+      <div><a href="index.html" style="display:inline-block;margin-bottom:16px"><img src="images/revai-icon.png" alt="REVAÍ" style="height:56px;width:auto;display:block"></a><p class="text-gray-400 text-sm leading-relaxed mb-6">Activewear built for people who move — whatever that looks like for you.</p><div class="flex gap-4"><a href="#" aria-label="Instagram" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></a><a href="#" aria-label="TikTok" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.52V6.77a4.85 4.85 0 01-1.02-.08z"/></svg></a></div></div>
+      <div><h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Shop</h3><ul class="space-y-3"><li><a href="collection-new.html" class="text-sm text-gray-400 hover:text-white transition-colors">New Arrivals</a></li><li><a href="collections.html" class="text-sm text-gray-400 hover:text-white transition-colors">All Products</a></li><li><a href="collection-gym.html" class="text-sm text-gray-400 hover:text-white transition-colors">Gym &amp; Training</a></li><li><a href="collection-running.html" class="text-sm text-gray-400 hover:text-white transition-colors">Running</a></li><li><a href="collection-padel.html" class="text-sm text-gray-400 hover:text-white transition-colors">Padel</a></li><li><a href="collection-golf.html" class="text-sm text-gray-400 hover:text-white transition-colors">Golf</a></li><li><a href="collection-yoga.html" class="text-sm text-gray-400 hover:text-white transition-colors">Yoga &amp; Pilates</a></li></ul></div>
+      <div><h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Company</h3><ul class="space-y-3"><li><a href="about.html" class="text-sm text-gray-400 hover:text-white transition-colors">About REVAÍ</a></li><li><a href="sustainability.html" class="text-sm text-gray-400 hover:text-white transition-colors">Sustainability</a></li><li><a href="athlete-program.html" class="text-sm text-gray-400 hover:text-white transition-colors">Athlete Program</a></li><li><a href="team-orders.html" class="text-sm text-gray-400 hover:text-white transition-colors">Team Orders</a></li><li><a href="careers.html" class="text-sm text-gray-400 hover:text-white transition-colors">Careers</a></li><li><a href="press.html" class="text-sm text-gray-400 hover:text-white transition-colors">Press</a></li></ul></div>
+      <div><h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Support</h3><ul class="space-y-3"><li><a href="shipping-returns.html" class="text-sm text-gray-400 hover:text-white transition-colors">Shipping &amp; Returns</a></li><li><a href="care-instructions.html" class="text-sm text-gray-400 hover:text-white transition-colors">Care Instructions</a></li><li><a href="faq.html" class="text-sm text-gray-400 hover:text-white transition-colors">FAQ</a></li><li><a href="fit-guide.html" class="text-sm text-gray-400 hover:text-white transition-colors">Fit Guide</a></li><li><a href="contact.html" class="text-sm text-gray-400 hover:text-white transition-colors">Contact Us</a></li><li><a href="gift-cards.html" class="text-sm text-gray-400 hover:text-white transition-colors">Gift Cards</a></li></ul></div>
+    </div>
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-gray-600">© 2026 REVAÍ. All rights reserved.</p>
+      <div class="flex gap-6"><a href="privacy.html" class="text-xs text-gray-600 hover:text-gray-400">Privacy Policy</a><a href="terms.html" class="text-xs text-gray-600 hover:text-gray-400">Terms of Service</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="search.js"></script>
+<script src="shopify-config.js"></script>
+<script src="cart-drawer.js"></script>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20),{passive:true});
+(function(){var btn=document.getElementById('shop-dropdown-btn');var menu=document.getElementById('shop-dropdown-menu');var wrap=document.getElementById('shop-dropdown-wrap');if(!btn||!menu)return;btn.addEventListener('click',function(){var open=menu.style.opacity==='1';menu.style.opacity=open?'0':'1';menu.style.pointerEvents=open?'none':'auto';});document.addEventListener('click',function(e){if(wrap&&!wrap.contains(e.target)){menu.style.opacity='0';menu.style.pointerEvents='none';}});})();
+const hbg=document.getElementById('hbg'),mmenu=document.getElementById('mmenu'),moverlay=document.getElementById('moverlay'),mclose=document.getElementById('mclose');
+function openM(){mmenu.style.transform='translateX(0)';moverlay.classList.remove('hidden');document.body.style.overflow='hidden';}
+function closeM(){mmenu.style.transform='translateX(100%)';moverlay.classList.add('hidden');document.body.style.overflow='';}
+if(hbg)hbg.addEventListener('click',openM);
+if(mclose)mclose.addEventListener('click',closeM);
+if(moverlay)moverlay.addEventListener('click',closeM);
+document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM));
+const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+document.addEventListener('click',function(e){
+  if(e.target.classList.contains('size-pill')){
+    const pid=e.target.dataset.pid;
+    document.querySelectorAll(`.size-pill[data-pid="${pid}"]`).forEach(p=>p.classList.remove('sel'));
+    e.target.classList.add('sel');
+  }
+});
+function addToBag(id,name,price){
+  const sel=document.querySelector(`.size-pill.sel[data-pid="${id}"]`);
+  const size=sel?sel.dataset.size:'';
+  if(!size){showPageToast('Please select a size');return;}
+  if(window.REVAI_CART){window.REVAI_CART.add({id,name,price,size});return;}
+  const cart=JSON.parse(localStorage.getItem('revai_cart_v1')||'[]');
+  const key=id+'|'+size,ex=cart.find(i=>i.key===key);
+  if(ex)ex.qty++;else cart.push({id,name,price,size,key,qty:1});
+  localStorage.setItem('revai_cart_v1',JSON.stringify(cart));
+  showPageToast('Added to bag \u2713');
+}
+function showPageToast(msg){
+  let t=document.getElementById('pg-toast');
+  if(!t){t=document.createElement('div');t.id='pg-toast';Object.assign(t.style,{position:'fixed',bottom:'24px',left:'50%',transform:'translateX(-50%) translateY(20px)',background:'#0a0a0a',color:'#fff',padding:'10px 20px',borderRadius:'8px',fontSize:'13px',fontWeight:'500',zIndex:'200',opacity:'0',transition:'opacity .2s,transform .2s',pointerEvents:'none',whiteSpace:'nowrap'});document.body.appendChild(t);}
+  t.textContent=msg;t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(20px)';},2200);
+}
+// Product Modal
+(function(){
+  const modal=document.createElement('div');
+  modal.id='prod-modal';
+  modal.style.cssText='display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);overflow-y:auto;padding:24px 16px';
+  modal.innerHTML=`<div id="prod-modal-inner" style="background:#fff;max-width:800px;margin:0 auto;border-radius:16px;overflow:hidden;display:flex;flex-wrap:wrap"><div id="pm-img" style="flex:0 0 100%;max-width:100%;background:linear-gradient(135deg,#f3f4f6,#e5e7eb);min-height:300px;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative"><div style="width:72px;height:56px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center"><span style="color:#fff;font-weight:700;font-size:28px;font-family:Inter,sans-serif">R</span></div><span id="pm-badge" style="position:absolute;top:16px;left:16px;background:rgba(255,255,255,.9);color:#374151;font-size:12px;font-weight:500;padding:4px 10px;border-radius:20px"></span></div><div style="flex:1 1 100%;padding:24px 28px 32px"><button id="pm-close" style="float:right;background:none;border:none;cursor:pointer;font-size:22px;line-height:1;color:#6b7280;margin-top:-4px">&#x2715;</button><p id="pm-name" style="font-size:22px;font-weight:700;color:#000;margin:0 0 4px"></p><p id="pm-price" style="font-size:18px;font-weight:700;color:#000;margin:0 0 16px"></p><div id="pm-features" style="margin-bottom:20px"></div><p style="font-size:13px;font-weight:600;color:#374151;margin:0 0 8px;text-transform:uppercase;letter-spacing:.06em">Colours</p><div id="pm-colours" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px"></div><p style="font-size:13px;font-weight:600;color:#374151;margin:0 0 8px;text-transform:uppercase;letter-spacing:.06em">Size</p><div id="pm-sizes" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px"></div><a href="fit-guide.html" style="display:inline-block;font-size:12px;color:#6b7280;text-decoration:underline;margin-bottom:16px">Size guide →</a><button id="pm-add" style="width:100%;background:#000;color:#fff;border:none;padding:14px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;letter-spacing:.02em">Add to Bag</button></div></div>`;
+  document.body.appendChild(modal);
+  function openModal(card){
+    const name=card.querySelector('p.font-semibold');
+    const price=card.querySelector('p.font-bold');
+    const badge=card.querySelector('span[style*="rgba(255,255,255"]');
+    const addBtn=card.querySelector('.add-btn');
+    document.getElementById('pm-name').textContent=name?name.textContent:'';
+    document.getElementById('pm-price').textContent=price?price.textContent:'';
+    document.getElementById('pm-badge').textContent=badge?badge.textContent:'';
+    const cardImg=card.querySelector('img');
+    const pmImg=document.getElementById('pm-img');
+    pmImg.style.minHeight='300px';
+    pmImg.style.overflow='hidden';
+    if(cardImg){
+      pmImg.style.background='#f3f4f6';
+      pmImg.innerHTML='<img src="'+cardImg.src+'" alt="" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;min-height:300px;">';
+    } else {
+      pmImg.style.background='linear-gradient(135deg,#f3f4f6,#e5e7eb)';
+      pmImg.innerHTML='<div style="width:72px;height:56px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center"><span style="color:#fff;font-weight:700;font-size:28px">R</span></div>';
+    }
+    const cat=(card.dataset.cat||'').toLowerCase();
+    const feats=[];
+    if(cat.includes('running'))feats.push('Moisture-wicking 4-way stretch fabric','Reflective details for low-light visibility','Flatlock seams — zero chafe');
+    if(cat.includes('golf'))feats.push('UV-protective UPF 40+ fabric','Temperature-regulating weave','Silent stretch — moves with your swing');
+    if(cat.includes('padel'))feats.push('Fast-dry performance fabric','360° freedom of movement','Anti-static finish');
+    if(cat.includes('gym'))feats.push('Heavy-duty 4-way stretch','Squat-proof fabric','Odour-resistant treatment');
+    if(feats.length===0)feats.push('Premium performance fabric','4-way stretch construction','Designed for movement');
+    const uniq=[...new Set(feats)].slice(0,3);
+    document.getElementById('pm-features').innerHTML='<ul style="list-style:none;padding:0;margin:0 0 4px">'+uniq.map(f=>`<li style="font-size:14px;color:#4b5563;padding:5px 0;display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;background:#000;border-radius:50%;flex-shrink:0"></span>${f}</li>`).join('')+'</ul>';
+    const swatches=card.querySelectorAll('div[title]');
+    document.getElementById('pm-colours').innerHTML=Array.from(swatches).map(s=>{const isDashed=s.style.border&&s.style.border.includes('dashed');return isDashed?`<div style="width:26px;height:26px;border-radius:50%;border:2px dashed #d1d5db" title="${s.title}"></div>`:`<div style="width:26px;height:26px;border-radius:50%;background:${s.style.background};border:2px solid #fff;box-shadow:0 0 0 2px #000;cursor:pointer" title="${s.title}"></div>`;}).join('');
+    const pills=card.querySelectorAll('.size-pill');
+    document.getElementById('pm-sizes').innerHTML=Array.from(pills).map(p=>`<button onclick="this.parentNode.querySelectorAll('button').forEach(b=>{b.style.background='#fff';b.style.color='#374151';b.style.border='1.5px solid #d1d5db'});this.style.background='#000';this.style.color='#fff';this.style.border='1.5px solid #000';window._pmSize='${p.dataset.size}'" style="padding:8px 16px;border-radius:6px;border:1.5px solid #d1d5db;font-size:13px;font-weight:500;cursor:pointer;background:#fff;color:#374151">${p.textContent}</button>`).join('');
+    document.getElementById('pm-add').onclick=function(){if(addBtn)addBtn.click();closeModal();};
+    modal.style.display='block';document.body.style.overflow='hidden';
+  }
+  function closeModal(){modal.style.display='none';document.body.style.overflow='';}
+  docume

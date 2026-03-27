@@ -1,0 +1,592 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REVAÍ — Find Your Revival</title>
+  <meta name="description" content="REVAÍ is activewear built for everyone — high quality, true fit, and prices that don't make performance feel exclusive. Shop in Kenya, UK, and Dubai.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
+    *{box-sizing:border-box}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    .fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+    .fu.in{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}.d4{transition-delay:320ms}.d5{transition-delay:400ms}
+    .btn-p{background:#000;color:#fff;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;text-decoration:none}
+    .btn-p:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.22);background:#1a1a1a}
+    .btn-s{background:transparent;border:1px solid #000;color:#000;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;transition:background .2s,transform .2s;text-decoration:none}
+    .btn-s:hover{background:rgba(0,0,0,.04);transform:translateY(-1px)}
+    .card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:32px;transition:transform .25s,box-shadow .25s}
+    .card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.07)}
+    .t-hero{font-size:clamp(38px,6vw,72px);font-weight:700;letter-spacing:-0.025em;line-height:1.07}
+    .t-h2{font-size:clamp(30px,4vw,48px);font-weight:600;letter-spacing:-0.015em;line-height:1.12}
+    .t-h3{font-size:clamp(18px,2vw,22px);font-weight:600;line-height:1.25}
+    #nav.scrolled{border-bottom:1px solid #e5e7eb}
+    .ha{animation:hf .8s cubic-bezier(.16,1,.3,1) forwards;opacity:0}
+    .ha.d1{animation-delay:.15s}.ha.d2{animation-delay:.3s}.ha.d3{animation-delay:.45s}
+    @keyframes hf{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    :focus-visible{outline:2px solid #000;outline-offset:3px}
+    @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}.ha{animation:none!important;opacity:1!important}}
+  </style>
+</head>
+<body>
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded-lg text-sm">Skip to content</a>
+
+<!-- NAV -->
+<nav id="nav" class="fixed top-0 inset-x-0 z-50 h-16" role="navigation" aria-label="Main" style="background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .25s">
+  <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+    <a href="index.html" class="text-lg font-bold tracking-tight text-black">REVAÍ</a>
+    <div class="hidden md:flex items-center gap-8">
+      <div class="relative" id="shop-dropdown-wrap">
+        <button id="shop-dropdown-btn" class="text-sm font-medium text-gray-500 hover:text-black transition-colors flex items-center gap-1">Shop<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div id="shop-dropdown-menu" class="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 transition-all duration-200 z-50" style="opacity:0;pointer-events:none">
+          <a href="collection-new.html" class="block px-4 py-2.5 text-sm font-medium text-black hover:bg-gray-50">New Arrivals</a>
+          <div class="my-1 border-t border-gray-100"></div>
+          <a href="collections.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">All Products</a>
+          <a href="collection-gym.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Gym &amp; Training</a>
+          <a href="collection-running.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Running</a>
+          <a href="collection-padel.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Padel</a>
+          <a href="collection-golf.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Golf</a>
+          <a href="collection-yoga.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Yoga &amp; Pilates</a>
+        </div>
+      </div>
+      <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About</a>
+      <a href="stories.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Stories</a>
+      <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
+    </div>
+    <div class="hidden md:flex items-center gap-3">
+      <button onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+      <a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+      <button id="nav-cart-btn" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open cart" onclick="if(window.REVAI_CART) window.REVAI_CART.openDrawer()">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span id="cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span>
+      </button>
+    </div>
+    <button id="hbg" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="14" x2="17" y2="14"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mmenu" class="fixed top-0 right-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col" style="transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1)">
+  <div class="flex justify-between items-center mb-10">
+    <span class="text-lg font-bold tracking-tight">REVAÍ</span>
+    <button id="mclose" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Close menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg>
+    </button>
+  </div>
+  <div class="flex flex-col gap-1 flex-1">
+    <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2 mt-2">Shop</p>
+    <a href="collection-new.html" class="mlink block py-2 text-sm font-medium text-black">New Arrivals</a>
+    <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
+    <a href="collection-gym.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Gym &amp; Training</a>
+    <a href="collection-running.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Running</a>
+    <a href="collection-padel.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Padel</a>
+    <a href="collection-golf.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Golf</a>
+    <a href="collection-yoga.html" class="mlink block py-2 text-sm font-medium text-gray-700 hover:text-black">Yoga &amp; Pilates</a>
+    <div class="my-3 border-t border-gray-100"></div>
+    <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About</a>
+    <a href="stories.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Stories</a>
+    <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
+  </div>
+</div>
+<div id="moverlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="pt-40 pb-32 px-6 text-center" style="background:radial-gradient(ellipse 80% 60% at 50% 0%, #f3f4f6 0%, #ffffff 70%)">
+    <div class="max-w-4xl mx-auto">
+      <div class="ha d1 inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2 text-sm font-medium text-gray-700 mb-8 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-black inline-block"></span>
+        New Brand. Real Performance.
+      </div>
+      <h1 class="t-hero ha d2 mb-6">Find Your Revival.</h1>
+      <p class="ha d3 text-lg text-gray-500 leading-relaxed max-w-2xl mx-auto mb-10">REVAÍ is activewear built for everyone — from your first class to your hundredth kilometre. High quality, honest sizing, and prices that make performance accessible.</p>
+      <div class="ha d3 flex flex-wrap gap-3 justify-center">
+        <a href="collections.html" class="btn-p px-7 py-3.5 text-base rounded-xl">Shop the Collection</a>
+        <a href="about.html" class="btn-s px-7 py-3.5 text-base rounded-xl">Our Story</a>
+      </div>
+    </div>
+
+    <!-- Hero visual -->
+    <div class="max-w-4xl mx-auto mt-16 ha d3" style="aspect-ratio:16/9;border-radius:24px;overflow:hidden;position:relative;background:#000;">
+      <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;">
+        <source src="images/homepage-hero.mp4" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
+  <!-- LOCATION BAR -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <span class="text-sm font-medium text-gray-500 mr-2">Now available in</span>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <span class="inline-flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2 text-sm font-medium bg-white">🇰🇪 Kenya</span>
+        <span class="inline-flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2 text-sm font-medium bg-white">🇬🇧 United Kingdom</span>
+        <span class="inline-flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2 text-sm font-medium bg-white">🇦🇪 Dubai</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES GRID -->
+  <section id="features" class="py-36 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="t-h2 fu mb-4">Built to move. Made to fit.</h2>
+        <p class="fu d1 text-gray-500 text-lg max-w-xl mx-auto">Every detail in REVAÍ kit is designed around one thing — making movement better for everyone.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1: True-to-Size -->
+        <div class="card fu d1">
+          <div style="width:48px;height:48px;background:#f9fafb;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 7h18M3 12h10M3 17h6"/><rect x="15" y="10" width="7" height="7" rx="1"/></svg>
+          </div>
+          <h3 class="t-h3 mb-3">True-to-Size Fit</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">S is a S. M is a M. All REVAÍ pieces are designed true to size so you can order with confidence.</p>
+        </div>
+
+        <!-- Card 2: Four-Way Stretch -->
+        <div class="card fu d2">
+          <div style="width:48px;height:48px;background:#f9fafb;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </div>
+          <h3 class="t-h3 mb-3">Four-Way Stretch</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Full range of motion in every direction. Built for the way your body actually moves.</p>
+        </div>
+
+        <!-- Card 3: Moisture Management -->
+        <div class="card fu d3">
+          <div style="width:48px;height:48px;background:#f9fafb;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+          </div>
+          <h3 class="t-h3 mb-3">Moisture Management</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Fabric engineered to pull sweat away from skin and dry fast — staying comfortable is part of the performance.</p>
+        </div>
+
+        <!-- Card 4: Flatlock Seams -->
+        <div class="card fu d1">
+          <div style="width:48px;height:48px;background:#f9fafb;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="4" rx="1"/><rect x="2" y="10" width="20" height="4" rx="1"/><rect x="2" y="16" width="20" height="4" rx="1"/></svg>
+          </div>
+          <h3 class="t-h3 mb-3">Flatlock Seams</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Seams stitched flat against the body. No ridges, no chafing, no distractions at any distance.</p>
+        </div>
+
+        <!-- Card 5: Every Size -->
+        <div class="card fu d2">
+          <div style="width:48px;height:48px;background:#f9fafb;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="7" r="2.5"/><path d="M3 20a6 6 0 0112 0"/><path d="M17 14a4 4 0 014 4"/></svg>
+          </div>
+          <h3 class="t-h3 mb-3">Every Size, Every Body</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">S through XXL across every style. Performance shouldn't have a size limit.</p>
+        </div>
+
+        <!-- Card 6: Sustainable Packaging -->
+        <div class="card fu d3">
+          <div style="width:48px;height:48px;background:#f9fafb;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 7v5l3 3"/><path d="M16 3.5C14.8 2.6 13.5 2 12 2c-5.5 0-10 4.5-10 10"/><path d="M8 20.5C9.2 21.4 10.5 22 12 22c5.5 0 10-4.5 10-10"/></svg>
+          </div>
+          <h3 class="t-h3 mb-3">Sustainable Packaging</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Every REVAÍ order ships in 100% plastic-free, recyclable packaging.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFERENTIATOR (DARK) -->
+  <section style="background:#0a0a0a" class="py-32 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Why REVAÍ</p>
+      <h2 class="t-h2 fu d1 text-white mb-6">Quality activewear. No gatekeeping.</h2>
+      <p class="fu d2 text-gray-400 text-lg leading-relaxed mb-10">Good activewear was either overpriced, badly fitting, or made for a body type that wasn't yours. We built REVAÍ to fix that. Technical fabric, anatomical sizing, and prices that don't make you think twice — whether you're just starting out or you've been at it for years.</p>
+      <a href="collections.html" class="fu d3 inline-flex items-center gap-2 bg-white text-black font-medium text-sm px-7 py-3.5 rounded-xl hover:bg-gray-100 transition-colors" style="text-decoration:none">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="process" class="py-36 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="t-h2 fu">How it works.</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <div class="fu d1">
+          <div style="width:52px;height:52px;background:#000;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+            <span style="color:#fff;font-size:13px;font-weight:700;letter-spacing:0.02em">01</span>
+          </div>
+          <h3 class="t-h3 mb-3">Browse</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Shop by collection or activity. All products available in S–XXL.</p>
+        </div>
+
+        <div class="fu d2">
+          <div style="width:52px;height:52px;background:#000;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+            <span style="color:#fff;font-size:13px;font-weight:700;letter-spacing:0.02em">02</span>
+          </div>
+          <h3 class="t-h3 mb-3">Find Your Fit</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">All pieces are true to size. Fit notes on every product page.</p>
+        </div>
+
+        <div class="fu d3">
+          <div style="width:52px;height:52px;background:#000;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+            <span style="color:#fff;font-size:13px;font-weight:700;letter-spacing:0.02em">03</span>
+          </div>
+          <h3 class="t-h3 mb-3">Order</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Free delivery across Kenya. Dispatched within 1–2 business days.</p>
+        </div>
+
+        <div class="fu d4">
+          <div style="width:52px;height:52px;background:#000;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+            <span style="color:#fff;font-size:13px;font-weight:700;letter-spacing:0.02em">04</span>
+          </div>
+          <h3 class="t-h3 mb-3">Move</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Wear it. Train in it. That's what it's made for.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section id="products" class="py-36 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="t-h2 fu mb-3">New in — SS26</h2>
+        <p class="fu d1 text-gray-500 text-lg">The full REVAÍ launch collection. Every piece available now.</p>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+
+        <!-- Product 1: Running Leggings -->
+        <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all duration-250 fu d1">
+          <div style="aspect-ratio:3/4;position:relative;overflow:hidden;">
+            <img src="images/running-leggings-w.jpg" alt="Running Leggings" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+            <span style="position:absolute;top:0;right:0;background:#000;color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-bottom-left-radius:8px">New</span>
+          </div>
+          <div class="p-5">
+            <span class="inline-block bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full mb-1">Women's</span>
+            <h3 class="text-base font-semibold mt-1">Running Leggings</h3>
+            <p class="text-sm font-bold mt-1">KES 5,000</p>
+            <div class="flex items-center gap-2 mt-3">
+              <span style="width:16px;height:16px;border-radius:50%;background:#000;display:inline-block;cursor:pointer" title="Black"></span>
+              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
+              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
+              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
+            </div>
+            <div class="flex flex-wrap gap-1 mt-3">
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p1" data-size="S">S</button>
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p1" data-size="M">M</button>
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p1" data-size="L">L</button>
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p1" data-size="XL">XL</button>
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p1" data-size="XXL">XXL</button>
+            </div>
+            <button class="btn-p w-full justify-center mt-3 text-sm py-2.5" onclick="addToBag('Running Leggings', 5000, 'p1')">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 2: High Impact Sports Bra -->
+        <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all duration-250 fu d2">
+          <div style="aspect-ratio:3/4;position:relative;overflow:hidden;">
+            <img src="images/high-impact-bra.jpg" alt="High Impact Sports Bra" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+            <span style="position:absolute;top:0;right:0;background:#000;color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-bottom-left-radius:8px">New</span>
+          </div>
+          <div class="p-5">
+            <span class="inline-block bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full mb-1">Women's</span>
+            <h3 class="text-base font-semibold mt-1">High Impact Sports Bra</h3>
+            <p class="text-sm font-bold mt-1">KES 4,500</p>
+            <div class="flex items-center gap-2 mt-3">
+              <span style="width:16px;height:16px;border-radius:50%;background:#000;display:inline-block;cursor:pointer" title="Black"></span>
+              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
+              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
+              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
+            </div>
+            <div class="flex flex-wrap gap-1 mt-3">
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p2" data-size="S">S</button>
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p2" data-size="M">M</button>
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p2" data-size="L">L</button>
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p2" data-size="XL">XL</button>
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p2" data-size="XXL">XXL</button>
+            </div>
+            <button class="btn-p w-full justify-center mt-3 text-sm py-2.5" onclick="addToBag('High Impact Sports Bra', 4500, 'p2')">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 3: Quarter Zip -->
+        <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all duration-250 fu d3">
+          <div style="aspect-ratio:3/4;position:relative;overflow:hidden;">
+            <img src="images/quarter-zip-m.jpg" alt="Quarter Zip" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+            <span style="position:absolute;top:0;right:0;background:#000;color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-bottom-left-radius:8px">New</span>
+          </div>
+          <div class="p-5">
+            <span class="inline-block bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full mb-1">Men's</span>
+            <h3 class="text-base font-semibold mt-1">Quarter Zip</h3>
+            <p class="text-sm font-bold mt-1">KES 5,000</p>
+            <div class="flex items-center gap-2 mt-3">
+              <span style="width:16px;height:16px;border-radius:50%;background:#000;display:inline-block;cursor:pointer" title="Black"></span>
+              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
+              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
+              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
+            </div>
+            <div class="flex flex-wrap gap-1 mt-3">
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p3" data-size="S">S</button>
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p3" data-size="M">M</button>
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p3" data-size="L">L</button>
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p3" data-size="XL">XL</button>
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p3" data-size="XXL">XXL</button>
+            </div>
+            <button class="btn-p w-full justify-center mt-3 text-sm py-2.5" onclick="addToBag('Quarter Zip', 5000, 'p3')">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 4: 30L Gym Bag -->
+        <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all duration-250 fu d4">
+          <div style="aspect-ratio:3/4;position:relative;overflow:hidden;">
+            <img src="images/tshirt-m.jpg" alt="Men's T-Shirt" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+            <span style="position:absolute;top:0;right:0;background:#000;color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-bottom-left-radius:8px">New</span>
+          </div>
+          <div class="p-5">
+            <span class="inline-block bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full mb-1">Unisex</span>
+            <h3 class="text-base font-semibold mt-1">30L Gym Bag</h3>
+            <p class="text-sm font-bold mt-1">KES 8,000</p>
+            <div class="flex items-center gap-2 mt-3">
+              <span style="width:16px;height:16px;border-radius:50%;background:#000;display:inline-block;cursor:pointer" title="Black"></span>
+              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
+              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
+              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
+            </div>
+            <div class="flex flex-wrap gap-1 mt-3">
+              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="p4" data-size="One Size">One Size</button>
+            </div>
+            <button class="btn-p w-full justify-center mt-3 text-sm py-2.5" onclick="addToBag('30L Gym Bag', 8000, 'p4')">Add to Bag</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-12 fu">
+        <a href="collections.html" class="text-sm font-medium text-gray-600 hover:text-black transition-colors inline-flex items-center gap-2">View all products <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats" class="py-28 bg-gray-50 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div class="fu d1">
+          <p class="t-h2 font-bold mb-2">50+</p>
+          <p class="text-sm text-gray-500">Athletes in our program</p>
+        </div>
+        <div class="fu d2">
+          <p class="t-h2 font-bold mb-2">3</p>
+          <p class="text-sm text-gray-500">Markets — Kenya, UK, Dubai</p>
+        </div>
+        <div class="fu d3">
+          <p class="t-h2 font-bold mb-2">S–XXL</p>
+          <p class="text-sm text-gray-500">Every style, every size</p>
+        </div>
+        <div class="fu d4">
+          <p class="t-h2 font-bold mb-2">2026</p>
+          <p class="text-sm text-gray-500">Year founded</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="stories" class="py-36 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="t-h2 fu">What our customers say.</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <div class="card fu d1">
+          <div class="flex gap-0.5 mb-5">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <blockquote class="text-sm text-gray-700 italic leading-relaxed mb-6">"I've tried every major activewear brand and REVAÍ fits better than all of them. The running leggings are exactly true to size and the fabric doesn't shift mid-run."</blockquote>
+          <div class="flex items-center gap-3">
+            <div style="width:40px;height:40px;border-radius:50%;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#374151;flex-shrink:0">AW</div>
+            <div>
+              <p class="text-sm font-semibold">Amara W.</p>
+              <p class="text-xs text-gray-400">Nairobi</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card fu d2">
+          <div class="flex gap-0.5 mb-5">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <blockquote class="text-sm text-gray-700 italic leading-relaxed mb-6">"Finally found a sports bra that actually holds everything in place without digging in. Been wearing the high impact bra for spin classes and it's been brilliant."</blockquote>
+          <div class="flex items-center gap-3">
+            <div style="width:40px;height:40px;border-radius:50%;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#374151;flex-shrink:0">JT</div>
+            <div>
+              <p class="text-sm font-semibold">Jade T.</p>
+              <p class="text-xs text-gray-400">London</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card fu d3">
+          <div class="flex gap-0.5 mb-5">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <blockquote class="text-sm text-gray-700 italic leading-relaxed mb-6">"Ordered the gym shorts and quarter zip together. Quality is genuinely impressive for the price. Will be back for more."</blockquote>
+          <div class="flex items-center gap-3">
+            <div style="width:40px;height:40px;border-radius:50%;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#374151;flex-shrink:0">RK</div>
+            <div>
+              <p class="text-sm font-semibold">Rayan K.</p>
+              <p class="text-xs text-gray-400">Dubai</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="cta" class="py-44 px-6 text-center">
+    <div class="max-w-2xl mx-auto">
+      <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">Get Started</p>
+      <h2 class="t-h2 fu d1 mb-5">Ready to move?</h2>
+      <p class="fu d2 text-gray-500 text-lg mb-10">Browse the SS26 collection. Free delivery across Kenya.</p>
+      <div class="fu d3 flex flex-wrap gap-4 justify-center items-center">
+        <a href="collections.html" class="btn-p px-8 py-4 rounded-xl text-base">Shop the Collection</a>
+        <a href="faq.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors" style="text-decoration:none">Have a question?</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer style="background:#0a0a0a" class="px-6 pt-20 pb-10 border-t border-gray-800">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-12 mb-16">
+      <div>
+        <a href="index.html" style="display:inline-block;margin-bottom:16px"><img src="images/revai-icon.png" alt="REVAÍ" style="height:56px;width:auto;display:block"></a>
+        <p class="text-gray-400 text-sm leading-relaxed mb-6">Activewear built for people who move — whatever that looks like for you.</p>
+        <div class="flex gap-4">
+          <a href="#" aria-label="Instagram" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="TikTok" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.52V6.77a4.85 4.85 0 01-1.02-.08z"/></svg></a>
+          <a href="#" aria-label="LinkedIn" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Shop</h3>
+        <ul class="space-y-3">
+          <li><a href="collection-new.html" class="text-sm text-gray-400 hover:text-white transition-colors">New Arrivals</a></li><li><a href="collections.html" class="text-sm text-gray-400 hover:text-white transition-colors">All Products</a></li><li><a href="collection-gym.html" class="text-sm text-gray-400 hover:text-white transition-colors">Gym &amp; Training</a></li><li><a href="collection-running.html" class="text-sm text-gray-400 hover:text-white transition-colors">Running</a></li><li><a href="collection-padel.html" class="text-sm text-gray-400 hover:text-white transition-colors">Padel</a></li><li><a href="collection-golf.html" class="text-sm text-gray-400 hover:text-white transition-colors">Golf</a></li><li><a href="collection-yoga.html" class="text-sm text-gray-400 hover:text-white transition-colors">Yoga &amp; Pilates</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Company</h3>
+        <ul class="space-y-3">
+          <li><a href="about.html" class="text-sm text-gray-400 hover:text-white transition-colors">About REVAÍ</a></li>
+          <li><a href="sustainability.html" class="text-sm text-gray-400 hover:text-white transition-colors">Sustainability</a></li>
+          <li><a href="athlete-program.html" class="text-sm text-gray-400 hover:text-white transition-colors">Athlete Program</a></li>
+          <li><a href="team-orders.html" class="text-sm text-gray-400 hover:text-white transition-colors">Team Orders</a></li>
+          <li><a href="careers.html" class="text-sm text-gray-400 hover:text-white transition-colors">Careers</a></li>
+          <li><a href="press.html" class="text-sm text-gray-400 hover:text-white transition-colors">Press</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Support</h3>
+        <ul class="space-y-3">
+          <li><a href="shipping-returns.html" class="text-sm text-gray-400 hover:text-white transition-colors">Shipping &amp; Returns</a></li>
+          <li><a href="care-instructions.html" class="text-sm text-gray-400 hover:text-white transition-colors">Care Instructions</a></li>
+          <li><a href="faq.html" class="text-sm text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+          <li><a href="contact.html" class="text-sm text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+          <li><a href="gift-cards.html" class="text-sm text-gray-400 hover:text-white transition-colors">Gift Cards</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-gray-600">© 2026 REVAÍ. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="privacy.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Privacy Policy</a>
+        <a href="terms.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="search.js"></script>
+<script src="shopify-config.js"></script>
+<script src="cart-drawer.js"></script>
+<script>
+// Simple add-to-bag with size selection and toast
+const cartItems = JSON.parse(localStorage.getItem('revai_cart_v1')||'[]');
+function addToBag(name, price, id) {
+  const sizeEls = document.querySelectorAll('.size-pill.selected[data-product="'+id+'"]');
+  const size = sizeEls.length ? sizeEls[0].dataset.size : null;
+  if(!size){showToast('Please select a size'); return;}
+  if(window.REVAI_CART){ window.REVAI_CART.add({id,name,price,size}); return; }
+  // fallback
+  const key=id+'|'+size, existing=cartItems.find(i=>i.key===key);
+  if(existing) existing.qty++; else cartItems.push({id,name,price,size,key,qty:1});
+  localStorage.setItem('revai_cart_v1',JSON.stringify(cartItems));
+  showToast('Added to bag \u2713');
+}
+function showToast(msg){
+  let t=document.getElementById('page-toast');
+  if(!t){t=document.createElement('div');t.id='page-toast';t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#0a0a0a;color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:500;z-index:200;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;white-space:nowrap;';document.body.appendChild(t);}
+  t.textContent=msg; t.style.opacity='1'; t.style.transform='translateX(-50%) translateY(0)';
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(20px)';},2200);
+}
+// Size pill selection
+document.addEventListener('click',function(e){
+  if(e.target.classList.contains('size-pill')){
+    const pid=e.target.dataset.product;
+    document.querySelectorAll('.size-pill[data-product="'+pid+'"]').forEach(p=>{
+      p.classList.remove('selected','bg-black','text-white','border-black');
+      p.classList.add('border-gray-200','text-gray-700');
+    });
+    e.target.classList.add('selected','bg-black','text-white','border-black');
+    e.target.classList.remove('border-gray-200','text-gray-700');
+  }
+});
+// Nav scroll
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20),{passive:true});
+(function(){var btn=document.getElementById('shop-dropdown-btn');var menu=document.getElementById('shop-dropdown-menu');var wrap=document.getElementById('shop-dropdown-wrap');if(!btn||!menu)return;btn.addEventListener('click',function(){var open=menu.style.opacity==='1';menu.style.opacity=open?'0':'1';menu.style.pointerEvents=open?'none':'auto';});document.addEventListener('click',function(e){if(wrap&&!wrap.contains(e.target)){menu.style.opacity='0';menu.style.pointerEvents='none';}});})();
+// Mobile menu
+const hbg=document.getElementById('hbg'),mmenu=document.getElementById('mmenu'),moverlay=document.getElementById('moverlay'),mclose=document.getElementById('mclose');
+function openM(){mmenu.style.transform='translateX(0)';moverlay.classList.remove('hidden');hbg.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
+function closeM(){mmenu.style.transform='translateX(100%)';moverlay.classList.add('hidden');hbg.setAttribute('aria-expanded','false');document.body.style.overflow='';}
+if(hbg)hbg.addEventListener('click',openM);
+if(mclose)mclose.addEventListener('click',closeM);
+if(moverlay)moverlay.addEventListener('click',closeM);
+document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM));
+// Scroll reveal
+const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});});
+if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
+</script>
+</body>
+</html>
