@@ -250,4 +250,38 @@ function showPageToast(msg){
     modal.style.display='block';document.body.style.overflow='hidden';
   }
   function closeModal(){modal.style.display='none';document.body.style.overflow='';}
-  docume
+  document.getElementById('pm-close').addEventListener('click',closeModal);
+  modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+  function attachCards(){
+    document.querySelectorAll('.prod-card').forEach(card=>{
+      if(card._modalAttached)return;
+      card._modalAttached=true;
+      card.style.cursor='pointer';
+      card.addEventListener('click',function(e){
+        if(e.target.classList.contains('add-btn')||e.target.classList.contains('size-pill'))return;
+        var pill=card.querySelector('[data-pid]');
+        if(pill&&pill.dataset.pid)window.location='product.html?id='+pill.dataset.pid;
+      });
+    });
+  }
+  attachCards();
+})();
+document.querySelectorAll('.prod-card').forEach(function(card){
+  var pill=card.querySelector('[data-pid]');
+  if(!pill)return;
+  var pid=pill.dataset.pid;
+  if(!pid||pid.indexOf('$')>-1)return;
+  var clickTargets=[card.querySelector('.prod-img'),card.querySelector('.relative[style]'),card.querySelector('p.font-semibold'),card.querySelector('p.text-base.font-semibold')];
+  clickTargets.forEach(function(el){
+    if(!el)return;
+    el.style.cursor='pointer';
+    el.addEventListener('click',function(e){
+      if(e.target.closest('.size-pill')||e.target.closest('.add-btn'))return;
+      window.location.href='product.html?id='+pid;
+    });
+  });
+});
+</script>
+</body>
+</html>
