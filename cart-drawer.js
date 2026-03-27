@@ -181,64 +181,31 @@
       const TOKEN = 'd247325e39b051aeface7e573e550d37';
       const GQL   = 'https://revai-518.myshopify.com/api/2024-01/graphql.json';
 
-      // Show loading state on button
       const btn = document.getElementById('revai-checkout-btn');
       if (btn) { btn.textContent = 'Loading…'; btn.disabled = true; }
 
       try {
-        // Build one GraphQL query for all unique product handles
-        const handles = [...new Set(cart.map(i => i.id))];
-        const productQueries = handles.map((h, i) => `
-          p${i}: productByHandle(handle: "${h}") {
-            variants(first: 30) {
-              edges { node { id selectedOptions { name value } } }
-            }
-          }
-        `).join('\n');
+        // Use pre-mapped variant IDs from shopify-config.js
+        const variants = (window.REVAI_SHOPIFY && window.REVAI_SHOPIFY.variants) || {};
 
-        const res  = await fetch(GQL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'X-Shopify-Storefront-Access-Token': TOKEN },
-          body: JSON.stringify({ query: `{ ${productQueries} }` })
-        });
-        const { data } = await res.json();
-
-        // Map handle|size → Shopify variant GID
-        const variantMap = {};
-        handles.forEach((h, i) => {
-          const product = data['p' + i];
-          if (!product) return;
-          product.variants.edges.forEach(function(e) {
-            const node = e.node;
-            const sizeOpt = node.selectedOptions.find(function(o) { return o.name === 'Size'; });
-            const size = sizeOpt ? sizeOpt.value : 'One Size';
-            variantMap[h + '|' + size] = node.id;
-          });
-        });
-
-        // Build line items
-        const lineItems = cart.map(function(item) {
-          const vid = variantMap[item.id + '|' + item.size];
-          return vid ? { variantId: vid, quantity: item.qty || 1 } : null;
+        const cartLines = cart.map(function(item) {
+          const productVariants = variants[item.id] || {};
+          const vid = productVariants[item.size];
+          return vid ? { merchandiseId: vid, quantity: item.qty || 1 } : null;
         }).filter(Boolean);
 
-        if (lineItems.length === 0) {
+        if (cartLines.length === 0) {
           if (btn) { btn.textContent = 'Checkout'; btn.disabled = false; }
           var notice = document.getElementById('revai-checkout-notice');
           if (!notice) {
             notice = document.createElement('p');
             notice.id = 'revai-checkout-notice';
             notice.style.cssText = 'font-size:12px;color:#6b7280;text-align:center;margin-top:8px';
-            btn.parentNode.insertBefore(notice, btn.nextSibling);
+            if (btn) btn.parentNode.insertBefore(notice, btn.nextSibling);
           }
           notice.textContent = 'Online checkout coming soon. To order, contact us directly.';
           return;
         }
-
-        // Create Shopify cart (new Cart API)
-        const cartLines = lineItems.map(function(li) {
-          return { merchandiseId: li.variantId, quantity: li.quantity };
-        });
 
         const cartRes = await fetch(GQL, {
           method: 'POST',
