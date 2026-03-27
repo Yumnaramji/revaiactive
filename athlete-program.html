@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Athlete Program — REVAÍ</title>
+  <meta name="description" content="The REVAÍ Athlete Program — for pro athletes, personal trainers, coaches and everyday movers. 15% discount. No contracts, no quotas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body{font-family:'Inter',-apple-system,sans-serif;color:#0a0a0a;background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    .fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+    .fu.in{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}.d4{transition-delay:320ms}
+    .t-hero{font-size:clamp(36px,5.5vw,64px);font-weight:700;letter-spacing:-0.025em;line-height:1.07}
+    .t-h2{font-size:clamp(26px,3.5vw,40px);font-weight:600;letter-spacing:-0.015em;line-height:1.12}
+    .btn-p{background:#000;color:#fff;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;text-decoration:none}
+    .btn-p:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.22);background:#1a1a1a}
+    .card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:32px;transition:transform .25s,box-shadow .25s}
+    .card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.07)}
+    #nav.scrolled{border-bottom:1px solid #e5e7eb}
+    .field{width:100%;padding:10px 14px;border:1px solid #e5e7eb;border-radius:9px;font-size:14px;font-family:inherit;color:#0a0a0a;outline:none;transition:border-color .2s}
+    .field:focus{border-color:#000}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" class="fixed top-0 inset-x-0 z-50 h-16" style="background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .25s">
+  <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+    <a href="index.html" class="text-lg font-bold tracking-tight text-black">REVAÍ</a>
+    <div class="hidden md:flex items-center gap-8">
+      <div class="relative" id="shop-dropdown-wrap">
+        <button id="shop-dropdown-btn" class="text-sm font-medium text-gray-500 hover:text-black transition-colors flex items-center gap-1">Shop<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div id="shop-dropdown-menu" class="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 transition-all duration-200 z-50" style="opacity:0;pointer-events:none">
+          <a href="collection-new.html" class="block px-4 py-2.5 text-sm font-medium text-black hover:bg-gray-50">New Arrivals</a>
+          <div class="my-1 border-t border-gray-100"></div>
+          <a href="collections.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">All Products</a>
+          <a href="collection-gym.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Gym &amp; Training</a>
+          <a href="collection-running.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Running</a>
+          <a href="collection-padel.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Padel</a>
+          <a href="collection-golf.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Golf</a>
+          <a href="collection-yoga.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Yoga &amp; Pilates</a>
+        </div>
+      </div>
+      <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About</a>
+      <a href="stories.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Stories</a>
+      <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
+    </div>
+    <div class="hidden md:flex items-center gap-3">
+      <button onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+      <a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+      <button onclick="if(window.REVAI_CART)window.REVAI_CART.openDrawer()" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open cart">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span id="cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span>
+      </button>
+    </div>
+    <button id="hbg" class="md:hidden p-2 rounded-lg hover:bg-gray-100" aria-label="Open menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="14" x2="17" y2="14"/></svg>
+    </button>
+  </div>
+</nav>
+<div id="mmenu" class="fixed top-0 right-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col" style="transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1)">
+  <div class="flex justify-between items-center mb-8"><span class="text-lg font-bold">REVAÍ</span><button id="mclose" class="p-2 hover:bg-gray-100 rounded-lg"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg></button></div>
+  <div class="flex flex-col gap-1 flex-1">
+    <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Shop</p>
+    <a href="collection-new.html" class="mlink block py-2 text-sm font-medium text-black">New Arrivals</a>
+    <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
+    <a href="collection-gym.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Gym &amp; Training</a>
+    <a href="collection-running.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Running</a>
+    <a href="collection-padel.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Padel</a>
+    <a href="collection-golf.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Golf</a>
+    <a href="collection-yoga.html" class="mlink block py-2 text-sm font-medium text-gray-700 hover:text-black">Yoga &amp; Pilates</a>
+    <div class="my-3 border-t border-gray-100"></div>
+    <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700">About</a>
+    <a href="stories.html" class="mlink block py-2 text-base font-medium text-gray-700">Stories</a>
+    <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700">Technology</a>
+  </div>
+</div>
+<div id="moverlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="pt-40 pb-28 px-6 text-center" style="background:#0a0a0a">
+    <div class="max-w-3xl mx-auto">
+      <div class="ha inline-flex items-center gap-2 border border-gray-700 rounded-full px-4 py-1.5 mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+        <span class="text-xs font-medium tracking-widest uppercase text-gray-400">The REVAÍ Athlete Program</span>
+      </div>
+      <h1 class="ha t-hero text-white mb-6">Real people.<br>Real movement.</h1>
+      <p class="ha text-gray-400 text-lg leading-relaxed mx-auto" style="max-width:520px">We don't run a traditional ambassador programme. We work with coaches, personal trainers, pro athletes, and everyday movers who want to represent kit they actually believe in.</p>
+    </div>
+  </section>
+
+  <!-- NOT AMBASSADORS -->
+  <section class="py-28 px-6">
+    <div class="max-w-3xl mx-auto text-center fu">
+      <h2 class="t-h2 text-black mb-6">Community, not contracts.</h2>
+      <p class="text-gray-600 text-lg leading-relaxed mb-5">We don't do paid posts, mandatory content quotas, or follower count minimums. We work with people who genuinely move — and who, when they wear REVAÍ, want to share it because it's good.</p>
+      <p class="text-gray-600 text-lg leading-relaxed">50+ coaches, athletes, and everyday movers are already part of the programme across Kenya, UK, and Dubai.</p>
+    </div>
+  </section>
+
+  <!-- WHO WE WORK WITH -->
+  <section class="py-28 px-6" style="background:#f8f9fa">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 fu">
+        <h2 class="t-h2 text-black mb-4">Who we work with.</h2>
+        <p class="text-gray-500 text-lg">Any background, any level, any discipline.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="fu d1 card text-center">
+          <div class="w-14 h-14 rounded-2xl bg-black flex items-center justify-center mx-auto mb-5">
+            <svg width="24" height="24" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0112 0v2"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-black mb-3">Professional Athletes</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Competing at amateur or professional level in any sport or discipline. Any background, any age.</p>
+        </div>
+        <div class="fu d2 card text-center">
+          <div class="w-14 h-14 rounded-2xl bg-black flex items-center justify-center mx-auto mb-5">
+            <svg width="24" height="24" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-black mb-3">Personal Trainers &amp; Coaches</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Certified PTs, S&amp;C coaches, yoga teachers, fitness instructors, and group class leaders.</p>
+        </div>
+        <div class="fu d3 card text-center">
+          <div class="w-14 h-14 rounded-2xl bg-black flex items-center justify-center mx-auto mb-5">
+            <svg width="24" height="24" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-black mb-3">Everyday Athletes</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Runners, gym-goers, padel players, golfers — anyone who makes movement a consistent part of their life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="py-28 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16 fu">
+        <h2 class="t-h2 text-black mb-4">What you get.</h2>
+      </div>
+      <!-- Big 15% card -->
+      <div class="fu d1 rounded-2xl p-10 mb-6 text-center" style="background:#0a0a0a">
+        <div class="text-8xl font-bold text-white mb-2" style="letter-spacing:-0.04em">15%</div>
+        <p class="text-gray-300 text-xl font-medium mb-6">discount on all REVAÍ products</p>
+        <div class="grid md:grid-cols-3 gap-4 mt-8">
+          <div class="bg-white/5 rounded-xl p-4">
+            <p class="text-sm text-gray-300">Early access to new collections</p>
+          </div>
+          <div class="bg-white/5 rounded-xl p-4">
+            <p class="text-sm text-gray-300">Featured in our community channels</p>
+          </div>
+          <div class="bg-white/5 rounded-xl p-4">
+            <p class="text-sm text-gray-300">Direct line to the REVAÍ team</p>
+          </div>
+        </div>
+        <p class="text-gray-500 text-sm mt-8">No monthly quotas. No mandatory posting schedules. No performance metrics.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE ASK -->
+  <section class="py-20 px-6" style="background:#f8f9fa">
+    <div class="max-w-3xl mx-auto text-center fu">
+      <h2 class="t-h2 text-black mb-8">What we ask.</h2>
+      <div class="grid md:grid-cols-3 gap-5 text-left">
+        <div class="bg-white rounded-2xl p-6 border border-gray-100">
+          <div class="text-2xl mb-3">👟</div>
+          <p class="font-semibold text-black text-sm mb-1">Wear REVAÍ when you train</p>
+          <p class="text-xs text-gray-500 leading-relaxed">That's it. No post requirements.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-gray-100">
+          <div class="text-2xl mb-3">📲</div>
+          <p class="font-semibold text-black text-sm mb-1">Tag us when you feel like it</p>
+          <p class="text-xs text-gray-500 leading-relaxed">@revai — when and if it feels natural.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-gray-100">
+          <div class="text-2xl mb-3">💬</div>
+          <p class="font-semibold text-black text-sm mb-1">Be honest about the kit</p>
+          <p class="text-xs text-gray-500 leading-relaxed">We want real feedback, not glowing reviews.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-3 gap-6 text-center">
+        <div class="fu"><div class="text-4xl font-bold text-black mb-1">50+</div><p class="text-sm text-gray-500">Athletes in the programme</p></div>
+        <div class="fu d1"><div class="text-4xl font-bold text-black mb-1">3</div><p class="text-sm text-gray-500">Markets — Kenya, UK, Dubai</p></div>
+        <div class="fu d2"><div class="text-4xl font-bold text-black mb-1">15%</div><p class="text-sm text-gray-500">Discount on all products</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATION FORM -->
+  <section class="py-28 px-6" style="background:#f8f9fa">
+    <div class="max-w-xl mx-auto">
+      <div class="text-center mb-12 fu">
+        <h2 class="t-h2 text-black mb-4">Apply to join.</h2>
+        <p class="text-gray-500">We review all applications personally. You'll hear back within a few days.</p>
+      </div>
+      <form id="apply-form" class="fu d1 space-y-5" onsubmit="submitForm(event)">
+        <div>
+          <label for="ap-name" class="block text-sm font-medium text-gray-700 mb-1.5">Full Name</label>
+          <input id="ap-name" type="text" class="field" placeholder="Your name" required>
+        </div>
+        <div>
+          <label for="ap-email" class="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
+          <input id="ap-email" type="email" class="field" placeholder="you@example.com" required>
+        </div>
+        <div>
+          <label for="ap-location" class="block text-sm font-medium text-gray-700 mb-1.5">Location</label>
+          <select id="ap-location" class="field" required>
+            <option value="">Select your country</option>
+            <option>Kenya</option>
+            <option>United Kingdom</option>
+            <option>Dubai / UAE</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="ap-type" class="block text-sm font-medium text-gray-700 mb-1.5">What best describes you?</label>
+          <select id="ap-type" class="field" required>
+            <option value="">Select one</option>
+            <option>Professional Athlete</option>
+            <option>Personal Trainer</option>
+            <option>Coach</option>
+            <option>Everyday Athlete</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="ap-sport" class="block text-sm font-medium text-gray-700 mb-1.5">Your sport or activity</label>
+          <input id="ap-sport" type="text" class="field" placeholder="e.g. Running, Padel, CrossFit, Yoga..." required>
+        </div>
+        <div>
+          <label for="ap-social" class="block text-sm font-medium text-gray-700 mb-1.5">Instagram or social handle <span class="text-gray-400 font-normal">(optional)</span></label>
+          <input id="ap-social" type="text" class="field" placeholder="@yourhandle">
+        </div>
+        <div>
+          <label for="ap-why" class="block text-sm font-medium text-gray-700 mb-1.5">Why do you want to join?</label>
+          <textarea id="ap-why" class="field" rows="4" placeholder="Tell us a bit about yourself and why REVAÍ..." required style="resize:vertical"></textarea>
+        </div>
+        <button type="submit" class="btn-p w-full justify-center py-3.5 text-base">Apply Now</button>
+      </form>
+      <div id="apply-success" class="hidden text-center py-16">
+        <div class="w-16 h-16 rounded-full bg-black flex items-center justify-center mx-auto mb-5">
+          <svg width="28" height="28" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3 class="text-xl font-semibold text-black mb-2">Application received!</h3>
+        <p class="text-gray-500">We'll be in touch within a few days. Thank you for applying.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer style="background:#0a0a0a" class="px-6 pt-20 pb-10 border-t border-gray-800">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-12 mb-16">
+      <div><a href="index.html" style="display:inline-block;margin-bottom:16px"><img src="images/revai-icon.png" alt="REVAÍ" style="height:56px;width:auto;display:block"></a><p class="text-gray-400 text-sm leading-relaxed mb-6">Activewear built for people who move — whatever that looks like for you.</p></div>
+      <div><h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Shop</h3><ul class="space-y-3"><li><a href="collection-new.html" class="text-sm text-gray-400 hover:text-white transition-colors">New Arrivals</a></li><li><a href="collections.html" class="text-sm text-gray-400 hover:text-white transition-colors">All Products</a></li><li><a href="collection-gym.html" class="text-sm text-gray-400 hover:text-white transition-colors">Gym &amp; Training</a></li><li><a href="collection-running.html" class="text-sm text-gray-400 hover:text-white transition-colors">Running</a></li><li><a href="collection-padel.html" class="text-sm text-gray-400 hover:text-white transition-colors">Padel</a></li><li><a href="collection-golf.html" class="text-sm text-gray-400 hover:text-white transition-colors">Golf</a></li><li><a href="collection-yoga.html" class="text-sm text-gray-400 hover:text-white transition-colors">Yoga &amp; Pilates</a></li></ul></div>
+      <div><h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Company</h3><ul class="space-y-3"><li><a href="about.html" class="text-sm text-gray-400 hover:text-white">About REVAÍ</a></li><li><a href="sustainability.html" class="text-sm text-gray-400 hover:text-white">Sustainability</a></li><li><a href="athlete-program.html" class="text-sm text-gray-400 hover:text-white">Athlete Program</a></li><li><a href="team-orders.html" class="text-sm text-gray-400 hover:text-white">Team Orders</a></li><li><a href="careers.html" class="text-sm text-gray-400 hover:text-white">Careers</a></li><li><a href="press.html" class="text-sm text-gray-400 hover:text-white">Press</a></li></ul></div>
+      <div><h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Support</h3><ul class="space-y-3"><li><a href="shipping-returns.html" class="text-sm text-gray-400 hover:text-white">Shipping &amp; Returns</a></li><li><a href="care-instructions.html" class="text-sm text-gray-400 hover:text-white">Care Instructions</a></li><li><a href="faq.html" class="text-sm text-gray-400 hover:text-white">FAQ</a></li><li><a href="contact.html" class="text-sm text-gray-400 hover:text-white">Contact Us</a></li><li><a href="gift-cards.html" class="text-sm text-gray-400 hover:text-white">Gift Cards</a></li></ul></div>
+    </div>
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-gray-600">© 2026 REVAÍ. All rights reserved.</p>
+      <div class="flex gap-6"><a href="privacy.html" class="text-xs text-gray-600 hover:text-gray-400">Privacy Policy</a><a href="terms.html" class="text-xs text-gray-600 hover:text-gray-400">Terms of Service</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="search.js"></script>
+<script src="shopify-config.js"></script>
+<script src="cart-drawer.js"></script>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20),{passive:true});
+(function(){var btn=document.getElementById('shop-dropdown-btn');var menu=document.getElementById('shop-dropdown-menu');var wrap=document.getElementById('shop-dropdown-wrap');if(!btn||!menu)return;btn.addEventListener('click',function(){var open=menu.style.opacity==='1';menu.style.opacity=open?'0':'1';menu.style.pointerEvents=open?'none':'auto';});document.addEventListener('click',function(e){if(wrap&&!wrap.contains(e.target)){menu.style.opacity='0';menu.style.pointerEvents='none';}});})();
+const hbg=document.getElementById('hbg'),mmenu=document.getElementById('mmenu'),moverlay=document.getElementById('moverlay'),mclose=document.getElementById('mclose');
+function openM(){mmenu.style.transform='translateX(0)';moverlay.classList.remove('hidden');document.body.style.overflow='hidden';}
+function closeM(){mmenu.style.transform='translateX(100%)';moverlay.classList.add('hidden');document.body.style.overflow='';}
+if(hbg)hbg.addEventListener('click',openM);
+if(mclose)mclose.addEventListener('click',closeM);
+if(moverlay)moverlay.addEventListener('click',closeM);
+document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM));
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+// Hero entrance
+document.querySelectorAll('.ha').forEach((el,i)=>{el.style.opacity='0';el.style.transform='translateY(18px)';el.style.transition=`opacity .8s cubic-bezier(.16,1,.3,1) ${i*150}ms, transform .8s cubic-bezier(.16,1,.3,1) ${i*150}ms`;setTimeout(()=>{el.style.opacity='1';el.style.transform='translateY(0)';},50);});
+function submitForm(e){
+  e.preventDefault();
+  document.getElementById('apply-form').classList.add('hidden');
+  document.getElementById('apply-success').classList.remove('hidden');
+}
+if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
+</script>
+</body>
+</html>

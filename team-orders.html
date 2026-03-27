@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Team Orders — REVAÍ</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
+    *{box-sizing:border-box}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    .t-h2{font-size:clamp(28px,4vw,46px);font-weight:600;letter-spacing:-0.015em;line-height:1.12}
+    .t-h3{font-size:clamp(17px,2vw,21px);font-weight:600;line-height:1.25}
+    .fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+    .fu.in{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}
+    #nav{background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .25s}
+    #nav.scrolled{border-bottom:1px solid var(--border)}
+    .btn-p{background:#000;color:#fff;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;text-decoration:none}
+    .btn-p:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.22);background:#1a1a1a}
+    .btn-s{background:transparent;border:1px solid #000;color:#000;transition:background .2s ease,transform .2s ease;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;text-decoration:none}
+    .btn-s:hover{background:rgba(0,0,0,.04);transform:translateY(-1px)}
+    .card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:32px;transition:transform .25s ease,box-shadow .25s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.07)}
+    #mmenu{transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+    #mmenu.open{transform:translateX(0)}
+    .faq-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+    .faq-body.open{max-height:400px}
+    .faq-icon{transition:transform .3s ease;display:inline-block}
+    .faq-row.open .faq-icon{transform:rotate(45deg)}
+    @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
+    :focus-visible{outline:2px solid #000;outline-offset:3px}
+    .field{width:100%;border:1px solid var(--border);border-radius:10px;padding:11px 14px;font-size:14px;font-family:inherit;color:var(--text);background:#fff;transition:border-color .2s}
+    .field:focus{outline:none;border-color:#000}
+    label{display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:var(--text)}
+    .step-num{width:40px;height:40px;background:#000;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0}
+    .disc-badge{background:#000;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px}
+  </style>
+</head>
+<body>
+<a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded-lg text-sm" href="#main">Skip to content</a>
+<nav aria-label="Main" class="fixed top-0 inset-x-0 z-50 h-16" id="nav" role="navigation">
+<div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+<a class="text-lg font-bold tracking-tight text-black" href="index.html">REVAÍ</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-gray-500 hover:text-black transition-colors" href="collections.html">Collections</a>
+<a class="text-sm font-medium text-gray-500 hover:text-black transition-colors" href="technology.html">Technology</a>
+<a class="text-sm font-medium text-gray-500 hover:text-black transition-colors" href="about.html">About</a>
+<a class="text-sm font-medium text-gray-500 hover:text-black transition-colors" href="stories.html">Stories</a>
+</div>
+<div class="hidden md:flex items-center gap-3">
+      <button onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+      <a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+      <button id="nav-cart-btn" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open cart" onclick="if(window.REVAI_CART)window.REVAI_CART.openDrawer()">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span id="cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span>
+      </button>
+</div>
+<button aria-expanded="false" aria-label="Open menu" class="md:hidden p-2 rounded-lg hover:bg-gray-100" id="hbg">
+<svg fill="none" height="20" stroke="currentColor" stroke-width="1.5" viewbox="0 0 20 20" width="20"><line x1="3" x2="17" y1="6" y2="6"></line><line x1="3" x2="17" y1="10" y2="10"></line><line x1="3" x2="17" y1="14" y2="14"></line></svg>
+</button>
+</div>
+</nav>
+<div class="fixed top-0 right-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col" id="mmenu">
+<div class="flex justify-between items-center mb-10">
+<span class="text-lg font-bold">REVAÍ</span>
+<button aria-label="Close menu" class="p-2 rounded-lg hover:bg-gray-100" id="mclose"><svg fill="none" height="18" stroke="currentColor" stroke-width="1.5" viewbox="0 0 18 18" width="18"><line x1="3" x2="15" y1="3" y2="15"></line><line x1="15" x2="3" y1="3" y2="15"></line></svg></button>
+</div>
+<div class="flex flex-col gap-6 flex-1">
+<a class="mlink text-base font-medium text-gray-700 hover:text-black" href="collections.html">Collections</a>
+<a class="mlink text-base font-medium text-gray-700 hover:text-black" href="technology.html">Technology</a>
+<a class="mlink text-base font-medium text-gray-700 hover:text-black" href="about.html">About</a>
+<a class="mlink text-base font-medium text-gray-700 hover:text-black" href="stories.html">Stories</a>
+</div>
+</div>
+<div class="fixed inset-0 bg-black/20 z-40 hidden" id="moverlay"></div>
+<main id="main">
+<!-- Hero -->
+<section class="pt-32 pb-16 px-6" style="background:#0a0a0a">
+<div class="max-w-6xl mx-auto">
+<div class="max-w-2xl">
+<p class="fu text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Team Orders</p>
+<h1 class="fu d1 t-h2 mb-5 text-white">Kit your whole crew.</h1>
+<p class="fu d2 text-lg text-gray-400 leading-relaxed mb-8">10 pieces or more? We'll handle everything — pricing, custom printing, coordination, and delivery — with a dedicated account manager from first enquiry to final delivery.</p>
+<div class="fu d3 flex flex-wrap gap-3">
+<a class="btn-p" href="#enquire">Submit an Enquiry</a>
+<a class="btn-s" href="collections.html" onmouseout="this.style.background='transparent'" onmouseover="this.style.background='rgba(255,255,255,0.05)'" style="border-color:#444;color:#ccc;">Browse Products</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Who it's for -->
+<section class="py-16 px-6" style="background:var(--bg2)">
+<div class="max-w-6xl mx-auto">
+<div class="fu mb-10">
+<h2 class="t-h2 mb-3">Who it's for</h2>
+<p class="text-gray-500">If your group moves together, they should look the part together. Minimum 10 pieces.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+<div class="fu d1 card">
+<div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center mb-4">
+<svg fill="none" height="18" stroke="white" stroke-width="1.5" viewbox="0 0 24 24" width="18"><path d="M6 2v6l2 2-2 2v6"></path><path d="M18 2v6l-2 2 2 2v6"></path><line x1="6" x2="18" y1="12" y2="12"></line></svg>
+</div>
+<h3 class="font-semibold mb-2">Sports Teams</h3>
+<p class="text-sm text-gray-600 leading-relaxed">Football, rugby, rowing, cycling, triathlon, athletics clubs — any team that trains and competes together. We supply everything from race kits to training sets.</p>
+<div class="mt-3 pt-3 border-t border-gray-100">
+<p class="text-xs text-gray-400">Club and academy accounts available</p>
+</div>
+</div>
+<div class="fu d2 card">
+<div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center mb-4">
+<svg fill="none" height="18" stroke="white" stroke-width="1.5" viewbox="0 0 24 24" width="18"><rect height="14" rx="2" width="20" x="2" y="3"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
+</div>
+<h3 class="font-semibold mb-2">Gyms &amp; Studios</h3>
+<p class="text-sm text-gray-600 leading-relaxed">CrossFit boxes, yoga and Pilates studios, PT studios, and fitness chains who want their staff and instructors wearing cohesive, high-quality kit.</p>
+<div class="mt-3 pt-3 border-t border-gray-100">
+<p class="text-xs text-gray-400">Staff uniforms and retail resale options</p>
+</div>
+</div>
+<div class="fu d3 card">
+<div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center mb-4">
+<svg fill="none" height="18" stroke="white" stroke-width="1.5" viewbox="0 0 24 24" width="18"><rect height="14" rx="2" width="20" x="2" y="7"></rect><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"></path></svg>
+</div>
+<h3 class="font-semibold mb-2">Corporate Wellness</h3>
+<p class="text-sm text-gray-600 leading-relaxed">Companies equipping employees for wellness programmes, charity challenges, company sports days, or team-building events. Branded with your logo.</p>
+<div class="mt-3 pt-3 border-t border-gray-100">
+<p class="text-xs text-gray-400">Invoice billing available for businesses</p>
+</div>
+</div>
+<div class="fu d1 card">
+<div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center mb-4">
+<svg fill="none" height="18" stroke="white" stroke-width="1.5" viewbox="0 0 24 24" width="18"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 00-3-3.87"></path><path d="M16 3.13a4 4 0 010 7.75"></path></svg>
+</div>
+<h3 class="font-semibold mb-2">Running Clubs</h3>
+<p class="text-sm text-gray-600 leading-relaxed">Community running clubs, parkrun groups, and social sport communities who want a consistent club identity across members of all abilities.</p>
+<div class="mt-3 pt-3 border-t border-gray-100">
+<p class="text-xs text-gray-400">Mixed size runs and ongoing re-order support</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Benefits -->
+<section class="py-16 px-6">
+<div class="max-w-6xl mx-auto">
+<div class="fu mb-10 text-center">
+<h2 class="t-h2 mb-3">Team Order Benefits</h2>
+<p class="text-gray-500">Everything included from the moment you submit your enquiry.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+<div class="fu d1 card text-center">
+<div class="text-3xl font-bold mb-1">15–25%</div>
+<h3 class="font-semibold text-sm mb-2">Volume Discount</h3>
+<p class="text-xs text-gray-500 leading-relaxed">15% for 10–24 pieces. 20% for 25–49 pieces. 25% for 50+ pieces. Discount applies across all tiers and mixed orders.</p>
+</div>
+<div class="fu d2 card text-center">
+<div class="mb-3">
+<svg class="mx-auto" fill="none" height="32" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="32"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"></path></svg>
+</div>
+<h3 class="font-semibold text-sm mb-2">Custom Heat Transfer Printing</h3>
+<p class="text-xs text-gray-500 leading-relaxed">Add your club logo, team name, or number to any piece. Heat transfer printing sits flat against the fabric, stretches with the garment, and won't affect moisture-wicking performance. Setup fee applies once per logo.</p>
+</div>
+<div class="fu d3 card text-center">
+<div class="mb-3">
+<svg class="mx-auto" fill="none" height="32" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="32"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+</div>
+<h3 class="font-semibold text-sm mb-2">Dedicated Account Manager</h3>
+<p class="text-xs text-gray-500 leading-relaxed">A named contact at REVAÍ handles your order from quote to delivery. Same-day responses during business hours. No holding queues.</p>
+</div>
+<div class="fu d1 card text-center">
+<div class="mb-3">
+<svg class="mx-auto" fill="none" height="32" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="32"><rect height="16" rx="2" width="22" x="1" y="4"></rect><line x1="1" x2="23" y1="10" y2="10"></line></svg>
+</div>
+<h3 class="font-semibold text-sm mb-2">Flexible Payment</h3>
+<p class="text-xs text-gray-500 leading-relaxed">Pay by card, bank transfer, or invoice (net-30 for qualifying organisations). 50% deposit on orders over 50 pieces, balance on dispatch.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- How it Works -->
+<section class="py-16 px-6" style="background:var(--bg2)">
+<div class="max-w-6xl mx-auto">
+<div class="fu mb-10">
+<h2 class="t-h2 mb-3">How It Works</h2>
+<p class="text-gray-500">From first enquiry to kit in hand — typically 10–14 working days for standard orders.</p>
+</div>
+<div class="grid md:grid-cols-4 gap-6">
+<div class="fu d1 flex flex-col gap-4">
+<div class="step-num">1</div>
+<div>
+<h3 class="font-semibold mb-1">Submit Your Enquiry</h3>
+<p class="text-sm text-gray-600 leading-relaxed">Fill in the form below with your organisation details, the approximate quantity, product preferences, and required delivery date. No commitment at this stage.</p>
+</div>
+</div>
+<div class="fu d2 flex flex-col gap-4">
+<div class="step-num">2</div>
+<div>
+<h3 class="font-semibold mb-1">Receive Your Quote</h3>
+<p class="text-sm text-gray-600 leading-relaxed">Your account manager will send a full itemised quote within 24 hours, including volume discount, custom printing costs if applicable, and shipping estimate.</p>
+</div>
+</div>
+<div class="fu d3 flex flex-col gap-4">
+<div class="step-num">3</div>
+<div>
+<h3 class="font-semibold mb-1">Confirm and Pay</h3>
+<p class="text-sm text-gray-600 leading-relaxed">Review the quote, confirm your size breakdown and any customisation details, and pay via your preferred method. We'll send a print proof if custom branding is included.</p>
+</div>
+</div>
+<div class="fu d1 flex flex-col gap-4">
+<div class="step-num">4</div>
+<div>
+<h3 class="font-semibold mb-1">Receive Your Kit</h3>
+<p class="text-sm text-gray-600 leading-relaxed">Your order is produced, quality-checked, and dispatched with full tracking. All pieces arrive in individual polybags labelled by size for easy distribution to team members.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Order Form -->
+<section class="py-16 px-6" id="enquire">
+<div class="max-w-6xl mx-auto">
+<div class="max-w-2xl mx-auto">
+<div class="fu mb-10 text-center">
+<h2 class="t-h2 mb-3">Submit Your Enquiry</h2>
+<p class="text-gray-500">No commitment. We'll come back to you with a detailed quote within 24 hours.</p>
+</div>
+<form class="fu d1 space-y-5 bg-white border border-gray-100 rounded-2xl p-8" id="team-form" novalidate="">
+<div class="grid sm:grid-cols-2 gap-5">
+<div>
+<label for="t-org">Organisation Name <span class="text-red-400">*</span></label>
+<input class="field" id="t-org" placeholder="Club, gym, or company name" required="" type="text"/>
+</div>
+<div>
+<label for="t-contact">Contact Name <span class="text-red-400">*</span></label>
+<input class="field" id="t-contact" placeholder="Your full name" required="" type="text"/>
+</div>
+</div>
+<div class="grid sm:grid-cols-2 gap-5">
+<div>
+<label for="t-email">Email Address <span class="text-red-400">*</span></label>
+<input class="field" id="t-email" placeholder="you@organisation.com" required="" type="email"/>
+</div>
+<div>
+<label for="t-phone">Phone Number (optional)</label>
+<input class="field" id="t-phone" placeholder="+44 7700 000000" type="tel"/>
+</div>
+</div>
+<div>
+<label for="t-type">Organisation Type <span class="text-red-400">*</span></label>
+<select class="field" id="t-type" required="">
+<option disabled="" selected="" value="">Select type…</option>
+<option>Sports Team / Club</option>
+<option>Gym / CrossFit Box</option>
+<option>Yoga / Pilates Studio</option>
+<option>Running Club</option>
+<option>Corporate / Workplace</option>
+<option>School / University</option>
+<option>Other</option>
+</select>
+</div>
+<div class="grid sm:grid-cols-2 gap-5">
+<div>
+<label for="t-qty">Estimated Quantity <span class="text-red-400">*</span></label>
+<select class="field" id="t-qty" required="">
+<option disabled="" selected="" value="">Select range…</option>
+<option>10–24 pieces (15% discount)</option>
+<option>25–49 pieces (20% discount)</option>
+<option>50–99 pieces (25% discount)</option>
+<option>100+ pieces (25% + custom pricing)</option>
+</select>
+</div>
+<div>
+<label for="t-date">Required By Date <span class="text-red-400">*</span></label>
+<input class="field" id="t-date" required="" type="date"/>
+</div>
+</div>
+<div>
+<label for="t-embroidery">Custom Printing?</label>
+<select class="field" id="t-embroidery">
+<option value="no">No — standard REVAÍ branding only</option>
+<option value="logo">Yes — add our logo / club crest</option>
+<option value="name">Yes — add team name or numbers</option>
+<option value="both">Yes — logo and name / numbers</option>
+</select>
+</div>
+<div>
+<label for="t-notes">Additional Notes</label>
+<textarea class="field" id="t-notes" placeholder="Product preferences, specific colourways, mix of items, special requirements, delivery address…" rows="4" style="resize:vertical;min-height:100px"></textarea>
+</div>
+<button class="btn-p w-full justify-center" type="submit">
+            Send Enquiry
+            <svg fill="none" height="16" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="16"><line x1="22" x2="11" y1="2" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+</button>
+<p class="text-xs text-gray-400 text-center">We respond to all team enquiries within 24 hours during business days. Typically much faster.</p>
+</form>
+<div class="hidden bg-white border border-green-200 rounded-2xl px-8 py-10 text-center" id="team-success">
+<div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
+<svg fill="none" height="22" stroke="#16a34a" stroke-width="2" viewbox="0 0 24 24" width="22"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<h3 class="font-semibold text-lg mb-2">Enquiry received!</h3>
+<p class="text-sm text-gray-500 max-w-xs mx-auto">Thanks for your team order enquiry. Your account manager will be in touch within 24 hours with a personalised quote.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ -->
+<section class="py-16 px-6" style="background:var(--bg2)">
+<div class="max-w-6xl mx-auto">
+<div class="max-w-2xl mx-auto">
+<div class="fu mb-10 text-center">
+<h2 class="t-h2 mb-3">Team Order FAQs</h2>
+</div>
+<div class="space-y-2">
+<div class="faq-row fu bg-white border border-gray-100 rounded-2xl overflow-hidden">
+<button aria-expanded="false" class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between gap-4 font-medium text-sm">
+              What is the minimum order size?
+              <span class="faq-icon text-xl flex-shrink-0">+</span>
+</button>
+<div class="faq-body px-6">
+<p class="text-sm text-gray-600 leading-relaxed pb-5">The minimum for team order pricing and benefits is 10 pieces. These can be any combination of products, sizes, and colours across any tier. A mixed order of 6 running tights and 4 training tops qualifies, for example.</p>
+</div>
+</div>
+<div class="faq-row fu d1 bg-white border border-gray-100 rounded-2xl overflow-hidden">
+<button aria-expanded="false" class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between gap-4 font-medium text-sm">
+              How long does a team order take to produce and deliver?
+              <span class="faq-icon text-xl flex-shrink-0">+</span>
+</button>
+<div class="faq-body px-6">
+<p class="text-sm text-gray-600 leading-relaxed pb-5">Standard orders (no custom printing) typically dispatch within 3–5 business days and arrive within 2–3 days domestically. Orders with custom heat transfer printing require an additional 3–5 business days for production. Rush orders can sometimes be accommodated — discuss your timeline with your account manager.</p>
+</div>
+</div>
+<div class="faq-row fu d2 bg-white border border-gray-100 rounded-2xl overflow-hidden">
+<button aria-expanded="false" class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between gap-4 font-medium text-sm">
+              Can we mix sizes and products in a single team order?
+              <span class="faq-icon text-xl flex-shrink-0">+</span>
+</button>
+<div class="faq-body px-6">
+<p class="text-sm text-gray-600 leading-relaxed pb-5">Yes — mixed orders are the norm. You can specify different sizes for different team members, and mix product types (e.g., some members receiving tights and others receiving shorts). Your account manager will help you put together a size sheet template to collect requirements from your team.</p>
+</div>
+</div>
+<div class="faq-row fu d3 bg-white border border-gray-100 rounded-2xl overflow-hidden">
+<button aria-expanded="false" class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between gap-4 font-medium text-sm">
+              What file format do you need for custom printing?
+              <span class="faq-icon text-xl flex-shrink-0">+</span>
+</button>
+<div class="faq-body px-6">
+<p class="text-sm text-gray-600 leading-relaxed pb-5">We accept vector files (SVG, AI, EPS, PDF) for best results. High-resolution PNG or JPEG (300dpi+) also work for most logos. If your file format isn't listed, send it anyway and our design team will assess. A one-time setup fee applies per logo, then your design is stored for all future re-orders.</p>
+</div>
+</div>
+<div class="faq-row fu bg-white border border-gray-100 rounded-2xl overflow-hidden">
+<button aria-expanded="false" class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between gap-4 font-medium text-sm">
+              Do team orders come with the Performance Guarantee?
+              <span class="faq-icon text-xl flex-shrink-0">+</span>
+</button>
+<div class="faq-body px-6">
+<p class="text-sm text-gray-600 leading-relaxed pb-5">Yes. Every item in a team order is covered by our standard 60-Day Performance Guarantee. Claims for team orders can be submitted in bulk by the account holder — contact your account manager or email info@revaiactive.com with the relevant details and photos.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="py-20 px-6">
+<div class="max-w-6xl mx-auto text-center">
+<div class="fu">
+<h2 class="t-h2 mb-4">Ready to kit your team?</h2>
+<p class="text-gray-500 mb-8 max-w-md mx-auto">Get in touch and we'll have a quote to you within 24 hours. No minimum commitment until you're happy with every detail.</p>
+<div class="flex flex-wrap gap-3 justify-center">
+<a class="btn-p" href="#enquire">Submit Enquiry</a>
+<a class="btn-s" href="mailto:info@revaiactive.com">Email info@revaiactive.com</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="px-6 pt-20 pb-10 border-t border-gray-800" style="background:#0a0a0a">
+<div class="max-w-6xl mx-auto">
+<div class="grid md:grid-cols-4 gap-12 mb-16">
+<div>
+<a href="index.html" style="display:inline-block;margin-bottom:16px"><img src="images/revai-icon.png" alt="REVAÍ" style="height:56px;width:auto;display:block"></a>
+<p class="text-gray-400 text-sm leading-relaxed mb-6">Activewear built for people who move — whatever that looks like for you.</p>
+<div class="flex gap-4">
+<a aria-label="Instagram" class="text-gray-500 hover:text-white transition-colors" href="#"><svg fill="none" height="18" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="18"><rect height="20" rx="5" width="20" x="2" y="2"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" fill="currentColor" r=".5"></circle></svg></a>
+<a aria-label="Twitter" class="text-gray-500 hover:text-white transition-colors" href="#"><svg fill="none" height="18" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="18"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg></a>
+</div>
+</div>
+<div>
+<h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Collections</h3>
+<ul class="space-y-3">
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="collection-running.html">Running</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="collection-strength.html">Strength &amp; Conditioning</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="collection-hiit.html">HIIT &amp; CrossFit</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="collection-triathlon.html">Triathlon</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="collection-recovery.html">Recovery</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="collection-new.html">New Arrivals</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Company</h3>
+<ul class="space-y-3">
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="about.html">About REVAÍ</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="sustainability.html">Sustainability</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="athlete-program.html">Athlete Program</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="team-orders.html">Team Orders</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="careers.html">Careers</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="press.html">Press</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Support</h3>
+<ul class="space-y-3">
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="fit-guide.html">Fit Guide</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="shipping-returns.html">Shipping &amp; Returns</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="care-instructions.html">Care Instructions</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="performance-guarantee.html">Performance Guarantee</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="faq.html">FAQ</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="contact.html">Contact Us</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-xs text-gray-600">© 2026 REVAÍ. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-xs text-gray-600 hover:text-gray-400" href="privacy.html">Privacy Policy</a>
+<a class="text-xs text-gray-600 hover:text-gray-400" href="terms.html">Terms of Service</a>
+<a class="text-xs text-gray-600 hover:text-gray-400" href="contact.html">Cookie Settings</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20),{passive:true});
+const hbg=document.getElementById('hbg'),mmenu=document.getElementById('mmenu'),moverlay=document.getElementById('moverlay'),mclose=document.getElementById('mclose');
+function openM(){mmenu.classList.add('open');moverlay.classList.remove('hidden');hbg.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'}
+function closeM(){mmenu.classList.remove('open');moverlay.classList.add('hidden');hbg.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+hbg.addEventListener('click',openM);mclose.addEventListener('click',closeM);moverlay.addEventListener('click',closeM);
+document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM));
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
+document.querySelectorAll('.faq-btn').forEach(btn=>{btn.addEventListener('click',()=>{const row=btn.parentElement,body=row.querySelector('.faq-body'),isOpen=row.classList.contains('open');document.querySelectorAll('.faq-row').forEach(r=>{r.classList.remove('open');r.querySelector('.faq-body').classList.remove('open');r.querySelector('.faq-btn').setAttribute('aria-expanded','false')});if(!isOpen){row.classList.add('open');body.classList.add('open');btn.setAttribute('aria-expanded','true')}})});
+document.getElementById('team-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  this.style.display='none';
+  document.getElementById('team-success').classList.remove('hidden');
+});
+</script>
+<script src="search.js"></script>
+<script src="shopify-config.js"></script>
+<script src="cart-drawer.js"></script>
+</body>
+</html>
