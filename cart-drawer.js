@@ -207,6 +207,49 @@
           return;
         }
 
+        // Step 1: Check availability before creating checkout
+        const variantIds = cartLines.map(function(l) { return l.merchandiseId; });
+        const availRes = await fetch(GQL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-Shopify-Storefront-Access-Token': TOKEN },
+          body: JSON.stringify({
+            query: 'query($ids:[ID!]!){nodes(ids:$ids){...on ProductVariant{id availableForSale quantityAvailable}}}',
+            variables: { ids: variantIds }
+          })
+        });
+        const availData = await availRes.json();
+        const nodes = (availData.data && availData.data.nodes) || [];
+        const unavailable = nodes.filter(function(n) { return n && !n.availableForSale; }).map(function(n) { return n.id; });
+
+        if (unavailable.length > 0) {
+          // Find which cart items are out of stock
+          const currentCart = load();
+          const variants = (window.REVAI_SHOPIFY && window.REVAI_SHOPIFY.variants) || {};
+          const outOfStockItems = currentCart.filter(function(item) {
+            const vid = (variants[item.id] || {})[item.size];
+            return vid && unavailable.includes(vid);
+          });
+          const remaining = currentCart.filter(function(item) {
+            const vid = (variants[item.id] || {})[item.size];
+            return !(vid && unavailable.includes(vid));
+          });
+          // Remove out of stock items from cart and re-render
+          save(remaining);
+          window.REVAI_CART.render();
+          if (btn) { btn.textContent = 'Checkout'; btn.disabled = false; }
+          var notice = document.getElementById('revai-checkout-notice');
+          if (!notice) {
+            notice = document.createElement('p');
+            notice.id = 'revai-checkout-notice';
+            notice.style.cssText = 'font-size:13px;color:#dc2626;text-align:center;margin-top:8px;padding:8px;background:#fef2f2;border-radius:6px';
+            if (btn) btn.parentNode.insertBefore(notice, btn.nextSibling);
+          }
+          const names = outOfStockItems.map(function(i) { return i.name + ' (' + i.size + ')'; }).join(', ');
+          notice.textContent = 'Removed from bag — sold out: ' + names + '. Please update your bag and try again.';
+          return;
+        }
+
+        // Step 2: All items available — create checkout
         const cartRes = await fetch(GQL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'X-Shopify-Storefront-Access-Token': TOKEN },
