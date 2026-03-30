@@ -262,16 +262,62 @@
         const checkoutUrl = cartData.data && cartData.data.cartCreate && cartData.data.cartCreate.cart && cartData.data.cartCreate.cart.checkoutUrl;
 
         if (checkoutUrl) {
+          // Verify checkout is functional (not redirecting to storefront)
+          try {
+            const testRes = await fetch(checkoutUrl, { method: 'HEAD', redirect: 'manual' });
+            // If Shopify redirects to storefront (status 0 in opaque redirect or 301/302), checkout is broken
+            if (testRes.type === 'opaqueredirect' || (testRes.status >= 300 && testRes.status < 400)) {
+              throw new Error('Checkout unavailable');
+            }
+          } catch (redirectErr) {
+            // Checkout not functional — show order message on our site instead
+            if (btn) { btn.textContent = 'Checkout'; btn.disabled = false; }
+            var orderNotice = document.getElementById('revai-checkout-notice');
+            if (!orderNotice) {
+              orderNotice = document.createElement('div');
+              orderNotice.id = 'revai-checkout-notice';
+              orderNotice.style.cssText = 'text-align:center;margin-top:12px;padding:16px;background:#f8f9fa;border-radius:8px;border:1px solid #e5e7eb';
+              if (btn) btn.parentNode.insertBefore(orderNotice, btn.nextSibling);
+            }
+            var itemSummary = cart.map(function(i) { return i.name + ' (' + i.size + ') x' + (i.qty||1); }).join(', ');
+            orderNotice.innerHTML = '<p style="font-size:14px;font-weight:600;margin:0 0 6px;color:#0a0a0a">Online checkout launching soon</p>' +
+              '<p style="font-size:13px;color:#6b7280;margin:0 0 10px">To place your order, please contact us with your bag details:</p>' +
+              '<p style="font-size:12px;color:#374151;margin:0 0 12px;background:#fff;padding:8px;border-radius:4px;text-align:left">' + itemSummary + '</p>' +
+              '<a href="mailto:yumna.ramji@revaiactive.com?subject=REVAI%20Order&body=' + encodeURIComponent('Hi, I would like to order:\n\n' + itemSummary + '\n\nPlease let me know the next steps.') + '" style="display:inline-block;padding:10px 24px;background:#000;color:#fff;text-decoration:none;border-radius:6px;font-size:13px;font-weight:600">Email Us to Order</a>' +
+              '<p style="font-size:12px;color:#6b7280;margin:8px 0 0">or WhatsApp: +254 727 490 497</p>';
+            return;
+          }
           window.location.href = checkoutUrl;
         } else {
           console.error('Shopify cart errors:', cartData);
-          alert('Could not create checkout. Please try again.');
           if (btn) { btn.textContent = 'Checkout'; btn.disabled = false; }
+          var errNotice = document.getElementById('revai-checkout-notice');
+          if (!errNotice) {
+            errNotice = document.createElement('div');
+            errNotice.id = 'revai-checkout-notice';
+            errNotice.style.cssText = 'text-align:center;margin-top:12px;padding:16px;background:#f8f9fa;border-radius:8px;border:1px solid #e5e7eb';
+            if (btn) btn.parentNode.insertBefore(errNotice, btn.nextSibling);
+          }
+          var itemList = cart.map(function(i) { return i.name + ' (' + i.size + ') x' + (i.qty||1); }).join(', ');
+          errNotice.innerHTML = '<p style="font-size:14px;font-weight:600;margin:0 0 6px;color:#0a0a0a">Online checkout launching soon</p>' +
+            '<p style="font-size:13px;color:#6b7280;margin:0 0 10px">To place your order, contact us with your bag details:</p>' +
+            '<a href="mailto:yumna.ramji@revaiactive.com?subject=REVAI%20Order&body=' + encodeURIComponent('Hi, I would like to order:\n\n' + itemList + '\n\nPlease let me know the next steps.') + '" style="display:inline-block;padding:10px 24px;background:#000;color:#fff;text-decoration:none;border-radius:6px;font-size:13px;font-weight:600">Email Us to Order</a>' +
+            '<p style="font-size:12px;color:#6b7280;margin:8px 0 0">or WhatsApp: +254 727 490 497</p>';
         }
       } catch (e) {
         console.error('Checkout error:', e);
-        alert('Something went wrong. Please try again.');
         if (btn) { btn.textContent = 'Checkout'; btn.disabled = false; }
+        var fallbackNotice = document.getElementById('revai-checkout-notice');
+        if (!fallbackNotice) {
+          fallbackNotice = document.createElement('div');
+          fallbackNotice.id = 'revai-checkout-notice';
+          fallbackNotice.style.cssText = 'text-align:center;margin-top:12px;padding:16px;background:#f8f9fa;border-radius:8px;border:1px solid #e5e7eb';
+          if (btn) btn.parentNode.insertBefore(fallbackNotice, btn.nextSibling);
+        }
+        fallbackNotice.innerHTML = '<p style="font-size:14px;font-weight:600;margin:0 0 6px;color:#0a0a0a">Online checkout launching soon</p>' +
+          '<p style="font-size:13px;color:#6b7280;margin:0 0 10px">To place your order, contact us:</p>' +
+          '<a href="mailto:yumna.ramji@revaiactive.com?subject=REVAI%20Order" style="display:inline-block;padding:10px 24px;background:#000;color:#fff;text-decoration:none;border-radius:6px;font-size:13px;font-weight:600">Email Us to Order</a>' +
+          '<p style="font-size:12px;color:#6b7280;margin:8px 0 0">or WhatsApp: +254 727 490 497</p>';
       }
     },
 
