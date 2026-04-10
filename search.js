@@ -14,7 +14,7 @@
     {id:'tshirt-m',            name:"Men's Training T-Shirt",       cat:'Gym · Men',        price:'KES 4,000'},
     {id:'quarter-zip-m',       name:"Men's Quarter-Zip",            cat:'Running · Men',    price:'KES 5,000'},
     {id:'shorts-m',            name:"Men's Training Shorts",        cat:'Gym · Men',        price:'KES 5,500'},
-    {id:'running-trousers-m',  name:"Men's Running Trousers",       cat:'Running · Men',    price:'KES 6,000'},
+    {id:'training-pants-m',  name:"Men's Training Pants",       cat:'Running · Men',    price:'KES 6,000'},
     {id:'crew-socks',          name:"Crew Socks",                   cat:'Accessories',      price:'KES 500'},
     {id:'no-show-socks',       name:"No-Show Socks",                cat:'Accessories',      price:'KES 500'},
     {id:'lifestyle-cap',       name:"Lifestyle Cap",                cat:'Accessories',      price:'KES 4,000'},
