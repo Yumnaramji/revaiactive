@@ -5,21 +5,21 @@
   'use strict';
 
   const PRODUCTS = [
-    {id:'running-leggings-w',  name:"Women's Running Leggings",    cat:'Running · Women',  price:'KES 5,000'},
-    {id:'flared-leggings-w',   name:"Women's Flared Leggings",      cat:'Gym · Women',      price:'KES 5,000'},
-    {id:'high-impact-bra',     name:"High-Impact Sports Bra",       cat:'Women',            price:'KES 4,500'},
-    {id:'low-impact-bra',      name:"Low-Impact Sports Bra",        cat:'Yoga · Women',     price:'KES 4,500'},
-    {id:'jacket-w',            name:"Women's Performance Jacket",   cat:'Running · Women',  price:'KES 7,000'},
-    {id:'tshirt-w',            name:"Women's Training T-Shirt",     cat:'Gym · Women',      price:'KES 4,000'},
-    {id:'tshirt-m',            name:"Men's Training T-Shirt",       cat:'Gym · Men',        price:'KES 4,000'},
-    {id:'quarter-zip-m',       name:"Men's Quarter-Zip",            cat:'Running · Men',    price:'KES 5,000'},
-    {id:'shorts-m',            name:"Men's Training Shorts",        cat:'Gym · Men',        price:'KES 5,500'},
-    {id:'training-pants-m',  name:"Men's Training Pants",       cat:'Running · Men',    price:'KES 6,000'},
-    {id:'crew-socks',          name:"Crew Socks",                   cat:'Accessories',      price:'KES 500'},
-    {id:'no-show-socks',       name:"No-Show Socks",                cat:'Accessories',      price:'KES 500'},
-    {id:'lifestyle-cap',       name:"Lifestyle Cap",                cat:'Accessories',      price:'KES 4,000'},
-    {id:'running-cap',         name:"Running Cap",                  cat:'Accessories',      price:'KES 4,000'},
-    {id:'gym-bag',             name:"30L Gym Bag",                  cat:'Accessories',      price:'KES 8,000'},
+    {id:'running-leggings-w',  name:"Women's Running Leggings",    cat:'Running · Women',  price:'KES 5,500'},
+    {id:'flared-leggings-w',   name:"Women's Flared Leggings",      cat:'Gym · Women',      price:'KES 5,500'},
+    {id:'high-impact-bra',     name:"High-Impact Sports Bra",       cat:'Women',            price:'KES 4,950'},
+    {id:'low-impact-bra',      name:"Low-Impact Sports Bra",        cat:'Yoga · Women',     price:'KES 4,950'},
+    {id:'jacket-w',            name:"Women's Performance Jacket",   cat:'Running · Women',  price:'KES 7,700'},
+    {id:'tshirt-w',            name:"Women's Training T-Shirt",     cat:'Gym · Women',      price:'KES 4,400'},
+    {id:'tshirt-m',            name:"Men's Training T-Shirt",       cat:'Gym · Men',        price:'KES 4,400'},
+    {id:'quarter-zip-m',       name:"Men's Quarter-Zip",            cat:'Running · Men',    price:'KES 5,500'},
+    {id:'shorts-m',            name:"Men's Training Shorts",        cat:'Gym · Men',        price:'KES 6,050'},
+    {id:'training-pants-m',  name:"Men's Training Pants",       cat:'Running · Men',    price:'KES 6,600'},
+    {id:'crew-socks',          name:"Crew Socks",                   cat:'Accessories',      price:'KES 550'},
+    {id:'no-show-socks',       name:"No-Show Socks",                cat:'Accessories',      price:'KES 550'},
+    {id:'lifestyle-cap',       name:"Lifestyle Cap",                cat:'Accessories',      price:'KES 4,400'},
+    {id:'running-cap',         name:"Running Cap",                  cat:'Accessories',      price:'KES 4,400'},
+    {id:'gym-bag',             name:"30L Gym Bag",                  cat:'Accessories',      price:'KES 8,800'},
   ];
 
   const PAGES = [
