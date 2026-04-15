@@ -374,7 +374,7 @@
       <!-- Training Pants M -->
       <div class="prod-card fu d3">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/running-trousers-m.jpg" alt="Men's Training Pants" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+          <img src="images/training-pants-m.png" alt="Men's Training Pants" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
           <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Men's</span>
           <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
         </div>
@@ -674,21 +674,3 @@ function showPageToast(msg){
   }
   attachCards();
 })();
-document.querySelectorAll('.prod-card').forEach(function(card){
-  var pill=card.querySelector('[data-pid]');
-  if(!pill)return;
-  var pid=pill.dataset.pid;
-  if(!pid||pid.indexOf('$')>-1)return;
-  var clickTargets=[card.querySelector('.prod-img'),card.querySelector('.relative[style]'),card.querySelector('p.font-semibold'),card.querySelector('p.text-base.font-semibold')];
-  clickTargets.forEach(function(el){
-    if(!el)return;
-    el.style.cursor='pointer';
-    el.addEventListener('click',function(e){
-      if(e.target.closest('.size-pill')||e.target.closest('.add-btn'))return;
-      window.location.href='product.html?id='+pid;
-    });
-  });
-});
-</script>
-</body>
-</html>
