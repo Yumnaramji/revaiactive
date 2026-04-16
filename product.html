@@ -440,4 +440,14 @@ document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM
 (function(){var btn=document.getElementById('shop-dropdown-btn'),menu=document.getElementById('shop-dropdown-menu'),open=false;function show(){menu.style.opacity='1';menu.style.pointerEvents='auto';open=true;}function hide(){menu.style.opacity='0';menu.style.pointerEvents='none';open=false;}btn.addEventListener('click',function(e){e.stopPropagation();open?hide():show();});document.addEventListener('click',function(e){if(open&&!menu.contains(e.target)&&e.target!==btn)hide();});})();
 
 // Scroll reveal
-const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classLis
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
+
+loadProduct();
+</script>
+<script src="search.js"></script>
+<script src="shopify-config.js"></script>
+<script src="cart-drawer.js"></script>
+</body>
+</html>
