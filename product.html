@@ -46,6 +46,12 @@
     .sz-btn.wide{width:auto;padding:0 20px}
     .sz-btn:hover{border-color:#000;color:#000}
     .sz-btn.sel{background:#000;color:#fff;border-color:#000}
+    /* Length toggle */
+    .length-toggle{display:flex;gap:0;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:12px;width:fit-content}
+    .length-btn{padding:8px 20px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;background:#fff;border:none;color:#9ca3af;transition:all .15s}
+    .length-btn:not(:last-child){border-right:1px solid #e5e7eb}
+    .length-btn:hover{color:#374151}
+    .length-btn.sel{background:#000;color:#fff}
     /* Colour swatch */
     .swatch{width:28px;height:28px;border-radius:50%;cursor:pointer;position:relative;transition:transform .15s;flex-shrink:0}
     .swatch.sel::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px solid #000}
@@ -295,7 +301,7 @@
 <script>
 const PRODUCTS={
   'running-leggings-w':{name:'Running Leggings',gender:"Women's",price:'KES 6,050',priceVal:5500,image:'images/running-leggings-w.jpg',sizes:['S','M','L','XL','XXL'],desc:'Engineered for road and trail. A mid-rise waistband sits securely without digging, and the four-way stretch fabric moves with every stride. Flatlock seams reduce chafing on long runs. Rear zip pocket fits a key or card.',details:['Mid-rise waistband with internal drawcord','Four-way stretch performance fabric','Flatlock seam construction','Rear zip pocket','Reflective REVAÍ wordmark',]},
-  'flared-leggings-w':{name:'Flared Leggings',gender:"Women's",price:'KES 6,050',priceVal:5500,image:'images/flared-leggings-w.jpg',sizes:['S','M','L','XL','XXL'],desc:'Studio-ready with a relaxed flared hem. High-rise waistband for full coverage, buttery-soft fabric that holds its shape. Suited to yoga, pilates, barre, and everyday wear.',details:['High-rise waistband','Flared hem from knee','Buttery-soft four-way stretch fabric','Hidden waistband pocket',]},
+  'flared-leggings-w':{name:'Flared Leggings',gender:"Women's",price:'KES 6,050',priceVal:5500,image:'images/flared-leggings-w.jpg',sizes:['S','M','L','XL','XXL'],tallSizes:['S (Tall)','M (Tall)','L (Tall)','XL (Tall)','XXL (Tall)'],desc:'Studio-ready with a relaxed flared hem. High-rise waistband for full coverage, buttery-soft fabric that holds its shape. Suited to yoga, pilates, barre, and everyday wear. Also available in Tall lengths.',details:['High-rise waistband','Flared hem from knee','Buttery-soft four-way stretch fabric','Hidden waistband pocket','Available in Regular and Tall lengths',]},
   'high-impact-bra':{name:'High Impact Sports Bra',gender:"Women's",price:'KES 4,950',priceVal:4950,image:'images/high-impact-bra.jpg',sizes:['S','M','L','XL','XXL'],desc:'Maximum support for running, HIIT, and high-intensity training. Wide underband and reinforced straps keep everything locked in place. Moisture-wicking inner lining and removable padding.',details:['Maximum support rating','Wide reinforced underband','Adjustable back strap','Removable moulded padding','Moisture-wicking inner lining',]},
   'low-impact-bra':{name:'Low Impact Sports Bra',gender:"Women's",price:'KES 4,950',priceVal:4950,image:'images/low-impact-bra.jpg',sizes:['S','M','L','XL','XXL'],desc:'Lightweight and breathable for yoga, pilates, stretching, and low-intensity sessions. Scoop neck with a clean racerback silhouette. Removable padding, soft-touch fabric.',details:['Light support rating','Racerback silhouette','Scoop neckline','Removable padding','Soft-touch four-way stretch fabric',]},
   'jacket-w':{name:"Women's Jacket",gender:"Women's",price:'KES 7,700',priceVal:7700,image:'images/jacket-w.jpg',sizes:['S','M','L','XL','XXL'],desc:'A versatile training jacket built for warm-ups, cool-downs, and everything in between. Lightweight with a clean zip-front silhouette. Thumb holes, two side pockets, and a slightly relaxed fit.',details:['Full-length zip front','Thumb hole cuffs','Two side zip pockets','Relaxed training fit','Lightweight performance fabric',]},
@@ -346,30 +352,63 @@ function loadProduct(){
   img.onerror=()=>{img.style.display='none';ph.style.display='flex';};
   // Details
   p.details.forEach(d=>{const li=document.createElement('li');li.textContent=d;document.getElementById('prod-details').appendChild(li);});
-  // Sizes
+  // Sizes — with length toggle for products that have tallSizes
   const sw=document.getElementById('size-options');
-  p.sizes.forEach((s,i)=>{
-    const btn=document.createElement('button');
-    btn.className='sz-btn'+(s==='One Size'?' wide':'')+(i===0?' sel':'');
-    btn.textContent=s;
-    btn.addEventListener('click',()=>{sw.querySelectorAll('.sz-btn').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');document.getElementById('size-error').classList.add('hidden');});
-    sw.appendChild(btn);
-  });
+  const hasTall=p.tallSizes&&p.tallSizes.length>0;
+
+  function renderSizes(sizeList){
+    sw.innerHTML='';
+    sizeList.forEach((s,i)=>{
+      const btn=document.createElement('button');
+      const display=s.replace(/\s*\(Tall\)/,'');
+      btn.className='sz-btn'+(s==='One Size'?' wide':'')+(i===0?' sel':'');
+      btn.textContent=display;
+      btn.dataset.size=s;
+      btn.addEventListener('click',()=>{sw.querySelectorAll('.sz-btn').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');document.getElementById('size-error').classList.add('hidden');});
+      sw.appendChild(btn);
+    });
+  }
+
+  if(hasTall){
+    // Build length toggle dynamically and insert before the size section
+    const sizeSection=sw.closest('.mb-7');
+    const ltWrap=document.createElement('div');
+    ltWrap.className='mb-7';
+    ltWrap.innerHTML='<div class="flex items-center justify-between mb-3"><p class="text-xs font-semibold uppercase tracking-widest text-gray-400">Length</p></div>';
+    const lt=document.createElement('div');
+    lt.className='length-toggle';
+    ['Regular','Tall'].forEach((label,i)=>{
+      const btn=document.createElement('button');
+      btn.className='length-btn'+(i===0?' sel':'');
+      btn.textContent=label;
+      btn.addEventListener('click',()=>{
+        lt.querySelectorAll('.length-btn').forEach(b=>b.classList.remove('sel'));
+        btn.classList.add('sel');
+        renderSizes(label==='Regular'?p.sizes:p.tallSizes);
+      });
+      lt.appendChild(btn);
+    });
+    ltWrap.appendChild(lt);
+    sizeSection.parentNode.insertBefore(ltWrap,sizeSection);
+  }
+
+  renderSizes(p.sizes);
   // Add to bag
   document.getElementById('add-btn').addEventListener('click',()=>{
     const sel=sw.querySelector('.sz-btn.sel');
     if(!sel){document.getElementById('size-error').classList.remove('hidden');return;}
     const btn=document.getElementById('add-btn');
+    const sizeVal=sel.dataset.size||sel.textContent;
     if(window.REVAI_CART){
-      window.REVAI_CART.add({id,name:p.name,price:p.priceVal,size:sel.textContent,image:'images/'+id+'.jpg'});
+      window.REVAI_CART.add({id,name:p.name,price:p.priceVal,size:sizeVal,image:'images/'+id+'.jpg'});
       btn.textContent='Added to Bag ✓';
       setTimeout(()=>{btn.textContent='Add to Bag';},2000);
     } else {
       // Fallback: write directly and open drawer when ready
       const cart=JSON.parse(localStorage.getItem('revai_cart_v1')||'[]');
-      const key=id+'|'+sel.textContent;
+      const key=id+'|'+sizeVal;
       const ex=cart.find(i=>i.key===key);
-      if(ex){ex.qty=(ex.qty||1)+1;}else{cart.push({id,name:p.name,price:p.priceVal,size:sel.textContent,key,qty:1,image:'images/'+id+'.jpg'});}
+      if(ex){ex.qty=(ex.qty||1)+1;}else{cart.push({id,name:p.name,price:p.priceVal,size:sizeVal,key,qty:1,image:'images/'+id+'.jpg'});}
       localStorage.setItem('revai_cart_v1',JSON.stringify(cart));
       btn.textContent='Added to Bag ✓';
       setTimeout(()=>{btn.textContent='Add to Bag';},2000);
