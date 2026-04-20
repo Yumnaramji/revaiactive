@@ -1,0 +1,146 @@
+/* REVAÍ — Mobile Fixes
+   Loaded site-wide on every page. Targets real-world mobile issues:
+   iOS sticky :hover, 300ms tap delay, small tap targets, and
+   input zoom-on-focus. Safe on desktop — gated by media queries.
+   ------------------------------------------------------------ */
+
+/* 1. Kill sticky :hover on touch devices
+   Pointer-less devices (phones / tablets) trigger :hover on first
+   tap and require a second tap to actually click the link. Scope
+   hover styling to devices that truly have a hover-capable pointer. */
+@media (hover: none), (pointer: coarse) {
+  .btn-p:hover,
+  .btn-s:hover,
+  .card:hover,
+  .prod-card:hover,
+  .related-card:hover,
+  .add-btn:hover,
+  .size-pill:hover,
+  .filter-pill:hover,
+  .size-btn:hover,
+  .filter-tab:hover,
+  .logo-i:hover,
+  .qty-btn:hover,
+  .account-card:hover,
+  nav a:hover,
+  footer a:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
+  /* Restore the solid backgrounds so buttons still look correct on tap */
+  .btn-p:hover { background: #000 !important; }
+  .btn-s:hover { background: transparent !important; }
+  .add-btn:hover { background: #000 !important; }
+
+  /* Disable card lift/shadow on touch so the content underneath is tappable */
+  .card:hover,
+  .prod-card:hover,
+  .related-card:hover {
+    border-color: #f0f0f0 !important;
+  }
+}
+
+/* 2. Remove 300ms tap delay & double-tap zoom on interactive elements */
+a,
+button,
+[role="button"],
+.size-pill,
+.filter-pill,
+.size-btn,
+.filter-tab,
+.mlink,
+.btn-p,
+.btn-s,
+.add-btn,
+.faq-btn,
+.qty-btn {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.08);
+}
+
+/* 3. Minimum tap target sizes (Apple HIG recommends 44x44px) */
+@media (max-width: 767px) {
+  .mlink {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    min-height: 44px;
+    display: flex !important;
+    align-items: center;
+  }
+  .size-pill {
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+    min-height: 36px;
+    min-width: 36px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .filter-pill,
+  .filter-tab {
+    padding: 10px 18px !important;
+    min-height: 40px;
+  }
+  .faq-btn {
+    min-height: 48px;
+  }
+  /* Nav icon buttons — hamburger, close, cart */
+  #hbg,
+  #mclose,
+  #nav-cart-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  /* Footer links — space them out so fingers don't mis-hit */
+  footer li a,
+  footer ul a {
+    display: inline-block;
+    padding: 4px 0;
+  }
+}
+
+/* 4. Prevent iOS text-resize and zoom-on-input-focus quirks */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (max-width: 767px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  input[type="search"],
+  input[type="number"],
+  input[type="url"],
+  input[type="date"],
+  select,
+  textarea,
+  .form-input {
+    font-size: 16px !important;
+  }
+}
+
+/* 5. Ensure fixed/offscreen menus don't intercept touches while closed.
+   Adds visibility:hidden via inline transform-style (mobile menus use
+   inline style="transform:translateX(100%)" when closed on this site). */
+#mmenu[style*="translateX(100%)"] {
+  pointer-events: none;
+}
+#moverlay.hidden {
+  pointer-events: none;
+}
+
+/* 6. Give anchor tags an explicit tap feedback so users know it's working */
+@media (hover: none), (pointer: coarse) {
+  a:active,
+  button:active,
+  .btn-p:active,
+  .btn-s:active,
+  .add-btn:active {
+    opacity: 0.8;
+    transition: opacity 0.1s ease;
+  }
+}

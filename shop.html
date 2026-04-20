@@ -10,7 +10,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/mobile-fix.css">
   <link rel="stylesheet" href="css/main.css">
+  <script src="js/mobile-fix.js" defer></script>
 </head>
 <body>
   <a href="index.html" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded-lg text-sm">Skip to content</a>
@@ -54,7 +56,7 @@
       </div>
     </div>
   </nav>
-  <div id="mmenu" class="fixed top-0 right-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col">
+  <div id="mmenu" class="fixed top-0 right-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col" style="transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1)">
     <div class="flex justify-between items-center mb-10">
       <span class="text-lg font-bold tracking-tight">REVAÍ</span>
       <button id="mclose" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Close menu">
@@ -71,9 +73,9 @@
       <a href="collection-golf.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Golf</a>
     <a href="collection-yoga.html" class="mlink block py-2 text-sm font-medium text-gray-700 hover:text-black">Yoga &amp; Pilates</a>
       <div class="my-3 border-t border-gray-100"></div>
-      <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
       <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About</a>
       <a href="stories.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Stories</a>
+      <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
     </div>
   </div>
   <div id="moverlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
