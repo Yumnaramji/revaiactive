@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/mobile-fix.css">
   <style>
     body{font-family:'Inter',-apple-system,sans-serif;color:#0a0a0a;background:#fff;-webkit-font-smoothing:antialiased}
     .fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
@@ -36,6 +37,7 @@
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
   </style>
+  <script src="js/mobile-fix.js" defer></script>
 </head>
 <body>
 
@@ -112,418 +114,12 @@
 </section>
 
 <!-- PRODUCTS -->
-<section class="py-20 px-6" id="products">
-  <div class="max-w-6xl mx-auto">
-    <div class="flex items-center justify-between mb-10 fu">
-      <p class="text-sm text-gray-400"><span id="count">15</span> products</p>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-
-      <!-- Running Leggings W -->
-      <div class="prod-card fu">
-        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/running-leggings-w.jpg" alt="Women's Running Leggings" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-          <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Women's</span>
-          <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
-        </div>
-        <div class="p-4">
-          <p class="text-base font-semibold text-black mt-0.5">Running Leggings</p>
-          <p class="text-sm font-bold text-black mt-1">KES 6,050</p>
-          <div class="flex items-center gap-2 mt-3">
-            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="size-pill" data-pid="running-leggings-w" data-size="S">S</button>
-            <button class="size-pill" data-pid="running-leggings-w" data-size="M">M</button>
-            <button class="size-pill" data-pid="running-leggings-w" data-size="L">L</button>
-            <button class="size-pill" data-pid="running-leggings-w" data-size="XL">XL</button>
-            <button class="size-pill" data-pid="running-leggings-w" data-size="XXL">XXL</button>
-          </div>
-          <button class="add-btn mt-3" onclick="addToBag('running-leggings-w','Running Leggings',5500)">Add to Bag</button>
-        </div>
-      </div>
-
-      <!-- Flared Leggings W -->
-      <div class="prod-card fu d1">
-        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/flared-leggings-w.jpg" alt="Flared Leggings" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-          <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Women's</span>
-          <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
-        </div>
-        <div class="p-4">
-          <p class="text-base font-semibold text-black mt-0.5">Flared Leggings</p>
-          <p class="text-sm font-bold text-black mt-1">KES 6,050</p>
-          <div class="flex items-center gap-2 mt-3">
-            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="size-pill" data-pid="flared-leggings-w" data-size="S">S</button>
-            <button class="size-pill" data-pid="flared-leggings-w" data-size="M">M</button>
-            <button class="size-pill" data-pid="flared-leggings-w" data-size="L">L</button>
-            <button class="size-pill" data-pid="flared-leggings-w" data-size="XL">XL</button>
-            <button class="size-pill" data-pid="flared-leggings-w" data-size="XXL">XXL</button>
-          </div>
-          <button class="add-btn mt-3" onclick="addToBag('flared-leggings-w','Flared Leggings',5500)">Add to Bag</button>
-        </div>
-      </div>
-
-      <!-- High Impact Sports Bra -->
-      <div class="prod-card fu d2">
-        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/high-impact-bra.jpg" alt="High Impact Sports Bra" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-          <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Women's</span>
-          <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
-        </div>
-        <div class="p-4">
-          <p class="text-base font-semibold text-black mt-0.5">High Impact Sports Bra</p>
-          <p class="text-sm font-bold text-black mt-1">KES 4,950</p>
-          <div class="flex items-center gap-2 mt-3">
-            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="size-pill" data-pid="high-impact-bra" data-size="S">S</button>
-            <button class="size-pill" data-pid="high-impact-bra" data-size="M">M</button>
-            <button class="size-pill" data-pid="high-impact-bra" data-size="L">L</button>
-            <button class="size-pill" data-pid="high-impact-bra" data-size="XL">XL</button>
-            <button class="size-pill" data-pid="high-impact-bra" data-size="XXL">XXL</button>
-          </div>
-          <button class="add-btn mt-3" onclick="addToBag('high-impact-bra','High Impact Sports Bra',4950)">Add to Bag</button>
-        </div>
-      </div>
-
-      <!-- Low Impact Sports Bra -->
-      <div class="prod-card fu d3">
-        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/low-impact-bra.jpg" alt="Low Impact Sports Bra" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-          <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Women's</span>
-          <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
-        </div>
-        <div class="p-4">
-          <p class="text-base font-semibold text-black mt-0.5">Low Impact Sports Bra</p>
-          <p class="text-sm font-bold text-black mt-1">KES 4,950</p>
-          <div class="flex items-center gap-2 mt-3">
-            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="size-pill" data-pid="low-impact-bra" data-size="S">S</button>
-            <button class="size-pill" data-pid="low-impact-bra" data-size="M">M</button>
-            <button class="size-pill" data-pid="low-impact-bra" data-size="L">L</button>
-            <button class="size-pill" data-pid="low-impact-bra" data-size="XL">XL</button>
-            <button class="size-pill" data-pid="low-impact-bra" data-size="XXL">XXL</button>
-          </div>
-          <button class="add-btn mt-3" onclick="addToBag('low-impact-bra','Low Impact Sports Bra',4950)">Add to Bag</button>
-        </div>
-      </div>
-
-      <!-- Jacket W -->
-      <div class="prod-card fu d4">
-        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/jacket-w.jpg" alt="Women's Jacket" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-          <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Women's</span>
-          <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
-        </div>
-        <div class="p-4">
-          <p class="text-base font-semibold text-black mt-0.5">Jacket</p>
-          <p class="text-sm font-bold text-black mt-1">KES 7,700</p>
-          <div class="flex items-center gap-2 mt-3">
-            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="size-pill" data-pid="jacket-w" data-size="S">S</button>
-            <button class="size-pill" data-pid="jacket-w" data-size="M">M</button>
-            <button class="size-pill" data-pid="jacket-w" data-size="L">L</button>
-            <button class="size-pill" data-pid="jacket-w" data-size="XL">XL</button>
-            <button class="size-pill" data-pid="jacket-w" data-size="XXL">XXL</button>
-          </div>
-          <button class="add-btn mt-3" onclick="addToBag('jacket-w','Jacket',7700)">Add to Bag</button>
-        </div>
-      </div>
-
-      <!-- T-Shirt W -->
-      <div class="prod-card fu d5">
-        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/tshirt-w.jpg" alt="Women's T-Shirt" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-          <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Women's</span>
-          <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
-        </div>
-        <div class="p-4">
-          <p class="text-base font-semibold text-black mt-0.5">T-Shirt</p>
-          <p class="text-sm font-bold text-black mt-1">KES 4,400</p>
-          <div class="flex items-center gap-2 mt-3">
-            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="size-pill" data-pid="tshirt-w" data-size="S">S</button>
-            <button class="size-pill" data-pid="tshirt-w" data-size="M">M</button>
-            <button class="size-pill" data-pid="tshirt-w" data-size="L">L</button>
-            <button class="size-pill" data-pid="tshirt-w" data-size="XL">XL</button>
-            <button class="size-pill" data-pid="tshirt-w" data-size="XXL">XXL</button>
-          </div>
-          <button class="add-btn mt-3" onclick="addToBag('tshirt-w','T-Shirt',4400)">Add to Bag</button>
-        </div>
-      </div>
-
-      <!-- T-Shirt M -->
-      <div class="prod-card fu">
-        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/tshirt-m.jpg" alt="Men's T-Shirt" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-          <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Men's</span>
-          <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
-        </div>
-        <div class="p-4">
-          <p class="text-base font-semibold text-black mt-0.5">T-Shirt</p>
-          <p class="text-sm font-bold text-black mt-1">KES 4,400</p>
-          <div class="flex items-center gap-2 mt-3">
-            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="size-pill" data-pid="tshirt-m" data-size="S">S</button>
-            <button class="size-pill" data-pid="tshirt-m" data-size="M">M</button>
-            <button class="size-pill" data-pid="tshirt-m" data-size="L">L</button>
-            <button class="size-pill" data-pid="tshirt-m" data-size="XL">XL</button>
-            <button class="size-pill" data-pid="tshirt-m" data-size="XXL">XXL</button>
-          </div>
-          <button class="add-btn mt-3" onclick="addToBag('tshirt-m','T-Shirt',4400)">Add to Bag</button>
-        </div>
-      </div>
-
-      <!-- Quarter Zip M -->
-      <div class="prod-card fu d1">
-        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/quarter-zip-m.jpg" alt="Men's Quarter Zip" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-          <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Men's</span>
-          <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
-        </div>
-        <div class="p-4">
-          <p class="text-base font-semibold text-black mt-0.5">Quarter Zip</p>
-          <p class="text-sm font-bold text-black mt-1">KES 6,050</p>
-          <div class="flex items-center gap-2 mt-3">
-            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="size-pill" data-pid="quarter-zip-m" data-size="S">S</button>
-            <button class="size-pill" data-pid="quarter-zip-m" data-size="M">M</button>
-            <button class="size-pill" data-pid="quarter-zip-m" data-size="L">L</button>
-            <button class="size-pill" data-pid="quarter-zip-m" data-size="XL">XL</button>
-            <button class="size-pill" data-pid="quarter-zip-m" data-size="XXL">XXL</button>
-          </div>
-          <button class="add-btn mt-3" onclick="addToBag('quarter-zip-m','Quarter Zip',5500)">Add to Bag</button>
-        </div>
-      </div>
-
-      <!-- Shorts M -->
-      <div class="prod-card fu d2">
-        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/shorts-m.jpg" alt="Men's Shorts" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-          <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Men's</span>
-          <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
-        </div>
-        <div class="p-4">
-          <p class="text-base font-semibold text-black mt-0.5">Shorts</p>
-          <p class="text-sm font-bold text-black mt-1">KES 6,050</p>
-          <div class="flex items-center gap-2 mt-3">
-            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="size-pill" data-pid="shorts-m" data-size="S">S</button>
-            <button class="size-pill" data-pid="shorts-m" data-size="M">M</button>
-            <button class="size-pill" data-pid="shorts-m" data-size="L">L</button>
-            <button class="size-pill" data-pid="shorts-m" data-size="XL">XL</button>
-            <button class="size-pill" data-pid="shorts-m" data-size="XXL">XXL</button>
-          </div>
-          <button class="add-btn mt-3" onclick="addToBag('shorts-m','Shorts',6050)">Add to Bag</button>
-        </div>
-      </div>
-
-      <!-- Training Pants M -->
-      <div class="prod-card fu d3">
-        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/training-pants-m.jpg" alt="Men's Training Pants" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-          <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Men's</span>
-          <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
-        </div>
-        <div class="p-4">
-          <p class="text-base font-semibold text-black mt-0.5">Training Pants</p>
-          <p class="text-sm font-bold text-black mt-1">KES 6,600</p>
-          <div class="flex items-center gap-2 mt-3">
-            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="size-pill" data-pid="training-pants-m" data-size="S">S</button>
-            <button class="size-pill" data-pid="training-pants-m" data-size="M">M</button>
-            <button class="size-pill" data-pid="training-pants-m" data-size="L">L</button>
-            <button class="size-pill" data-pid="training-pants-m" data-size="XL">XL</button>
-            <button class="size-pill" data-pid="training-pants-m" data-size="XXL">XXL</button>
-          </div>
-          <button class="add-btn mt-3" onclick="addToBag('training-pants-m','Training Pants',6600)">Add to Bag</button>
-        </div>
-      </div>
-
-      <!-- Crew Socks -->
-      <div class="prod-card fu d4">
-        <div class="relative" style="aspect-ratio:1/1;overflow:hidden;background:#f3f4f6;">
-          <img src="images/crew-socks.jpg" alt="Crew Socks" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-          <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Unisex</span>
-          <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
-        </div>
-        <div class="p-4">
-          <p class="text-base font-semibold text-black mt-0.5">Crew Socks</p>
-          <p class="text-sm font-bold text-black mt-1">KES 550</p>
-          <div class="flex items-center gap-2 mt-3">
-            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="size-pill sel" data-pid="crew-socks" data-size="S">S</button>
-            <button class="size-pill" data-pid="crew-socks" data-size="M">M</button>
-            <button class="size-pill" data-pid="crew-socks" data-size="L">L</button>
-          </div>
-          <button class="add-btn mt-3" onclick="addToBag('crew-socks','Crew Socks',550)">Add to Bag</button>
-        </div>
-      </div>
-
-      <!-- No Show Socks -->
-      <div class="prod-card fu">
-        <div class="relative" style="aspect-ratio:1/1;overflow:hidden;background:#f3f4f6;">
-          <img src="images/no-show-socks.jpg" alt="No Show Socks" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-          <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Unisex</span>
-          <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
-        </div>
-        <div class="p-4">
-          <p class="text-base font-semibold text-black mt-0.5">No Show Socks</p>
-          <p class="text-sm font-bold text-black mt-1">KES 550</p>
-          <div class="flex items-center gap-2 mt-3">
-            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="size-pill sel" data-pid="no-show-socks" data-size="S">S</button>
-            <button class="size-pill" data-pid="no-show-socks" data-size="M">M</button>
-            <button class="size-pill" data-pid="no-show-socks" data-size="L">L</button>
-          </div>
-          <button class="add-btn mt-3" onclick="addToBag('no-show-socks','No Show Socks',550)">Add to Bag</button>
-        </div>
-      </div>
-
-      <!-- Lifestyle Cap -->
-      <div class="prod-card fu d1">
-        <div class="relative" style="aspect-ratio:1/1;overflow:hidden;background:#f3f4f6;">
-          <img src="images/lifestyle-cap.jpg" alt="Lifestyle Cap" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-          <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Unisex</span>
-          <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
-        </div>
-        <div class="p-4">
-          <p class="text-base font-semibold text-black mt-0.5">Lifestyle Cap</p>
-          <p class="text-sm font-bold text-black mt-1">KES 4,400</p>
-          <div class="flex items-center gap-2 mt-3">
-            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="size-pill sel" data-pid="lifestyle-cap" data-size="One Size">One Size</button>
-          </div>
-          <button class="add-btn mt-3" onclick="addToBag('lifestyle-cap','Lifestyle Cap',4400)">Add to Bag</button>
-        </div>
-      </div>
-
-      <!-- Running Cap -->
-      <div class="prod-card fu d2">
-        <div class="relative" style="aspect-ratio:1/1;overflow:hidden;background:#f3f4f6;">
-          <img src="images/running-cap.jpg" alt="Running Cap" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-          <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Unisex</span>
-          <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
-        </div>
-        <div class="p-4">
-          <p class="text-base font-semibold text-black mt-0.5">Running Cap</p>
-          <p class="text-sm font-bold text-black mt-1">KES 4,400</p>
-          <div class="flex items-center gap-2 mt-3">
-            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="size-pill sel" data-pid="running-cap" data-size="One Size">One Size</button>
-          </div>
-          <button class="add-btn mt-3" onclick="addToBag('running-cap','Running Cap',4400)">Add to Bag</button>
-        </div>
-      </div>
-
-      <!-- 30L Gym Bag -->
-      <div class="prod-card fu d3">
-        <div class="relative" style="aspect-ratio:1/1;overflow:hidden;background:#f3f4f6;">
-          <img src="images/gym-bag.jpg" alt="30L Gym Bag" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-          <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Unisex</span>
-          <span style="position:absolute;top:12px;right:12px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px">New</span>
-        </div>
-        <div class="p-4">
-          <p class="text-base font-semibold text-black mt-0.5">30L Gym Bag</p>
-          <p class="text-sm font-bold text-black mt-1">KES 8,800</p>
-          <div class="flex items-center gap-2 mt-3">
-            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
-            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="size-pill sel" data-pid="gym-bag" data-size="One Size">One Size</button>
-          </div>
-          <button class="add-btn mt-3" onclick="addToBag('gym-bag','30L Gym Bag',8800)">Add to Bag</button>
-        </div>
-      </div>
-
-    </div>
+<section class="py-36 px-6 text-center">
+  <div class="max-w-xl mx-auto">
+    <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">Coming Soon</p>
+    <h2 style="font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;letter-spacing:-.02em;line-height:1.1" class="mb-6">Products launching soon.</h2>
+    <p class="text-gray-500 text-base leading-relaxed mb-10">We're putting the finishing touches on this collection. In the meantime, browse all available products.</p>
+    <a href="collections.html" class="btn-p">Shop All Products</a>
   </div>
 </section>
 
@@ -674,3 +270,21 @@ function showPageToast(msg){
   }
   attachCards();
 })();
+document.querySelectorAll('.prod-card').forEach(function(card){
+  var pill=card.querySelector('[data-pid]');
+  if(!pill)return;
+  var pid=pill.dataset.pid;
+  if(!pid||pid.indexOf('$')>-1)return;
+  var clickTargets=[card.querySelector('.prod-img'),card.querySelector('.relative[style]'),card.querySelector('p.font-semibold'),card.querySelector('p.text-base.font-semibold')];
+  clickTargets.forEach(function(el){
+    if(!el)return;
+    el.style.cursor='pointer';
+    el.addEventListener('click',function(e){
+      if(e.target.closest('.size-pill')||e.target.closest('.add-btn'))return;
+      window.location.href='product.html?id='+pid;
+    });
+  });
+});
+</script>
+</body>
+</html>

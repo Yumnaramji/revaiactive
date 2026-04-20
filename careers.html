@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/mobile-fix.css">
   <style>
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
@@ -38,6 +39,7 @@
     .benefit-card{background:#fff;border:1px solid #f0f0f0;border-radius:14px;padding:28px;transition:transform .2s ease,box-shadow .2s ease}
     .benefit-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06)}
   </style>
+  <script src="js/mobile-fix.js" defer></script>
 </head>
 <body>
 
@@ -78,7 +80,7 @@
   </div>
 </nav>
 
-<div id="mmenu" class="fixed top-0 right-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col">
+<div id="mmenu" class="fixed top-0 right-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col" style="transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1)">
   <div class="flex justify-between items-center mb-10">
     <span class="text-lg font-bold">REVAÍ</span>
     <button id="mclose" class="p-2 rounded-lg hover:bg-gray-100" aria-label="Close menu"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg></button>
@@ -93,9 +95,9 @@
     <a href="collection-golf.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Golf</a>
     <a href="collection-yoga.html" class="mlink block py-2 text-sm font-medium text-gray-700 hover:text-black">Yoga &amp; Pilates</a>
     <div class="my-3 border-t border-gray-100"></div>
-    <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
     <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About</a>
     <a href="stories.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Stories</a>
+    <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
   </div>
 </div>
 <div id="moverlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
@@ -404,9 +406,9 @@ const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20),{passive:true});
 (function(){var btn=document.getElementById('shop-dropdown-btn');var menu=document.getElementById('shop-dropdown-menu');var wrap=document.getElementById('shop-dropdown-wrap');if(!btn||!menu)return;btn.addEventListener('click',function(){var open=menu.style.opacity==='1';menu.style.opacity=open?'0':'1';menu.style.pointerEvents=open?'none':'auto';});document.addEventListener('click',function(e){if(wrap&&!wrap.contains(e.target)){menu.style.opacity='0';menu.style.pointerEvents='none';}});})();
 const hbg=document.getElementById('hbg'),mmenu=document.getElementById('mmenu'),moverlay=document.getElementById('moverlay'),mclose=document.getElementById('mclose');
-function openM(){mmenu.classList.add('open');moverlay.classList.remove('hidden');hbg.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'}
-function closeM(){mmenu.classList.remove('open');moverlay.classList.add('hidden');hbg.setAttribute('aria-expanded','false');document.body.style.overflow=''}
-hbg.addEventListener('click',openM);mclose.addEventListener('click',closeM);moverlay.addEventListener('click',closeM);
+function openM(){mmenu.style.transform='translateX(0)';mmenu.classList.add('open');moverlay.classList.remove('hidden');hbg.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'}
+function closeM(){mmenu.style.transform='translateX(100%)';mmenu.classList.remove('open');moverlay.classList.add('hidden');hbg.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+if(hbg)hbg.addEventListener('click',openM);if(mclose)mclose.addEventListener('click',closeM);if(moverlay)moverlay.addEventListener('click',closeM);
 document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM));
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
