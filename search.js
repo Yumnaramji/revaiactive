@@ -18,7 +18,6 @@
     {id:'crew-socks',          name:"Crew Socks",                   cat:'Accessories',      price:'KES 550'},
     {id:'no-show-socks',       name:"No-Show Socks",                cat:'Accessories',      price:'KES 550'},
     {id:'lifestyle-cap',       name:"Lifestyle Cap",                cat:'Accessories',      price:'KES 4,400'},
-    {id:'running-cap',         name:"Running Cap",                  cat:'Accessories',      price:'KES 4,400'},
     {id:'gym-bag',             name:"30L Gym Bag",                  cat:'Accessories',      price:'KES 8,800'},
   ];
 

@@ -14,7 +14,6 @@ window.REVAI_SHOPIFY = {
     'crew-socks':          { S:'gid://shopify/ProductVariant/47230798102706', M:'gid://shopify/ProductVariant/47230798233778', L:'gid://shopify/ProductVariant/47230798594226' },
     'no-show-socks':       { S:'gid://shopify/ProductVariant/47230793810098', M:'gid://shopify/ProductVariant/47230794530994', L:'gid://shopify/ProductVariant/47230795841714' },
     'lifestyle-cap':       { 'One Size':'gid://shopify/ProductVariant/47230534222002' },
-    'running-cap':         { 'One Size':'gid://shopify/ProductVariant/47230534254770' },
     'gym-bag':             { 'One Size':'gid://shopify/ProductVariant/47230534320306' },
   }
 };

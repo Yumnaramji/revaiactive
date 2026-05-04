@@ -171,15 +171,6 @@ Pure black, monochrome. All-black structured baseball cap on a dark charcoal sur
 
 ---
 
-### A04 — Running Cap
-**File**: `running-cap.jpg` | **Type**: IMAGE | **Kling Size**: 1024 × 1024 (1:1)
-
-```
-Pure black, monochrome. All-black lightweight running cap with a pre-curved brim displayed at a slight three-quarter angle on a pure white background. Unstructured and lightweight with visible ventilation mesh panels on the sides, logo visible on the front. Soft diffused studio lighting. Minimal editorial product photography, photorealistic, sharp focus.
-```
-
----
-
 ### A05 — 30L Gym Bag
 **File**: `gym-bag.jpg` | **Type**: IMAGE | **Kling Size**: 1024 × 1024 (1:1)
 
