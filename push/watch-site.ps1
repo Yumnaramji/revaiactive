@@ -1,5 +1,5 @@
 $ErrorActionPreference = 'Continue'
-$path = Split-Path -Parent $MyInvocation.MyCommand.Path
+$path = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $debounceSeconds = 45
 
 Write-Host "REVAI auto-deploy watcher"
@@ -17,7 +17,7 @@ $watcher.EnableRaisingEvents = $true
 
 $action = {
     $file = $Event.SourceEventArgs.FullPath
-    if ($file -match '\\\.git\\' -or $file -match '~\$' -or $file -match '\.tmp$' -or $file -match '\.swp$' -or $file -match '\.crdownload$') { return }
+    if ($file -match '\\\.git\\' -or $file -match '~\$' -or $file -match '\.tmp$' -or $file -match '\.swp$' -or $file -match '\.crdownload$' -or $file -match '\\push\\') { return }
     $global:lastChange = Get-Date
     Write-Host "[$(Get-Date -Format HH:mm:ss)] change: $(Split-Path -Leaf $file)"
 }

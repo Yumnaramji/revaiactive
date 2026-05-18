@@ -29,9 +29,6 @@ DESKTOP_DROPDOWN_INNER = """
           <a href="collection-new.html" class="block px-4 py-2.5 text-sm font-medium text-black hover:bg-gray-50">New Arrivals</a>
           <div class="my-1 border-t border-gray-100"></div>
           <a href="collections.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">All Products</a>
-          <a href="collections.html?gender=women" class="block pl-8 pr-4 py-1.5 text-xs text-gray-500 hover:text-black hover:bg-gray-50" data-gender-sub="women">Women</a>
-          <a href="collections.html?gender=men" class="block pl-8 pr-4 py-1.5 text-xs text-gray-500 hover:text-black hover:bg-gray-50" data-gender-sub="men">Men</a>
-          <a href="collections.html?gender=unisex" class="block pl-8 pr-4 py-1.5 text-xs text-gray-500 hover:text-black hover:bg-gray-50" data-gender-sub="unisex">Unisex</a>
           <a href="collection-gym.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Gym &amp; Training</a>
           <a href="collection-running.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Running</a>
           <a href="collection-padel.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Padel</a>
@@ -44,9 +41,6 @@ DESKTOP_DROPDOWN_INNER = """
 MOBILE_SHOP_INNER = """
     <a href="collection-new.html" class="mlink block py-2 text-sm font-medium text-black">New Arrivals</a>
     <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
-    <a href="collections.html?gender=women" class="mlink block py-1.5 pl-4 text-xs text-gray-500 hover:text-black" data-gender-sub="women">Women</a>
-    <a href="collections.html?gender=men" class="mlink block py-1.5 pl-4 text-xs text-gray-500 hover:text-black" data-gender-sub="men">Men</a>
-    <a href="collections.html?gender=unisex" class="mlink block py-1.5 pl-4 text-xs text-gray-500 hover:text-black" data-gender-sub="unisex">Unisex</a>
     <a href="collection-gym.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Gym &amp; Training</a>
     <a href="collection-running.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Running</a>
     <a href="collection-padel.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Padel</a>
@@ -59,9 +53,6 @@ MOBILE_SHOP_INNER = """
 FOOTER_SHOP_INNER = (
     '<li><a href="collection-new.html" class="text-sm text-gray-400 hover:text-white transition-colors">New Arrivals</a></li>'
     '<li><a href="collections.html" class="text-sm text-gray-400 hover:text-white transition-colors">All Products</a></li>'
-    '<li><a href="collections.html?gender=women" class="text-sm text-gray-400 hover:text-white transition-colors">Women</a></li>'
-    '<li><a href="collections.html?gender=men" class="text-sm text-gray-400 hover:text-white transition-colors">Men</a></li>'
-    '<li><a href="collections.html?gender=unisex" class="text-sm text-gray-400 hover:text-white transition-colors">Unisex</a></li>'
     '<li><a href="collection-gym.html" class="text-sm text-gray-400 hover:text-white transition-colors">Gym &amp; Training</a></li>'
     '<li><a href="collection-running.html" class="text-sm text-gray-400 hover:text-white transition-colors">Running</a></li>'
     '<li><a href="collection-padel.html" class="text-sm text-gray-400 hover:text-white transition-colors">Padel</a></li>'
@@ -84,7 +75,7 @@ DESKTOP_RE = re.compile(
 
 # Mobile Shop section: starts after <p ...>Shop</p>, ends at the section divider
 MOBILE_RE = re.compile(
-    r'(<p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2 mt-2">Shop</p>)'
+    r'(<p class="text-xs font-semibold uppercase tracking-widest text-gray-400[^"]*">Shop</p>)'
     r'(.*?)'
     r'(<div class="my-3 border-t border-gray-100"></div>)',
     re.DOTALL,
