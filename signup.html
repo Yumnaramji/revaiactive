@@ -137,6 +137,12 @@
         </div>
       </div>
       <div class="field">
+        <label for="inp-bday">Birthday <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#9ca3af;font-size:11px">(Optional)</span></label>
+        <input id="inp-bday" type="text" placeholder="DD/MM/YYYY" autocomplete="bday" maxlength="10"
+          oninput="let v=this.value.replace(/\D/g,'');if(v.length>2&&v.length<=4)v=v.slice(0,2)+'/'+v.slice(2);else if(v.length>4)v=v.slice(0,2)+'/'+v.slice(2,4)+'/'+v.slice(4,8);this.value=v">
+        <span class="pw-hint">* Share your birthday to receive exclusive REVAÍ offers on your day.</span>
+      </div>
+      <div class="field">
         <label for="inp-email">Email</label>
         <input id="inp-email" type="email" placeholder="you@example.com" autocomplete="email" required>
       </div>
