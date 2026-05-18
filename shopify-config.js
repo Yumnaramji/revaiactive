@@ -1,5 +1,11 @@
 // Shopify store: revai-518.myshopify.com
 window.REVAI_SHOPIFY = {
+  // ── Storefront API config (used by shopify-customer.js, cart, checkout) ──
+  domain:           'revai-518.myshopify.com',
+  storefrontToken:  'd247325e39b051aeface7e573e550d37',
+  apiVersion:       '2024-10',
+  get endpoint(){ return `https://${this.domain}/api/${this.apiVersion}/graphql.json`; },
+
   variants: {
     'running-leggings-w':  { S:'gid://shopify/ProductVariant/47230532223154', M:'gid://shopify/ProductVariant/47230532255922', L:'gid://shopify/ProductVariant/47230532288690', XL:'gid://shopify/ProductVariant/47230532321458', XXL:'gid://shopify/ProductVariant/47230532354226' },
     'flared-leggings-w':   { S:'gid://shopify/ProductVariant/47230532419762', M:'gid://shopify/ProductVariant/47230532452530', L:'gid://shopify/ProductVariant/47230532485298', XL:'gid://shopify/ProductVariant/47230532518066', XXL:'gid://shopify/ProductVariant/47230532550834', 'S (Tall)':'PENDING_IMPORT', 'M (Tall)':'PENDING_IMPORT', 'L (Tall)':'PENDING_IMPORT', 'XL (Tall)':'PENDING_IMPORT', 'XXL (Tall)':'PENDING_IMPORT' },

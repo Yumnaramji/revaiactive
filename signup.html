@@ -4,8 +4,8 @@
 <link rel="icon" type="image/png" href="images/revai-icon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wishlist — REVAÍ</title>
-  <meta name="description" content="Your saved items — browse and manage your REVAÍ wishlist.">
+  <title>Create Account — REVAÍ</title>
+  <meta name="description" content="Create your REVAÍ account.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,19 +15,21 @@
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
     body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-    .fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-    .fu.in{opacity:1;transform:translateY(0)}
-    .d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}
-    .btn-p{background:#000;color:#fff;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;text-decoration:none;border:none}
+    .btn-p{background:#000;color:#fff;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:13px 24px;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;text-decoration:none;border:none}
     .btn-p:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.22);background:#1a1a1a}
+    .btn-p:disabled{opacity:.55;cursor:wait;transform:none;box-shadow:none}
     .btn-s{background:transparent;border:1px solid #000;color:#000;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;transition:background .2s,transform .2s;text-decoration:none}
     .btn-s:hover{background:rgba(0,0,0,.04);transform:translateY(-1px)}
     #nav.scrolled{border-bottom:1px solid #e5e7eb}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
-
-    /* Saved card */
-    .saved-card{border:1.5px solid #f3f4f6;border-radius:14px;overflow:hidden;transition:border-color .2s,box-shadow .2s;background:#fff;text-decoration:none;color:inherit}
-    .saved-card:hover{border-color:#000;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field label{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#6b7280}
+    .field input{border:1.5px solid #e5e7eb;border-radius:10px;padding:12px 14px;font-size:14px;font-family:inherit;color:#0a0a0a;outline:none;transition:border-color .2s;background:#fff}
+    .field input:focus{border-color:#000}
+    .field input::placeholder{color:#d1d5db}
+    .benefit-item{display:flex;align-items:center;gap:12px;padding:14px 18px;background:#f8f9fa;border-radius:12px}
+    .benefit-item .benefit-dot{width:8px;height:8px;border-radius:50%;background:#000;flex-shrink:0}
+    .pw-hint{font-size:12px;color:#9ca3af;margin-top:4px}
   </style>
   <script src="js/mobile-fix.js" defer></script>
 </head>
@@ -63,7 +65,7 @@
       <button onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
       </button>
-      <a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account">
+      <a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account" style="background:rgba(0,0,0,.05)">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
       </a>
       <button id="nav-cart-btn" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open cart" onclick="if(window.REVAI_CART) window.REVAI_CART.openDrawer()">
@@ -107,37 +109,72 @@
 <div id="moverlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
 
 <main style="padding-top:64px;min-height:100vh">
+  <div class="max-w-md mx-auto px-6 py-16">
 
-  <!-- Header -->
-  <div style="border-bottom:1px solid #f3f4f6;padding:40px 0 36px">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="flex items-center gap-3 mb-4">
-        <a href="profile.html" class="text-xs font-medium text-gray-400 hover:text-black transition-colors" style="text-decoration:none">My Account</a>
-        <svg width="12" height="12" fill="none" stroke="#d1d5db" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-        <span class="text-xs font-medium text-gray-800">Wishlist</span>
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-black mb-5">
+        <svg width="24" height="24" fill="none" stroke="white" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
       </div>
-      <h1 class="text-2xl font-bold tracking-tight">Wishlist</h1>
-      <p class="text-sm text-gray-500 mt-1" id="wishlist-subtitle">Items you've saved for later.</p>
-    </div>
-  </div>
-
-  <div class="max-w-6xl mx-auto px-6 py-12">
-
-    <!-- Saved grid -->
-    <div id="saved-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px"></div>
-
-    <!-- Empty state -->
-    <div id="saved-empty" style="display:none;text-align:center;padding:80px 0">
-      <div style="width:64px;height:64px;border-radius:16px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
-        <svg width="28" height="28" fill="none" stroke="#9ca3af" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-      </div>
-      <h3 class="text-lg font-semibold mb-2">No saved items</h3>
-      <p class="text-sm text-gray-500 mb-8 max-w-sm mx-auto">Tap the heart on any product to save it here for later.</p>
-      <a href="collections.html" class="btn-p">Browse Products</a>
+      <h1 class="text-2xl font-bold tracking-tight mb-1">Create account</h1>
+      <p class="text-sm text-gray-500">Join REVAÍ — kit for people who move.</p>
     </div>
 
-  </div>
+    <!-- Member benefits teaser -->
+    <div style="margin-bottom:28px">
+      <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Member Benefits</p>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="benefit-item"><div class="benefit-dot"></div><span class="text-sm font-medium">Exclusive Drops</span></div>
+        <div class="benefit-item"><div class="benefit-dot"></div><span class="text-sm font-medium">Early Access</span></div>
+        <div class="benefit-item"><div class="benefit-dot"></div><span class="text-sm font-medium">Faster Checkout</span></div>
+      </div>
+    </div>
 
+    <!-- Form -->
+    <form id="signup-form" style="display:flex;flex-direction:column;gap:16px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="field">
+          <label for="inp-fname">First Name</label>
+          <input id="inp-fname" type="text" placeholder="Alex" autocomplete="given-name" required>
+        </div>
+        <div class="field">
+          <label for="inp-lname">Last Name</label>
+          <input id="inp-lname" type="text" placeholder="Johnson" autocomplete="family-name" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="inp-email">Email</label>
+        <input id="inp-email" type="email" placeholder="you@example.com" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="inp-pw">Password</label>
+        <input id="inp-pw" type="password" placeholder="••••••••" autocomplete="new-password" required minlength="8">
+        <span class="pw-hint">At least 8 characters.</span>
+      </div>
+      <div class="field">
+        <label for="inp-pw2">Confirm Password</label>
+        <input id="inp-pw2" type="password" placeholder="••••••••" autocomplete="new-password" required>
+      </div>
+
+      <label style="display:flex;gap:10px;align-items:flex-start;margin-top:4px;cursor:pointer">
+        <input type="checkbox" id="inp-marketing" style="margin-top:3px;accent-color:#000">
+        <span class="text-xs text-gray-500 leading-relaxed">Send me REVAÍ launches, early access invites and member-only drops.</span>
+      </label>
+
+      <p id="signup-error" style="display:none;font-size:13px;color:#dc2626;padding:10px 14px;background:#fef2f2;border-radius:8px;margin-top:4px"></p>
+
+      <button type="submit" class="btn-p w-full mt-2" id="signup-submit">Create Account</button>
+    </form>
+
+    <p class="text-center text-sm text-gray-500 mt-8">
+      Already have an account?
+      <a href="login.html" class="font-semibold text-black hover:underline ml-1">Sign in</a>
+    </p>
+
+    <p class="text-center text-xs text-gray-400 mt-6 leading-relaxed">
+      By creating an account you agree to REVAÍ's <a href="terms.html" class="underline hover:text-black">Terms</a> and <a href="privacy.html" class="underline hover:text-black">Privacy Policy</a>.
+    </p>
+  </div>
 </main>
 
 <!-- FOOTER -->
@@ -167,74 +204,47 @@
 <script src="search.js"></script>
 <script src="shopify-config.js"></script>
 <script src="js/shopify-customer.js"></script>
-<script>
-const SAVED_KEY = 'revai_saved_v1';
-
-const PRODUCTS = {
-  'running-leggings-w': "Women's Running Leggings",
-  'flared-leggings-w':  "Women's Flared Leggings",
-  'high-impact-bra':    "High-Impact Sports Bra",
-  'low-impact-bra':     "Low-Impact Sports Bra",
-  'jacket-w':           "Women's Performance Jacket",
-  'tshirt-w':           "Women's Training T-Shirt",
-  'tshirt-m':           "Men's Training T-Shirt",
-  'quarter-zip-m':      "Men's Quarter-Zip",
-  'shorts-m':           "Men's Training Shorts",
-  'training-pants-m':   "Men's Training Pants",
-  'crew-socks':         "Crew Socks",
-  'no-show-socks':      "No-Show Socks",
-  'gym-bag':            "30L Gym Bag",
-  'lifestyle-cap':      "Lifestyle Cap",
-};
-
-function renderSaved(){
-  const saved = JSON.parse(localStorage.getItem(SAVED_KEY)||'[]');
-  const grid = document.getElementById('saved-grid');
-  const empty = document.getElementById('saved-empty');
-  const subtitle = document.getElementById('wishlist-subtitle');
-
-  if(!saved.length){
-    grid.style.display='none';
-    empty.style.display='';
-    subtitle.textContent = 'Items you\'ve saved for later.';
-    return;
-  }
-
-  empty.style.display='none';
-  grid.style.display='';
-  subtitle.textContent = saved.length + ' saved item' + (saved.length !== 1 ? 's' : '');
-
-  grid.innerHTML = saved.map(id => `
-    <a href="product.html?id=${id}" class="saved-card" style="text-decoration:none;display:block">
-      <div style="aspect-ratio:3/4;background:#f3f4f6;overflow:hidden">
-        <img src="images/${id}.jpg" alt="${PRODUCTS[id]||id}" style="width:100%;height:100%;object-fit:cover;transition:transform .3s"
-          onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform='scale(1)'"
-          onerror="this.parentElement.style.background='#e5e7eb'">
-      </div>
-      <div style="padding:14px 16px">
-        <p style="font-size:14px;font-weight:600;color:#0a0a0a">${PRODUCTS[id]||id}</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px">
-          <button onclick="removeSaved(event,'${id}')" style="font-size:12px;color:#9ca3af;background:none;border:none;cursor:pointer;padding:0;font-family:inherit;transition:color .2s" onmouseenter="this.style.color='#dc2626'" onmouseleave="this.style.color='#9ca3af'">Remove</button>
-          <span style="font-size:12px;font-weight:600;color:#0a0a0a">View →</span>
-        </div>
-      </div>
-    </a>
-  `).join('');
-}
-
-function removeSaved(e, id){
-  e.preventDefault(); e.stopPropagation();
-  let saved = JSON.parse(localStorage.getItem(SAVED_KEY)||'[]');
-  saved = saved.filter(s => s !== id);
-  localStorage.setItem(SAVED_KEY, JSON.stringify(saved));
-  renderSaved();
-}
-
-// Auth gate
-if(!REVAI_CUSTOMER.requireAuth('login.html')) { /* will redirect */ }
-renderSaved();
-</script>
 <script src="cart-drawer.js"></script>
+<script>
+  REVAI_CUSTOMER.redirectIfAuthed('profile.html');
+
+  document.getElementById('signup-form').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = document.getElementById('signup-submit');
+    const err = document.getElementById('signup-error');
+    err.style.display = 'none';
+
+    const pw  = document.getElementById('inp-pw').value;
+    const pw2 = document.getElementById('inp-pw2').value;
+    if(pw !== pw2){
+      err.textContent = 'Passwords do not match.';
+      err.style.display = '';
+      return;
+    }
+    if(pw.length < 8){
+      err.textContent = 'Password must be at least 8 characters.';
+      err.style.display = '';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Creating account…';
+    try {
+      await REVAI_CUSTOMER.signup({
+        firstName: document.getElementById('inp-fname').value.trim(),
+        lastName:  document.getElementById('inp-lname').value.trim(),
+        email:     document.getElementById('inp-email').value.trim(),
+        password:  pw,
+        acceptsMarketing: document.getElementById('inp-marketing').checked
+      });
+      window.location.href = 'profile.html';
+    } catch(ex){
+      err.textContent = ex.message || 'Could not create account. Please try again.';
+      err.style.display = '';
+      btn.disabled = false;
+      btn.textContent = 'Create Account';
+    }
+  });
+</script>
 </body>
 </html>
-                                                                                                                  

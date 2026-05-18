@@ -1,10 +1,103 @@
 /**
- * REVAÍ Cart Drawer
+ * REVAÍ Cart Drawer  (v2 — with curated upsells)
  * Provides window.REVAI_CART with add(), remove(), openDrawer(), closeDrawer()
+ * Provides window.REVAI_CATALOG with CATALOG, getUpsells(), resetUpsellCache()
  * Persists to localStorage key 'revai_cart_v1'
  */
 (function () {
   const STORAGE_KEY = 'revai_cart_v1';
+  console.log('[REVAI] cart-drawer.js v2 loaded — upsells enabled');
+
+  // ── Catalog (minimal — only what upsell cards need) ──────────────────────────
+  // Mirrors PRODUCTS in product.html. Keep in sync if product names/prices change.
+  const CATALOG = {
+    'running-leggings-w': { name: 'Running Leggings',        gender: "Women's", price: 5500, sizes: ['S','M','L','XL','XXL'] },
+    'flared-leggings-w':  { name: 'Flared Leggings',         gender: "Women's", price: 5600, sizes: ['S','M','L','XL','XXL'] },
+    'high-impact-bra':    { name: 'High Impact Sports Bra',  gender: "Women's", price: 4950, sizes: ['S','M','L','XL','XXL'] },
+    'low-impact-bra':     { name: 'Low Impact Sports Bra',   gender: "Women's", price: 4950, sizes: ['S','M','L','XL','XXL'] },
+    'jacket-w':           { name: "Women's Jacket",          gender: "Women's", price: 7500, sizes: ['S','M','L','XL','XXL'] },
+    'tshirt-w':           { name: "Women's T-Shirt",         gender: "Women's", price: 4500, sizes: ['S','M','L','XL','XXL'] },
+    'tshirt-m':           { name: "Men's T-Shirt",           gender: "Men's",   price: 4500, sizes: ['S','M','L','XL','XXL'] },
+    'quarter-zip-m':      { name: 'Quarter Zip',             gender: "Men's",   price: 5600, sizes: ['S','M','L','XL','XXL'] },
+    'shorts-m':           { name: 'Shorts',                  gender: "Men's",   price: 6050, sizes: ['S','M','L','XL','XXL'] },
+    'training-pants-m':   { name: 'Training Pants',          gender: "Men's",   price: 6600, sizes: ['S','M','L','XL','XXL'] },
+    'crew-socks':         { name: 'Crew Socks',              gender: 'Unisex',  price: 550,  sizes: ['S','M','L'] },
+    'no-show-socks':      { name: 'No Show Socks',           gender: 'Unisex',  price: 550,  sizes: ['S','M','L'] },
+    'lifestyle-cap':      { name: 'Lifestyle Cap',           gender: 'Unisex',  price: 3500, sizes: ['One Size'] },
+    'gym-bag':            { name: '30L Gym Bag',             gender: 'Unisex',  price: 7500, sizes: ['One Size'] }
+  };
+
+  // Curated complement POOLS — each cart item draws from a pool of 5-6 candidates.
+  const UPSELLS_MAP = {
+    'running-leggings-w': ['high-impact-bra', 'crew-socks',  'gym-bag',     'tshirt-w',     'lifestyle-cap','jacket-w'],
+    'flared-leggings-w':  ['low-impact-bra',  'tshirt-w',    'lifestyle-cap','crew-socks',  'jacket-w',     'gym-bag'],
+    'high-impact-bra':    ['running-leggings-w','no-show-socks','jacket-w', 'tshirt-w',     'lifestyle-cap','gym-bag'],
+    'low-impact-bra':     ['flared-leggings-w','tshirt-w',   'crew-socks',  'lifestyle-cap','jacket-w',     'gym-bag'],
+    'jacket-w':           ['running-leggings-w','high-impact-bra','lifestyle-cap','tshirt-w','gym-bag',    'crew-socks'],
+    'tshirt-w':           ['flared-leggings-w','low-impact-bra','lifestyle-cap','crew-socks','gym-bag',    'jacket-w'],
+    'tshirt-m':           ['shorts-m',        'no-show-socks','gym-bag',     'training-pants-m','lifestyle-cap','quarter-zip-m'],
+    'quarter-zip-m':      ['training-pants-m','tshirt-m',    'lifestyle-cap','gym-bag',     'shorts-m',     'crew-socks'],
+    'shorts-m':           ['tshirt-m',        'no-show-socks','gym-bag',    'lifestyle-cap','training-pants-m','quarter-zip-m'],
+    'training-pants-m':   ['quarter-zip-m',   'tshirt-m',    'gym-bag',     'lifestyle-cap','shorts-m',     'crew-socks'],
+    'crew-socks':         ['no-show-socks',   'gym-bag',     'lifestyle-cap','tshirt-w',    'tshirt-m',     'shorts-m'],
+    'no-show-socks':      ['crew-socks',      'gym-bag',     'lifestyle-cap','shorts-m',    'tshirt-m',     'tshirt-w'],
+    'lifestyle-cap':      ['gym-bag',         'crew-socks',  'no-show-socks','tshirt-w',    'tshirt-m',     'jacket-w'],
+    'gym-bag':            ['lifestyle-cap',   'crew-socks',  'no-show-socks','tshirt-w',    'tshirt-m',     'jacket-w']
+  };
+
+  const FALLBACK_UPSELLS = ['lifestyle-cap', 'crew-socks', 'gym-bag', 'no-show-socks', 'tshirt-w', 'tshirt-m'];
+
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  let _upsellCache = null;
+  let _upsellCacheKey = null;
+  function resetUpsellCache() { _upsellCache = null; _upsellCacheKey = null; }
+
+  function getUpsells(cartItems, max) {
+    max = max || 3;
+    const cartIds = (cartItems || []).map(function (i) { return i.id; });
+    const cacheKey = cartIds.slice().sort().join('|') + '#' + max;
+    if (_upsellCacheKey === cacheKey && _upsellCache) return _upsellCache;
+
+    const inCart = new Set(cartIds);
+    const picks = [];
+    const seen = new Set();
+
+    function tryAdd(id) {
+      if (picks.length >= max) return;
+      if (!CATALOG[id]) return;
+      if (inCart.has(id) || seen.has(id)) return;
+      seen.add(id);
+      picks.push(Object.assign({ id: id }, CATALOG[id]));
+    }
+
+    const lists = (cartItems || []).map(function (i) { return shuffle(UPSELLS_MAP[i.id] || []); });
+    const order = shuffle(lists.map(function (_, i) { return i; }));
+    let added = true;
+    while (added && picks.length < max) {
+      added = false;
+      for (let k = 0; k < order.length; k++) {
+        const i = order[k];
+        if (lists[i].length) { tryAdd(lists[i].shift()); added = true; }
+        if (picks.length >= max) break;
+      }
+    }
+    const fb = shuffle(FALLBACK_UPSELLS);
+    for (let i = 0; i < fb.length && picks.length < max; i++) {
+      tryAdd(fb[i]);
+    }
+
+    _upsellCache = picks;
+    _upsellCacheKey = cacheKey;
+    return picks;
+  }
 
   // ── Persistence ──────────────────────────────────────────────────────────────
   function load() {
@@ -52,6 +145,7 @@
         </button>
       </div>
       <div id="revai-cart-items" style="flex:1;overflow-y:auto;padding:0 24px"></div>
+      <div id="revai-cart-upsells" style="border-top:1px solid #f3f4f6"></div>
       <div id="revai-cart-footer" style="padding:20px 24px;border-top:1px solid #f3f4f6"></div>
     `;
 
@@ -78,6 +172,8 @@
           <button onclick="window.REVAI_CART.closeDrawer()" style="margin-top:8px;padding:10px 24px;background:#000;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.02em">Continue Shopping</button>
         </div>`;
       footerEl.innerHTML = '';
+      const upsellEl0 = document.getElementById('revai-cart-upsells');
+      if (upsellEl0) { upsellEl0.innerHTML = ''; upsellEl0.style.borderTop = 'none'; }
       return;
     }
 
@@ -116,10 +212,52 @@
       <button id="revai-checkout-btn" onclick="window.REVAI_CART.checkout()" style="width:100%;padding:14px;background:#000;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;letter-spacing:.02em;margin-bottom:10px">Checkout</button>
       <button onclick="window.REVAI_CART.closeDrawer()" style="width:100%;padding:12px;background:transparent;color:#374151;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer">Continue Shopping</button>
     `;
+
+    renderUpsells(cart);
+  }
+
+  // ── Upsell strip in drawer ────────────────────────────────────────────────────
+  function renderUpsells(cart) {
+    const el = document.getElementById('revai-cart-upsells');
+    if (!el) return;
+    const recs = getUpsells(cart, 3);
+    if (!recs.length) { el.innerHTML = ''; el.style.borderTop = 'none'; return; }
+    el.style.borderTop = '1px solid #f3f4f6';
+    el.innerHTML = `
+      <div style="padding:16px 24px 4px">
+        <p style="font-size:11px;font-weight:700;color:#9ca3af;margin:0 0 2px;letter-spacing:.12em;text-transform:uppercase">Complete the look</p>
+        <p style="font-size:12px;color:#9ca3af;margin:0">Hand-picked to pair with your bag.</p>
+      </div>
+      <div style="display:flex;gap:10px;overflow-x:auto;padding:12px 24px 18px;scrollbar-width:none">
+        ${recs.map(function (p) {
+          const isOneSize = p.sizes && p.sizes.length === 1;
+          const isSocks = p.id === 'crew-socks' || p.id === 'no-show-socks';
+          const directAdd = isOneSize || isSocks;
+          const btnLabel = directAdd ? 'Add' : 'View';
+          const onClick = directAdd
+            ? `window.REVAI_CART.addUpsell('${p.id}')`
+            : `window.location.href='product.html?id=${p.id}'`;
+          return `
+            <div style="flex:0 0 138px;display:flex;flex-direction:column;border:1px solid #f3f4f6;border-radius:10px;overflow:hidden;background:#fff">
+              <a href="product.html?id=${p.id}" style="display:block;aspect-ratio:3/4;background:#f3f4f6;text-decoration:none">
+                <img src="images/${p.id}.jpg" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block"
+                  onerror="this.style.display='none';this.parentElement.style.background='#e5e7eb'">
+              </a>
+              <div style="padding:10px 10px 12px">
+                <p style="font-size:11px;color:#9ca3af;margin:0 0 1px">${p.gender}</p>
+                <p style="font-size:12px;font-weight:600;color:#000;margin:0 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</p>
+                <p style="font-size:12px;font-weight:700;color:#000;margin:0 0 8px">KES ${p.price.toLocaleString()}</p>
+                <button onclick="${onClick}" style="width:100%;padding:7px 8px;background:#000;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;letter-spacing:.02em">${btnLabel}</button>
+              </div>
+            </div>`;
+        }).join('')}
+      </div>
+    `;
   }
 
   // ── Open / Close ──────────────────────────────────────────────────────────────
   function openDrawer() {
+    resetUpsellCache();
     buildDrawer();
     renderDrawer();
     const drawer = document.getElementById('revai-cart-drawer');
@@ -185,7 +323,6 @@
       if (btn) { btn.textContent = 'Loading…'; btn.disabled = true; }
 
       try {
-        // Use pre-mapped variant IDs from shopify-config.js
         const variants = (window.REVAI_SHOPIFY && window.REVAI_SHOPIFY.variants) || {};
 
         const cartLines = cart.map(function(item) {
@@ -207,7 +344,6 @@
           return;
         }
 
-        // Create checkout
         const cartRes = await fetch(GQL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'X-Shopify-Storefront-Access-Token': TOKEN },
@@ -237,10 +373,31 @@
       save([]);
       updateBadge();
       renderDrawer();
+    },
+
+    addUpsell(id) {
+      const p = CATALOG[id];
+      if (!p) return;
+      const defaultSize = (p.sizes && p.sizes.length === 1)
+        ? p.sizes[0]
+        : (p.sizes && p.sizes.indexOf('M') !== -1 ? 'M' : (p.sizes ? p.sizes[0] : 'M'));
+      this.add({
+        id: id,
+        name: p.name,
+        price: p.price,
+        size: defaultSize,
+        image: 'images/' + id + '.jpg'
+      });
     }
   };
 
-  // Init badge on load
+  window.REVAI_CATALOG = {
+    CATALOG: CATALOG,
+    UPSELLS_MAP: UPSELLS_MAP,
+    getUpsells: getUpsells,
+    resetUpsellCache: resetUpsellCache
+  };
+
   document.addEventListener('DOMContentLoaded', updateBadge);
   updateBadge();
 })();

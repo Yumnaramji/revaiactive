@@ -49,11 +49,15 @@
           <a href="collection-new.html" class="block px-4 py-2.5 text-sm font-medium text-black hover:bg-gray-50">New Arrivals</a>
           <div class="my-1 border-t border-gray-100"></div>
           <a href="collections.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">All Products</a>
+          <a href="collections.html?gender=women" class="block pl-8 pr-4 py-1.5 text-xs text-gray-500 hover:text-black hover:bg-gray-50" data-gender-sub="women">Women</a>
+          <a href="collections.html?gender=men" class="block pl-8 pr-4 py-1.5 text-xs text-gray-500 hover:text-black hover:bg-gray-50" data-gender-sub="men">Men</a>
+          <a href="collections.html?gender=unisex" class="block pl-8 pr-4 py-1.5 text-xs text-gray-500 hover:text-black hover:bg-gray-50" data-gender-sub="unisex">Unisex</a>
           <a href="collection-gym.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Gym &amp; Training</a>
           <a href="collection-running.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Running</a>
           <a href="collection-padel.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Padel</a>
           <a href="collection-golf.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Golf</a>
           <a href="collection-yoga.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Yoga &amp; Pilates</a>
+        
         </div>
       </div>
       <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About</a>
@@ -79,6 +83,9 @@
     <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Shop</p>
     <a href="collection-new.html" class="mlink block py-2 text-sm font-medium text-black">New Arrivals</a>
     <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
+    <a href="collections.html?gender=women" class="mlink block py-1.5 pl-4 text-xs text-gray-500 hover:text-black" data-gender-sub="women">Women</a>
+    <a href="collections.html?gender=men" class="mlink block py-1.5 pl-4 text-xs text-gray-500 hover:text-black" data-gender-sub="men">Men</a>
+    <a href="collections.html?gender=unisex" class="mlink block py-1.5 pl-4 text-xs text-gray-500 hover:text-black" data-gender-sub="unisex">Unisex</a>
     <a href="collection-gym.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Gym &amp; Training</a>
     <a href="collection-running.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Running</a>
     <a href="collection-padel.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Padel</a>
@@ -115,7 +122,7 @@
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="product-grid">
 
       <!-- Running Leggings W -->
-      <div class="prod-card fu">
+      <div class="prod-card fu" data-gender="women">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/running-leggings-w.jpg" alt="Women's Running Leggings" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
           <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Women's</span>
@@ -143,7 +150,7 @@
       </div>
 
       <!-- Flared Leggings W -->
-      <div class="prod-card fu d1">
+      <div class="prod-card fu d1" data-gender="women">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/flared-leggings-w.jpg" alt="Flared Leggings" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
           <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Women's</span>
@@ -171,7 +178,7 @@
       </div>
 
       <!-- High Impact Sports Bra -->
-      <div class="prod-card fu d2">
+      <div class="prod-card fu d2" data-gender="women">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/high-impact-bra.jpg" alt="High Impact Sports Bra" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
           <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Women's</span>
@@ -199,7 +206,7 @@
       </div>
 
       <!-- Low Impact Sports Bra -->
-      <div class="prod-card fu d3">
+      <div class="prod-card fu d3" data-gender="women">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/low-impact-bra.jpg" alt="Low Impact Sports Bra" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
           <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Women's</span>
@@ -227,7 +234,7 @@
       </div>
 
       <!-- Jacket W -->
-      <div class="prod-card fu d4">
+      <div class="prod-card fu d4" data-gender="women">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/jacket-w.jpg" alt="Women's Jacket" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
           <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Women's</span>
@@ -255,7 +262,7 @@
       </div>
 
       <!-- T-Shirt W -->
-      <div class="prod-card fu d5">
+      <div class="prod-card fu d5" data-gender="women">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/tshirt-w.jpg" alt="Women's T-Shirt" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
           <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Women's</span>
@@ -283,7 +290,7 @@
       </div>
 
       <!-- T-Shirt M -->
-      <div class="prod-card fu">
+      <div class="prod-card fu" data-gender="men">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/tshirt-m.jpg" alt="Men's T-Shirt" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
           <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Men's</span>
@@ -311,7 +318,7 @@
       </div>
 
       <!-- Quarter Zip M -->
-      <div class="prod-card fu d1">
+      <div class="prod-card fu d1" data-gender="men">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/quarter-zip-m.jpg" alt="Men's Quarter Zip" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
           <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Men's</span>
@@ -339,7 +346,7 @@
       </div>
 
       <!-- Shorts M -->
-      <div class="prod-card fu d2">
+      <div class="prod-card fu d2" data-gender="men">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/shorts-m.jpg" alt="Men's Shorts" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
           <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Men's</span>
@@ -367,7 +374,7 @@
       </div>
 
       <!-- Training Pants M -->
-      <div class="prod-card fu d3">
+      <div class="prod-card fu d3" data-gender="men">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/training-pants-m.jpg" alt="Men's Training Pants" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
           <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Men's</span>
@@ -395,7 +402,7 @@
       </div>
 
       <!-- Crew Socks -->
-      <div class="prod-card fu d4">
+      <div class="prod-card fu d4" data-gender="unisex">
         <div class="relative" style="aspect-ratio:1/1;overflow:hidden;background:#f3f4f6;">
           <img src="images/crew-socks.jpg" alt="Crew Socks" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
           <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Unisex</span>
@@ -421,7 +428,7 @@
       </div>
 
       <!-- No Show Socks -->
-      <div class="prod-card fu">
+      <div class="prod-card fu" data-gender="unisex">
         <div class="relative" style="aspect-ratio:1/1;overflow:hidden;background:#f3f4f6;">
           <img src="images/no-show-socks.jpg" alt="No Show Socks" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
           <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Unisex</span>
@@ -447,7 +454,7 @@
       </div>
 
       <!-- Lifestyle Cap -->
-      <div class="prod-card fu d1">
+      <div class="prod-card fu d1" data-gender="unisex">
         <div class="relative" style="aspect-ratio:1/1;overflow:hidden;background:#f3f4f6;">
           <img src="images/lifestyle-cap.jpg" alt="Lifestyle Cap" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
           <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Unisex</span>
@@ -471,7 +478,7 @@
       </div>
 
       <!-- 30L Gym Bag -->
-      <div class="prod-card fu d3">
+      <div class="prod-card fu d3" data-gender="unisex">
         <div class="relative" style="aspect-ratio:1/1;overflow:hidden;background:#f3f4f6;">
           <img src="images/gym-bag.jpg" alt="30L Gym Bag" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
           <span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:#374151;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px">Unisex</span>
@@ -541,7 +548,7 @@
   <div class="max-w-6xl mx-auto">
     <div class="grid md:grid-cols-4 gap-12 mb-16">
       <div><a href="index.html" style="display:inline-block;margin-bottom:16px"><img src="images/revai-icon.png" alt="REVAÍ" style="height:56px;width:auto;display:block"></a><p class="text-gray-400 text-sm leading-relaxed mb-6">Activewear built for people who move — whatever that looks like for you.</p><div class="flex gap-4"><a href="#" aria-label="Instagram" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></a><a href="#" aria-label="TikTok" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.52V6.77a4.85 4.85 0 01-1.02-.08z"/></svg></a></div></div>
-      <div><h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Shop</h3><ul class="space-y-3"><li><a href="collection-new.html" class="text-sm text-gray-400 hover:text-white transition-colors">New Arrivals</a></li><li><a href="collections.html" class="text-sm text-gray-400 hover:text-white transition-colors">All Products</a></li><li><a href="collection-gym.html" class="text-sm text-gray-400 hover:text-white transition-colors">Gym &amp; Training</a></li><li><a href="collection-running.html" class="text-sm text-gray-400 hover:text-white transition-colors">Running</a></li><li><a href="collection-padel.html" class="text-sm text-gray-400 hover:text-white transition-colors">Padel</a></li><li><a href="collection-golf.html" class="text-sm text-gray-400 hover:text-white transition-colors">Golf</a></li><li><a href="collection-yoga.html" class="text-sm text-gray-400 hover:text-white transition-colors">Yoga &amp; Pilates</a></li></ul></div>
+      <div><h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Shop</h3><ul class="space-y-3"><li><a href="collection-new.html" class="text-sm text-gray-400 hover:text-white transition-colors">New Arrivals</a></li><li><a href="collections.html" class="text-sm text-gray-400 hover:text-white transition-colors">All Products</a></li><li><a href="collections.html?gender=women" class="text-sm text-gray-400 hover:text-white transition-colors">Women</a></li><li><a href="collections.html?gender=men" class="text-sm text-gray-400 hover:text-white transition-colors">Men</a></li><li><a href="collections.html?gender=unisex" class="text-sm text-gray-400 hover:text-white transition-colors">Unisex</a></li><li><a href="collection-gym.html" class="text-sm text-gray-400 hover:text-white transition-colors">Gym &amp; Training</a></li><li><a href="collection-running.html" class="text-sm text-gray-400 hover:text-white transition-colors">Running</a></li><li><a href="collection-padel.html" class="text-sm text-gray-400 hover:text-white transition-colors">Padel</a></li><li><a href="collection-golf.html" class="text-sm text-gray-400 hover:text-white transition-colors">Golf</a></li><li><a href="collection-yoga.html" class="text-sm text-gray-400 hover:text-white transition-colors">Yoga &amp; Pilates</a></li></ul></div>
       <div><h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Company</h3><ul class="space-y-3"><li><a href="about.html" class="text-sm text-gray-400 hover:text-white transition-colors">About REVAÍ</a></li><li><a href="sustainability.html" class="text-sm text-gray-400 hover:text-white transition-colors">Sustainability</a></li><li><a href="athlete-program.html" class="text-sm text-gray-400 hover:text-white transition-colors">Athlete Program</a></li><li><a href="team-orders.html" class="text-sm text-gray-400 hover:text-white transition-colors">Team Orders</a></li><li><a href="careers.html" class="text-sm text-gray-400 hover:text-white transition-colors">Careers</a></li><li><a href="press.html" class="text-sm text-gray-400 hover:text-white transition-colors">Press</a></li></ul></div>
       <div><h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Support</h3><ul class="space-y-3"><li><a href="shipping-returns.html" class="text-sm text-gray-400 hover:text-white transition-colors">Shipping &amp; Returns</a></li><li><a href="care-instructions.html" class="text-sm text-gray-400 hover:text-white transition-colors">Care Instructions</a></li><li><a href="faq.html" class="text-sm text-gray-400 hover:text-white transition-colors">FAQ</a></li><li><a href="fit-guide.html" class="text-sm text-gray-400 hover:text-white transition-colors">Fit Guide</a></li><li><a href="contact.html" class="text-sm text-gray-400 hover:text-white transition-colors">Contact Us</a></li><li><a href="gift-cards.html" class="text-sm text-gray-400 hover:text-white transition-colors">Gift Cards</a></li></ul></div>
     </div>
@@ -727,6 +734,51 @@ document.querySelectorAll('.prod-card').forEach(function(card){
   });
 });
 </script>
+
+<script id="gender-filter-script">
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var g = (params.get('gender') || '').toLowerCase();
+  if(!['women','men','unisex'].includes(g)) return;
+
+  // Hide non-matching cards
+  document.querySelectorAll('.prod-card').forEach(function(card){
+    var cg = card.getAttribute('data-gender');
+    if(cg && cg !== g) card.style.display = 'none';
+  });
+
+  // Update H1 + subtitle
+  var H1_MAP = {women: "Women's", men: "Men's", unisex: "Unisex"};
+  var SUB_MAP = {
+    women: "Engineered for movement. S–XXL, true to size. All prices in KES.",
+    men:   "Engineered for movement. S–XXL, true to size. All prices in KES.",
+    unisex:"Engineered for movement. One-size and S–L. All prices in KES."
+  };
+  var h1 = document.querySelector('h1.t-hero');
+  if(h1) h1.textContent = H1_MAP[g] + ' — REVAÍ';
+  var sub = h1 && h1.parentElement && h1.parentElement.querySelector('p.text-lg');
+  if(sub) sub.textContent = SUB_MAP[g];
+
+  // Update product-count strip
+  var countLabel = document.querySelector('.text-sm.text-gray-400.font-medium');
+  if(countLabel){
+    var visible = document.querySelectorAll('.prod-card[data-gender="' + g + '"]').length;
+    countLabel.textContent = visible + ' ' + H1_MAP[g] + ' product' + (visible === 1 ? '' : 's');
+  }
+
+  // Update document title
+  document.title = H1_MAP[g] + ' — Shop REVAÍ';
+
+  // Highlight active nav sub-item
+  document.querySelectorAll('[data-gender-sub]').forEach(function(a){
+    if(a.getAttribute('data-gender-sub') === g){
+      a.classList.remove('text-gray-500');
+      a.classList.add('text-black','font-medium');
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

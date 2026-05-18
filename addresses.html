@@ -4,8 +4,8 @@
 <link rel="icon" type="image/png" href="images/revai-icon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wishlist — REVAÍ</title>
-  <meta name="description" content="Your saved items — browse and manage your REVAÍ wishlist.">
+  <title>Addresses — REVAÍ</title>
+  <meta name="description" content="Manage your saved shipping addresses.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,19 +15,23 @@
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
     body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-    .fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-    .fu.in{opacity:1;transform:translateY(0)}
-    .d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}
-    .btn-p{background:#000;color:#fff;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;text-decoration:none;border:none}
+    .btn-p{background:#000;color:#fff;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;text-decoration:none;border:none}
     .btn-p:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.22);background:#1a1a1a}
-    .btn-s{background:transparent;border:1px solid #000;color:#000;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;transition:background .2s,transform .2s;text-decoration:none}
+    .btn-p:disabled{opacity:.55;cursor:wait;transform:none;box-shadow:none}
+    .btn-s{background:transparent;border:1px solid #000;color:#000;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:10px 20px;cursor:pointer;transition:background .2s,transform .2s;text-decoration:none}
     .btn-s:hover{background:rgba(0,0,0,.04);transform:translateY(-1px)}
     #nav.scrolled{border-bottom:1px solid #e5e7eb}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
-
-    /* Saved card */
-    .saved-card{border:1.5px solid #f3f4f6;border-radius:14px;overflow:hidden;transition:border-color .2s,box-shadow .2s;background:#fff;text-decoration:none;color:inherit}
-    .saved-card:hover{border-color:#000;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field label{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#6b7280}
+    .field input,.field select{border:1.5px solid #e5e7eb;border-radius:10px;padding:12px 14px;font-size:14px;font-family:inherit;color:#0a0a0a;outline:none;transition:border-color .2s;background:#fff}
+    .field input:focus,.field select:focus{border-color:#000}
+    .field input::placeholder{color:#d1d5db}
+    .addr-card{padding:22px 24px;border:1.5px solid #f3f4f6;border-radius:14px;background:#fff;transition:border-color .2s}
+    .addr-card.is-default{border-color:#000}
+    .addr-card .default-pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:#000;padding:3px 8px;border-radius:6px}
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;display:flex;align-items:center;justify-content:center;padding:20px}
+    .modal{background:#fff;border-radius:16px;max-width:540px;width:100%;max-height:90vh;overflow-y:auto;padding:28px 32px}
   </style>
   <script src="js/mobile-fix.js" defer></script>
 </head>
@@ -63,7 +67,7 @@
       <button onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
       </button>
-      <a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account">
+      <a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account" style="background:rgba(0,0,0,.05)">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
       </a>
       <button id="nav-cart-btn" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open cart" onclick="if(window.REVAI_CART) window.REVAI_CART.openDrawer()">
@@ -114,31 +118,118 @@
       <div class="flex items-center gap-3 mb-4">
         <a href="profile.html" class="text-xs font-medium text-gray-400 hover:text-black transition-colors" style="text-decoration:none">My Account</a>
         <svg width="12" height="12" fill="none" stroke="#d1d5db" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-        <span class="text-xs font-medium text-gray-800">Wishlist</span>
+        <span class="text-xs font-medium text-gray-800">Addresses</span>
       </div>
-      <h1 class="text-2xl font-bold tracking-tight">Wishlist</h1>
-      <p class="text-sm text-gray-500 mt-1" id="wishlist-subtitle">Items you've saved for later.</p>
+      <div class="flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">Addresses</h1>
+          <p class="text-sm text-gray-500 mt-1">Saved shipping addresses for faster checkout.</p>
+        </div>
+        <button class="btn-p" onclick="openAddrModal()">+ Add Address</button>
+      </div>
     </div>
   </div>
 
   <div class="max-w-6xl mx-auto px-6 py-12">
 
-    <!-- Saved grid -->
-    <div id="saved-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px"></div>
+    <!-- Loading -->
+    <div id="addr-loading" style="text-align:center;padding:60px 0;color:#9ca3af;font-size:14px">Loading addresses…</div>
+
+    <!-- Address list -->
+    <div id="addr-grid" style="display:none;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px"></div>
 
     <!-- Empty state -->
-    <div id="saved-empty" style="display:none;text-align:center;padding:80px 0">
+    <div id="addr-empty" style="display:none;text-align:center;padding:80px 0">
       <div style="width:64px;height:64px;border-radius:16px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
-        <svg width="28" height="28" fill="none" stroke="#9ca3af" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <svg width="28" height="28" fill="none" stroke="#9ca3af" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
       </div>
-      <h3 class="text-lg font-semibold mb-2">No saved items</h3>
-      <p class="text-sm text-gray-500 mb-8 max-w-sm mx-auto">Tap the heart on any product to save it here for later.</p>
-      <a href="collections.html" class="btn-p">Browse Products</a>
+      <h3 class="text-lg font-semibold mb-2">No addresses saved</h3>
+      <p class="text-sm text-gray-500 mb-8 max-w-sm mx-auto">Add a shipping address so checkout's quicker next time.</p>
+      <button class="btn-p" onclick="openAddrModal()">+ Add Your First Address</button>
     </div>
 
   </div>
 
 </main>
+
+<!-- ── Add / Edit Address Modal ─────────────────────────────── -->
+<div id="addr-modal" class="modal-backdrop" style="display:none">
+  <div class="modal">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-lg font-bold tracking-tight" id="modal-title">Add Address</h2>
+      <button onclick="closeAddrModal()" class="p-1.5 rounded-lg hover:bg-gray-100" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg>
+      </button>
+    </div>
+
+    <form id="addr-form" style="display:flex;flex-direction:column;gap:16px">
+      <input type="hidden" id="a-id">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="field">
+          <label for="a-fname">First Name</label>
+          <input id="a-fname" type="text" required>
+        </div>
+        <div class="field">
+          <label for="a-lname">Last Name</label>
+          <input id="a-lname" type="text" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="a-addr1">Address Line 1</label>
+        <input id="a-addr1" type="text" required>
+      </div>
+      <div class="field">
+        <label for="a-addr2">Address Line 2 (optional)</label>
+        <input id="a-addr2" type="text">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="field">
+          <label for="a-city">City</label>
+          <input id="a-city" type="text" required>
+        </div>
+        <div class="field">
+          <label for="a-zip">Postcode / ZIP</label>
+          <input id="a-zip" type="text">
+        </div>
+      </div>
+      <div class="field">
+        <label for="a-province">County / State / Province</label>
+        <input id="a-province" type="text">
+      </div>
+      <div class="field">
+        <label for="a-country">Country</label>
+        <select id="a-country" required>
+          <option value="">Select country…</option>
+          <option value="Kenya">Kenya</option>
+          <option value="United Kingdom">United Kingdom</option>
+          <option value="United States">United States</option>
+          <option value="United Arab Emirates">United Arab Emirates</option>
+          <option value="Germany">Germany</option>
+          <option value="France">France</option>
+          <option value="South Africa">South Africa</option>
+          <option value="Tanzania">Tanzania</option>
+          <option value="Uganda">Uganda</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="a-phone">Phone</label>
+        <input id="a-phone" type="tel" placeholder="+254 700 000000">
+      </div>
+
+      <label style="display:flex;gap:10px;align-items:center;margin-top:2px;cursor:pointer">
+        <input type="checkbox" id="a-default" style="accent-color:#000">
+        <span class="text-sm text-gray-700">Set as default shipping address</span>
+      </label>
+
+      <p id="addr-error" style="display:none;font-size:13px;color:#dc2626;padding:10px 14px;background:#fef2f2;border-radius:8px"></p>
+
+      <div class="flex gap-3 mt-2">
+        <button type="submit" class="btn-p flex-1" id="addr-save">Save Address</button>
+        <button type="button" onclick="closeAddrModal()" class="btn-s">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer style="background:#0a0a0a;color:#fff;padding:64px 0 32px">
@@ -167,74 +258,148 @@
 <script src="search.js"></script>
 <script src="shopify-config.js"></script>
 <script src="js/shopify-customer.js"></script>
+<script src="cart-drawer.js"></script>
 <script>
-const SAVED_KEY = 'revai_saved_v1';
+  // Auth gate
+  if(!REVAI_CUSTOMER.requireAuth('login.html')) { /* will redirect */ }
 
-const PRODUCTS = {
-  'running-leggings-w': "Women's Running Leggings",
-  'flared-leggings-w':  "Women's Flared Leggings",
-  'high-impact-bra':    "High-Impact Sports Bra",
-  'low-impact-bra':     "Low-Impact Sports Bra",
-  'jacket-w':           "Women's Performance Jacket",
-  'tshirt-w':           "Women's Training T-Shirt",
-  'tshirt-m':           "Men's Training T-Shirt",
-  'quarter-zip-m':      "Men's Quarter-Zip",
-  'shorts-m':           "Men's Training Shorts",
-  'training-pants-m':   "Men's Training Pants",
-  'crew-socks':         "Crew Socks",
-  'no-show-socks':      "No-Show Socks",
-  'gym-bag':            "30L Gym Bag",
-  'lifestyle-cap':      "Lifestyle Cap",
-};
+  let defaultAddressId = null;
 
-function renderSaved(){
-  const saved = JSON.parse(localStorage.getItem(SAVED_KEY)||'[]');
-  const grid = document.getElementById('saved-grid');
-  const empty = document.getElementById('saved-empty');
-  const subtitle = document.getElementById('wishlist-subtitle');
+  function esc(s){ return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
-  if(!saved.length){
-    grid.style.display='none';
-    empty.style.display='';
-    subtitle.textContent = 'Items you\'ve saved for later.';
-    return;
+  async function loadAddresses(){
+    try {
+      const customer = await REVAI_CUSTOMER.getCustomer();
+      if(!customer){ window.location.href = 'login.html'; return; }
+
+      defaultAddressId = customer.defaultAddress ? customer.defaultAddress.id : null;
+      const addrs = customer.addresses.edges.map(e => e.node);
+
+      document.getElementById('addr-loading').style.display = 'none';
+
+      if(!addrs.length){
+        document.getElementById('addr-empty').style.display = '';
+        document.getElementById('addr-grid').style.display = 'none';
+        return;
+      }
+
+      const grid = document.getElementById('addr-grid');
+      grid.style.display = 'grid';
+      document.getElementById('addr-empty').style.display = 'none';
+
+      grid.innerHTML = addrs.map(a => `
+        <div class="addr-card ${a.id === defaultAddressId ? 'is-default' : ''}">
+          ${a.id === defaultAddressId ? '<div class="default-pill mb-3">Default</div>' : ''}
+          <p class="text-sm font-semibold mb-1">${esc(a.firstName||'')} ${esc(a.lastName||'')}</p>
+          <p class="text-sm text-gray-600 leading-relaxed">${esc(a.address1||'')}${a.address2 ? '<br>'+esc(a.address2) : ''}<br>${esc(a.city||'')}${a.province ? ', '+esc(a.province) : ''} ${esc(a.zip||'')}<br>${esc(a.country||'')}${a.phone ? '<br>'+esc(a.phone) : ''}</p>
+          <div class="flex flex-wrap gap-3 mt-5 pt-4" style="border-top:1px solid #f3f4f6">
+            <button onclick='editAddress(${JSON.stringify(a).replace(/'/g,"&#39;")})' class="text-xs font-semibold text-black hover:underline" style="background:none;border:none;cursor:pointer;padding:0;font-family:inherit">Edit</button>
+            ${a.id !== defaultAddressId ? `<button onclick="makeDefault('${a.id}')" class="text-xs font-semibold text-gray-500 hover:text-black" style="background:none;border:none;cursor:pointer;padding:0;font-family:inherit">Set as default</button>` : ''}
+            <button onclick="removeAddress('${a.id}')" class="text-xs font-semibold text-gray-400 hover:text-red-600" style="background:none;border:none;cursor:pointer;padding:0;font-family:inherit;margin-left:auto">Remove</button>
+          </div>
+        </div>
+      `).join('');
+    } catch(ex){
+      document.getElementById('addr-loading').textContent = 'Could not load addresses. ' + (ex.message || '');
+    }
   }
 
-  empty.style.display='none';
-  grid.style.display='';
-  subtitle.textContent = saved.length + ' saved item' + (saved.length !== 1 ? 's' : '');
+  function openAddrModal(){
+    document.getElementById('addr-form').reset();
+    document.getElementById('a-id').value = '';
+    document.getElementById('modal-title').textContent = 'Add Address';
+    document.getElementById('addr-error').style.display = 'none';
+    document.getElementById('addr-modal').style.display = 'flex';
+  }
+  function closeAddrModal(){
+    document.getElementById('addr-modal').style.display = 'none';
+  }
+  function editAddress(a){
+    document.getElementById('modal-title').textContent = 'Edit Address';
+    document.getElementById('a-id').value      = a.id;
+    document.getElementById('a-fname').value   = a.firstName || '';
+    document.getElementById('a-lname').value   = a.lastName  || '';
+    document.getElementById('a-addr1').value   = a.address1  || '';
+    document.getElementById('a-addr2').value   = a.address2  || '';
+    document.getElementById('a-city').value    = a.city      || '';
+    document.getElementById('a-zip').value     = a.zip       || '';
+    document.getElementById('a-province').value= a.province  || '';
+    document.getElementById('a-country').value = a.country   || '';
+    document.getElementById('a-phone').value   = a.phone     || '';
+    document.getElementById('a-default').checked = (a.id === defaultAddressId);
+    document.getElementById('addr-error').style.display = 'none';
+    document.getElementById('addr-modal').style.display = 'flex';
+  }
 
-  grid.innerHTML = saved.map(id => `
-    <a href="product.html?id=${id}" class="saved-card" style="text-decoration:none;display:block">
-      <div style="aspect-ratio:3/4;background:#f3f4f6;overflow:hidden">
-        <img src="images/${id}.jpg" alt="${PRODUCTS[id]||id}" style="width:100%;height:100%;object-fit:cover;transition:transform .3s"
-          onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform='scale(1)'"
-          onerror="this.parentElement.style.background='#e5e7eb'">
-      </div>
-      <div style="padding:14px 16px">
-        <p style="font-size:14px;font-weight:600;color:#0a0a0a">${PRODUCTS[id]||id}</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px">
-          <button onclick="removeSaved(event,'${id}')" style="font-size:12px;color:#9ca3af;background:none;border:none;cursor:pointer;padding:0;font-family:inherit;transition:color .2s" onmouseenter="this.style.color='#dc2626'" onmouseleave="this.style.color='#9ca3af'">Remove</button>
-          <span style="font-size:12px;font-weight:600;color:#0a0a0a">View →</span>
-        </div>
-      </div>
-    </a>
-  `).join('');
-}
+  document.getElementById('addr-form').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = document.getElementById('addr-save');
+    const err = document.getElementById('addr-error');
+    err.style.display = 'none';
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
 
-function removeSaved(e, id){
-  e.preventDefault(); e.stopPropagation();
-  let saved = JSON.parse(localStorage.getItem(SAVED_KEY)||'[]');
-  saved = saved.filter(s => s !== id);
-  localStorage.setItem(SAVED_KEY, JSON.stringify(saved));
-  renderSaved();
-}
+    const id = document.getElementById('a-id').value;
+    const address = {
+      firstName: document.getElementById('a-fname').value.trim(),
+      lastName:  document.getElementById('a-lname').value.trim(),
+      address1:  document.getElementById('a-addr1').value.trim(),
+      address2:  document.getElementById('a-addr2').value.trim() || null,
+      city:      document.getElementById('a-city').value.trim(),
+      zip:       document.getElementById('a-zip').value.trim()  || null,
+      province:  document.getElementById('a-province').value.trim() || null,
+      country:   document.getElementById('a-country').value,
+      phone:     document.getElementById('a-phone').value.trim() || null
+    };
 
-// Auth gate
-if(!REVAI_CUSTOMER.requireAuth('login.html')) { /* will redirect */ }
-renderSaved();
+    try {
+      let saved;
+      if(id){
+        saved = await REVAI_CUSTOMER.updateAddress(id, address);
+      } else {
+        saved = await REVAI_CUSTOMER.addAddress(address);
+      }
+      if(document.getElementById('a-default').checked && saved && saved.id){
+        await REVAI_CUSTOMER.setDefaultAddress(saved.id);
+      }
+      closeAddrModal();
+      document.getElementById('addr-loading').style.display = '';
+      document.getElementById('addr-grid').style.display = 'none';
+      document.getElementById('addr-empty').style.display = 'none';
+      await loadAddresses();
+    } catch(ex){
+      err.textContent = ex.message || 'Could not save address.';
+      err.style.display = '';
+      btn.disabled = false;
+      btn.textContent = 'Save Address';
+    }
+  });
+
+  async function makeDefault(id){
+    try {
+      await REVAI_CUSTOMER.setDefaultAddress(id);
+      document.getElementById('addr-loading').style.display = '';
+      document.getElementById('addr-grid').style.display = 'none';
+      await loadAddresses();
+    } catch(ex){ alert(ex.message || 'Could not set default address.'); }
+  }
+
+  async function removeAddress(id){
+    if(!confirm('Remove this address?')) return;
+    try {
+      await REVAI_CUSTOMER.deleteAddress(id);
+      document.getElementById('addr-loading').style.display = '';
+      document.getElementById('addr-grid').style.display = 'none';
+      await loadAddresses();
+    } catch(ex){ alert(ex.message || 'Could not remove address.'); }
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('addr-modal').addEventListener('click', function(e){
+    if(e.target === this) closeAddrModal();
+  });
+
+  loadAddresses();
 </script>
-<script src="cart-drawer.js"></script>
 </body>
 </html>
-                                                                                                                  
