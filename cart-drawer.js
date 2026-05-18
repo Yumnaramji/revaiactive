@@ -144,9 +144,11 @@
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>
-      <div id="revai-cart-items" style="flex:1;overflow-y:auto;padding:0 24px"></div>
-      <div id="revai-cart-upsells" style="border-top:1px solid #f3f4f6"></div>
-      <div id="revai-cart-footer" style="padding:20px 24px;border-top:1px solid #f3f4f6"></div>
+      <div id="revai-cart-scroll" style="flex:1;overflow-y:auto;min-height:0">
+        <div id="revai-cart-items" style="padding:0 24px"></div>
+        <div id="revai-cart-upsells" style="border-top:1px solid #f3f4f6"></div>
+      </div>
+      <div id="revai-cart-footer" style="padding:20px 24px;border-top:1px solid #f3f4f6;flex-shrink:0"></div>
     `;
 
     document.body.appendChild(overlay);

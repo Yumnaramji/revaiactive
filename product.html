@@ -327,7 +327,7 @@ function loadProduct(){
   document.getElementById('breadcrumb-name').textContent=p.name;
   document.getElementById('prod-name').textContent=p.name;
   document.getElementById('prod-price').textContent=p.price;
-  document.getElementById('prod-gender').textContent=p.gender;
+  document.getElementById('prod-gender').textContent=p.gender==='Unisex'?'':p.gender;
   document.getElementById('prod-desc').textContent=p.desc;
   // Images + thumbnails
   // Each product shows same image repeated as placeholder thumbnails until real multi-angle shots exist
@@ -446,7 +446,7 @@ function loadProduct(){
     others.forEach(([k,rp])=>{
       const a=document.createElement('a');
       a.href='product.html?id='+k; a.className='rel-card';
-      a.innerHTML=`<div class="rel-img"><img src="${rp.image}" alt="${rp.name}" onerror="this.style.display='none'"></div><p class="text-xs text-gray-400 mb-1">${rp.gender}</p><p class="text-sm font-semibold mb-0.5">${rp.name}</p><p class="text-sm font-bold">${rp.price}</p>`;
+      a.innerHTML=`<div class="rel-img"><img src="${rp.image}" alt="${rp.name}" onerror="this.style.display='none'"></div>${rp.gender!=='Unisex'?`<p class="text-xs text-gray-400 mb-1">${rp.gender}</p>`:''}<p class="text-sm font-semibold mb-0.5">${rp.name}</p><p class="text-sm font-bold">${rp.price}</p>`;
       grid.appendChild(a);
     });
   }

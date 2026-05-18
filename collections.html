@@ -106,19 +106,6 @@
   </div>
 </section>
 
-<!-- PRODUCT COUNT + GENDER FILTER -->
-<div class="px-6 pt-8 pb-2">
-  <div class="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-3">
-    <span id="product-count-label" class="text-sm text-gray-400 font-medium">All Products</span>
-    <div class="flex items-center gap-2" id="gender-filter-pills" role="tablist" aria-label="Filter by gender">
-      <button type="button" class="filter-pill sel" data-gender="all" role="tab" aria-selected="true">All</button>
-      <button type="button" class="filter-pill" data-gender="women" role="tab" aria-selected="false">Women</button>
-      <button type="button" class="filter-pill" data-gender="men" role="tab" aria-selected="false">Men</button>
-      <button type="button" class="filter-pill" data-gender="unisex" role="tab" aria-selected="false">Unisex</button>
-    </div>
-  </div>
-</div>
-
 <!-- PRODUCT GRID -->
 <section class="py-16 px-6">
   <div class="max-w-6xl mx-auto">
@@ -738,53 +725,6 @@ document.querySelectorAll('.prod-card').forEach(function(card){
 });
 </script>
 
-<script id="gender-filter-script">
-(function(){
-  var VALID = ['all','women','men','unisex'];
-  var LABEL = {all:'All Products', women:"Women's", men:"Men's", unisex:'Unisex'};
-  var pills = document.querySelectorAll('.filter-pill');
-  var cards = document.querySelectorAll('.prod-card');
-  var countLabel = document.getElementById('product-count-label');
-  if(!pills.length || !cards.length) return;
-
-  function apply(gender){
-    if(VALID.indexOf(gender) === -1) gender = 'all';
-
-    var visible = 0;
-    cards.forEach(function(card){
-      var cg = card.getAttribute('data-gender');
-      var show = (gender === 'all') || (cg === gender);
-      card.style.display = show ? '' : 'none';
-      if(show) visible++;
-    });
-
-    pills.forEach(function(p){
-      var sel = p.dataset.gender === gender;
-      p.classList.toggle('sel', sel);
-      p.setAttribute('aria-selected', sel ? 'true' : 'false');
-    });
-
-    if(countLabel){
-      countLabel.textContent = LABEL[gender] + ' — ' + visible + ' product' + (visible === 1 ? '' : 's');
-    }
-
-    document.title = (gender === 'all' ? 'Shop All' : LABEL[gender]) + ' — REVAÍ';
-
-    var url = new URL(window.location.href);
-    if(gender === 'all') url.searchParams.delete('gender');
-    else url.searchParams.set('gender', gender);
-    window.history.replaceState({}, '', url);
-  }
-
-  pills.forEach(function(p){
-    p.addEventListener('click', function(){ apply(p.dataset.gender); });
-  });
-
-  // Honour ?gender= on initial load (e.g. shared link)
-  var initial = (new URLSearchParams(window.location.search).get('gender') || 'all').toLowerCase();
-  apply(initial);
-})();
-</script>
 
 </body>
 </html>
