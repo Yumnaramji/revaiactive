@@ -18,13 +18,13 @@
     'jacket-w':           { name: "Women's Jacket",          gender: "Women's", price: 7500, sizes: ['S','M','L','XL','XXL'] },
     'tshirt-w':           { name: "Women's T-Shirt",         gender: "Women's", price: 4500, sizes: ['S','M','L','XL','XXL'] },
     'tshirt-m':           { name: "Men's T-Shirt",           gender: "Men's",   price: 4500, sizes: ['S','M','L','XL','XXL'] },
-    'quarter-zip-m':      { name: 'Quarter Zip',             gender: "Men's",   price: 5600, sizes: ['S','M','L','XL','XXL'] },
-    'shorts-m':           { name: 'Shorts',                  gender: "Men's",   price: 6050, sizes: ['S','M','L','XL','XXL'] },
+    'quarter-zip-m':      { name: "Men's Quarter Zip",       gender: "Men's",   price: 5600, sizes: ['S','M','L','XL','XXL'] },
+    'shorts-m':           { name: "Men's Shorts",            gender: "Men's",   price: 6050, sizes: ['S','M','L','XL','XXL'] },
     'training-pants-m':   { name: 'Training Pants',          gender: "Men's",   price: 6600, sizes: ['S','M','L','XL','XXL'] },
     'crew-socks':         { name: 'Crew Socks',              gender: 'Unisex',  price: 550,  sizes: ['S','M','L'] },
-    'no-show-socks':      { name: 'No Show Socks',           gender: 'Unisex',  price: 550,  sizes: ['S','M','L'] },
+    'no-show-socks':      { name: 'Ankle Socks',             gender: 'Unisex',  price: 550,  sizes: ['S','M','L'] },
     'lifestyle-cap':      { name: 'Lifestyle Cap',           gender: 'Unisex',  price: 3500, sizes: ['One Size'] },
-    'gym-bag':            { name: '30L Gym Bag',             gender: 'Unisex',  price: 7500, sizes: ['One Size'] }
+    'gym-bag':            { name: 'Gym Bag',                 gender: 'Unisex',  price: 7500, sizes: ['One Size'] }
   };
 
   // Curated complement POOLS — each cart item draws from a pool of 5-6 candidates.

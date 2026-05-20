@@ -16,9 +16,9 @@
     {id:'shorts-m',            name:"Men's Training Shorts",        cat:'Gym · Men',        price:'KES 6,050'},
     {id:'training-pants-m',  name:"Men's Training Pants",       cat:'Running · Men',    price:'KES 6,600'},
     {id:'crew-socks',          name:"Crew Socks",                   cat:'Accessories',      price:'KES 550'},
-    {id:'no-show-socks',       name:"No-Show Socks",                cat:'Accessories',      price:'KES 550'},
+    {id:'no-show-socks',       name:"Ankle Socks",                  cat:'Accessories',      price:'KES 550'},
     {id:'lifestyle-cap',       name:"Lifestyle Cap",                cat:'Accessories',      price:'KES 3,500'},
-    {id:'gym-bag',             name:"30L Gym Bag",                  cat:'Accessories',      price:'KES 7,500'},
+    {id:'gym-bag',             name:"Gym Bag",                      cat:'Accessories',      price:'KES 7,500'},
   ];
 
   const PAGES = [
@@ -32,7 +32,7 @@
     {label:'Fit Guide',          url:'fit-guide.html'},
     {label:'Shipping & Returns', url:'shipping-returns.html'},
     {label:'Team Orders',        url:'team-orders.html'},
-    {label:'Athlete Program',    url:'athlete-program.html'},
+    {label:'Ambassador Programme', url:'athlete-program.html'},
   ];
 
   /* ── Build overlay DOM ──────────────────────────────────────── */
