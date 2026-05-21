@@ -112,7 +112,7 @@
   function updateBadge() {
     const cart = load();
     const total = cart.reduce((s, i) => s + (i.qty || 1), 0);
-    document.querySelectorAll('#cart-badge').forEach(el => {
+    document.querySelectorAll('#cart-badge, #m-cart-badge').forEach(el => {
       el.textContent = total;
       el.classList.toggle('hidden', total === 0);
       el.style.display = total === 0 ? 'none' : 'flex';
@@ -233,8 +233,7 @@
       <div style="display:flex;gap:10px;overflow-x:auto;padding:12px 24px 18px;scrollbar-width:none">
         ${recs.map(function (p) {
           const isOneSize = p.sizes && p.sizes.length === 1;
-          const isSocks = p.id === 'crew-socks' || p.id === 'no-show-socks';
-          const directAdd = isOneSize || isSocks;
+          const directAdd = isOneSize;
           const btnLabel = directAdd ? 'Add' : 'View';
           const onClick = directAdd
             ? `window.REVAI_CART.addUpsell('${p.id}')`

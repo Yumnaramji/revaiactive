@@ -116,9 +116,15 @@
         <span id="cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span>
       </button>
     </div>
-    <button id="hbg" class="md:hidden p-2 rounded-lg hover:bg-gray-100" aria-label="Open menu" aria-expanded="false">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="14" x2="17" y2="14"/></svg>
-    </button>
+    <div class="md:hidden flex items-center gap-1">
+      <button id="m-cart-btn" aria-label="Open cart" onclick="if(window.REVAI_CART) window.REVAI_CART.openDrawer()" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span id="m-cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span>
+      </button>
+      <button id="hbg" class="p-2 rounded-lg hover:bg-gray-100" aria-label="Open menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="14" x2="17" y2="14"/></svg>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -376,7 +382,7 @@ function loadProduct(){
     const sizeSection=sw.closest('.mb-7');
     const ltWrap=document.createElement('div');
     ltWrap.className='mb-7';
-    ltWrap.innerHTML='<div class="flex items-center justify-between mb-3"><p class="text-xs font-semibold uppercase tracking-widest text-gray-400">Length</p></div>';
+    ltWrap.innerHTML='<div class="flex items-center justify-between mb-3"><p class="text-xs font-semibold uppercase tracking-widest text-gray-400">Length</p></div><p class="text-xs text-gray-500 mb-2">Regular (34&quot; inseam) — up to 5\'8&quot; / 173cm &nbsp;·&nbsp; Tall (37&quot; inseam) — 5\'9&quot; / 175cm and above</p>';
     const lt=document.createElement('div');
     lt.className='length-toggle';
     ['Regular','Tall'].forEach((label,i)=>{
@@ -489,4 +495,6 @@ loadProduct();
 </script>
 <script src="search.js"></script>
 <script src="shopify-config.js"></script>
-<s
+<script src="cart-drawer.js"></script>
+</body>
+</html>

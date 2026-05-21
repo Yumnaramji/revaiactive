@@ -283,8 +283,7 @@ function renderUpsells(cart){
   if(!recs.length){ document.getElementById('upsell-section').style.display = 'none'; return; }
   grid.innerHTML = recs.map(p => {
     const isOneSize = p.sizes && p.sizes.length === 1;
-    const isSocks   = p.id === 'crew-socks' || p.id === 'no-show-socks';
-    const directAdd = isOneSize || isSocks;
+    const directAdd = isOneSize;  // multi-size items (incl. socks) go to product page for size pick
     const btnLabel  = directAdd ? 'Add to Bag' : 'View Product';
     const onClick   = directAdd
       ? `window.REVAI_CART.addUpsell('${p.id}')`
@@ -376,4 +375,16 @@ document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM
   if(!btn||!menu)return;
   btn.addEventListener('click',function(){
     var open=menu.style.opacity==='1';
-    menu.style
+    menu.style.opacity=open?'0':'1';
+    menu.style.pointerEvents=open?'none':'auto';
+  });
+  document.addEventListener('click',function(e){
+    if(wrap&&!wrap.contains(e.target)){
+      menu.style.opacity='0';
+      menu.style.pointerEvents='none';
+    }
+  });
+})();
+</script>
+</body>
+</html>
