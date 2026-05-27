@@ -49,11 +49,11 @@ The following assets are flagged as VIDEO because movement makes them significan
 
 ---
 
-### P01 — Running Leggings (Women's)
+### P01 — Performance Leggings (Women's)
 **File**: `running-leggings-w.jpg` | **Type**: IMAGE | **Kling Size**: 768 × 1024 (3:4)
 
 ```
-Pure black garments, monochrome. Athletic female model, full body from floor to shoulder, wearing all-black high-waist running leggings with a second-skin compression fit and smooth matte fabric showing subtle leg muscle definition. Pale grey seamless studio background, soft even diffused lighting from slightly above. Slight weight shift to one hip, arms relaxed at sides, neutral confident expression. Editorial activewear photography, photorealistic, sharp focus, high contrast.
+Pure black garments, monochrome. Athletic female model, full body from floor to shoulder, wearing all-black high-waist performance leggings with a second-skin compression fit and smooth matte fabric showing subtle leg muscle definition. Pale grey seamless studio background, soft even diffused lighting from slightly above. Slight weight shift to one hip, arms relaxed at sides, neutral confident expression. Editorial activewear photography, photorealistic, sharp focus, high contrast.
 ```
 
 ---
@@ -130,11 +130,11 @@ Pure black garments, monochrome. Athletic male model, full body from floor to sh
 
 ---
 
-### P10 — Running Trousers (Men's)
+### P10 — Training Pants (Men's)
 **File**: `running-trousers-m.jpg` | **Type**: IMAGE | **Kling Size**: 768 × 1024 (3:4)
 
 ```
-Pure black garments, monochrome. Athletic male model, full body from floor to shoulder, wearing all-black athletic running trousers with a tapered full-length leg, an elastic waistband, lightweight breathable technical fabric. Clean streamlined silhouette tapering to a narrow ankle. Pale grey studio background, soft even studio lighting. Natural standing pose with slight movement in the legs, neutral confident expression. Editorial activewear photography, photorealistic, sharp focus, high contrast.
+Pure black garments, monochrome. Athletic male model, full body from floor to shoulder, wearing all-black athletic training pants with a tapered full-length leg, an elastic waistband, lightweight breathable technical fabric. Clean streamlined silhouette tapering to a narrow ankle. Pale grey studio background, soft even studio lighting. Natural standing pose with slight movement in the legs, neutral confident expression. Editorial activewear photography, photorealistic, sharp focus, high contrast.
 ```
 
 ---
@@ -144,11 +144,11 @@ Pure black garments, monochrome. Athletic male model, full body from floor to sh
 
 ---
 
-### A01 — Crew Socks
-**File**: `crew-socks.jpg` | **Type**: IMAGE | **Kling Size**: 1024 × 1024 (1:1)
+### A01 — Ankle Socks
+**File**: `ankle-socks.jpg` | **Type**: IMAGE | **Kling Size**: 1024 × 1024 (1:1)
 
 ```
-Pure black, monochrome. Top-down flat lay of a pair of all-black crew athletic socks arranged symmetrically side by side on a pure white background. The ribbed crew shaft and smooth foot are both visible. The knit texture is sharply in focus. Overhead studio lighting with zero shadows. Ultra-minimal product photography, photorealistic, sharp focus, high contrast.
+Pure white, monochrome. Top-down flat lay of a pair of white ankle athletic socks arranged symmetrically side by side on a pure white background. The low-cut ankle cuff and smooth foot are both visible. The knit texture is sharply in focus. Overhead studio lighting with zero shadows. Ultra-minimal product photography, photorealistic, sharp focus, high contrast.
 ```
 
 ---

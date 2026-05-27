@@ -195,7 +195,7 @@
           <span id="colour-label" class="text-sm font-medium text-gray-700">Black</span>
         </div>
         <div class="flex items-center gap-3">
-          <div class="swatch sel" style="background:#0a0a0a" data-name="Black" title="Black"></div>
+          <div class="swatch sel" id="primary-swatch" style="background:#0a0a0a" data-name="Black" title="Black"></div>
           <div class="swatch" style="background:#e5e7eb;border:1px dashed #d1d5db;cursor:default" title="More colours coming soon"></div>
           <div class="swatch" style="background:#e5e7eb;border:1px dashed #d1d5db;cursor:default" title="More colours coming soon"></div>
           <span class="text-xs text-gray-400 ml-1">More colours coming soon</span>
@@ -309,7 +309,7 @@
 
 <script>
 const PRODUCTS={
-  'running-leggings-w':{name:'Running Leggings',gender:"Women's",price:'KES 5,500',priceVal:5500,image:'images/running-leggings-w.jpg',sizes:['S','M','L','XL','XXL'],desc:'Engineered for road and trail. A contoured waistband defines the line without compressing. A pattern-cut panel lifts the silhouette at the top of the glute, while graduated compression holds the line without flattening shape. Four-way stretch fabric. Flatlock seams.',details:['Contoured waistband — defines without compressing','Pattern-cut lift at the top of the glute','Graduated compression through thigh and core','Four-way stretch performance fabric','Flatlock seam construction',]},
+  'running-leggings-w':{name:'Performance Leggings',gender:"Women's",price:'KES 5,500',priceVal:5500,image:'images/running-leggings-w.jpg',sizes:['S','M','L','XL','XXL'],desc:'Engineered for road and trail. A contoured waistband defines the line without compressing. A pattern-cut panel lifts the silhouette at the top of the glute, while graduated compression holds the line without flattening shape. Four-way stretch fabric. Flatlock seams.',details:['Contoured waistband — defines without compressing','Pattern-cut lift at the top of the glute','Graduated compression through thigh and core','Four-way stretch performance fabric','Flatlock seam construction',]},
   'flared-leggings-w':{name:'Flared Leggings',gender:"Women's",price:'KES 5,600',priceVal:5600,image:'images/flared-leggings-w.jpg',sizes:['S','M','L','XL','XXL'],tallSizes:['S (Tall)','M (Tall)','L (Tall)','XL (Tall)','XXL (Tall)'],desc:'Studio-ready with a relaxed straight-leg silhouette — loose from the waistband down through the leg. A high-rise contoured waistband defines the waistline and stays put through full range of motion. A pattern-cut panel lifts the silhouette at the top of the glute, while graduated compression holds the line without flattening shape. Buttery-soft four-way stretch fabric. Suited to yoga, pilates, barre and everyday wear. Also available in Tall lengths.',details:['High-rise contoured waistband — defines without compressing','Pattern-cut lift at the top of the glute','Graduated compression through thigh and core','Buttery-soft four-way stretch fabric','Relaxed straight-leg cut — loose from the waistband through the leg','Available in Regular and Tall lengths',]},
   'high-impact-bra':{name:'High Impact Sports Bra',gender:"Women's",price:'KES 4,950',priceVal:4950,image:'images/high-impact-bra.jpg',sizes:['S','M','L','XL','XXL'],desc:'Maximum support for running, HIIT, and high-intensity training. Wide underband and reinforced straps keep everything locked in place. Moisture-wicking inner lining and removable padding.',details:['Maximum support rating','Wide reinforced underband','Adjustable back strap','Removable moulded padding','Moisture-wicking inner lining',]},
   'low-impact-bra':{name:'Low Impact Sports Bra',gender:"Women's",price:'KES 4,950',priceVal:4950,image:'images/low-impact-bra.jpg',sizes:['S','M','L','XL','XXL'],desc:'Lightweight and breathable for yoga, pilates, stretching, and low-intensity sessions. Scoop neck with a clean racerback silhouette. Removable padding, soft-touch fabric.',details:['Light support rating','Racerback silhouette','Scoop neckline','Removable padding','Soft-touch four-way stretch fabric',]},
@@ -319,8 +319,7 @@ const PRODUCTS={
   'quarter-zip-m':{name:"Men's Quarter Zip",gender:"Men's",price:'KES 5,600',priceVal:5600,image:'images/quarter-zip-m.jpg',sizes:['S','M','L','XL','XXL'],desc:"The warm-up layer you'll reach for every session. Quarter-zip collar, flatlock seams, and a clean minimal aesthetic. Lightweight enough to keep on during training.",details:['Quarter-zip collar','Flatlock seam construction','Relaxed athletic fit','Moisture-wicking fabric',]},
   'shorts-m':{name:"Men's Shorts",gender:"Men's",price:'KES 6,050',priceVal:6050,image:'images/shorts-m.jpg',sizes:['S','M','L','XL','XXL'],desc:'Lightweight training shorts with an internal compression liner. Elastic waistband with drawcord. Side slit hem for full range of movement. Rear zip pocket.',details:['Internal compression liner','Elastic waistband with drawcord','Side slit hem','Rear zip pocket','Quick-dry fabric',]},
   'training-pants-m':{name:'Training Pants',gender:"Men's",price:'KES 6,600',priceVal:6600,image:'images/training-pants-m.jpg',sizes:['S','M','L','XL','XXL'],desc:'Full-length training pants built for early mornings and cool weather. Tapered fit, ankle zips for easy on/off, and a secure waistband. Reflective details for low-light visibility.',details:['Tapered running fit','Ankle zip cuffs','Elastic waistband with drawcord','Two side pockets','Reflective details',]},
-  'crew-socks':{name:'Crew Socks',gender:'Unisex',price:'KES 550',priceVal:550,image:'images/crew-socks.jpg',sizes:['S','M','L'],desc:'Mid-calf crew socks with cushioned sole and arch support. Moisture-wicking yarn keeps feet dry through training. REVAÍ wordmark on the ankle.',details:['Mid-calf crew length','Cushioned sole','Arch support band','Moisture-wicking yarn','REVAÍ ankle wordmark']},
-  'no-show-socks':{name:'Ankle Socks',gender:'Unisex',price:'KES 550',priceVal:550,image:'images/no-show-socks.jpg',sizes:['S','M','L'],desc:'Low-cut ankle socks that stay in place through any session. Silicone heel grip, cushioned toe box, and moisture-wicking fabric.',details:['Ankle-cut low profile','Silicone heel grip','Cushioned toe box','Moisture-wicking yarn']},
+  'no-show-socks':{name:'Ankle Socks',gender:'Unisex',price:'KES 550',priceVal:550,image:'images/no-show-socks.jpg',sizes:['S/M','M/L'],colour:'White',swatchHex:'#f5f5f5',swatchBorder:'#e5e7eb',desc:'Low-cut ankle socks that stay in place through any session. Silicone heel grip, cushioned toe box, and moisture-wicking fabric.',details:['Ankle-cut low profile','Silicone heel grip','Cushioned toe box','Moisture-wicking yarn']},
   'lifestyle-cap':{name:'Lifestyle Cap',gender:'Unisex',price:'KES 3,500',priceVal:3500,image:'images/lifestyle-cap.jpg',sizes:['One Size'],desc:'A clean 5-panel cap with an embroidered REVAÍ logo. Adjustable back strap. Structured front panel. Suited to training and everyday wear.',details:['5-panel construction','Embroidered REVAÍ logo','Structured front panel','Adjustable back strap','One Size']},
   'gym-bag':{name:'Gym Bag',gender:'Unisex',price:'KES 7,500',priceVal:7500,image:'images/gym-bag.jpg',sizes:['One Size'],desc:'A structured gym bag built for daily use. Separate wet/dry compartment, padded laptop sleeve, and external water bottle pocket. Padded shoulder strap and top carry handle.',details:['30L capacity','Separate wet/dry compartment','Padded laptop sleeve (up to 15")','External water bottle pocket','Padded shoulder strap & carry handle','REVAÍ embossed logo']}
 };
@@ -335,6 +334,18 @@ function loadProduct(){
   document.getElementById('prod-price').textContent=p.price;
   document.getElementById('prod-gender').textContent=p.gender==='Unisex'?'':p.gender;
   document.getElementById('prod-desc').textContent=p.desc;
+  // Colour swatch — defaults to Black, overridden when product specifies colour
+  if(p.colour){
+    const sw=document.getElementById('primary-swatch');
+    if(sw){
+      sw.style.background=p.swatchHex||'#0a0a0a';
+      if(p.swatchBorder) sw.style.border='1px solid '+p.swatchBorder;
+      sw.dataset.name=p.colour;
+      sw.title=p.colour;
+    }
+    const lbl=document.getElementById('colour-label');
+    if(lbl) lbl.textContent=p.colour;
+  }
   // Images + thumbnails
   // Each product shows same image repeated as placeholder thumbnails until real multi-angle shots exist
   const thumbSrc=p.image;
@@ -484,17 +495,4 @@ if(hbg)hbg.addEventListener('click',openM);if(mclose)mclose.addEventListener('cl
 document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM));
 
 // Shop dropdown
-(function(){var btn=document.getElementById('shop-dropdown-btn'),menu=document.getElementById('shop-dropdown-menu'),open=false;function show(){menu.style.opacity='1';menu.style.pointerEvents='auto';open=true;}function hide(){menu.style.opacity='0';menu.style.pointerEvents='none';open=false;}btn.addEventListener('click',function(e){e.stopPropagation();open?hide():show();});document.addEventListener('click',function(e){if(open&&!menu.contains(e.target)&&e.target!==btn)hide();});})();
-
-// Scroll reveal
-const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
-if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
-
-loadProduct();
-</script>
-<script src="search.js"></script>
-<script src="shopify-config.js"></script>
-<script src="cart-drawer.js"></script>
-</body>
-</html>
+(function(){var btn=document.getElementById('shop-dropdown-btn'),

@@ -11,7 +11,7 @@
   // ── Catalog (minimal — only what upsell cards need) ──────────────────────────
   // Mirrors PRODUCTS in product.html. Keep in sync if product names/prices change.
   const CATALOG = {
-    'running-leggings-w': { name: 'Running Leggings',        gender: "Women's", price: 5500, sizes: ['S','M','L','XL','XXL'] },
+    'running-leggings-w': { name: 'Performance Leggings',        gender: "Women's", price: 5500, sizes: ['S','M','L','XL','XXL'] },
     'flared-leggings-w':  { name: 'Flared Leggings',         gender: "Women's", price: 5600, sizes: ['S','M','L','XL','XXL'] },
     'high-impact-bra':    { name: 'High Impact Sports Bra',  gender: "Women's", price: 4950, sizes: ['S','M','L','XL','XXL'] },
     'low-impact-bra':     { name: 'Low Impact Sports Bra',   gender: "Women's", price: 4950, sizes: ['S','M','L','XL','XXL'] },
@@ -21,31 +21,29 @@
     'quarter-zip-m':      { name: "Men's Quarter Zip",       gender: "Men's",   price: 5600, sizes: ['S','M','L','XL','XXL'] },
     'shorts-m':           { name: "Men's Shorts",            gender: "Men's",   price: 6050, sizes: ['S','M','L','XL','XXL'] },
     'training-pants-m':   { name: 'Training Pants',          gender: "Men's",   price: 6600, sizes: ['S','M','L','XL','XXL'] },
-    'crew-socks':         { name: 'Crew Socks',              gender: 'Unisex',  price: 550,  sizes: ['S','M','L'] },
-    'no-show-socks':      { name: 'Ankle Socks',             gender: 'Unisex',  price: 550,  sizes: ['S','M','L'] },
+    'no-show-socks':      { name: 'Ankle Socks',             gender: 'Unisex',  price: 550,  sizes: ['S/M','M/L'] },
     'lifestyle-cap':      { name: 'Lifestyle Cap',           gender: 'Unisex',  price: 3500, sizes: ['One Size'] },
     'gym-bag':            { name: 'Gym Bag',                 gender: 'Unisex',  price: 7500, sizes: ['One Size'] }
   };
 
   // Curated complement POOLS — each cart item draws from a pool of 5-6 candidates.
   const UPSELLS_MAP = {
-    'running-leggings-w': ['high-impact-bra', 'crew-socks',  'gym-bag',     'tshirt-w',     'lifestyle-cap','jacket-w'],
-    'flared-leggings-w':  ['low-impact-bra',  'tshirt-w',    'lifestyle-cap','crew-socks',  'jacket-w',     'gym-bag'],
+    'running-leggings-w': ['high-impact-bra', 'no-show-socks','gym-bag',     'tshirt-w',     'lifestyle-cap','jacket-w'],
+    'flared-leggings-w':  ['low-impact-bra',  'tshirt-w',    'lifestyle-cap','no-show-socks','jacket-w',     'gym-bag'],
     'high-impact-bra':    ['running-leggings-w','no-show-socks','jacket-w', 'tshirt-w',     'lifestyle-cap','gym-bag'],
-    'low-impact-bra':     ['flared-leggings-w','tshirt-w',   'crew-socks',  'lifestyle-cap','jacket-w',     'gym-bag'],
-    'jacket-w':           ['running-leggings-w','high-impact-bra','lifestyle-cap','tshirt-w','gym-bag',    'crew-socks'],
-    'tshirt-w':           ['flared-leggings-w','low-impact-bra','lifestyle-cap','crew-socks','gym-bag',    'jacket-w'],
+    'low-impact-bra':     ['flared-leggings-w','tshirt-w',   'no-show-socks','lifestyle-cap','jacket-w',     'gym-bag'],
+    'jacket-w':           ['running-leggings-w','high-impact-bra','lifestyle-cap','tshirt-w','gym-bag',    'no-show-socks'],
+    'tshirt-w':           ['flared-leggings-w','low-impact-bra','lifestyle-cap','no-show-socks','gym-bag',  'jacket-w'],
     'tshirt-m':           ['shorts-m',        'no-show-socks','gym-bag',     'training-pants-m','lifestyle-cap','quarter-zip-m'],
-    'quarter-zip-m':      ['training-pants-m','tshirt-m',    'lifestyle-cap','gym-bag',     'shorts-m',     'crew-socks'],
+    'quarter-zip-m':      ['training-pants-m','tshirt-m',    'lifestyle-cap','gym-bag',     'shorts-m',     'no-show-socks'],
     'shorts-m':           ['tshirt-m',        'no-show-socks','gym-bag',    'lifestyle-cap','training-pants-m','quarter-zip-m'],
-    'training-pants-m':   ['quarter-zip-m',   'tshirt-m',    'gym-bag',     'lifestyle-cap','shorts-m',     'crew-socks'],
-    'crew-socks':         ['no-show-socks',   'gym-bag',     'lifestyle-cap','tshirt-w',    'tshirt-m',     'shorts-m'],
-    'no-show-socks':      ['crew-socks',      'gym-bag',     'lifestyle-cap','shorts-m',    'tshirt-m',     'tshirt-w'],
-    'lifestyle-cap':      ['gym-bag',         'crew-socks',  'no-show-socks','tshirt-w',    'tshirt-m',     'jacket-w'],
-    'gym-bag':            ['lifestyle-cap',   'crew-socks',  'no-show-socks','tshirt-w',    'tshirt-m',     'jacket-w']
+    'training-pants-m':   ['quarter-zip-m',   'tshirt-m',    'gym-bag',     'lifestyle-cap','shorts-m',     'no-show-socks'],
+    'no-show-socks':      ['gym-bag',         'lifestyle-cap','shorts-m',   'tshirt-m',     'tshirt-w',     'jacket-w'],
+    'lifestyle-cap':      ['gym-bag',         'no-show-socks','tshirt-w',   'tshirt-m',     'jacket-w',     'shorts-m'],
+    'gym-bag':            ['lifestyle-cap',   'no-show-socks','tshirt-w',   'tshirt-m',     'jacket-w',     'shorts-m']
   };
 
-  const FALLBACK_UPSELLS = ['lifestyle-cap', 'crew-socks', 'gym-bag', 'no-show-socks', 'tshirt-w', 'tshirt-m'];
+  const FALLBACK_UPSELLS = ['lifestyle-cap', 'gym-bag', 'no-show-socks', 'tshirt-w', 'tshirt-m', 'shorts-m'];
 
   function shuffle(arr) {
     const a = arr.slice();
@@ -400,5 +398,4 @@
   };
 
   document.addEventListener('DOMContentLoaded', updateBadge);
-  updateBadge();
-})();
+  update                                                                                                                                                                                                                                   

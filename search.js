@@ -5,7 +5,7 @@
   'use strict';
 
   const PRODUCTS = [
-    {id:'running-leggings-w',  name:"Women's Running Leggings",    cat:'Running · Women',  price:'KES 5,500'},
+    {id:'running-leggings-w',  name:"Women's Performance Leggings",    cat:'Running · Women',  price:'KES 5,500'},
     {id:'flared-leggings-w',   name:"Women's Flared Leggings",      cat:'Gym · Women',      price:'KES 5,600'},
     {id:'high-impact-bra',     name:"High-Impact Sports Bra",       cat:'Women',            price:'KES 4,950'},
     {id:'low-impact-bra',      name:"Low-Impact Sports Bra",        cat:'Yoga · Women',     price:'KES 4,950'},
@@ -15,7 +15,6 @@
     {id:'quarter-zip-m',       name:"Men's Quarter-Zip",            cat:'Running · Men',    price:'KES 5,600'},
     {id:'shorts-m',            name:"Men's Training Shorts",        cat:'Gym · Men',        price:'KES 6,050'},
     {id:'training-pants-m',  name:"Men's Training Pants",       cat:'Running · Men',    price:'KES 6,600'},
-    {id:'crew-socks',          name:"Crew Socks",                   cat:'Accessories',      price:'KES 550'},
     {id:'no-show-socks',       name:"Ankle Socks",                  cat:'Accessories',      price:'KES 550'},
     {id:'lifestyle-cap',       name:"Lifestyle Cap",                cat:'Accessories',      price:'KES 3,500'},
     {id:'gym-bag',             name:"Gym Bag",                      cat:'Accessories',      price:'KES 7,500'},
@@ -223,4 +222,4 @@
   }
 
   window.REVAI_SEARCH = { open, close, _run: run };
-})();
+})();                                                                                                               
