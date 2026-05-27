@@ -17,4 +17,4 @@ window.REVAI_SHOPIFY = {
     'quarter-zip-m':       { S:'gid://shopify/ProductVariant/47230533566642', M:'gid://shopify/ProductVariant/47230533599410', L:'gid://shopify/ProductVariant/47230533632178', XL:'gid://shopify/ProductVariant/47230533664946', XXL:'gid://shopify/ProductVariant/47230533697714' },
     'shorts-m':            { S:'gid://shopify/ProductVariant/47230533763250', M:'gid://shopify/ProductVariant/47230533796018', L:'gid://shopify/ProductVariant/47230533828786', XL:'gid://shopify/ProductVariant/47230533861554', XXL:'gid://shopify/ProductVariant/47230533894322' },
     'training-pants-m':    { S:'gid://shopify/ProductVariant/47230533927090', M:'gid://shopify/ProductVariant/47230533959858', L:'gid://shopify/ProductVariant/47230533992626', XL:'gid://shopify/ProductVariant/47230534025394', XXL:'gid://shopify/ProductVariant/47230534058162' },
-    'no-show-socks':       { S:'gid://shopify/ProductVariant/4723079
+    'ankle-socks':         { S:'gid://shopify/ProductVariant/4723079
