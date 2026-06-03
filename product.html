@@ -327,7 +327,13 @@ const PRODUCTS={
 function loadProduct(){
   const id=new URLSearchParams(window.location.search).get('id');
   const p=PRODUCTS[id];
-  if(!p){document.title='Product Not Found — REVAÍ';document.getElementById('prod-name').textContent='Product not found';return;}
+  if(!p){
+    document.title='Product Not Found — REVAÍ';
+    document.getElementById('prod-name').textContent='Product not found';
+    document.getElementById('prod-desc').textContent='This item may have moved or is no longer available.';
+    document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
+    return;
+  }
   document.title=p.name+' — REVAÍ';
   document.getElementById('breadcrumb-name').textContent=p.name;
   document.getElementById('prod-name').textContent=p.name;
@@ -393,7 +399,7 @@ function loadProduct(){
     const sizeSection=sw.closest('.mb-7');
     const ltWrap=document.createElement('div');
     ltWrap.className='mb-7';
-    ltWrap.innerHTML='<div class="flex items-center justify-between mb-3"><p class="text-xs font-semibold uppercase tracking-widest text-gray-400">Length</p></div><p class="text-xs text-gray-500 mb-2">Regular (34&quot; inseam) — up to 5\'8&quot; / 173cm &nbsp;·&nbsp; Tall (37&quot; inseam) — 5\'9&quot; / 175cm and above</p>';
+    ltWrap.innerHTML='<div class="flex items-center justify-between mb-3"><p class="text-xs font-semibold uppercase tracking-widest text-gray-400">Length</p></div>';
     const lt=document.createElement('div');
     lt.className='length-toggle';
     ['Regular','Tall'].forEach((label,i)=>{
@@ -501,9 +507,11 @@ document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM
 // Shop dropdown
 (function(){var btn=document.getElementById('shop-dropdown-btn');var menu=document.getElementById('shop-dropdown-menu');var wrap=document.getElementById('shop-dropdown-wrap');if(!btn||!menu)return;btn.addEventListener('click',function(){var open=menu.style.opacity==='1';menu.style.opacity=open?'0':'1';menu.style.pointerEvents=open?'none':'auto';});document.addEventListener('click',function(e){if(wrap&&!wrap.contains(e.target)){menu.style.opacity='0';menu.style.pointerEvents='none';}});})();
 
-// Scroll reveal — adds .in to .fu elements so the product info becomes visible
+// Reveal product info. The observer gives a fade-up; the requestAnimationFrame
+// reveal guarantees purchase-critical content shows even if the observer never fires.
 const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+requestAnimationFrame(()=>document.querySelectorAll('.fu').forEach(el=>el.classList.add('in')));
 </script>
 </body>
 </html>

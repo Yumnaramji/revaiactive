@@ -112,12 +112,20 @@
     <button type="button" class="filter-pill sel" data-gender="all" role="tab" aria-selected="true">All</button>
     <button type="button" class="filter-pill" data-gender="women" role="tab" aria-selected="false">Women</button>
     <button type="button" class="filter-pill" data-gender="men" role="tab" aria-selected="false">Men</button>
+    <button type="button" class="filter-pill" data-gender="kids" role="tab" aria-selected="false">Kids</button>
   </div>
 </div>
 
 <!-- PRODUCT GRID -->
 <section class="py-16 px-6">
   <div class="max-w-6xl mx-auto">
+    <div id="kids-coming-soon" style="display:none;text-align:center;padding:80px 0">
+      <div style="width:64px;height:64px;border-radius:16px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
+        <svg width="28" height="28" fill="none" stroke="#9ca3af" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <h2 class="text-xl font-bold mb-2" style="letter-spacing:-.02em">Kids — Coming Soon</h2>
+      <p class="text-sm text-gray-500 max-w-sm mx-auto">Our kids' range is on the way. Check back soon.</p>
+    </div>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="product-grid">
 
       <!-- Performance Leggings W -->
@@ -709,14 +717,20 @@ document.querySelectorAll('.prod-card').forEach(function(card){
 
 <script>
 (function(){
-  var VALID = ['all','women','men'];
+  var VALID = ['all','women','men','kids'];
   var pills = document.querySelectorAll('.filter-pill');
   var cards = document.querySelectorAll('.prod-card');
+  var grid = document.getElementById('product-grid');
+  var kidsSoon = document.getElementById('kids-coming-soon');
   if(!pills.length || !cards.length) return;
 
   function apply(gender){
     if(VALID.indexOf(gender) === -1) gender = 'all';
-    cards.forEach(function(card){
+    // Kids has no products yet — show a coming-soon message instead of the grid
+    var isKids = gender === 'kids';
+    if(grid) grid.style.display = isKids ? 'none' : '';
+    if(kidsSoon) kidsSoon.style.display = isKids ? '' : 'none';
+    if(!isKids) cards.forEach(function(card){
       var cg = card.getAttribute('data-gender');
       // unisex products show under all filters
       var show = (gender === 'all') || (cg === gender) || (cg === 'unisex');
