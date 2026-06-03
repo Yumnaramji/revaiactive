@@ -588,6 +588,28 @@ document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});});
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
+// Make featured product cards link to their product pages.
+// The product id matches the image filename (e.g. images/high-impact-bra.jpg -> high-impact-bra).
+(function(){
+  var grid=document.querySelector('#products .grid');
+  if(!grid)return;
+  Array.prototype.forEach.call(grid.children,function(card){
+    var img=card.querySelector('img[src*="images/"]');
+    if(!img)return;
+    var m=img.getAttribute('src').match(/images\/([^\/]+)\.(jpg|jpeg|png|webp)$/i);
+    if(!m)return;
+    var url='product.html?id='+m[1];
+    var targets=[img.parentElement,card.querySelector('h3')];
+    targets.forEach(function(el){
+      if(!el)return;
+      el.style.cursor='pointer';
+      el.addEventListener('click',function(e){
+        if(e.target.closest('.size-pill')||e.target.closest('.btn-p'))return;
+        window.location.href=url;
+      });
+    });
+  });
+})();
 </script>
 </body>
 </html>
