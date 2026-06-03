@@ -499,4 +499,11 @@ if(hbg)hbg.addEventListener('click',openM);if(mclose)mclose.addEventListener('cl
 document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM));
 
 // Shop dropdown
-(function(){var btn=document.getElementById('shop-dropdown-btn'),
+(function(){var btn=document.getElementById('shop-dropdown-btn');var menu=document.getElementById('shop-dropdown-menu');var wrap=document.getElementById('shop-dropdown-wrap');if(!btn||!menu)return;btn.addEventListener('click',function(){var open=menu.style.opacity==='1';menu.style.opacity=open?'0':'1';menu.style.pointerEvents=open?'none':'auto';});document.addEventListener('click',function(e){if(wrap&&!wrap.contains(e.target)){menu.style.opacity='0';menu.style.pointerEvents='none';}});})();
+
+// Scroll reveal — adds .in to .fu elements so the product info becomes visible
+const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

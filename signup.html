@@ -231,4 +231,21 @@
     btn.textContent = 'Creating account…';
     try {
       await REVAI_CUSTOMER.signup({
+        firstName: document.getElementById('inp-fname').value.trim(),
+        lastName: document.getElementById('inp-lname').value.trim(),
+        email: document.getElementById('inp-email').value.trim(),
+        password: pw,
+        acceptsMarketing: document.getElementById('inp-marketing').checked
+      });
+      window.location.href = 'profile.html';
+    } catch(ex){
+      err.textContent = ex.message || 'Could not create your account. Please try again.';
+      err.style.display = '';
+      btn.disabled = false;
+      btn.textContent = 'Create Account';
+    }
+  });
+</script>
+</body>
+</html>
  

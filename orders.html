@@ -165,4 +165,59 @@
   // Auth gate
   if(!REVAI_CUSTOMER.requireAuth('login.html')) { /* will redirect */ }
 
-  function esc(s){ return (s||'').replace(/[&<
+  function esc(s){ return (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function money(p){ if(!p) return ''; const n=Math.round(parseFloat(p.amount||0)); return (p.currencyCode||'KES')+' '+n.toLocaleString('en-KE'); }
+  function fmtDate(iso){ try{ return new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); }catch(e){ return ''; } }
+  function prettyStatus(s){ return s ? s.toLowerCase().replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase()) : ''; }
+
+  function renderOrder(o){
+    const items = o.lineItems ? o.lineItems.edges.map(e=>e.node) : [];
+    const itemsHtml = items.map(li=>{
+      const v = li.variant || {};
+      const img = (v.image && v.image.url)
+        ? `<img src="${esc(v.image.url)}" alt="${esc(v.image.altText || li.title)}" style="width:56px;height:70px;object-fit:cover;border-radius:8px;background:#f3f4f6;flex-shrink:0">`
+        : `<div style="width:56px;height:70px;border-radius:8px;background:#f3f4f6;flex-shrink:0"></div>`;
+      const variantLine = (v.title && v.title !== 'Default Title')
+        ? `<p class="text-xs text-gray-500" style="margin:2px 0 0">${esc(v.title)}</p>` : '';
+      return `<div style="display:flex;gap:14px;align-items:center;padding:12px 0">${img}<div style="flex:1;min-width:0"><p class="text-sm font-medium" style="margin:0">${esc(li.title)}</p>${variantLine}<p class="text-xs text-gray-500" style="margin:2px 0 0">Qty ${li.quantity}</p></div></div>`;
+    }).join('');
+    const status = prettyStatus(o.fulfillmentStatus) || prettyStatus(o.financialStatus);
+    const track = o.statusUrl
+      ? `<div style="padding-top:12px"><a href="${esc(o.statusUrl)}" target="_blank" rel="noopener" class="text-xs font-medium" style="color:#000;text-decoration:underline;text-underline-offset:2px">Track order</a></div>` : '';
+    return `<div style="border:1px solid #f3f4f6;border-radius:14px;padding:24px;margin-bottom:20px">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;border-bottom:1px solid #f3f4f6;padding-bottom:16px;margin-bottom:8px">
+        <div>
+          <p class="text-sm font-semibold" style="margin:0">Order ${esc(o.name || ('#'+o.orderNumber))}</p>
+          <p class="text-xs text-gray-500" style="margin:2px 0 0">${fmtDate(o.processedAt)}</p>
+        </div>
+        <div style="text-align:right">
+          <p class="text-sm font-semibold" style="margin:0">${money(o.totalPrice)}</p>
+          ${status ? `<p class="text-xs text-gray-500" style="margin:2px 0 0">${esc(status)}</p>` : ''}
+        </div>
+      </div>
+      ${itemsHtml}
+      ${track}
+    </div>`;
+  }
+
+  async function loadOrders(){
+    const loading = document.getElementById('orders-loading');
+    const list = document.getElementById('orders-list');
+    const empty = document.getElementById('orders-empty');
+    try {
+      const customer = await REVAI_CUSTOMER.getCustomer();
+      if(!customer){ window.location.href = 'login.html'; return; }
+      const orders = customer.orders ? customer.orders.edges.map(e=>e.node) : [];
+      loading.style.display = 'none';
+      if(!orders.length){ empty.style.display = ''; return; }
+      list.innerHTML = orders.map(renderOrder).join('');
+      list.style.display = '';
+    } catch(ex){
+      loading.textContent = 'Could not load your orders. ' + (ex.message || '');
+    }
+  }
+
+  loadOrders();
+</script>
+</body>
+</html>
