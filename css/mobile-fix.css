@@ -144,3 +144,51 @@ html {
     transition: opacity 0.1s ease;
   }
 }
+
+/* 7. Void Edge design tightening — site-wide (loaded after page styles)
+   Monumental display type, tighter radii, flattened hovers. The photography
+   and typography carry the page; the chrome stays quiet. */
+.t-hero {
+  font-size: clamp(42px, 7.5vw, 96px) !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.02 !important;
+}
+.card,
+.prod-card,
+.press-card,
+.asset-card,
+.related-card {
+  border-radius: 8px !important;
+}
+.card:hover,
+.press-card:hover,
+.asset-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-color: #d1d5db !important;
+}
+.prod-card:hover,
+.related-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-color: #0a0a0a !important;
+}
+#products .grid > div {
+  border-radius: 8px !important;
+}
+
+/* Quieter product cards on desktop: image, name, price. Size pills and
+   add-to-bag reveal on hover/focus. Always visible on touch devices. */
+@media (hover: hover) and (pointer: fine) {
+  .prod-card .size-pill,
+  .prod-card .add-btn {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .prod-card:hover .size-pill,
+  .prod-card:hover .add-btn,
+  .prod-card:focus-within .size-pill,
+  .prod-card:focus-within .add-btn {
+    opacity: 1;
+  }
+}

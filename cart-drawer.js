@@ -20,30 +20,30 @@
     'tshirt-m':           { name: "Men's T-Shirt",           gender: "Men's",   price: 4500, sizes: ['S','M','L','XL','XXL'] },
     'quarter-zip-m':      { name: "Men's Quarter Zip",       gender: "Men's",   price: 5600, sizes: ['S','M','L','XL','XXL'] },
     'shorts-m':           { name: "Men's Shorts",            gender: "Men's",   price: 6050, sizes: ['S','M','L','XL','XXL'] },
-    'training-pants-m':   { name: 'Training Pants',          gender: "Men's",   price: 6600, sizes: ['S','M','L','XL','XXL'] },
-    'no-show-socks':      { name: 'Ankle Socks',             gender: 'Unisex',  price: 550,  sizes: ['S/M','M/L'] },
+    'training-pants-m':   { name: "Men's Training Pants",    gender: "Men's",   price: 6600, sizes: ['S','M','L','XL','XXL'] },
+    'ankle-socks':      { name: 'Ankle Socks',             gender: 'Unisex',  price: 550,  sizes: ['S/M','L/XL'] },
     'lifestyle-cap':      { name: 'Lifestyle Cap',           gender: 'Unisex',  price: 3500, sizes: ['One Size'] },
     'gym-bag':            { name: 'Gym Bag',                 gender: 'Unisex',  price: 7500, sizes: ['One Size'] }
   };
 
   // Curated complement POOLS — each cart item draws from a pool of 5-6 candidates.
   const UPSELLS_MAP = {
-    'running-leggings-w': ['high-impact-bra', 'no-show-socks','gym-bag',     'tshirt-w',     'lifestyle-cap','jacket-w'],
-    'flared-leggings-w':  ['low-impact-bra',  'tshirt-w',    'lifestyle-cap','no-show-socks','jacket-w',     'gym-bag'],
-    'high-impact-bra':    ['running-leggings-w','no-show-socks','jacket-w', 'tshirt-w',     'lifestyle-cap','gym-bag'],
-    'low-impact-bra':     ['flared-leggings-w','tshirt-w',   'no-show-socks','lifestyle-cap','jacket-w',     'gym-bag'],
-    'jacket-w':           ['running-leggings-w','high-impact-bra','lifestyle-cap','tshirt-w','gym-bag',    'no-show-socks'],
-    'tshirt-w':           ['flared-leggings-w','low-impact-bra','lifestyle-cap','no-show-socks','gym-bag',  'jacket-w'],
-    'tshirt-m':           ['shorts-m',        'no-show-socks','gym-bag',     'training-pants-m','lifestyle-cap','quarter-zip-m'],
-    'quarter-zip-m':      ['training-pants-m','tshirt-m',    'lifestyle-cap','gym-bag',     'shorts-m',     'no-show-socks'],
-    'shorts-m':           ['tshirt-m',        'no-show-socks','gym-bag',    'lifestyle-cap','training-pants-m','quarter-zip-m'],
-    'training-pants-m':   ['quarter-zip-m',   'tshirt-m',    'gym-bag',     'lifestyle-cap','shorts-m',     'no-show-socks'],
-    'no-show-socks':      ['gym-bag',         'lifestyle-cap','shorts-m',   'tshirt-m',     'tshirt-w',     'jacket-w'],
-    'lifestyle-cap':      ['gym-bag',         'no-show-socks','tshirt-w',   'tshirt-m',     'jacket-w',     'shorts-m'],
-    'gym-bag':            ['lifestyle-cap',   'no-show-socks','tshirt-w',   'tshirt-m',     'jacket-w',     'shorts-m']
+    'running-leggings-w': ['high-impact-bra', 'ankle-socks','gym-bag',     'tshirt-w',     'lifestyle-cap','jacket-w'],
+    'flared-leggings-w':  ['low-impact-bra',  'tshirt-w',    'lifestyle-cap','ankle-socks','jacket-w',     'gym-bag'],
+    'high-impact-bra':    ['running-leggings-w','ankle-socks','jacket-w', 'tshirt-w',     'lifestyle-cap','gym-bag'],
+    'low-impact-bra':     ['flared-leggings-w','tshirt-w',   'ankle-socks','lifestyle-cap','jacket-w',     'gym-bag'],
+    'jacket-w':           ['running-leggings-w','high-impact-bra','lifestyle-cap','tshirt-w','gym-bag',    'ankle-socks'],
+    'tshirt-w':           ['flared-leggings-w','low-impact-bra','lifestyle-cap','ankle-socks','gym-bag',  'jacket-w'],
+    'tshirt-m':           ['shorts-m',        'ankle-socks','gym-bag',     'training-pants-m','lifestyle-cap','quarter-zip-m'],
+    'quarter-zip-m':      ['training-pants-m','tshirt-m',    'lifestyle-cap','gym-bag',     'shorts-m',     'ankle-socks'],
+    'shorts-m':           ['tshirt-m',        'ankle-socks','gym-bag',    'lifestyle-cap','training-pants-m','quarter-zip-m'],
+    'training-pants-m':   ['quarter-zip-m',   'tshirt-m',    'gym-bag',     'lifestyle-cap','shorts-m',     'ankle-socks'],
+    'ankle-socks':      ['gym-bag',         'lifestyle-cap','shorts-m',   'tshirt-m',     'tshirt-w',     'jacket-w'],
+    'lifestyle-cap':      ['gym-bag',         'ankle-socks','tshirt-w',   'tshirt-m',     'jacket-w',     'shorts-m'],
+    'gym-bag':            ['lifestyle-cap',   'ankle-socks','tshirt-w',   'tshirt-m',     'jacket-w',     'shorts-m']
   };
 
-  const FALLBACK_UPSELLS = ['lifestyle-cap', 'gym-bag', 'no-show-socks', 'tshirt-w', 'tshirt-m', 'shorts-m'];
+  const FALLBACK_UPSELLS = ['lifestyle-cap', 'gym-bag', 'ankle-socks', 'tshirt-w', 'tshirt-m', 'shorts-m'];
 
   function shuffle(arr) {
     const a = arr.slice();
@@ -315,31 +315,46 @@
       const cart = load();
       if (cart.length === 0) return;
 
-      const TOKEN = 'd247325e39b051aeface7e573e550d37';
-      const GQL   = 'https://revai-518.myshopify.com/api/2024-01/graphql.json';
+      // Single source of config — shopify-config.js (falls back if not loaded)
+      const CFG   = window.REVAI_SHOPIFY || {};
+      const TOKEN = CFG.storefrontToken || 'd247325e39b051aeface7e573e550d37';
+      const GQL   = CFG.endpoint || 'https://revai-518.myshopify.com/api/2024-10/graphql.json';
 
-      const btn = document.getElementById('revai-checkout-btn');
+      // Works from both the drawer and the cart page
+      const btn = document.getElementById('revai-checkout-btn') || document.getElementById('cart-page-checkout');
+      const resetBtn = function() { if (btn) { btn.textContent = 'Checkout'; btn.disabled = false; } };
       if (btn) { btn.textContent = 'Loading…'; btn.disabled = true; }
 
+      function showNotice(text) {
+        resetBtn();
+        var notice = document.getElementById('revai-checkout-notice');
+        if (!notice) {
+          notice = document.createElement('p');
+          notice.id = 'revai-checkout-notice';
+          notice.style.cssText = 'font-size:12px;color:#6b7280;text-align:center;margin-top:8px';
+          if (btn) btn.parentNode.insertBefore(notice, btn.nextSibling);
+        }
+        notice.textContent = text;
+      }
+
       try {
-        const variants = (window.REVAI_SHOPIFY && window.REVAI_SHOPIFY.variants) || {};
+        const variants = CFG.variants || {};
 
-        const cartLines = cart.map(function(item) {
-          const productVariants = variants[item.id] || {};
-          const vid = productVariants[item.size];
-          return vid ? { merchandiseId: vid, quantity: item.qty || 1 } : null;
-        }).filter(Boolean);
-
-        if (cartLines.length === 0) {
-          if (btn) { btn.textContent = 'Checkout'; btn.disabled = false; }
-          var notice = document.getElementById('revai-checkout-notice');
-          if (!notice) {
-            notice = document.createElement('p');
-            notice.id = 'revai-checkout-notice';
-            notice.style.cssText = 'font-size:12px;color:#6b7280;text-align:center;margin-top:8px';
-            if (btn) btn.parentNode.insertBefore(notice, btn.nextSibling);
+        // Map every bag line to a Shopify variant. If ANY line is unmapped,
+        // stop — never silently check out a partial bag.
+        const cartLines = [];
+        let unmapped = false;
+        cart.forEach(function(item) {
+          const vid = (variants[item.id] || {})[item.size];
+          if (vid && vid.indexOf('gid://') === 0) {
+            cartLines.push({ merchandiseId: vid, quantity: item.qty || 1 });
+          } else {
+            unmapped = true;
           }
-          notice.textContent = 'Online checkout coming soon. To order, contact us directly.';
+        });
+
+        if (unmapped || cartLines.length === 0) {
+          showNotice('Online checkout coming soon. To order, contact us directly.');
           return;
         }
 
@@ -352,19 +367,25 @@
           })
         });
         const cartData = await cartRes.json();
-        const checkoutUrl = cartData.data && cartData.data.cartCreate && cartData.data.cartCreate.cart && cartData.data.cartCreate.cart.checkoutUrl;
+        const result = cartData.data && cartData.data.cartCreate;
+        const checkoutUrl = result && result.cart && result.cart.checkoutUrl;
+        const userErrors = (result && result.userErrors) || [];
 
         if (checkoutUrl) {
           window.location.href = checkoutUrl;
+        } else if (userErrors.some(function(e){ return /does not exist/i.test(e.message || ''); })) {
+          // Products not yet published to the storefront (pre-launch DRAFT state)
+          console.warn('Shopify checkout not yet live:', userErrors);
+          showNotice('Online checkout coming soon. To order, contact us directly.');
         } else {
           console.error('Shopify cart errors:', cartData);
           alert('Could not create checkout. Please try again.');
-          if (btn) { btn.textContent = 'Checkout'; btn.disabled = false; }
+          resetBtn();
         }
       } catch (e) {
         console.error('Checkout error:', e);
         alert('Something went wrong. Please try again.');
-        if (btn) { btn.textContent = 'Checkout'; btn.disabled = false; }
+        resetBtn();
       }
     },
 
