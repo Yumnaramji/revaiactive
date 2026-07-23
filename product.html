@@ -29,10 +29,10 @@
     .thumb-strip{display:flex;flex-direction:column;gap:8px;flex-shrink:0;width:72px;overflow-y:auto;scrollbar-width:none}
     .thumb-strip::-webkit-scrollbar{display:none}
     @media(max-width:768px){.thumb-strip{flex-direction:row;width:100%;overflow-x:auto;overflow-y:hidden}}
-    .thumb{width:72px;height:56px;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .15s;flex-shrink:0;background:#f3f4f6}
-    .thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+    .thumb{width:72px;height:96px;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .15s;flex-shrink:0;background:#f3f4f6}
+    .thumb img{width:100%;height:100%;object-fit:contain;object-position:center}
     .thumb.active{border-color:#000}
-    @media(max-width:768px){.thumb{width:60px;height:75px}}
+    @media(max-width:768px){.thumb{width:60px;height:80px}}
     /* Main image */
     .main-img-wrap{flex:1;aspect-ratio:3/4;border-radius:12px;overflow:hidden;background:#f3f4f6;position:relative}
     #prod-img{width:100%;height:100%;object-fit:contain;object-position:center;display:none}
