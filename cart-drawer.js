@@ -20,7 +20,7 @@
     'tshirt-m':           { name: "Men's T-Shirt",           gender: "Men's",   price: 4500, sizes: ['S','M','L','XL','XXL'] },
     'quarter-zip-m':      { name: "Men's Quarter Zip",       gender: "Men's",   price: 5600, sizes: ['S','M','L','XL','XXL'] },
     'shorts-m':           { name: "Men's Shorts",            gender: "Men's",   price: 6050, sizes: ['S','M','L','XL','XXL'] },
-    'training-pants-m':   { name: "Men's Training Pants",    gender: "Men's",   price: 6600, sizes: ['S','M','L','XL','XXL'] },
+    'training-pants-m':   { name: "Training Pants",    gender: "Men's",   price: 6600, sizes: ['S','M','L','XL','XXL'] },
     'ankle-socks':      { name: 'Ankle Socks',             gender: 'Unisex',  price: 550,  sizes: ['S/M','L/XL'] },
     'lifestyle-cap':      { name: 'Lifestyle Cap',           gender: 'Unisex',  price: 3500, sizes: ['One Size'] },
     'gym-bag':            { name: 'Gym Bag',                 gender: 'Unisex',  price: 7500, sizes: ['One Size'] }
