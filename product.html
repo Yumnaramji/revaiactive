@@ -317,9 +317,9 @@ const PRODUCTS={
   'flared-leggings-w':{name:'Flared Leggings',gender:"Women's",price:'KES 5,600',priceVal:5600,image:'images/flared-leggings-w.jpg',sizes:['S','M','L','XL','XXL'],tallSizes:['S (Tall)','M (Tall)','L (Tall)','XL (Tall)','XXL (Tall)'],desc:"Studio-ready with a relaxed straight-leg silhouette — loose from the waistband down through the leg. A high-rise contoured waistband defines the waistline and stays put through full range of motion. A pattern-cut panel lifts the silhouette at the top of the glute, while graduated compression holds the line without flattening shape. Buttery-soft four-way stretch fabric. Suited to yoga, pilates, barre and everyday wear. Also available in Tall lengths.",details:['High-rise contoured waistband — defines without compressing','Pattern-cut lift at the top of the glute','Graduated compression through thigh and core','Buttery-soft four-way stretch fabric','Relaxed straight-leg cut — loose from the waistband through the leg','Regular (34" inseam) — up to 5\'8" / 173cm · Tall (37" inseam) — 5\'9" / 175cm and above',]},
   'high-impact-bra':{name:'High Impact Sports Bra',gender:"Women's",price:'KES 4,950',priceVal:4950,image:'images/high-impact-bra.jpg',sizes:['S','M','L','XL','XXL'],desc:"Maximum support for running, HIIT, and high-intensity training. Wide underband and reinforced straps keep everything locked in place. Moisture-wicking inner lining and removable padding.",details:['Maximum support rating','Wide reinforced underband','Adjustable back strap','Removable moulded padding','Moisture-wicking inner lining',]},
   'low-impact-bra':{name:'Low Impact Sports Bra',gender:"Women's",price:'KES 4,950',priceVal:4950,image:'images/low-impact-bra.jpg',sizes:['S','M','L','XL','XXL'],desc:"Lightweight and breathable for yoga, pilates, stretching, and low-intensity sessions. Scoop neck with a clean racerback silhouette. Removable padding, soft-touch fabric.",details:['Light support rating','Racerback silhouette','Scoop neckline','Removable padding','Soft-touch four-way stretch fabric',]},
-  'jacket-w':{name:"Women's Jacket",gender:"Women's",price:'KES 7,500',priceVal:7500,image:'images/jacket-w.jpg',sizes:['S','M','L','XL','XXL'],desc:"A versatile training jacket built for warm-ups, cool-downs, and everything in between. Lightweight with a clean zip-front silhouette. Thumb holes, two side pockets, and a slightly relaxed fit.",details:['Full-length zip front','Thumb hole cuffs','Two side zip pockets','Relaxed training fit','Lightweight performance fabric',]},
+  'jacket-w':{name:"Women's Jacket",gender:"Women's",price:'KES 7,500',priceVal:7500,image:'images/jacket-w.jpg',images:['images/jacket-w.jpg','images/jacket-w-front-angle.jpg','images/jacket-w-back-angle.jpg','images/jacket-w-back.jpg'],sizes:['S','M','L','XL','XXL'],desc:"A versatile training jacket built for warm-ups, cool-downs, and everything in between. Lightweight with a clean zip-front silhouette. Thumb holes, two side pockets, and a slightly relaxed fit.",details:['Full-length zip front','Thumb hole cuffs','Two side zip pockets','Relaxed training fit','Lightweight performance fabric',]},
   'tshirt-w':{name:"Women's T-Shirt",gender:"Women's",price:'KES 4,500',priceVal:4500,image:'images/tshirt-w.jpg',sizes:['S','M','L','XL','XXL'],desc:"A clean training tee built for movement. Lightweight moisture-wicking fabric, a relaxed fit that stays in place, and a slightly cropped hem. Wear it to the gym, on a run, or straight after.",details:['Moisture-wicking fabric','Relaxed fit with cropped hem','Crew neck','Flatlock shoulder seams',]},
-  'tshirt-m':{name:"Men's T-Shirt",gender:"Men's",price:'KES 4,500',priceVal:4500,image:'images/tshirt-m.jpg',sizes:['S','M','L','XL','XXL'],desc:"A training tee that does its job without getting in the way. Sweat-wicking fabric, a clean regular fit, and a slightly dropped hem. Equally at home in the gym or on the way there.",details:['Moisture-wicking fabric','Regular fit with dropped hem','Crew neck','Flatlock shoulder seams',]},
+  'tshirt-m':{name:"Men's T-Shirt",gender:"Men's",price:'KES 4,500',priceVal:4500,image:'images/tshirt-m.jpg',images:['images/tshirt-m.jpg','images/tshirt-m-side.jpg','images/tshirt-m-back.jpg'],sizes:['S','M','L','XL','XXL'],desc:"A training tee that does its job without getting in the way. Sweat-wicking fabric, a clean regular fit, and a slightly dropped hem. Equally at home in the gym or on the way there.",details:['Moisture-wicking fabric','Regular fit with dropped hem','Crew neck','Flatlock shoulder seams',]},
   'quarter-zip-m':{name:"Men's Quarter Zip",gender:"Men's",price:'KES 5,600',priceVal:5600,image:'images/quarter-zip-m.jpg',sizes:['S','M','L','XL','XXL'],desc:"The warm-up layer you'll reach for every session. Quarter-zip collar, flatlock seams, and a clean minimal aesthetic. Lightweight enough to keep on during training.",details:['Quarter-zip collar','Flatlock seam construction','Relaxed athletic fit','Moisture-wicking fabric',]},
   'shorts-m':{name:"Men's Shorts",gender:"Men's",price:'KES 6,050',priceVal:6050,image:'images/shorts-m.jpg',sizes:['S','M','L','XL','XXL'],desc:"Lightweight training shorts with an internal compression liner. Elastic waistband with drawcord. Side slit hem for full range of movement. Rear zip pocket.",details:['Internal compression liner','Elastic waistband with drawcord','Side slit hem','Rear zip pocket','Quick-dry fabric',]},
   'training-pants-m':{name:"Men's Training Pants",gender:"Men's",price:'KES 6,600',priceVal:6600,image:'images/training-pants-m.jpg',sizes:['S','M','L','XL','XXL'],desc:"Full-length training pants built for early mornings and cool weather. Tapered fit, ankle zips for easy on/off, and a secure waistband. Reflective details for low-light visibility.",details:['Tapered running fit','Ankle zip cuffs','Elastic waistband with drawcord','Two side pockets','Reflective details',]},
@@ -356,29 +356,36 @@ function loadProduct(){
     const lbl=document.getElementById('colour-label');
     if(lbl) lbl.textContent=p.colour;
   }
-  // Images + thumbnails
-  // Each product shows same image repeated as placeholder thumbnails until real multi-angle shots exist
-  const thumbSrc=p.image;
-  const thumbLabels=['Front','Back','Detail','Side'];
+  // Images + thumbnails — multi-angle gallery
+  const imgs=(p.images&&p.images.length)?p.images:[p.image];
   const strip=document.getElementById('thumb-strip');
-  thumbLabels.forEach((label,i)=>{
-    const t=document.createElement('div');
-    t.className='thumb'+(i===0?' active':'');
-    t.title=label;
-    const tImg=document.createElement('img');
-    tImg.src=thumbSrc; tImg.alt=label;
-    tImg.onerror=()=>{t.style.background='#e5e7eb';tImg.style.display='none';};
-    t.appendChild(tImg);
-    t.addEventListener('click',()=>{
-      strip.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
-      t.classList.add('active');
-    });
-    strip.appendChild(t);
-  });
   const img=document.getElementById('prod-img'),ph=document.getElementById('prod-img-placeholder');
-  img.alt=p.name; img.src=p.image;
-  img.onload=()=>{img.style.display='block';ph.style.display='none';};
-  img.onerror=()=>{img.style.display='none';ph.style.display='flex';};
+  function setMain(src){
+    img.src=src;
+    img.onload=()=>{img.style.display='block';ph.style.display='none';};
+    img.onerror=()=>{img.style.display='none';ph.style.display='flex';};
+  }
+  img.alt=p.name;
+  strip.innerHTML='';
+  if(imgs.length>1){
+    imgs.forEach((src,i)=>{
+      const t=document.createElement('div');
+      t.className='thumb'+(i===0?' active':'');
+      const tImg=document.createElement('img');
+      tImg.src=src; tImg.alt=p.name+' — view '+(i+1);
+      tImg.onerror=()=>{t.style.background='#e5e7eb';tImg.style.display='none';};
+      t.appendChild(tImg);
+      t.addEventListener('click',()=>{
+        strip.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+        setMain(src);
+      });
+      strip.appendChild(t);
+    });
+  } else {
+    strip.style.display='none';
+  }
+  setMain(imgs[0]);
   // Details
   p.details.forEach(d=>{const li=document.createElement('li');li.textContent=d;document.getElementById('prod-details').appendChild(li);});
   // Sizes — with length toggle for products that have tallSizes
