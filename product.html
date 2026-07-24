@@ -366,6 +366,7 @@ function loadProduct(){
   }
   img.alt=p.name;
   strip.innerHTML='';
+  let selectedSrc=imgs[0];   // the locked-in (clicked) image; hover only previews
   if(imgs.length>1){
     imgs.forEach((src,i)=>{
       const t=document.createElement('div');
@@ -377,8 +378,12 @@ function loadProduct(){
       t.addEventListener('click',()=>{
         strip.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
         t.classList.add('active');
+        selectedSrc=src;
         setMain(src);
       });
+      // Hover to preview in the main image; revert to the selected image on leave
+      t.addEventListener('mouseenter',()=>{ setMain(src); });
+      t.addEventListener('mouseleave',()=>{ setMain(selectedSrc); });
       strip.appendChild(t);
     });
   } else {
