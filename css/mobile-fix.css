@@ -153,6 +153,11 @@ html {
   letter-spacing: -0.02em !important;
   line-height: 1.1 !important;
 }
+/* Subtitle directly under a hero heading steps down with it */
+.t-hero + p {
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+}
 .t-h2 {
   font-size: clamp(26px, 3.2vw, 38px) !important;
 }
