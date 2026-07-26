@@ -4,7 +4,7 @@
 <link rel="icon" type="image/png" href="images/revai-icon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product — REVAÍ</title>
+  <title>Product</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -331,13 +331,13 @@ function loadProduct(){
   const id=new URLSearchParams(window.location.search).get('id');
   const p=PRODUCTS[id];
   if(!p){
-    document.title='Product Not Found — REVAÍ';
+    document.title='Product Not Found';
     document.getElementById('prod-name').textContent='Product not found';
     document.getElementById('prod-desc').textContent='This item may have moved or is no longer available.';
     document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
     return;
   }
-  document.title=p.name+' — REVAÍ';
+  document.title=p.name;
   document.getElementById('breadcrumb-name').textContent=p.name;
   document.getElementById('prod-name').textContent=p.name;
   document.getElementById('prod-price').textContent=p.price;
