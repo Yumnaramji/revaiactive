@@ -153,6 +153,13 @@ html {
   letter-spacing: -0.03em !important;
   line-height: 1.05 !important;
 }
+/* In-flow page headers (light backgrounds, no .text-white) sit in the reading
+   flow, not on photography — keep them a tier quieter than the image heroes. */
+.t-hero:not(.text-white) {
+  font-size: clamp(28px, 3vw, 40px) !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.1 !important;
+}
 .t-h2 {
   font-size: clamp(26px, 3.2vw, 38px) !important;
 }
