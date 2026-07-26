@@ -149,13 +149,6 @@ html {
    Monumental display type, tighter radii, flattened hovers. The photography
    and typography carry the page; the chrome stays quiet. */
 .t-hero {
-  font-size: clamp(34px, 5vw, 60px) !important;
-  letter-spacing: -0.03em !important;
-  line-height: 1.05 !important;
-}
-/* In-flow page headers (light backgrounds, no .text-white) sit in the reading
-   flow, not on photography — keep them a tier quieter than the image heroes. */
-.t-hero:not(.text-white) {
   font-size: clamp(28px, 3vw, 40px) !important;
   letter-spacing: -0.02em !important;
   line-height: 1.1 !important;
