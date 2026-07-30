@@ -225,10 +225,6 @@
       <!-- Accordions -->
       <div>
         <div class="acc-row">
-          <button class="acc-btn">Description <span class="acc-icon">+</span></button>
-          <div class="acc-body"><p id="prod-desc" class="text-sm text-gray-600 leading-relaxed pb-5"></p></div>
-        </div>
-        <div class="acc-row">
           <button class="acc-btn">Product Details <span class="acc-icon">+</span></button>
           <div class="acc-body"><ul id="prod-details" class="text-sm text-gray-600 leading-relaxed pb-5 space-y-1.5"></ul></div>
         </div>
@@ -329,7 +325,7 @@ function loadProduct(){
   if(!p){
     document.title='Product Not Found';
     document.getElementById('prod-name').textContent='Product not found';
-    document.getElementById('prod-desc').textContent='This item may have moved or is no longer available.';
+    document.getElementById('prod-details').innerHTML='<li>This item may have moved or is no longer available.</li>';
     document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
     return;
   }
@@ -338,7 +334,6 @@ function loadProduct(){
   document.getElementById('prod-name').textContent=p.name;
   document.getElementById('prod-price').textContent=p.price;
   document.getElementById('prod-gender').textContent=p.gender==='Unisex'?'':p.gender;
-  document.getElementById('prod-desc').textContent=p.desc;
   // Colour swatch — defaults to Black, overridden when product specifies colour
   if(p.colour){
     const sw=document.getElementById('primary-swatch');
