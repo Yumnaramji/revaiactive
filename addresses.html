@@ -24,7 +24,7 @@
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     .field{display:flex;flex-direction:column;gap:6px}
     .field label{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#6b7280}
-    .field input,.field select{border:1.5px solid #e5e7eb;border-radius:10px;padding:12px 14px;font-size:14px;font-family:inherit;color:#0a0a0a;outline:none;transition:border-color .2s;background:#fff}
+    .field input,.field select{width:100%;box-sizing:border-box;border:1.5px solid #e5e7eb;border-radius:10px;padding:12px 14px;font-size:14px;font-family:inherit;color:#0a0a0a;outline:none;transition:border-color .2s;background:#fff}
     .field input:focus,.field select:focus{border-color:#000}
     .field input::placeholder{color:#d1d5db}
     .addr-card{padding:22px 24px;border:1.5px solid #f3f4f6;border-radius:14px;background:#fff;transition:border-color .2s}
@@ -159,7 +159,7 @@
 
     <form id="addr-form" style="display:flex;flex-direction:column;gap:16px">
       <input type="hidden" id="a-id">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px">
         <div class="field">
           <label for="a-fname">First Name</label>
           <input id="a-fname" type="text" required>
@@ -177,7 +177,7 @@
         <label for="a-addr2">Address Line 2 (optional)</label>
         <input id="a-addr2" type="text">
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px">
         <div class="field">
           <label for="a-city">City</label>
           <input id="a-city" type="text" required>

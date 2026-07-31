@@ -24,7 +24,7 @@
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     .field{display:flex;flex-direction:column;gap:6px}
     .field label{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#6b7280}
-    .field input{border:1.5px solid #e5e7eb;border-radius:10px;padding:12px 14px;font-size:14px;font-family:inherit;color:#0a0a0a;outline:none;transition:border-color .2s;background:#fff}
+    .field input{width:100%;box-sizing:border-box;border:1.5px solid #e5e7eb;border-radius:10px;padding:12px 14px;font-size:14px;font-family:inherit;color:#0a0a0a;outline:none;transition:border-color .2s;background:#fff}
     .field input:focus{border-color:#000}
     .field input::placeholder{color:#d1d5db}
     .benefit-item{display:flex;align-items:center;gap:12px;padding:14px 18px;background:#f8f9fa;border-radius:12px}
@@ -127,7 +127,7 @@
 
     <!-- Form -->
     <form id="signup-form" style="display:flex;flex-direction:column;gap:16px">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px">
         <div class="field">
           <label for="inp-fname">First Name</label>
           <input id="inp-fname" type="text" placeholder="Alex" autocomplete="given-name" required>

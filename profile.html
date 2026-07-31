@@ -28,7 +28,7 @@
 
     .field{display:flex;flex-direction:column;gap:6px}
     .field label{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#6b7280}
-    .field input,.field select{border:1.5px solid #e5e7eb;border-radius:10px;padding:12px 14px;font-size:14px;font-family:inherit;color:#0a0a0a;outline:none;transition:border-color .2s;background:#fff}
+    .field input,.field select{width:100%;box-sizing:border-box;border:1.5px solid #e5e7eb;border-radius:10px;padding:12px 14px;font-size:14px;font-family:inherit;color:#0a0a0a;outline:none;transition:border-color .2s;background:#fff}
     .field input:focus,.field select:focus{border-color:#000}
     .field input::placeholder{color:#d1d5db}
 
@@ -240,7 +240,7 @@
         <div style="max-width:560px">
           <h2 class="text-lg font-semibold mb-8">Personal Information</h2>
           <form id="details-form" style="display:flex;flex-direction:column;gap:20px">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px">
               <div class="field">
                 <label for="d-fname">First Name</label>
                 <input id="d-fname" type="text" placeholder="Alex">
