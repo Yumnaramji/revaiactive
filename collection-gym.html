@@ -25,6 +25,9 @@
     .size-pill.sel{background:#000;color:#fff;border-color:#000}
     .prod-card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;overflow:hidden;transition:transform .25s,box-shadow .25s}
     .prod-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+    .card-hover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity .45s ease;pointer-events:none}
+    @media(hover:hover){.prod-card:hover .card-hover-img{opacity:1}}
+    .prod-card.show-alt .card-hover-img{opacity:1}
     .add-btn{width:100%;background:#000;color:#fff;border:none;border-radius:9px;padding:12px;font-size:14px;font-weight:500;cursor:pointer;transition:background .2s}
     .add-btn:hover{background:#1a1a1a}
     .filter-pill{padding:8px 18px;border-radius:50px;border:1px solid #e5e7eb;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;background:#fff;color:#6b7280;white-space:nowrap}
@@ -56,7 +59,6 @@
           <a href="collections.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">All Products</a>
           <a href="collection-gym.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Gym &amp; Training</a>
           <a href="collection-running.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Running</a>
-          <a href="collection-padel.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Padel</a>
           <a href="collection-golf.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Golf</a>
           <a href="collection-yoga.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Yoga &amp; Pilates</a>
         
@@ -87,7 +89,6 @@
     <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
     <a href="collection-gym.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Gym &amp; Training</a>
     <a href="collection-running.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Running</a>
-    <a href="collection-padel.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Padel</a>
     <a href="collection-golf.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Golf</a>
     <a href="collection-yoga.html" class="mlink block py-2 text-sm font-medium text-gray-700 hover:text-black">Yoga &amp; Pilates</a>
     <div class="my-3 border-t border-gray-100"></div>
@@ -109,19 +110,233 @@
     <h1 class="fu d1 t-hero text-white">Gym &amp; Training</h1>
     <p class="fu d2 text-lg mt-5" style="color:#9ca3af">Versatile kit for every session — weights, classes, circuits.</p>
     <div class="fu d3 flex items-center justify-center gap-4 mt-8">
-      <a href="collections.html" class="btn-p">Shop Gym</a>
+      <a href="#products" class="btn-p">Shop Gym</a>
       <a href="#products" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">View collection &darr;</a>
     </div>
   </div>
 </section>
 
 <!-- PRODUCTS -->
-<section id="products" class="py-20 md:py-24 px-6 text-center">
-  <div class="max-w-xl mx-auto">
-    <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">Coming Soon</p>
-    <h2 style="font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;letter-spacing:-.02em;line-height:1.1" class="mb-6">Products launching soon.</h2>
-    <p class="text-gray-500 text-base leading-relaxed mb-10">We're putting the finishing touches on this collection. In the meantime, browse all available products.</p>
-    <a href="collections.html" class="btn-p">Shop Gym</a>
+<section id="products" class="py-20 md:py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4 fu">The Collection</p>
+      <h2 class="t-h2 mb-5 fu">Eight pieces for the session.</h2>
+      <p class="text-gray-500 text-base leading-relaxed max-w-xl mx-auto fu">Weights, classes, circuits — and everything in between.</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+
+      <!-- Performance Leggings W -->
+      <div class="prod-card fu" data-gender="women" data-cat="gym">
+        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
+          <img src="images/running-leggings-w.jpg" alt="Women's Performance Leggings" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+          <img src="images/running-leggings-w-full-back.jpg" alt="" aria-hidden="true" class="card-hover-img">
+        </div>
+        <div class="p-4">
+          <p class="text-base font-semibold text-black mt-0.5">Performance Leggings</p>
+          <p class="text-sm font-bold text-black mt-1">KES 5,500</p>
+          <div class="flex items-center gap-2 mt-3">
+            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <button class="size-pill" data-pid="running-leggings-w" data-size="S">S</button>
+            <button class="size-pill" data-pid="running-leggings-w" data-size="M">M</button>
+            <button class="size-pill" data-pid="running-leggings-w" data-size="L">L</button>
+            <button class="size-pill" data-pid="running-leggings-w" data-size="XL">XL</button>
+            <button class="size-pill" data-pid="running-leggings-w" data-size="XXL">XXL</button>
+          </div>
+          <button class="add-btn mt-3" onclick="addToBag('running-leggings-w','Performance Leggings',5500)">Add to Bag</button>
+        </div>
+      </div>
+
+      <!-- High Impact Sports Bra -->
+      <div class="prod-card fu d1" data-gender="women" data-cat="gym">
+        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
+          <img src="images/high-impact-bra.jpg" alt="High Impact Sports Bra" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+          <img src="images/high-impact-bra-back.jpg" alt="" aria-hidden="true" class="card-hover-img">
+        </div>
+        <div class="p-4">
+          <p class="text-base font-semibold text-black mt-0.5">High Impact Sports Bra</p>
+          <p class="text-sm font-bold text-black mt-1">KES 4,950</p>
+          <div class="flex items-center gap-2 mt-3">
+            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <button class="size-pill" data-pid="high-impact-bra" data-size="S">S</button>
+            <button class="size-pill" data-pid="high-impact-bra" data-size="M">M</button>
+            <button class="size-pill" data-pid="high-impact-bra" data-size="L">L</button>
+            <button class="size-pill" data-pid="high-impact-bra" data-size="XL">XL</button>
+            <button class="size-pill" data-pid="high-impact-bra" data-size="XXL">XXL</button>
+          </div>
+          <button class="add-btn mt-3" onclick="addToBag('high-impact-bra','High Impact Sports Bra',4950)">Add to Bag</button>
+        </div>
+      </div>
+
+      <!-- Low Impact Sports Bra -->
+      <div class="prod-card fu d2" data-gender="women" data-cat="gym">
+        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
+          <img src="images/low-impact-bra.jpg" alt="Low Impact Sports Bra" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">
+          <img src="images/low-impact-bra-side.jpg" alt="" aria-hidden="true" class="card-hover-img" style="object-position:center 20%">
+        </div>
+        <div class="p-4">
+          <p class="text-base font-semibold text-black mt-0.5">Low Impact Sports Bra</p>
+          <p class="text-sm font-bold text-black mt-1">KES 4,950</p>
+          <div class="flex items-center gap-2 mt-3">
+            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <button class="size-pill" data-pid="low-impact-bra" data-size="S">S</button>
+            <button class="size-pill" data-pid="low-impact-bra" data-size="M">M</button>
+            <button class="size-pill" data-pid="low-impact-bra" data-size="L">L</button>
+            <button class="size-pill" data-pid="low-impact-bra" data-size="XL">XL</button>
+            <button class="size-pill" data-pid="low-impact-bra" data-size="XXL">XXL</button>
+          </div>
+          <button class="add-btn mt-3" onclick="addToBag('low-impact-bra','Low Impact Sports Bra',4950)">Add to Bag</button>
+        </div>
+      </div>
+
+      <!-- T-Shirt W -->
+      <div class="prod-card fu d3" data-gender="women" data-cat="gym">
+        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
+          <img src="images/tshirt-w.jpg" alt="Women's T-Shirt" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+          <img src="images/tshirt-w-front-angle.jpg" alt="" aria-hidden="true" class="card-hover-img">
+        </div>
+        <div class="p-4">
+          <p class="text-base font-semibold text-black mt-0.5">Women's T-Shirt</p>
+          <p class="text-sm font-bold text-black mt-1">KES 4,500</p>
+          <div class="flex items-center gap-2 mt-3">
+            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <button class="size-pill" data-pid="tshirt-w" data-size="S">S</button>
+            <button class="size-pill" data-pid="tshirt-w" data-size="M">M</button>
+            <button class="size-pill" data-pid="tshirt-w" data-size="L">L</button>
+            <button class="size-pill" data-pid="tshirt-w" data-size="XL">XL</button>
+            <button class="size-pill" data-pid="tshirt-w" data-size="XXL">XXL</button>
+          </div>
+          <button class="add-btn mt-3" onclick="addToBag('tshirt-w','Women\'s T-Shirt',4500)">Add to Bag</button>
+        </div>
+      </div>
+
+      <!-- T-Shirt M -->
+      <div class="prod-card fu" data-gender="men" data-cat="gym">
+        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
+          <img src="images/tshirt-m.jpg" alt="Men's T-Shirt" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+          <img src="images/tshirt-m-side.jpg" alt="" aria-hidden="true" class="card-hover-img">
+        </div>
+        <div class="p-4">
+          <p class="text-base font-semibold text-black mt-0.5">Men's T-Shirt</p>
+          <p class="text-sm font-bold text-black mt-1">KES 4,500</p>
+          <div class="flex items-center gap-2 mt-3">
+            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <button class="size-pill" data-pid="tshirt-m" data-size="S">S</button>
+            <button class="size-pill" data-pid="tshirt-m" data-size="M">M</button>
+            <button class="size-pill" data-pid="tshirt-m" data-size="L">L</button>
+            <button class="size-pill" data-pid="tshirt-m" data-size="XL">XL</button>
+            <button class="size-pill" data-pid="tshirt-m" data-size="XXL">XXL</button>
+          </div>
+          <button class="add-btn mt-3" onclick="addToBag('tshirt-m','Men\'s T-Shirt',4500)">Add to Bag</button>
+        </div>
+      </div>
+
+      <!-- Training Pants M -->
+      <div class="prod-card fu d1" data-gender="men" data-cat="gym">
+        <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
+          <img src="images/training-pants-m.jpg" alt="Training Pants" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+        </div>
+        <div class="p-4">
+          <p class="text-base font-semibold text-black mt-0.5">Men's Training Pants</p>
+          <p class="text-sm font-bold text-black mt-1">KES 6,600</p>
+          <div class="flex items-center gap-2 mt-3">
+            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <button class="size-pill" data-pid="training-pants-m" data-size="S">S</button>
+            <button class="size-pill" data-pid="training-pants-m" data-size="M">M</button>
+            <button class="size-pill" data-pid="training-pants-m" data-size="L">L</button>
+            <button class="size-pill" data-pid="training-pants-m" data-size="XL">XL</button>
+            <button class="size-pill" data-pid="training-pants-m" data-size="XXL">XXL</button>
+          </div>
+          <button class="add-btn mt-3" onclick="addToBag('training-pants-m','Training Pants',6600)">Add to Bag</button>
+        </div>
+      </div>
+
+      <!-- Ankle Socks -->
+      <div class="prod-card fu d2" data-gender="unisex" data-cat="gym">
+        <div class="relative" style="aspect-ratio:1/1;overflow:hidden;background:#f3f4f6;">
+          <img src="images/ankle-socks.jpg" alt="Ankle Socks" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+        </div>
+        <div class="p-4">
+          <p class="text-base font-semibold text-black mt-0.5">Ankle Socks</p>
+          <p class="text-sm font-bold text-black mt-1">KES 550</p>
+          <div class="flex items-center gap-2 mt-3">
+            <div style="width:16px;height:16px;background:#f5f5f5;border-radius:50%;border:1px solid #e5e7eb;box-shadow:0 0 0 1px #000" title="White"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <span class="text-xs text-gray-400 ml-1">+more colours coming soon</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <button class="size-pill sel" data-pid="ankle-socks" data-size="S/M">S/M</button>
+            <button class="size-pill" data-pid="ankle-socks" data-size="L/XL">L/XL</button>
+          </div>
+          <button class="add-btn mt-3" onclick="addToBag('ankle-socks','Ankle Socks',550)">Add to Bag</button>
+        </div>
+      </div>
+
+      <!-- 30L Gym Bag -->
+      <div class="prod-card fu d3" data-gender="unisex" data-cat="gym">
+        <div class="relative" style="aspect-ratio:1/1;overflow:hidden;background:#f3f4f6;">
+          <img src="images/gym-bag.jpg" alt="30L Gym Bag" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+        </div>
+        <div class="p-4">
+          <p class="text-base font-semibold text-black mt-0.5">30L Gym Bag</p>
+          <p class="text-sm font-bold text-black mt-1">KES 7,500</p>
+          <div class="flex items-center gap-2 mt-3">
+            <div style="width:16px;height:16px;background:#000;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #000" title="Black"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <div style="width:16px;height:16px;border-radius:50%;border:2px dashed #d1d5db" title="Coming soon"></div>
+            <span class="text-xs text-gray-400 ml-1">+3 colours coming soon</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <button class="size-pill sel" data-pid="gym-bag" data-size="One Size">One Size</button>
+          </div>
+          <button class="add-btn mt-3" onclick="addToBag('gym-bag','Gym Bag',7500)">Add to Bag</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-14 fu">
+      <a href="collections.html" class="btn-s">View all products</a>
+    </div>
   </div>
 </section>
 
@@ -161,7 +376,7 @@
   <div class="max-w-6xl mx-auto">
     <div class="grid md:grid-cols-4 gap-12 mb-16">
       <div><a href="index.html" style="display:inline-block;margin-bottom:16px"><img src="images/revai-icon.png" alt="REVAÍ" style="height:56px;width:auto;display:block;filter:invert(1)"></a><p class="text-gray-400 text-sm leading-relaxed mb-6">Activewear built for people who move — whatever that looks like for you.</p><div class="flex gap-4"><a href="https://www.instagram.com/revai.active" target="_blank" rel="noopener" aria-label="Instagram" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></a><a href="mailto:info@revaiactive.com" aria-label="Email REVAÍ" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4.5" width="20" height="15" rx="2.5"/><path d="m3 7 8.13 5.42a1.6 1.6 0 0 0 1.74 0L21 7"/></svg></a></div></div>
-      <div><h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Shop</h3><ul class="space-y-3"><li><a href="collection-new.html" class="text-sm text-gray-400 hover:text-white transition-colors">New Arrivals</a></li><li><a href="collections.html" class="text-sm text-gray-400 hover:text-white transition-colors">All Products</a></li><li><a href="collection-gym.html" class="text-sm text-gray-400 hover:text-white transition-colors">Gym &amp; Training</a></li><li><a href="collection-running.html" class="text-sm text-gray-400 hover:text-white transition-colors">Running</a></li><li><a href="collection-padel.html" class="text-sm text-gray-400 hover:text-white transition-colors">Padel</a></li><li><a href="collection-golf.html" class="text-sm text-gray-400 hover:text-white transition-colors">Golf</a></li><li><a href="collection-yoga.html" class="text-sm text-gray-400 hover:text-white transition-colors">Yoga &amp; Pilates</a></li></ul></div>
+      <div><h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Shop</h3><ul class="space-y-3"><li><a href="collection-new.html" class="text-sm text-gray-400 hover:text-white transition-colors">New Arrivals</a></li><li><a href="collections.html" class="text-sm text-gray-400 hover:text-white transition-colors">All Products</a></li><li><a href="collection-gym.html" class="text-sm text-gray-400 hover:text-white transition-colors">Gym &amp; Training</a></li><li><a href="collection-running.html" class="text-sm text-gray-400 hover:text-white transition-colors">Running</a></li><li><a href="collection-golf.html" class="text-sm text-gray-400 hover:text-white transition-colors">Golf</a></li><li><a href="collection-yoga.html" class="text-sm text-gray-400 hover:text-white transition-colors">Yoga &amp; Pilates</a></li></ul></div>
       <div><h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Company</h3><ul class="space-y-3"><li><a href="about.html" class="text-sm text-gray-400 hover:text-white transition-colors">About REVAÍ</a></li><li><a href="sustainability.html" class="text-sm text-gray-400 hover:text-white transition-colors">Sustainability</a></li><li><a href="athlete-program.html" class="text-sm text-gray-400 hover:text-white transition-colors">Ambassador Programme</a></li><li><a href="team-orders.html" class="text-sm text-gray-400 hover:text-white transition-colors">Team Orders</a></li><li><a href="careers.html" class="text-sm text-gray-400 hover:text-white transition-colors">Careers</a></li><li><a href="press.html" class="text-sm text-gray-400 hover:text-white transition-colors">Press</a></li></ul></div>
       <div><h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Support</h3><ul class="space-y-3"><li><a href="shipping-returns.html" class="text-sm text-gray-400 hover:text-white transition-colors">Shipping &amp; Returns</a></li><li><a href="care-instructions.html" class="text-sm text-gray-400 hover:text-white transition-colors">Care Instructions</a></li><li><a href="faq.html" class="text-sm text-gray-400 hover:text-white transition-colors">FAQ</a></li><li><a href="fit-guide.html" class="text-sm text-gray-400 hover:text-white transition-colors">Fit Guide</a></li><li><a href="contact.html" class="text-sm text-gray-400 hover:text-white transition-colors">Contact Us</a></li><li><a href="gift-cards.html" class="text-sm text-gray-400 hover:text-white transition-colors">Gift Cards</a></li></ul></div>
     </div>
@@ -242,7 +457,6 @@ function showPageToast(msg){
     const feats=[];
     if(cat.includes('running'))feats.push('Four-way stretch performance knit','Composition and weight published per garment');
     if(cat.includes('golf'))feats.push('UV-protective UPF 40+ fabric','Temperature-regulating weave','Silent stretch — moves with your swing');
-    if(cat.includes('padel'))feats.push('Fast-dry performance fabric','360° freedom of movement','Anti-static finish');
     if(cat.includes('gym'))feats.push('Heavy-duty 4-way stretch','Squat-proof fabric','Odour-resistant treatment');
     if(feats.length===0)feats.push('Premium performance fabric','4-way stretch construction','Designed for movement');
     const uniq=[...new Set(feats)].slice(0,3);
@@ -287,6 +501,25 @@ document.querySelectorAll('.prod-card').forEach(function(card){
     });
   });
 });
+</script>
+
+<script>
+// Touch devices: tap the product image to preview the alternate view
+// (no hover on mobile). Name / price / Add to Bag still act as normal.
+(function(){
+  if(window.matchMedia('(hover:hover)').matches) return; // desktop keeps hover
+  document.querySelectorAll('.prod-card').forEach(function(card){
+    if(!card.querySelector('.card-hover-img')) return;   // only cards with a 2nd image
+    card.addEventListener('click', function(e){
+      if(e.target.closest('.size-pill') || e.target.closest('.add-btn')) return;
+      if(e.target.closest('.relative')){                 // tapped the image area
+        e.stopImmediatePropagation();                    // don't navigate
+        e.preventDefault();
+        card.classList.toggle('show-alt');
+      }
+    }, true); // capture phase: run before the navigation handlers
+  });
+})();
 </script>
 </body>
 </html>
