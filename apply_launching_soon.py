@@ -1,7 +1,7 @@
 """
 Replace the products-grid section on sport-specific collection pages
 with a 'launching soon' placeholder, matching the treatment already
-used on collection-padel.html and collection-golf.html.
+used on collection-golf.html.
 
 Safe / idempotent — skips files that already look converted.
 
@@ -16,7 +16,9 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 #   indent: number of spaces the surrounding <section> sits at in that file
 TARGETS = [
     ("collection-running.html",   "<!-- PRODUCTS -->",      "<!-- TECH STRIP -->",       0),
-    ("collection-gym.html",       "<!-- PRODUCTS -->",      "<!-- TECH STRIP -->",       0),
+    # collection-gym.html deliberately NOT listed — it carries a real 8-product
+    # grid as of 4 Aug 2026, and the "already-converted" guard below would not
+    # protect it (that guard only matches the placeholder's own copy).
     ("collection-yoga.html",      "<!-- PRODUCTS -->",      "<!-- TECH STRIP -->",       0),
     ("collection-new.html",       "<!-- PRODUCTS -->",      "<!-- TECH STRIP -->",       0),
     ("collection-hiit.html",      "<!-- Products Grid -->", "<!-- Technology Strip -->", 2),
@@ -25,7 +27,7 @@ TARGETS = [
     ("collection-triathlon.html", "<!-- Products Grid -->", "<!-- Technology Strip -->", 2),
 ]
 
-# Launching-soon block templates — matches collection-padel.html exactly.
+# Launching-soon block templates — matches collection-golf.html exactly.
 def launching_soon_block(indent_level):
     pad = " " * indent_level
     return (
