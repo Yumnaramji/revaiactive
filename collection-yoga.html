@@ -36,10 +36,13 @@
     *{box-sizing:border-box}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
-    /* Hero framing (5 Aug 2026). Desktop keeps the shared 72%/top - there is
-       no horizontal slack there, and `top` is essential because her head sits
-       right at the top edge of the photograph. On mobile the shared 78% would
-       cut across her, so push further right to hold the torso and head. */
+    /* Hero framing (5 Aug 2026). Desktop lifts the photo 0.5cm. That is close
+       to the limit: her head sits near the top edge of the photograph, so
+       roughly 0.6cm would start cutting into her hair. Mobile cannot shift at
+       all - `cover` scales by height there and fills exactly, leaving no
+       vertical slack - so it only pushes right (the shared 78% cut across
+       her) and keeps `top`. */
+    @media(min-width:768px){.chero-img{background-position:72% -0.5cm}}
     @media(max-width:767px){.chero-img{background-position:90% top}}
   </style>
   <script src="js/mobile-fix.js?v=20260805d" defer></script>
