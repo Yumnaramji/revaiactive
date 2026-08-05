@@ -207,10 +207,18 @@ html {
    only so the photograph stays visible. On narrow screens the frame
    crops toward the subject and the scrim goes full-width, because a
    left/right split doesn't survive a 375px viewport. */
+/* The hero carries the source image's own 16:9 ratio, so on desktop
+   there is nothing to crop - the whole photograph is visible. min-height
+   stops it collapsing on short windows, max-height stops it running past
+   the fold on wide ones. Only above ~1600px does max-height bite, and
+   the 6% anchor sends that crop to the floor rather than the subject's
+   head - which also covers short landscape windows like 1280x600. */
 .chero {
   position: relative;
   overflow: hidden;
+  aspect-ratio: 1672 / 941;
   min-height: 58vh;
+  max-height: 88vh;
   display: flex;
   align-items: center;
   background: #0a0a0a;
@@ -218,7 +226,7 @@ html {
 .chero-img {
   position: absolute;
   inset: 0;
-  background-position: 72% center;
+  background-position: 72% 6%;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -245,10 +253,10 @@ html {
 
 @media (max-width: 767px) {
   .chero {
-    min-height: 52vh;
+    min-height: 58vh;
   }
   .chero-img {
-    background-position: 78% center;
+    background-position: 78% 22%;
   }
   .chero-scrim {
     background: linear-gradient(
@@ -261,4 +269,91 @@ html {
   .chero-copy {
     max-width: none;
   }
+}
+
+/* 9. Transparent nav over a photo hero (added 5 Aug 2026)
+   On .chero-page the hero already starts at y=0 behind the fixed nav,
+   so an opaque white bar was covering the top 64px of the photograph.
+   Going transparent hands those 64px back and lets the image run to the
+   top of the viewport. The bar reverts to the normal frosted white once
+   the user scrolls past the hero - see the threshold in js/main.js. */
+body.chero-page #nav {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom-color: transparent !important;
+}
+/* Guarantees legibility for the wordmark and links even if a future
+   hero image is bright at the top. */
+body.chero-page #nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.55) 0%,
+    rgba(10, 10, 10, 0) 100%
+  );
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+body.chero-page #nav > * {
+  position: relative;
+}
+body.chero-page #nav a,
+body.chero-page #nav button {
+  color: #fff;
+}
+body.chero-page #nav .text-black,
+body.chero-page #nav .text-gray-500 {
+  color: #fff !important;
+}
+body.chero-page #nav .text-gray-500 {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+body.chero-page #nav .hover\:bg-gray-100:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+}
+body.chero-page #nav #cart-badge,
+body.chero-page #nav #m-cart-badge {
+  background: #fff !important;
+  color: #0a0a0a !important;
+}
+/* The dropdown panel keeps its own white background, so its links must
+   stay dark - they are inside #nav and would otherwise inherit white. */
+body.chero-page #shop-dropdown-menu a {
+  color: #374151 !important;
+}
+body.chero-page #shop-dropdown-menu a:hover,
+body.chero-page #shop-dropdown-menu a:first-child {
+  color: #0a0a0a !important;
+}
+
+/* Past the hero: back to the standard frosted white bar. */
+body.chero-page #nav.scrolled {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+body.chero-page #nav.scrolled::before {
+  opacity: 0;
+}
+body.chero-page #nav.scrolled .text-black {
+  color: #0a0a0a !important;
+}
+body.chero-page #nav.scrolled .text-gray-500 {
+  color: #6b7280 !important;
+}
+body.chero-page #nav.scrolled a,
+body.chero-page #nav.scrolled button {
+  color: #0a0a0a;
+}
+body.chero-page #nav.scrolled .hover\:bg-gray-100:hover {
+  background: #f3f4f6 !important;
+}
+body.chero-page #nav.scrolled #cart-badge,
+body.chero-page #nav.scrolled #m-cart-badge {
+  background: #0a0a0a !important;
+  color: #fff !important;
 }

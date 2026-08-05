@@ -1,6 +1,12 @@
-// Nav scroll border
+// Nav scroll border. On pages with a photo hero the nav sits transparent
+// over the image, so it must stay transparent for the whole hero rather
+// than flipping to white after 20px — see mobile-fix.css §9.
 const nav = document.getElementById('nav');
-if(nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), {passive:true});
+if(nav){
+  const chero = document.querySelector('.chero');
+  const threshold = () => chero ? Math.max(20, chero.offsetHeight - nav.offsetHeight) : 20;
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > threshold()), {passive:true});
+}
 
 // Mobile menu
 const hbg = document.getElementById('hbg');
