@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20260805b">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260805c">
   <style>
     body{font-family:'Inter',-apple-system,sans-serif;color:#0a0a0a;background:#fff;-webkit-font-smoothing:antialiased}
     .fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
@@ -38,9 +38,9 @@
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
   </style>
-  <script src="js/mobile-fix.js?v=20260805b" defer></script>
+  <script src="js/mobile-fix.js?v=20260805c" defer></script>
 </head>
-<body>
+<body class="nav-over-hero">
 
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded-lg text-sm">Skip to content</a>
 
@@ -99,11 +99,20 @@
 <div id="moverlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
 
 <!-- HERO -->
-<section id="main" class="pt-24 pb-8 px-6 bg-gray-50">
-  <div class="max-w-6xl mx-auto">
-    <div class="fu d1">
-      <h1 class="t-hero text-black">Shop REVAÍ</h1>
-      <p class="text-lg text-gray-500 mt-4 max-w-xl">Activewear built for everyone. S–XXL, true to size. All prices in KES.</p>
+<!-- HERO — same .chero pattern and height as the collection pages.
+     The photograph is still to be chosen, so the black .chero background
+     stands in for now. To add it, drop this in as the FIRST child, above
+     .chero-scrim:
+       <div class="chero-img" style="background-image:url('images/hero-shop.jpg')"></div>
+     Spec to match gym/running: 1672x941, monochrome, all-black kit,
+     subject on the RIGHT, empty space on the LEFT for the headline. -->
+<section id="main" class="chero pt-28 pb-16 px-6">
+  <div class="chero-scrim"></div>
+  <div class="chero-body">
+    <div class="chero-copy">
+      <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Collection</p>
+      <h1 class="fu d1 t-hero text-white">Shop REVAÍ</h1>
+      <p class="fu d2 text-lg mt-5" style="color:#9ca3af">Activewear built for everyone. S–XXL, true to size. All prices in KES.</p>
     </div>
   </div>
 </section>
@@ -620,9 +629,9 @@
   </div>
 </footer>
 
-<script src="search.js?v=20260805b"></script>
-<script src="shopify-config.js?v=20260805b"></script>
-<script src="cart-drawer.js?v=20260805b"></script>
+<script src="search.js?v=20260805c"></script>
+<script src="shopify-config.js?v=20260805c"></script>
+<script src="cart-drawer.js?v=20260805c"></script>
 <script>
 const nav=document.getElementById('nav');
 

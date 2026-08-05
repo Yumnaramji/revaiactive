@@ -212,10 +212,13 @@ html {
    comes off the floor and bench at the bottom instead of taking the
    subject's head off. Anchored hard to the top (0%) so nothing is ever
    lost from her head, at any window size. */
+/* Hero height is one number for the whole site: 58vh + 0.5cm. Set here, not
+   per page - about.html mirrors this value inline because its hero predates
+   .chero. If this changes, change it there too. (5 Aug 2026) */
 .chero {
   position: relative;
   overflow: hidden;
-  min-height: 58vh;
+  min-height: calc(58vh + 0.5cm);
   display: flex;
   align-items: center;
   background: #0a0a0a;
@@ -250,7 +253,7 @@ html {
 
 @media (max-width: 767px) {
   .chero {
-    min-height: 58vh;
+    min-height: calc(58vh + 0.5cm);
   }
   .chero-img {
     background-position: 78% 22%;
