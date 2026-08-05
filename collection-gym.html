@@ -39,10 +39,10 @@
     *{box-sizing:border-box}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
-    /* Hero framing nudge (5 Aug 2026): lift the photo 0.5cm so the model sits
-       higher in the frame. Applied in two 0.25cm steps. Desktop only - mobile
-       keeps its own 78%/22% framing from css/mobile-fix.css. */
-    @media(min-width:768px){.chero-img{background-position:72% -0.5cm}}
+    /* Hero sizing (5 Aug 2026): 0.5cm taller than the shared .chero 58vh.
+       The photo itself sits at the default 72%/top framing - the earlier
+       0.5cm lift was reverted. */
+    .chero{min-height:calc(58vh + 0.5cm)}
   </style>
   <script src="js/mobile-fix.js?v=20260805b" defer></script>
 </head>

@@ -36,6 +36,18 @@
     *{box-sizing:border-box}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
+    /* Hero framing (5 Aug 2026). Kept in the stylesheet rather than inline on
+       the element, because an inline background-position would beat both of
+       these rules.
+       Desktop: the runner sits much smaller in his frame than the gym model
+       does in hers, so plain `cover` reads as a wide landscape next to
+       collection-gym.html. Scaling to 160% of the hero width matches the
+       gym's apparent subject size.
+       Mobile: `cover` has to scale by HEIGHT to fill the tall box, so a
+       width-based 160% would come up short and expose a gap - leave it at
+       cover and just push the runner right of centre. */
+    @media(min-width:768px){.chero-img{background-size:160% auto;background-position:80% top}}
+    @media(max-width:767px){.chero-img{background-position:88% top}}
   </style>
   <script src="js/mobile-fix.js?v=20260805b" defer></script>
 </head>
@@ -99,7 +111,7 @@
 
 <!-- HERO -->
 <section id="main" class="chero pt-28 pb-16 px-6">
-  <div class="chero-img" style="background-image:url('images/hero-running.jpg');background-position:62% top"></div>
+  <div class="chero-img" style="background-image:url('images/hero-running.jpg')"></div>
   <div class="chero-scrim"></div>
   <div class="chero-body">
     <div class="chero-copy">
