@@ -42,14 +42,15 @@
        Desktop (>=1024px): the runner sits much smaller in his frame than the
        gym model does in hers, so plain `cover` reads as a wide landscape next
        to collection-gym.html. Scaling to 160% of the hero width matches the
-       gym's apparent subject size, then -3cm lifts him up the frame.
+       gym's apparent subject size, then -2cm lifts him up the frame. (-3cm
+       put the top of his head level with the frame edge, behind the nav.)
        Below 1024px: `cover` scales by HEIGHT to fill the taller box, so a
        width-based 160% would come up short and expose a gap - leave it at
        cover, no vertical shift (there is no vertical slack to shift into),
        and just push the runner right of centre. The breakpoint is 1024 and
        not 768 on purpose: at 768-1023 a tall window (e.g. 768x1280) makes the
        zoomed image shorter than the hero, which would show a gap. */
-    @media(min-width:1024px){.chero-img{background-size:160% auto;background-position:80% -3cm}}
+    @media(min-width:1024px){.chero-img{background-size:160% auto;background-position:80% -2cm}}
     @media(max-width:1023px){.chero-img{background-position:88% top}}
   </style>
   <script src="js/mobile-fix.js?v=20260805c" defer></script>
