@@ -1,11 +1,25 @@
 // Nav scroll border. On pages with a photo hero the nav sits transparent
 // over the image, so it must stay transparent for the whole hero rather
 // than flipping to white after 20px — see mobile-fix.css §9.
+// The bar also slides out of the way on scroll-down and returns on any
+// scroll-up, so it never sits permanently over a photo hero — see §10.
 const nav = document.getElementById('nav');
 if(nav){
   const chero = document.querySelector('.chero');
   const threshold = () => chero ? Math.max(20, chero.offsetHeight - nav.offsetHeight) : 20;
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > threshold()), {passive:true});
+  let lastY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > threshold());
+    // Ignore sub-pixel jitter and iOS rubber-banding past the top.
+    if(Math.abs(y - lastY) > 6){
+      // Only start hiding once clear of the nav itself, so the bar doesn't
+      // vanish on the first flick of a scroll.
+      nav.classList.toggle('nav-hidden', y > lastY && y > nav.offsetHeight * 1.5);
+      lastY = y;
+    }
+    if(y <= 0) nav.classList.remove('nav-hidden');
+  }, {passive:true});
 }
 
 // Mobile menu
@@ -13,8 +27,8 @@ const hbg = document.getElementById('hbg');
 const mmenu = document.getElementById('mmenu');
 const moverlay = document.getElementById('moverlay');
 const mclose = document.getElementById('mclose');
-function openM(){ if(!mmenu) return; mmenu.classList.add('open'); moverlay.classList.remove('hidden'); hbg.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
-function closeM(){ if(!mmenu) return; mmenu.classList.remove('open'); moverlay.classList.add('hidden'); hbg.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+function openM(){ if(!mmenu) return; mmenu.classList.add('open'); moverlay.classList.remove('hidden'); hbg.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; document.body.classList.add('menu-open'); }
+function closeM(){ if(!mmenu) return; mmenu.classList.remove('open'); moverlay.classList.add('hidden'); hbg.setAttribute('aria-expanded','false'); document.body.style.overflow=''; document.body.classList.remove('menu-open'); }
 if(hbg) hbg.addEventListener('click', openM);
 if(mclose) mclose.addEventListener('click', closeM);
 if(moverlay) moverlay.addEventListener('click', closeM);

@@ -207,18 +207,15 @@ html {
    only so the photograph stays visible. On narrow screens the frame
    crops toward the subject and the scrim goes full-width, because a
    left/right split doesn't survive a 375px viewport. */
-/* The hero carries the source image's own 16:9 ratio, so on desktop
-   there is nothing to crop - the whole photograph is visible. min-height
-   stops it collapsing on short windows, max-height stops it running past
-   the fold on wide ones. Only above ~1600px does max-height bite, and
-   the 6% anchor sends that crop to the floor rather than the subject's
-   head - which also covers short landscape windows like 1280x600. */
+/* The 58vh band is wider than the 16:9 source, so cover crops
+   vertically. Anchor near the top rather than centre: the crop then
+   comes off the floor and bench at the bottom instead of taking the
+   subject's head off. Anchored hard to the top (0%) so nothing is ever
+   lost from her head, at any window size. */
 .chero {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 1672 / 941;
   min-height: 58vh;
-  max-height: 88vh;
   display: flex;
   align-items: center;
   background: #0a0a0a;
@@ -226,7 +223,7 @@ html {
 .chero-img {
   position: absolute;
   inset: 0;
-  background-position: 72% 6%;
+  background-position: 72% top;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -356,4 +353,24 @@ body.chero-page #nav.scrolled #cart-badge,
 body.chero-page #nav.scrolled #m-cart-badge {
   background: #0a0a0a !important;
   color: #fff !important;
+}
+
+/* 10. Auto-hiding nav (added 5 Aug 2026)
+   The bar slides away when the user scrolls down and comes straight
+   back on any upward scroll, so the page - especially a photo hero -
+   is never permanently covered. Scroll-up rather than hover, so it
+   works identically on touch, where there is nothing to hover.
+   !important because the nav carries an inline transition declaration
+   that would otherwise win. */
+#nav {
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.25s ease, border-color 0.25s ease !important;
+  will-change: transform;
+}
+#nav.nav-hidden {
+  transform: translateY(-100%);
+}
+/* Never hide it while the mobile menu is open. */
+body.menu-open #nav.nav-hidden {
+  transform: none;
 }
