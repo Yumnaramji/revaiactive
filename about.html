@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20260805c">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260805d">
   <style>
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
@@ -31,7 +31,7 @@
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
   </style>
-  <script src="js/mobile-fix.js?v=20260805c" defer></script>
+  <script src="js/mobile-fix.js?v=20260805d" defer></script>
 </head>
 <body class="nav-over-hero">
 
@@ -101,9 +101,9 @@
 <main id="main">
 
   <!-- HERO — left-aligned, image behind dark overlay. Height mirrors the
-       shared .chero value in css/mobile-fix.css (58vh + 0.5cm) so every hero
-       on the site is the same. Change both together. -->
-  <section style="position:relative;min-height:calc(58vh + 0.5cm);background-image:url('images/about-hero.jpg');background-size:cover;background-position:center 60%;display:flex;align-items:flex-end;">
+       shared .chero value in css/mobile-fix.css (58vh) so every hero on the
+       site is the same. Change both together. -->
+  <section style="position:relative;min-height:58vh;background-image:url('images/about-hero.jpg');background-size:cover;background-position:center 60%;display:flex;align-items:flex-end;">
     <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72) 0%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.1) 100%)"></div>
     <div class="max-w-6xl mx-auto px-6 pb-20 w-full" style="position:relative">
       <p class="fu text-xs font-semibold uppercase tracking-widest mb-5" style="color:rgba(255,255,255,.5)">Our Story</p>
@@ -311,8 +311,8 @@ const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.ta
 document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 </script>
-<script src="search.js?v=20260805c"></script>
-<script src="shopify-config.js?v=20260805c"></script>
-<script src="cart-drawer.js?v=20260805c"></script>
+<script src="search.js?v=20260805d"></script>
+<script src="shopify-config.js?v=20260805d"></script>
+<script src="cart-drawer.js?v=20260805d"></script>
 </body>
 </html>
