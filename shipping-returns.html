@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/mobile-fix.css">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260805">
   <style>
     body{font-family:'Inter',-apple-system,sans-serif;color:#0a0a0a;background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
     .fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
@@ -27,7 +27,7 @@
     .faq-icon{display:inline-block;transition:transform .3s}
     .faq-row.open .faq-icon{transform:rotate(45deg)}
   </style>
-  <script src="js/mobile-fix.js" defer></script>
+  <script src="js/mobile-fix.js?v=20260805" defer></script>
 </head>
 <body>
 
@@ -288,12 +288,12 @@
   </div>
 </footer>
 
-<script src="search.js"></script>
-<script src="shopify-config.js"></script>
-<script src="cart-drawer.js"></script>
+<script src="search.js?v=20260805"></script>
+<script src="shopify-config.js?v=20260805"></script>
+<script src="cart-drawer.js?v=20260805"></script>
 <script>
 const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20),{passive:true});
+
 const hbg=document.getElementById('hbg'),mmenu=document.getElementById('mmenu'),moverlay=document.getElementById('moverlay'),mclose=document.getElementById('mclose');
 function openM(){mmenu.style.transform='translateX(0)';moverlay.classList.remove('hidden');document.body.style.overflow='hidden';}
 function closeM(){mmenu.style.transform='translateX(100%)';moverlay.classList.add('hidden');document.body.style.overflow='';}

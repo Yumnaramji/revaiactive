@@ -1,26 +1,6 @@
-// Nav scroll border. On pages with a photo hero the nav sits transparent
-// over the image, so it must stay transparent for the whole hero rather
-// than flipping to white after 20px — see mobile-fix.css §9.
-// The bar also slides out of the way on scroll-down and returns on any
-// scroll-up, so it never sits permanently over a photo hero — see §10.
-const nav = document.getElementById('nav');
-if(nav){
-  const chero = document.querySelector('.chero');
-  const threshold = () => chero ? Math.max(20, chero.offsetHeight - nav.offsetHeight) : 20;
-  let lastY = window.scrollY;
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    nav.classList.toggle('scrolled', y > threshold());
-    // Ignore sub-pixel jitter and iOS rubber-banding past the top.
-    if(Math.abs(y - lastY) > 6){
-      // Only start hiding once clear of the nav itself, so the bar doesn't
-      // vanish on the first flick of a scroll.
-      nav.classList.toggle('nav-hidden', y > lastY && y > nav.offsetHeight * 1.5);
-      lastY = y;
-    }
-    if(y <= 0) nav.classList.remove('nav-hidden');
-  }, {passive:true});
-}
+// Nav scroll behaviour lives in js/mobile-fix.js §3 — it is the one file
+// loaded on every page, whereas main.js is only on 10. Do not re-add a
+// scroll listener here; it would fight the shared one.
 
 // Mobile menu
 const hbg = document.getElementById('hbg');

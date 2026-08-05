@@ -269,12 +269,12 @@ html {
 }
 
 /* 9. Transparent nav over a photo hero (added 5 Aug 2026)
-   On .chero-page the hero already starts at y=0 behind the fixed nav,
+   On .nav-over-hero the hero already starts at y=0 behind the fixed nav,
    so an opaque white bar was covering the top 64px of the photograph.
    Going transparent hands those 64px back and lets the image run to the
    top of the viewport. The bar reverts to the normal frosted white once
    the user scrolls past the hero - see the threshold in js/main.js. */
-body.chero-page #nav {
+body.nav-over-hero #nav {
   background: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
@@ -282,7 +282,7 @@ body.chero-page #nav {
 }
 /* Guarantees legibility for the wordmark and links even if a future
    hero image is bright at the top. */
-body.chero-page #nav::before {
+body.nav-over-hero #nav::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -294,63 +294,63 @@ body.chero-page #nav::before {
   pointer-events: none;
   transition: opacity 0.25s ease;
 }
-body.chero-page #nav > * {
+body.nav-over-hero #nav > * {
   position: relative;
 }
-body.chero-page #nav a,
-body.chero-page #nav button {
+body.nav-over-hero #nav a,
+body.nav-over-hero #nav button {
   color: #fff;
 }
-body.chero-page #nav .text-black,
-body.chero-page #nav .text-gray-500 {
+body.nav-over-hero #nav .text-black,
+body.nav-over-hero #nav .text-gray-500 {
   color: #fff !important;
 }
-body.chero-page #nav .text-gray-500 {
+body.nav-over-hero #nav .text-gray-500 {
   color: rgba(255, 255, 255, 0.8) !important;
 }
-body.chero-page #nav .hover\:bg-gray-100:hover {
+body.nav-over-hero #nav .hover\:bg-gray-100:hover {
   background: rgba(255, 255, 255, 0.14) !important;
 }
-body.chero-page #nav #cart-badge,
-body.chero-page #nav #m-cart-badge {
+body.nav-over-hero #nav #cart-badge,
+body.nav-over-hero #nav #m-cart-badge {
   background: #fff !important;
   color: #0a0a0a !important;
 }
 /* The dropdown panel keeps its own white background, so its links must
    stay dark - they are inside #nav and would otherwise inherit white. */
-body.chero-page #shop-dropdown-menu a {
+body.nav-over-hero #shop-dropdown-menu a {
   color: #374151 !important;
 }
-body.chero-page #shop-dropdown-menu a:hover,
-body.chero-page #shop-dropdown-menu a:first-child {
+body.nav-over-hero #shop-dropdown-menu a:hover,
+body.nav-over-hero #shop-dropdown-menu a:first-child {
   color: #0a0a0a !important;
 }
 
 /* Past the hero: back to the standard frosted white bar. */
-body.chero-page #nav.scrolled {
+body.nav-over-hero #nav.scrolled {
   background: rgba(255, 255, 255, 0.85) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
   border-bottom: 1px solid var(--border) !important;
 }
-body.chero-page #nav.scrolled::before {
+body.nav-over-hero #nav.scrolled::before {
   opacity: 0;
 }
-body.chero-page #nav.scrolled .text-black {
+body.nav-over-hero #nav.scrolled .text-black {
   color: #0a0a0a !important;
 }
-body.chero-page #nav.scrolled .text-gray-500 {
+body.nav-over-hero #nav.scrolled .text-gray-500 {
   color: #6b7280 !important;
 }
-body.chero-page #nav.scrolled a,
-body.chero-page #nav.scrolled button {
+body.nav-over-hero #nav.scrolled a,
+body.nav-over-hero #nav.scrolled button {
   color: #0a0a0a;
 }
-body.chero-page #nav.scrolled .hover\:bg-gray-100:hover {
+body.nav-over-hero #nav.scrolled .hover\:bg-gray-100:hover {
   background: #f3f4f6 !important;
 }
-body.chero-page #nav.scrolled #cart-badge,
-body.chero-page #nav.scrolled #m-cart-badge {
+body.nav-over-hero #nav.scrolled #cart-badge,
+body.nav-over-hero #nav.scrolled #m-cart-badge {
   background: #0a0a0a !important;
   color: #fff !important;
 }

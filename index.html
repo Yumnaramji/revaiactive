@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/mobile-fix.css">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260805">
   <style>
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
@@ -34,9 +34,9 @@
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}.ha{animation:none!important;opacity:1!important}}
   </style>
-  <script src="js/mobile-fix.js" defer></script>
+  <script src="js/mobile-fix.js?v=20260805" defer></script>
 </head>
-<body>
+<body class="nav-over-hero">
 
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded-lg text-sm">Skip to content</a>
 
@@ -386,9 +386,9 @@
   </div>
 </footer>
 
-<script src="search.js"></script>
-<script src="shopify-config.js"></script>
-<script src="cart-drawer.js"></script>
+<script src="search.js?v=20260805"></script>
+<script src="shopify-config.js?v=20260805"></script>
+<script src="cart-drawer.js?v=20260805"></script>
 <script>
 // Simple add-to-bag with size selection and toast
 const cartItems = JSON.parse(localStorage.getItem('revai_cart_v1')||'[]');
@@ -423,7 +423,7 @@ document.addEventListener('click',function(e){
 });
 // Nav scroll
 const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20),{passive:true});
+
 (function(){var btn=document.getElementById('shop-dropdown-btn');var menu=document.getElementById('shop-dropdown-menu');var wrap=document.getElementById('shop-dropdown-wrap');if(!btn||!menu)return;btn.addEventListener('click',function(){var open=menu.style.opacity==='1';menu.style.opacity=open?'0':'1';menu.style.pointerEvents=open?'none':'auto';});document.addEventListener('click',function(e){if(wrap&&!wrap.contains(e.target)){menu.style.opacity='0';menu.style.pointerEvents='none';}});})();
 // Mobile menu
 const hbg=document.getElementById('hbg'),mmenu=document.getElementById('mmenu'),moverlay=document.getElementById('moverlay'),mclose=document.getElementById('mclose');

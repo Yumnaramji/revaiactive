@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/mobile-fix.css">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260805">
   <style>
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
@@ -46,7 +46,7 @@
       .summary-sticky{position:sticky;top:88px}
     }
   </style>
-  <script src="js/mobile-fix.js" defer></script>
+  <script src="js/mobile-fix.js?v=20260805" defer></script>
 </head>
 <body>
 
@@ -203,10 +203,10 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
-<script src="search.js"></script>
-<script src="shopify-config.js"></script>
-<script src="cart-drawer.js"></script>
+<script src="js/main.js?v=20260805"></script>
+<script src="search.js?v=20260805"></script>
+<script src="shopify-config.js?v=20260805"></script>
+<script src="cart-drawer.js?v=20260805"></script>
 <script>
 const STORAGE_KEY = 'revai_cart_v1';
 
@@ -357,7 +357,7 @@ if(window.REVAI_CATALOG && window.REVAI_CATALOG.resetUpsellCache){
 renderPage();
 
 // Nav scroll
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>10));
+
 
 // Mobile menu (scoped — js/main.js declares the same names globally)
 (function(){
