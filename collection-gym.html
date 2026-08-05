@@ -39,10 +39,10 @@
     *{box-sizing:border-box}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
-    /* Hero framing nudge (5 Aug 2026): lift the photo 0.25cm so the model sits
-       slightly higher in the frame. Desktop only - mobile keeps its own
-       78%/22% framing from css/mobile-fix.css. */
-    @media(min-width:768px){.chero-img{background-position:72% -0.25cm}}
+    /* Hero framing nudge (5 Aug 2026): lift the photo 0.5cm so the model sits
+       higher in the frame. Applied in two 0.25cm steps. Desktop only - mobile
+       keeps its own 78%/22% framing from css/mobile-fix.css. */
+    @media(min-width:768px){.chero-img{background-position:72% -0.5cm}}
   </style>
   <script src="js/mobile-fix.js?v=20260805b" defer></script>
 </head>
