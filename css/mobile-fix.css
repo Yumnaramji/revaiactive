@@ -200,3 +200,65 @@ html {
     opacity: 1;
   }
 }
+
+/* 8. Collection page photo heroes (added 5 Aug 2026)
+   Still image hero replacing the old autoplay video band. Type sits
+   left over the quiet side of the frame; the scrim darkens that side
+   only so the photograph stays visible. On narrow screens the frame
+   crops toward the subject and the scrim goes full-width, because a
+   left/right split doesn't survive a 375px viewport. */
+.chero {
+  position: relative;
+  overflow: hidden;
+  min-height: 58vh;
+  display: flex;
+  align-items: center;
+  background: #0a0a0a;
+}
+.chero-img {
+  position: absolute;
+  inset: 0;
+  background-position: 72% center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.chero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(10, 10, 10, 0.92) 0%,
+    rgba(10, 10, 10, 0.72) 30%,
+    rgba(10, 10, 10, 0.22) 58%,
+    rgba(10, 10, 10, 0) 78%
+  );
+}
+.chero-body {
+  position: relative;
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+.chero-copy {
+  max-width: 34rem;
+}
+
+@media (max-width: 767px) {
+  .chero {
+    min-height: 52vh;
+  }
+  .chero-img {
+    background-position: 78% center;
+  }
+  .chero-scrim {
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 10, 10, 0.82) 0%,
+      rgba(10, 10, 10, 0.72) 55%,
+      rgba(10, 10, 10, 0.88) 100%
+    );
+  }
+  .chero-copy {
+    max-width: none;
+  }
+}
