@@ -38,12 +38,13 @@
   //    ones with a photo hero) never loaded main.js at all.
   //
   //    Two behaviours:
-  //    a) .scrolled — the frosted/bordered state. On a page with a .chero
-  //       photo hero the nav sits transparent over the image, so this must
-  //       wait until the hero has scrolled past rather than firing at 20px.
-  //    b) .nav-hidden — the bar slides away on scroll-down and returns on any
-  //       scroll-up, so it never permanently covers the page. Scroll-up
-  //       rather than hover, so it behaves the same on touch.
+  //    a) .scrolled — the frosted/bordered state, for the brief overlap
+  //       while the bar is still sliding out.
+  //    b) .nav-hidden — the bar is visible only while the hero is still
+  //       behind it, and slides away for the rest of the page. It is
+  //       deliberately NOT restored on scroll-up: direction-based reveal
+  //       meant a few pixels of reverse wheel movement popped the bar back
+  //       over the product grid. Scroll back to the hero to get it.
   var nav = document.getElementById('nav');
   if (nav) {
     // On a page where the nav sits transparent over a dark hero, the
@@ -56,13 +57,15 @@
       hero = document.querySelector('main > section') ||
              document.getElementById('main');
     }
-    var lastY = window.pageYOffset;
     var ticking = false;
 
+    // Pages with no hero (cart, FAQ, legal, product) keep the bar pinned:
+    // there is no imagery to protect there, and hiding the only navigation
+    // for the length of a long page would cost more than it gains.
     function threshold() {
       return hero
         ? Math.max(20, hero.offsetHeight - nav.offsetHeight)
-        : 20;
+        : Infinity;
     }
 
     // Only 10 pages route the mobile menu through main.js and set
@@ -82,23 +85,16 @@
         ticking = false;
         return;
       }
-      if (y > threshold()) {
+      // Position, not direction. Past the hero the bar is gone and stays
+      // gone until the user returns to the hero.
+      var past = y > threshold();
+      if (past) {
         nav.classList.add('scrolled');
+        nav.classList.add('nav-hidden');
       } else {
         nav.classList.remove('scrolled');
+        nav.classList.remove('nav-hidden');
       }
-      // Ignore sub-pixel jitter and iOS rubber-banding past the top.
-      if (Math.abs(y - lastY) > 6) {
-        // Only start hiding once clear of the bar itself, so it doesn't
-        // vanish on the first flick of a scroll.
-        if (y > lastY && y > nav.offsetHeight * 1.5) {
-          nav.classList.add('nav-hidden');
-        } else if (y < lastY) {
-          nav.classList.remove('nav-hidden');
-        }
-        lastY = y;
-      }
-      if (y <= 0) nav.classList.remove('nav-hidden');
       ticking = false;
     }
 

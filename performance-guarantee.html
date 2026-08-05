@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20260805">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260805b">
   <style>
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
@@ -38,7 +38,7 @@
     .step-num{width:40px;height:40px;background:#000;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0}
     .stat-card{background:#000;color:#fff;border-radius:16px;padding:32px;text-align:center}
   </style>
-  <script src="js/mobile-fix.js?v=20260805" defer></script>
+  <script src="js/mobile-fix.js?v=20260805b" defer></script>
 </head>
 <body>
 
@@ -406,8 +406,8 @@ document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 document.querySelectorAll('.faq-btn').forEach(btn=>{btn.addEventListener('click',()=>{const row=btn.parentElement,body=row.querySelector('.faq-body'),isOpen=row.classList.contains('open');document.querySelectorAll('.faq-row').forEach(r=>{r.classList.remove('open');r.querySelector('.faq-body').classList.remove('open');r.querySelector('.faq-btn').setAttribute('aria-expanded','false')});if(!isOpen){row.classList.add('open');body.classList.add('open');btn.setAttribute('aria-expanded','true')}})});
 </script>
-<script src="search.js?v=20260805"></script>
-<script src="shopify-config.js?v=20260805"></script>
-<script src="cart-drawer.js?v=20260805"></script>
+<script src="search.js?v=20260805b"></script>
+<script src="shopify-config.js?v=20260805b"></script>
+<script src="cart-drawer.js?v=20260805b"></script>
 </body>
 </html>
