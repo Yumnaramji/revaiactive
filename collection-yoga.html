@@ -36,14 +36,35 @@
     *{box-sizing:border-box}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
-    /* Hero framing (5 Aug 2026). Desktop lifts the photo 0.5cm. That is close
-       to the limit: her head sits near the top edge of the photograph, so
-       roughly 0.6cm would start cutting into her hair. Mobile cannot shift at
-       all - `cover` scales by height there and fills exactly, leaving no
-       vertical slack - so it only pushes right (the shared 78% cut across
-       her) and keeps `top`. */
-    @media(min-width:768px){.chero-img{background-position:72% -0.5cm}}
-    @media(max-width:767px){.chero-img{background-position:90% top}}
+    /* Hero framing (7 Aug 2026) - THIS HERO IS MIRRORED. Yoga is the only
+       page where the model sits on the LEFT, so the whole hero is flipped
+       against the shared pattern: copy right, scrim dark-right, subject left.
+       Every rule below exists to undo a shared default in css/mobile-fix.css,
+       so if that file's .chero rules change, re-check these.
+         - .chero-copy is pushed right with margin-left:auto and its text and
+           button row are right-aligned, mirroring the left-aligned original.
+         - The scrim gradient runs `to left` instead of `to right`, so the
+           dark end lands under the copy and the clear end over the model.
+         - The mobile scrim must be RE-DECLARED inside the max-width:767px
+           block below. This page's <style> loads after mobile-fix.css, so the
+           unconditional .chero-scrim rule above would otherwise beat the
+           shared top-to-bottom mobile gradient and leave copy unreadable.
+       Vertical anchor is `top` at both breakpoints - her head sits ~5% down
+       the frame, so any upward shift cuts into her hair. Horizontal: she is
+       centred ~30% across the photo. Desktop `cover` scales by width, so x
+       does nothing at normal window shapes - 30% only matters on very tall
+       narrow windows, where it keeps her in view. Mobile `cover` scales by
+       HEIGHT, so x is the only control that does anything: 30% is the highest
+       value that still holds her whole body - she spans ~18-46% of the photo,
+       and at 42% her supporting arm was cut off by the left frame edge. */
+    .chero-scrim{background:linear-gradient(to left,rgba(10,10,10,.92) 0%,rgba(10,10,10,.72) 30%,rgba(10,10,10,.22) 58%,rgba(10,10,10,0) 78%)}
+    .chero-copy{margin-left:auto;text-align:right}
+    .chero-copy .d3{justify-content:flex-end}
+    @media(min-width:768px){.chero-img{background-position:30% top}}
+    @media(max-width:767px){
+      .chero-img{background-position:30% top}
+      .chero-scrim{background:linear-gradient(to bottom,rgba(10,10,10,.82) 0%,rgba(10,10,10,.72) 55%,rgba(10,10,10,.88) 100%)}
+    }
   </style>
   <script src="js/mobile-fix.js?v=20260805d" defer></script>
 </head>
