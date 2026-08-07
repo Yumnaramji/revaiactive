@@ -49,20 +49,27 @@
            block below. This page's <style> loads after mobile-fix.css, so the
            unconditional .chero-scrim rule above would otherwise beat the
            shared top-to-bottom mobile gradient and leave copy unreadable.
-       Vertical anchor is `top` at both breakpoints - her head sits ~5% down
-       the frame, so any upward shift cuts into her hair. Horizontal: she is
-       centred ~30% across the photo. Desktop `cover` scales by width, so x
-       does nothing at normal window shapes - 30% only matters on very tall
-       narrow windows, where it keeps her in view. Mobile `cover` scales by
-       HEIGHT, so x is the only control that does anything: 30% is the highest
-       value that still holds her whole body - she spans ~18-46% of the photo,
-       and at 42% her supporting arm was cut off by the left frame edge. */
+       Vertical (desktop): 40%, and it must stay a PERCENTAGE. She sits low
+       and small in this frame - head ~30% down, seated base ~91% - so the
+       58vh band cannot hold all of her and has to choose what to cut. 40%
+       drops the empty ceiling, keeps her head clear of the 64px nav, and
+       still shows the crossed legs that make the pose read. A fixed px/cm
+       offset frames her more consistently but is unsafe here: on a very tall
+       window the slack shrinks below the offset and bare background shows
+       under the photo. Percentages interpolate within the slack and can
+       never gap. Checked at 600/800/1000px viewport heights.
+       Horizontal: she is centred ~41% across the photo. Desktop `cover`
+       scales by width, so x does nothing at normal window shapes - 40% only
+       matters on very tall narrow windows. Mobile `cover` scales by HEIGHT,
+       so x is the only control that does anything (and y does nothing, there
+       being no vertical slack): 50% holds her whole body - she spans ~29-54%
+       of the photo - and leaves the right side clear for the copy. */
     .chero-scrim{background:linear-gradient(to left,rgba(10,10,10,.92) 0%,rgba(10,10,10,.72) 30%,rgba(10,10,10,.22) 58%,rgba(10,10,10,0) 78%)}
     .chero-copy{margin-left:auto;text-align:right}
     .chero-copy .d3{justify-content:flex-end}
-    @media(min-width:768px){.chero-img{background-position:30% top}}
+    @media(min-width:768px){.chero-img{background-position:40% 40%}}
     @media(max-width:767px){
-      .chero-img{background-position:30% top}
+      .chero-img{background-position:50% top}
       .chero-scrim{background:linear-gradient(to bottom,rgba(10,10,10,.82) 0%,rgba(10,10,10,.72) 55%,rgba(10,10,10,.88) 100%)}
     }
   </style>
