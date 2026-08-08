@@ -13,12 +13,21 @@
   <link rel="stylesheet" href="css/mobile-fix.css?v=20260808a">
   <link rel="stylesheet" href="css/main.css?v=20260808a">
   <script src="js/mobile-fix.js?v=20260808a" defer></script>
+  <style>
+    /* --- Brand lockup in nav: mark + wordmark --- */
+    .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+    .rv-lock img{height:26px;width:auto;display:block;transition:filter .25s ease}
+    .rv-lock span{font-size:17px;font-weight:600;letter-spacing:.22em;margin-right:-.22em;line-height:1;white-space:nowrap}
+    @media(max-width:480px){.rv-lock{gap:8px}.rv-lock img{height:23px}.rv-lock span{font-size:15px}}
+    body.nav-over-hero #nav .rv-lock img{filter:invert(1)}
+    body.nav-over-hero #nav.scrolled .rv-lock img{filter:none}
+  </style>
 </head>
 <body>
   <a href="index.html" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded-lg text-sm">Skip to content</a>
   <nav id="nav" class="fixed top-0 inset-x-0 z-50 h-16" role="navigation" aria-label="Main">
     <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
-      <a href="index.html" class="text-lg font-bold tracking-tight text-black">REVAÍ</a>
+      <a href="index.html" class="rv-lock text-black" aria-label="REVAÍ — home"><img src="images/revai-icon.png" alt="" aria-hidden="true" width="26" height="31"><span>REVAÍ</span></a>
       <div class="hidden md:flex items-center gap-8">
         <div class="relative" id="shop-dropdown-wrap">
           <button id="shop-dropdown-btn" class="text-sm font-medium text-gray-500 hover:text-black transition-colors flex items-center gap-1">Shop<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></button>
