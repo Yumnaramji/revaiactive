@@ -59,13 +59,15 @@
     }
     var ticking = false;
 
-    // Pages with no hero (cart, FAQ, legal, product) keep the bar pinned:
-    // there is no imagery to protect there, and hiding the only navigation
-    // for the length of a long page would cost more than it gains.
+    // Hero pages: the bar is visible only while the hero is still behind it.
+    // Pages with no hero (cart, FAQ, legal, product) used to keep the bar
+    // pinned; they now collapse it too, so the header behaves the same way
+    // everywhere (8 Aug 2026). Two bar-heights is far enough down that a
+    // stray wheel nudge at the top of the page doesn't snap it away.
     function threshold() {
       return hero
         ? Math.max(20, hero.offsetHeight - nav.offsetHeight)
-        : Infinity;
+        : nav.offsetHeight * 2;
     }
 
     // Only 10 pages route the mobile menu through main.js and set
@@ -82,6 +84,7 @@
       var y = window.pageYOffset;
       if (menuOpen()) {
         nav.classList.remove('nav-hidden');
+        document.body.classList.remove('nav-collapsed');
         ticking = false;
         return;
       }
@@ -95,6 +98,10 @@
         nav.classList.remove('scrolled');
         nav.classList.remove('nav-hidden');
       }
+      // Mirrored onto <body> so content that offsets itself against the bar
+      // can close the gap when the bar leaves — product.html's sticky
+      // gallery is the one that needs it.
+      document.body.classList.toggle('nav-collapsed', past);
       ticking = false;
     }
 

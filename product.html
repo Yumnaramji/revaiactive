@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20260808a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260808b">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -37,12 +37,14 @@
     .thumb-strip{display:flex;flex-direction:column;gap:8px;flex-shrink:0;width:72px;overflow-y:auto;scrollbar-width:none}
     .thumb-strip::-webkit-scrollbar{display:none}
     @media(max-width:768px){.thumb-strip{flex-direction:row;width:100%;overflow-x:auto;overflow-y:hidden}}
-    .thumb{width:72px;height:96px;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .15s;flex-shrink:0;background:#f3f4f6}
+    /* Square corners throughout — the photograph is the card, same as the
+       collections grid. Only the colour swatch stays round. */
+    .thumb{width:72px;height:96px;border-radius:0;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .15s;flex-shrink:0;background:#f3f4f6}
     .thumb img{width:100%;height:100%;object-fit:cover;object-position:center}
     .thumb.active{border-color:#000}
     @media(max-width:768px){.thumb{width:60px;height:80px}}
     /* Main image */
-    .main-img-wrap{flex:1;aspect-ratio:3/4;border-radius:12px;overflow:hidden;background:#f3f4f6;position:relative}
+    .main-img-wrap{flex:1;aspect-ratio:3/4;border-radius:0;overflow:hidden;background:#f3f4f6;position:relative}
     #prod-img{width:100%;height:100%;object-fit:cover;object-position:center;display:none}
     #prod-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:absolute;inset:0}
     /* Info panel */
@@ -50,12 +52,14 @@
     @media(max-width:1024px){.info-side{padding:36px 40px 60px 36px;max-width:100%}}
     @media(max-width:768px){.info-side{padding:24px 20px 60px 20px;max-width:100%}}
     /* Size buttons */
-    .sz-btn{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;background:#fff;color:#374151}
+    /* 2px, matching .filter-pill on collections.html — the same class of
+       bordered, selectable control. */
+    .sz-btn{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border:1px solid #e5e7eb;border-radius:2px;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;background:#fff;color:#374151}
     .sz-btn.wide{width:auto;padding:0 20px}
     .sz-btn:hover{border-color:#000;color:#000}
     .sz-btn.sel{background:#000;color:#fff;border-color:#000}
     /* Length toggle */
-    .length-toggle{display:flex;gap:0;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:12px;width:fit-content}
+    .length-toggle{display:flex;gap:0;border:1px solid #e5e7eb;border-radius:2px;overflow:hidden;margin-bottom:12px;width:fit-content}
     .length-btn{padding:8px 20px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;background:#fff;border:none;color:#9ca3af;transition:all .15s}
     .length-btn:not(:last-child){border-right:1px solid #e5e7eb}
     .length-btn:hover{color:#374151}
@@ -65,7 +69,7 @@
     .swatch.sel::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px solid #000}
     .swatch:hover{transform:scale(1.1)}
     /* Add button */
-    .add-btn{width:100%;background:#000;color:#fff;border:none;border-radius:10px;padding:16px;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s;letter-spacing:-.01em}
+    .add-btn{width:100%;background:#000;color:#fff;border:none;border-radius:0;padding:16px;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s;letter-spacing:-.01em}
     .add-btn:hover{background:#222}
     .add-btn:active{transform:scale(.99)}
     /* Accordion */
@@ -91,7 +95,7 @@
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
   </style>
-  <script src="js/mobile-fix.js?v=20260808a" defer></script>
+  <script src="js/mobile-fix.js?v=20260808b" defer></script>
 </head>
 <body>
 
@@ -224,7 +228,7 @@
       <!-- CTA -->
       <div class="fu d3 mb-3 flex gap-3">
         <button id="add-btn" class="add-btn" style="flex:1">Add to Bag</button>
-        <button id="save-btn" aria-label="Save to wishlist" style="width:52px;height:52px;border:1.5px solid #e5e7eb;border-radius:10px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .2s,background .2s" onmouseenter="this.style.borderColor='#000'" onmouseleave="if(!this.dataset.saved)this.style.borderColor='#e5e7eb'">
+        <button id="save-btn" aria-label="Save to wishlist" style="width:52px;height:52px;border:1.5px solid #e5e7eb;border-radius:0;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .2s,background .2s" onmouseenter="this.style.borderColor='#000'" onmouseleave="if(!this.dataset.saved)this.style.borderColor='#e5e7eb'">
           <svg id="save-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
         </button>
       </div>
@@ -308,9 +312,9 @@
   </div>
 </footer>
 
-<script src="search.js?v=20260808a"></script>
-<script src="shopify-config.js?v=20260808a"></script>
-<script src="cart-drawer.js?v=20260808a"></script>
+<script src="search.js?v=20260808b"></script>
+<script src="shopify-config.js?v=20260808b"></script>
+<script src="cart-drawer.js?v=20260808b"></script>
 <script>
 const PRODUCTS={
   'running-leggings-w':{name:'Performance Leggings',gender:"Women's",price:'KES 5,500',priceVal:5500,image:'images/running-leggings-w-full-front.jpg',images:['images/running-leggings-w-full-front.jpg','images/running-leggings-w.jpg','images/running-leggings-w-side.jpg','images/running-leggings-w-full-back.jpg','images/running-leggings-w-plus-front.jpg','images/running-leggings-w-plus-front-angle.jpg','images/running-leggings-w-plus-back.jpg'],sizes:['S','M','L','XL','XXL'],desc:"Engineered for road and trail. A contoured waistband defines the line without compressing. A pattern-cut panel lifts the silhouette at the top of the glute, while graduated compression holds the line without flattening shape. Four-way stretch fabric. Flatlock seams.",details:['Contoured waistband — defines without compressing','Pattern-cut lift at the top of the glute','Graduated compression through thigh and core','Four-way stretch performance fabric','Flatlock seam construction','Fabric: 75% Polyamide, 25% Lycra']},

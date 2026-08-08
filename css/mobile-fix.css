@@ -162,11 +162,22 @@ html {
   font-size: clamp(26px, 3.2vw, 38px) !important;
 }
 .card,
-.prod-card,
 .press-card,
-.asset-card,
-.related-card {
+.asset-card {
   border-radius: 8px !important;
+}
+/* Product cards are square — the photograph is the card (Concept C,
+   8 Aug 2026). This rule used to sweep .prod-card and .related-card into the
+   8px group above with !important, which silently beat the pages' own
+   border-radius:0 and left every product grid rounded. Keep them here, and
+   keep the !important, or that override comes back. .cs-card and
+   "#products .grid > div" are the Coming Soon tiles and the gym grid, which
+   have to sit on the same edge as real product. */
+.prod-card,
+.related-card,
+.cs-card,
+#products .grid > div {
+  border-radius: 0 !important;
 }
 .card:hover,
 .press-card:hover,
@@ -180,9 +191,6 @@ html {
   transform: none !important;
   box-shadow: none !important;
   border-color: #0a0a0a !important;
-}
-#products .grid > div {
-  border-radius: 8px !important;
 }
 
 /* Quieter product cards on desktop: image, name, price. Size pills and
@@ -388,4 +396,19 @@ body.nav-over-hero #nav.scrolled #m-cart-badge {
 /* Never hide it while the mobile menu is open. */
 body.menu-open #nav.nav-hidden {
   transform: none;
+}
+/* Anything sticky that is offset to sit under the bar has to close that gap
+   when the bar leaves, or it floats in a band of white. Three pages do this:
+   product.html's gallery (64px), cart.html's order summary (88px = bar + a
+   24px gutter, so it keeps the gutter), and faq.html's category filter
+   (Tailwind top-16). Selectors are specific enough to beat both the pages'
+   own rules and the Tailwind utility. */
+body.nav-collapsed .img-side {
+  top: 0;
+}
+body.nav-collapsed .summary-sticky {
+  top: 24px;
+}
+body.nav-collapsed .sticky.top-16 {
+  top: 0;
 }
