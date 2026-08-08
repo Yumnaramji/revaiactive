@@ -34,6 +34,51 @@
     *{box-sizing:border-box}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
+    /* Hero framing (8 Aug 2026) - THIS HERO IS CENTRED, not left-aligned like
+       the shared .chero pattern, and not mirrored like collection-yoga.html.
+       The photograph is a symmetrical pair: the man occupies ~11-36% of the
+       frame and the woman ~65-90%, with an empty dark column between them at
+       ~38-64%. Desktop `cover` scales by width, so there is no horizontal
+       slack and BOTH models are always on screen - the copy has nowhere to go
+       but the gap in the middle. Pushing it left or right would put the
+       headline on a model's face. Do not "normalise" this back to the shared
+       left-aligned pattern.
+         - .chero-copy is centred with margin:0 auto and text-align:center.
+         - The scrim is two stacked gradients, not the shared one: a horizontal
+           pass that darkens the middle column under the copy and thins out
+           over the models at either edge, plus a light vertical wash to seat
+           the type and keep the 64px nav legible.
+         - .chero-copy is capped at min(30rem,31vw) rather than the shared
+           34rem. The gap is a fixed 32% of the frame, so it shrinks in px as
+           the window narrows while a rem-based column does not; 31vw tracks
+           it. Measured at 1440: headline 35.6-63.3%, subtitle 31.6-67.4% -
+           both inside the 36-68% gap. A flat 34rem put the subtitle on the
+           man's shoulder.
+         - The narrow scrim must be RE-DECLARED inside the max-width:1023px
+           block below. This page's <style> loads after css/mobile-fix.css, so
+           the unconditional .chero-scrim rule above would otherwise beat the
+           shared top-to-bottom gradient. Same trap as the yoga page.
+       The pair only works while the gap is wide enough in px to hold a
+       headline, which is why the split here is 1024px and not the usual 767.
+       Below that the layout abandons the pair, frames the woman alone at 80%
+       and falls back to the shared full-width vertical scrim - at 31vw of a
+       375px screen the copy column would be 116px wide.
+       Vertical: `top` at every width. Their heads sit ~5% down the frame and
+       they are already cropped at the knee by the bottom edge, so there is
+       nothing to gain by shifting down and a head to lose. */
+    .chero-copy{margin:0 auto;text-align:center}
+    .chero-scrim{background:
+      linear-gradient(to right,rgba(10,10,10,.30) 0%,rgba(10,10,10,.78) 34%,rgba(10,10,10,.82) 50%,rgba(10,10,10,.78) 66%,rgba(10,10,10,.30) 100%),
+      linear-gradient(to bottom,rgba(10,10,10,.55) 0%,rgba(10,10,10,.32) 45%,rgba(10,10,10,.70) 100%)}
+    @media(min-width:1024px){
+      .chero-img{background-position:50% top}
+      .chero-copy{max-width:min(30rem,31vw)}
+    }
+    @media(max-width:1023px){
+      .chero-img{background-position:80% top}
+      .chero-scrim{background:linear-gradient(to bottom,rgba(10,10,10,.82) 0%,rgba(10,10,10,.72) 55%,rgba(10,10,10,.88) 100%)}
+      .chero-copy{max-width:none}
+    }
   </style>
   <script src="js/mobile-fix.js?v=20260805d" defer></script>
 </head>
@@ -96,14 +141,18 @@
 <div id="moverlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
 
 <!-- HERO -->
-<section id="main" class="pt-28 pb-14 px-6 text-center" style="position:relative;overflow:hidden;background:#0a0a0a;">
-  <div class="max-w-4xl mx-auto" style="position:relative;">
-    <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">New Arrivals</p>
-    <h1 class="fu d1 t-hero text-white">New Arrivals — SS26</h1>
-    <p class="fu d2 text-lg mt-5" style="color:#9ca3af">The SS26 collection. New colourways, updated constructions, same commitment to quality.</p>
-    <div class="fu d3 flex items-center justify-center gap-4 mt-8">
-      <a href="collections.html" class="btn-p">Shop All</a>
-      <a href="#products" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">View collection &darr;</a>
+<section id="main" class="chero pt-28 pb-16 px-6">
+  <div class="chero-img" style="background-image:url('images/hero-new-arrivals.jpg')"></div>
+  <div class="chero-scrim"></div>
+  <div class="chero-body">
+    <div class="chero-copy">
+      <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">New Arrivals</p>
+      <h1 class="fu d1 t-hero text-white">New Arrivals — SS26</h1>
+      <p class="fu d2 text-lg mt-5" style="color:#9ca3af">The SS26 collection. New colourways, updated constructions, same commitment to quality.</p>
+      <div class="fu d3 flex items-center justify-center gap-4 mt-8">
+        <a href="collections.html" class="btn-p">Shop All</a>
+        <a href="#products" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">View collection &darr;</a>
+      </div>
     </div>
   </div>
 </section>

@@ -36,12 +36,15 @@
     *{box-sizing:border-box}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
-    /* Hero framing (7 Aug 2026). Kept in the stylesheet rather than inline on
-       the element, because an inline background-position would beat this rule.
+    /* Hero framing (7 Aug 2026; image replaced 8 Aug, framing unchanged - the
+       new stadium shot puts the runner at ~58-86% across with his head ~4%
+       down, so every value below still holds). Kept in the stylesheet rather
+       than inline on the element, because an inline background-position would
+       beat this rule.
        The track photo already frames the runner at the gym model's apparent
        size, so the 160% desktop zoom the previous road shot needed is gone -
        desktop just inherits the shared `72% top` from mobile-fix.css. Anchor
-       stays hard at the top: the top of his head sits ~3% down the frame, so
+       stays hard at the top: the top of his head sits ~4% down the frame, so
        any upward shift takes it off.
        Below 1024px: `cover` scales by HEIGHT to fill the taller box, so there
        is no vertical slack - only the x value does anything. 88% pushes him

@@ -49,27 +49,31 @@
            block below. This page's <style> loads after mobile-fix.css, so the
            unconditional .chero-scrim rule above would otherwise beat the
            shared top-to-bottom mobile gradient and leave copy unreadable.
-       Vertical (desktop): 40%, and it must stay a PERCENTAGE. She sits low
-       and small in this frame - head ~30% down, seated base ~91% - so the
-       58vh band cannot hold all of her and has to choose what to cut. 40%
-       drops the empty ceiling, keeps her head clear of the 64px nav, and
-       still shows the crossed legs that make the pose read. A fixed px/cm
-       offset frames her more consistently but is unsafe here: on a very tall
-       window the slack shrinks below the offset and bare background shows
-       under the photo. Percentages interpolate within the slack and can
-       never gap. Checked at 600/800/1000px viewport heights.
-       Horizontal: she is centred ~41% across the photo. Desktop `cover`
-       scales by width, so x does nothing at normal window shapes - 40% only
-       matters on very tall narrow windows. Mobile `cover` scales by HEIGHT,
-       so x is the only control that does anything (and y does nothing, there
-       being no vertical slack): 50% holds her whole body - she spans ~29-54%
-       of the photo - and leaves the right side clear for the copy. */
+       Vertical: `top`, and it is load-bearing. The 8 Aug floor-meditation
+       shot is framed far tighter than the one it replaced - she now spans
+       ~5% to ~96% of the frame instead of sitting low and small - so the old
+       40% anchor would take her head off. Anchored hard to 0% nothing is
+       ever lost from the top at any window shape. The trade is real and
+       unavoidable: the 58vh band can only show ~50-62% of a 16:9 frame on a
+       wide window, so on desktop this reads as head, shoulders and prayer
+       hands, with the crossed legs below the cut. That is the photograph,
+       not the CSS - `cover` has no setting that shows more of it.
+       Do NOT nudge this to a small percentage to recover the legs: at 1920
+       wide the slack is ~530px, so even 10% shifts the crop 58px down and
+       clips her head. And never use a px/cm offset - on a tall window the
+       slack shrinks below the offset and bare background shows under the
+       photo. Percentages interpolate within the slack and can never gap.
+       Horizontal: she is centred ~46% across the photo. Desktop `cover`
+       scales by width, so x does nothing at normal window shapes. Mobile
+       `cover` scales by HEIGHT, so x is the only control that does anything
+       (and y does nothing, there being no vertical slack): 46% holds her
+       whole body and leaves the right side clear for the copy. */
     .chero-scrim{background:linear-gradient(to left,rgba(10,10,10,.92) 0%,rgba(10,10,10,.72) 30%,rgba(10,10,10,.22) 58%,rgba(10,10,10,0) 78%)}
     .chero-copy{margin-left:auto;text-align:right}
     .chero-copy .d3{justify-content:flex-end}
-    @media(min-width:768px){.chero-img{background-position:40% 40%}}
+    @media(min-width:768px){.chero-img{background-position:46% top}}
     @media(max-width:767px){
-      .chero-img{background-position:50% top}
+      .chero-img{background-position:46% top}
       .chero-scrim{background:linear-gradient(to bottom,rgba(10,10,10,.82) 0%,rgba(10,10,10,.72) 55%,rgba(10,10,10,.88) 100%)}
     }
   </style>

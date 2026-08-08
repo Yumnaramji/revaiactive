@@ -33,6 +33,16 @@
     *{box-sizing:border-box}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
+    /* No page-scoped hero framing here, and none is needed (checked 8 Aug 2026
+       against the new dusk-fairway shot). The golfer sits at ~57-81% across
+       with his head ~4% down the frame, which is exactly what the shared
+       `72% top` in css/mobile-fix.css is cut for - the same numbers the
+       running hero runs on. If a future golf image moves the subject or drops
+       his head lower, add an override here rather than inline on .chero-img:
+       an inline background-position beats every media query.
+       Note for about.html: its Golf tile crops 2/1 and keeps object-position
+       :top for this reason. Any replacement image must keep the subject's
+       head in the top ~6% of the frame or that tile decapitates him. */
   </style>
   <script src="js/mobile-fix.js?v=20260805d" defer></script>
 </head>
