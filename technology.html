@@ -11,7 +11,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20260805d">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260808a">
 <style>
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
@@ -38,7 +38,7 @@
     .tech-visual-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
     .spec-pill{display:inline-flex;align-items:center;background:#f0f0f0;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:500;color:#333;margin:3px}
   </style>
-  <script src="js/mobile-fix.js?v=20260805d" defer></script>
+  <script src="js/mobile-fix.js?v=20260808a" defer></script>
 </head>
 <body>
 <a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded-lg text-sm" href="#main">Skip to content</a>
@@ -339,8 +339,8 @@ document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 </script>
-<script src="search.js?v=20260805d"></script>
-<script src="shopify-config.js?v=20260805d"></script>
-<script src="cart-drawer.js?v=20260805d"></script>
+<script src="search.js?v=20260808a"></script>
+<script src="shopify-config.js?v=20260808a"></script>
+<script src="cart-drawer.js?v=20260808a"></script>
 </body>
 </html>

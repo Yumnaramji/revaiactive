@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20260805d">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260808a">
   <style>
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
@@ -30,8 +30,24 @@
     #nav.scrolled{border-bottom:1px solid #e5e7eb}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
+    /* HERO HEIGHT — mirrors the shared .chero values in css/mobile-fix.css
+       (58vh desktop / 43.5vh mobile) so every hero on the site is the same.
+       Change all three places together. Kept here rather than inline on the
+       section so the mobile query can reach it — an inline min-height would
+       beat any media query. On mobile the inner block's pb-20 drops to 2rem
+       and the section takes a 4.5rem top pad: this hero is
+       align-items:flex-end, so the copy hangs off the bottom edge and an 80px
+       bottom pad at 43.5vh would push the eyebrow up under the fixed 64px
+       nav. The top pad is a floor, not a position — it never binds at 43.5vh
+       on a normal phone, it just lets the hero grow rather than tuck the
+       eyebrow under the nav on a short (667px) screen. */
+    #about-hero{min-height:58vh}
+    @media(max-width:767px){
+      #about-hero{min-height:43.5vh;padding-top:4.5rem}
+      #about-hero .about-hero-body{padding-bottom:2rem}
+    }
   </style>
-  <script src="js/mobile-fix.js?v=20260805d" defer></script>
+  <script src="js/mobile-fix.js?v=20260808a" defer></script>
 </head>
 <body class="nav-over-hero">
 
@@ -100,12 +116,12 @@
 
 <main id="main">
 
-  <!-- HERO — left-aligned, image behind dark overlay. Height mirrors the
-       shared .chero value in css/mobile-fix.css (58vh) so every hero on the
-       site is the same. Change both together. -->
-  <section style="position:relative;min-height:58vh;background-image:url('images/about-hero.jpg');background-size:cover;background-position:center 60%;display:flex;align-items:flex-end;">
+  <!-- HERO — left-aligned, image behind dark overlay. Height is set on
+       #about-hero in the <style> block above, not inline — see the note
+       there. -->
+  <section id="about-hero" style="position:relative;background-image:url('images/about-hero.jpg');background-size:cover;background-position:center 60%;display:flex;align-items:flex-end;">
     <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72) 0%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.1) 100%)"></div>
-    <div class="max-w-6xl mx-auto px-6 pb-20 w-full" style="position:relative">
+    <div class="about-hero-body max-w-6xl mx-auto px-6 pb-20 w-full" style="position:relative">
       <p class="fu text-xs font-semibold uppercase tracking-widest mb-5" style="color:rgba(255,255,255,.5)">Our Story</p>
       <h1 class="fu d1 t-hero text-white mb-4" style="max-width:720px">Built for the way you move.</h1>
       <p class="fu d2 text-lg leading-relaxed" style="color:rgba(255,255,255,.7);max-width:560px">We believe great activewear should be high quality, affordable, designed to fit all bodies, and versatile enough to meet every individual's definition of movement. That's exactly what we set out to build.</p>
@@ -312,8 +328,8 @@ const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.ta
 document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 </script>
-<script src="search.js?v=20260805d"></script>
-<script src="shopify-config.js?v=20260805d"></script>
-<script src="cart-drawer.js?v=20260805d"></script>
+<script src="search.js?v=20260808a"></script>
+<script src="shopify-config.js?v=20260808a"></script>
+<script src="cart-drawer.js?v=20260808a"></script>
 </body>
 </html>

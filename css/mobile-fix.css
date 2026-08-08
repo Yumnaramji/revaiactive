@@ -212,9 +212,11 @@ html {
    comes off the floor and bench at the bottom instead of taking the
    subject's head off. Anchored hard to the top (0%) so nothing is ever
    lost from her head, at any window size. */
-/* Hero height is one number for the whole site: 58vh. Set here, not per page
-   - about.html mirrors this value inline because its hero predates .chero.
-   If this changes, change it there too. (5 Aug 2026) */
+/* Hero height is one number per breakpoint for the whole site:
+   58vh on desktop, 43.5vh on mobile (a quarter shorter — 8 Aug 2026).
+   Set here, not per page. about.html and index.html mirror these values in
+   their own <style> blocks because their heroes predate .chero.
+   If either number changes, change it in all three places. */
 .chero {
   position: relative;
   overflow: hidden;
@@ -252,8 +254,18 @@ html {
 }
 
 @media (max-width: 767px) {
-  .chero {
-    min-height: 58vh;
+  /* A quarter shorter than desktop's 58vh, trimmed off the bottom of the band.
+     The vertical padding has to come down with it or the copy block becomes
+     the tallest thing in the box and min-height never binds — the pages set
+     pt-28 pb-16 (112/64px) in markup, which alone is 176px of a 353px hero.
+     80/32 keeps the same 48px net downward shift that clears the fixed nav,
+     and leaves ~118px of room for the tallest hero copy on the site
+     (new-arrivals, 235px). Selector is section.chero, not .chero, so it
+     outranks Tailwind's .pt-28/.pb-16 regardless of stylesheet order. */
+  section.chero {
+    min-height: 43.5vh;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
   }
   .chero-img {
     background-position: 78% 22%;
