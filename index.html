@@ -10,8 +10,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20260805d">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260808a">
   <style>
+    /* --- Brand lockup in nav: mark + wordmark --- */
+    .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+    .rv-lock img{height:26px;width:auto;display:block;transition:filter .25s ease}
+    .rv-lock span{font-size:17px;font-weight:600;letter-spacing:.22em;margin-right:-.22em;line-height:1;white-space:nowrap}
+    @media(max-width:480px){.rv-lock{gap:8px}.rv-lock img{height:23px}.rv-lock span{font-size:15px}}
+    body.nav-over-hero #nav .rv-lock img{filter:invert(1)}
+    body.nav-over-hero #nav.scrolled .rv-lock img{filter:none}
+
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
     body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -33,8 +41,23 @@
     @keyframes hf{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}.ha{animation:none!important;opacity:1!important}}
+    /* FILM HERO HEIGHT — this hero predates .chero and runs taller than the
+       collection pages, but it takes the same quarter cut on mobile
+       (8 Aug 2026): 78vh/540px desktop, 58.5vh/405px mobile. Set here rather
+       than inline so the media query can reach it.
+       Mobile also swaps the fixed height for min-height so long copy pushes
+       the hero taller instead of overflowing it (the house rule everywhere
+       else on the site), and pt-40 (160px) drops to 4.5rem — 160px of top
+       padding on a 405px box clips the eyebrow off the top on a 667px-tall
+       phone. 72px keeps the copy clear of the fixed 64px nav at the 405px
+       floor without ever binding before min-height does. */
+    #home-hero{height:78vh;min-height:540px}
+    @media(max-width:767px){
+      #home-hero{height:auto;min-height:max(58.5vh,405px)}
+      #home-hero .home-hero-body{padding-top:4.5rem}
+    }
   </style>
-  <script src="js/mobile-fix.js?v=20260805d" defer></script>
+  <script src="js/mobile-fix.js?v=20260808a" defer></script>
 </head>
 <body class="nav-over-hero">
 
@@ -43,7 +66,7 @@
 <!-- NAV -->
 <nav id="nav" class="fixed top-0 inset-x-0 z-50 h-16" role="navigation" aria-label="Main" style="background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .25s">
   <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
-    <a href="index.html" class="text-lg font-bold tracking-tight text-black">REVAÍ</a>
+    <a href="index.html" class="rv-lock text-black" aria-label="REVAÍ — home"><img src="images/revai-icon.png" alt="" aria-hidden="true" width="26" height="31"><span>REVAÍ</span></a>
     <div class="hidden md:flex items-center gap-8">
       <div class="relative" id="shop-dropdown-wrap">
         <button id="shop-dropdown-btn" class="text-sm font-medium text-gray-500 hover:text-black transition-colors flex items-center gap-1">Shop<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></button>
@@ -79,7 +102,7 @@
 <!-- MOBILE MENU -->
 <div id="mmenu" class="fixed top-0 right-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col" style="transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1)">
   <div class="flex justify-between items-center mb-10">
-    <span class="text-lg font-bold tracking-tight">REVAÍ</span>
+    <span class="rv-lock"><img src="images/revai-icon.png" alt="" aria-hidden="true" width="24" height="29"><span>REVAÍ</span></span>
     <button id="mclose" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Close menu">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg>
     </button>
@@ -103,13 +126,14 @@
 
 <main id="main">
 
-  <!-- HERO — full-bleed film, type carved over it -->
-  <section class="relative flex items-end" style="height:78vh;min-height:540px;background:#000;overflow:hidden">
+  <!-- HERO — full-bleed film, type carved over it. Height lives on #home-hero
+       in the <style> block above, not inline — see the note there. -->
+  <section id="home-hero" class="relative flex items-end" style="background:#000;overflow:hidden">
     <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.72">
       <source src="images/homepage-hero.mp4" type="video/mp4">
     </video>
     <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.22) 48%, rgba(0,0,0,.38) 100%)"></div>
-    <div class="relative max-w-6xl mx-auto w-full px-6 pt-40" style="padding-bottom:64px">
+    <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 pt-40" style="padding-bottom:64px">
       <p class="ha d1 text-xs font-semibold uppercase tracking-widest text-gray-300 mb-6">Collection 01 — SS26</p>
       <h1 class="t-hero ha d2 mb-4 text-white" style="max-width:900px">Find Your Revival.</h1>
       <p class="ha d3 text-lg text-gray-200 leading-relaxed max-w-xl mb-8">REVAÍ is activewear built for everyone — from your first class to your hundredth kilometre. High quality, honest sizing, and prices that make performance accessible.</p>
@@ -364,9 +388,9 @@
   </div>
 </footer>
 
-<script src="search.js?v=20260805d"></script>
-<script src="shopify-config.js?v=20260805d"></script>
-<script src="cart-drawer.js?v=20260805d"></script>
+<script src="search.js?v=20260808a"></script>
+<script src="shopify-config.js?v=20260808a"></script>
+<script src="cart-drawer.js?v=20260808a"></script>
 <script>
 // Simple add-to-bag with size selection and toast
 const cartItems = JSON.parse(localStorage.getItem('revai_cart_v1')||'[]');
