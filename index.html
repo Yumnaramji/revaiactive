@@ -116,14 +116,6 @@
     .hp-door span{position:absolute;left:16px;bottom:14px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.14em;z-index:2}
     .hp-door:after{content:"";position:absolute;inset:auto 0 0;height:60%;background:linear-gradient(0deg,rgba(0,0,0,.72),transparent)}
 
-    .hp-first{background:#fff;border-top:1px solid #e5e7eb}
-    .hp-first .hp-in{max-width:520px;margin:0 auto;text-align:center;padding:clamp(34px,4vw,52px) 0}
-    .hp-first h3{font-size:19px;font-weight:600;letter-spacing:-.015em;color:#0a0a0a}
-    .hp-first p{margin-top:7px;font-size:14px;color:#6b7280}
-    .hp-f{display:flex;border:1px solid #d9d9d9;margin:20px auto 0;max-width:420px}
-    .hp-f input{flex:1;background:none;border:0;color:#0a0a0a;font:inherit;font-size:14px;padding:12px 14px;outline:none;text-align:center}
-    .hp-f input::placeholder{color:#9ca3af}
-    .hp-f button{background:#0a0a0a;color:#fff;border:0;font:inherit;font-size:13px;font-weight:600;padding:0 20px;cursor:pointer;min-height:44px}
 
     .hp-sticky{position:fixed;left:0;right:0;bottom:0;z-index:70;background:#0a0a0a;color:#fff;height:56px;
       display:none;align-items:center;justify-content:center;font-size:14px;font-weight:600;letter-spacing:.06em;
@@ -152,7 +144,6 @@
       .hp-svc .hp-in{grid-template-columns:1fr;gap:22px}
       .hp-gap .hp-in{grid-template-columns:1fr;gap:34px}
       .hp-doors{grid-template-columns:repeat(2,1fr)}
-      .hp-first .hp-in{grid-template-columns:1fr}
       .hp-sticky{display:flex}
       body{padding-bottom:56px}
       .hp-row{display:block}
@@ -342,26 +333,11 @@
       <h2 class="t-h2 fu mb-6">Shop by activity</h2>
       <div class="hp-doors">
         <a class="hp-door fu" href="collection-yoga.html"><img src="images/hero-yoga.jpg" alt="Yoga" loading="lazy"><span>YOGA</span></a>
-        <a class="hp-door fu d1" href="collection-running.html"><img src="images/hero-running.jpg" alt="Running" loading="lazy"><span>RUNNING</span></a>
-        <a class="hp-door fu d2" href="collection-gym.html"><img src="images/hero-gym.jpg" alt="Gym &amp; Training" loading="lazy"><span>GYM</span></a>
+        <a class="hp-door fu d1" href="collection-running.html"><img style="object-position:78% center" src="images/hero-running.jpg" alt="Running" loading="lazy"><span>RUNNING</span></a>
+        <a class="hp-door fu d2" href="collection-gym.html"><img style="object-position:76% center" src="images/hero-gym.jpg" alt="Gym &amp; Training" loading="lazy"><span>GYM</span></a>
         <a class="hp-door fu d3" href="collection-golf.html"><img src="images/hero-golf.jpg" alt="Golf" loading="lazy"><span>GOLF</span></a>
       </div>
     </div>
-  </section>
-
-  <!-- FIRST ACCESS -->
-  <section class="hp-first">
-    <div class="max-w-6xl mx-auto px-6"><div class="hp-in">
-      <div class="fu">
-        <h3>Collection 01 is small on purpose.</h3>
-        <p>Sizes sell through. Join the list for restocks and first access to what comes next.</p>
-      </div>
-      <form class="hp-f fu d1" onsubmit="showToast('Thanks — you\'re on the list \u2713');return false;">
-        <label for="hp-email" class="sr-only">Email address</label>
-        <input id="hp-email" type="email" placeholder="Email address" required>
-        <button type="submit">Join</button>
-      </form>
-    </div></div>
   </section>
 
 <!-- FOOTER -->
