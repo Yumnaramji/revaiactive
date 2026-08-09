@@ -51,9 +51,9 @@
        padding on a 405px box clips the eyebrow off the top on a 667px-tall
        phone. 72px keeps the copy clear of the fixed 64px nav at the 405px
        floor without ever binding before min-height does. */
-    #home-hero{height:52vh;min-height:420px}
+    #home-hero{height:60vh;min-height:470px}
     @media(max-width:767px){
-      #home-hero{height:auto;min-height:max(44vh,330px)}
+      #home-hero{height:auto;min-height:max(50vh,370px)}
       #home-hero .home-hero-body{padding-top:4rem}
     }
   
@@ -130,10 +130,19 @@
       padding-bottom:env(safe-area-inset-bottom)}
 
     /* hero: monogram backplate */
-    #home-hero .hp-plate{position:absolute;left:-6%;top:-34%;height:150%;width:auto;opacity:0;pointer-events:none;
+    #home-hero .hp-plate{position:absolute;left:-9%;top:-46%;height:190%;width:auto;opacity:0;pointer-events:none;
       filter:invert(1);animation:hpPlate .9s .2s ease-out forwards;z-index:1}
-    @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.08;transform:none}}
+    @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.11;transform:none}}
+    @media(max-width:767px){#home-hero .hp-plate{left:-22%;top:-30%;height:150%}}
 
+
+    /* Six-card information grid — copy restored from the previous homepage,
+       rendered flat (no boxes, no icon tiles) to match the rest of the page. */
+    .hp-feats{display:grid;grid-template-columns:repeat(3,1fr);gap:44px 40px}
+    .hp-feat{padding-top:20px;border-top:1px solid #e5e7eb}
+    .hp-feat h3{font-size:16px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px;color:#0a0a0a}
+    .hp-feat p{font-size:14px;line-height:1.65;color:#5a5a5a}
+    @media(max-width:900px){.hp-feats{grid-template-columns:1fr;gap:26px}}
     @media(max-width:900px){
       .hp-grid{grid-template-columns:repeat(2,1fr);gap:14px}
       .hp-svc .hp-in{grid-template-columns:1fr;gap:22px}
@@ -226,13 +235,13 @@
     </video>
     <img class="hp-plate" src="images/revai-icon.png" alt="" aria-hidden="true">
     <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.22) 48%, rgba(0,0,0,.38) 100%)"></div>
-    <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 pt-20" style="padding-bottom:44px;z-index:2">
+    <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 pt-24" style="padding-bottom:52px;z-index:2">
       <p class="ha d1 text-xs font-semibold uppercase tracking-widest text-gray-300 mb-6">Collection 01 — SS26 &middot; Now in Nairobi</p>
       <h1 class="t-hero ha d2 mb-4 text-white" style="max-width:900px">Find Your Revival.</h1>
-      <p class="ha d3 text-lg text-gray-200 leading-relaxed max-w-lg mb-8">Performance activewear engineered to international specification. One colourway. S to XXL. Leggings from KES 5,500.</p>
+      <p class="ha d3 text-lg text-gray-200 leading-relaxed max-w-lg mb-8">REVAÍ is activewear built for everyone — from your first class to your hundredth kilometre. High quality, honest sizing, and prices that make performance accessible.</p>
       <div class="ha d3 flex flex-wrap items-center gap-x-7 gap-y-4">
         <a href="#shop" class="btn-p px-7 py-3 text-sm" style="background:#fff;color:#000;border-radius:6px">Shop Collection 01</a>
-        <a href="#gap" class="text-sm text-white" style="border-bottom:1px solid rgba(255,255,255,.7);padding-bottom:2px">Why it costs what it costs &darr;</a>
+        <a href="#features" class="text-sm text-white" style="border-bottom:1px solid rgba(255,255,255,.7);padding-bottom:2px">Why it costs what it costs &darr;</a>
       </div>
     </div>
   </section>
@@ -241,16 +250,9 @@
   <div class="hp-rail" id="shop">
     <div class="max-w-6xl mx-auto px-6"><div class="hp-in">
       <a class="on" href="collections.html">All</a>
-      <a href="collections.html">Leggings</a>
-      <a href="collections.html">Sports bras</a>
-      <a href="collections.html">Tops</a>
-      <a href="collections.html">Men's</a>
-      <a href="collections.html">Outerwear</a>
-      <a href="collections.html">Accessories</a>
-      <a href="collection-yoga.html">Yoga</a>
-      <a href="collection-running.html">Running</a>
-      <a href="collection-gym.html">Gym</a>
-      <a href="collection-golf.html">Golf</a>
+      <a href="collections.html?gender=women">Women</a>
+      <a href="collections.html?gender=men">Men</a>
+      <a href="collections.html?gender=kids">Kids</a>
     </div></div>
   </div>
 
@@ -318,28 +320,32 @@
     </div></div>
   </section>
 
-  <!-- THE GAP -->
-  <section class="hp-gap" id="gap">
-    <div class="max-w-6xl mx-auto px-6"><div class="hp-in">
-      <div>
-        <p class="fu text-xs font-semibold uppercase tracking-widest mb-4" style="color:#8a8a8a">The gap</p>
-        <h2 class="fu d1">We didn&rsquo;t follow a trend. We filled a gap.</h2>
-        <p class="fu d2 mech">Same tech-pack tier. Same class of factory. Without the importer&rsquo;s markup.</p>
-        <p class="fu d2 fine">Priced from the specification, not from the shelf it landed on.</p>
+  <!-- BUILT TO MOVE — six-card information grid (copy from the previous homepage) -->
+  <section id="features" class="py-14 md:py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-10">
+        <h2 class="t-h2 fu">Built to Move. Made to Fit.</h2>
+        <p class="fu d1 text-gray-500 mt-3 max-w-xl">Every piece specified fabric by fabric, weight by weight, before a single unit was cut.</p>
       </div>
-      <div class="hp-bars fu d2">
-        <div class="hp-bar them">
-          <span class="lb">Comparable construction, imported and retailed in Nairobi</span>
-          <div class="tr"><b style="width:100%"></b></div>
-          <span class="amt">KES 12,000 &ndash; 18,000</span>
-        </div>
-        <div class="hp-bar us">
-          <span class="lb">REVA&Iacute; Performance Leggings</span>
-          <div class="tr"><b></b></div>
-          <span class="amt">KES 5,500</span>
-        </div>
+      <div class="hp-feats">
+        <div class="hp-feat fu d1"><h3>Specified Per Garment</h3><p>Fourteen fabrics across thirteen garments — each piece gets the material its job demands. Composition and weight are published on every product page.</p></div>
+        <div class="hp-feat fu d2"><h3>Four-Way Stretch Knits</h3><p>The performance knits stretch four ways and snap back — a quarter of the legging fabric is pure elastane. Full range of motion, no restriction.</p></div>
+        <div class="hp-feat fu d3"><h3>Moisture Management</h3><p>The training fabrics pull sweat off the skin and dry fast — engineered for sessions one degree south of the equator.</p></div>
+        <div class="hp-feat fu d1"><h3>S to XXL, Cut for Every Body</h3><p>The apparel range runs S through XXL, bought so the larger sizes sit in the middle of the run &mdash; not tacked on the end as an afterthought.</p></div>
+        <div class="hp-feat fu d2"><h3>Priced Honestly</h3><p>Performance Leggings, KES 5,500. Built at international manufacturing tier and sold direct &mdash; what you pay for is the garment, not the journey it took to reach you.</p></div>
+        <div class="hp-feat fu d3"><h3>Lab-Tested Before Production</h3><p>100% of fabrics are tested against international standards before anything enters production. Every piece in the range, every time.</p></div>
       </div>
-    </div></div>
+    </div>
+  </section>
+
+  <!-- WHY REVAÍ (dark) -->
+  <section style="background:#0a0a0a" class="py-16 md:py-20 px-6">
+    <div class="max-w-3xl mx-auto text-left">
+      <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Why REVAÍ</p>
+      <h2 class="t-h2 fu d1 text-white mb-6">Quality activewear. No gatekeeping.</h2>
+      <p class="fu d2 text-gray-400 text-lg leading-relaxed mb-10">Good activewear was either overpriced, badly fitting, or made for a body type that wasn&rsquo;t yours. We built REVA&Iacute; to fix that. Technical fabric, anatomical sizing, and prices that don&rsquo;t make you think twice &mdash; whether you&rsquo;re just starting out or you&rsquo;ve been at it for years.</p>
+      <a href="collections.html" class="fu d3 inline-flex items-center gap-2 bg-white text-black font-medium text-sm px-7 py-3.5 rounded-xl hover:bg-gray-100 transition-colors" style="text-decoration:none">Shop Now</a>
+    </div>
   </section>
 
   <!-- SHOP BY ACTIVITY -->
