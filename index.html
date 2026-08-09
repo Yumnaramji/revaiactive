@@ -134,17 +134,11 @@
 
     /* Six-card information grid — copy restored from the previous homepage,
        rendered flat (no boxes, no icon tiles) to match the rest of the page. */
-    /* Numbers-led spec grid. The figure carries the section visually so the
-       prose can stay short — same claims, same scoping, half the words. */
-    .hp-feats{display:grid;grid-template-columns:repeat(3,1fr);gap:52px 48px}
-    .hp-feat{padding-top:22px;border-top:1px solid #e5e7eb}
-    .hp-feat .fig{display:block;font-size:clamp(2rem,1.4rem + 1.6vw,2.9rem);font-weight:500;
-      letter-spacing:-.04em;line-height:1;color:#0a0a0a}
-    .hp-feat .lab{display:block;margin-top:12px;font-size:10px;font-weight:600;letter-spacing:.2em;
-      text-transform:uppercase;color:#9ca3af}
-    .hp-feat p{margin-top:10px;font-size:14px;line-height:1.6;color:#5a5a5a;max-width:30ch}
-    @media(max-width:900px){.hp-feats{grid-template-columns:repeat(2,1fr);gap:34px 24px}}
-    @media(max-width:520px){.hp-feats{grid-template-columns:1fr;gap:26px}}
+    .hp-feats{display:grid;grid-template-columns:repeat(3,1fr);gap:44px 40px}
+    .hp-feat{padding-top:20px;border-top:1px solid #e5e7eb}
+    .hp-feat h3{font-size:16px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px;color:#0a0a0a}
+    .hp-feat p{font-size:14px;line-height:1.65;color:#5a5a5a}
+    @media(max-width:900px){.hp-feats{grid-template-columns:1fr;gap:26px}}
     @media(max-width:900px){
       .hp-grid{grid-template-columns:repeat(2,1fr);gap:14px}
       .hp-svc .hp-in{grid-template-columns:1fr;gap:22px}
@@ -323,12 +317,12 @@
         <p class="fu d1 text-gray-500 mt-3 max-w-xl">Every piece specified fabric by fabric, weight by weight, before a single unit was cut.</p>
       </div>
       <div class="hp-feats">
-        <div class="hp-feat fu d1"><span class="fig">14</span><span class="lab">Fabrics</span><p>Across thirteen garments &mdash; each piece gets the material its job demands.</p></div>
-        <div class="hp-feat fu d2"><span class="fig">4-way</span><span class="lab">Stretch</span><p>The performance knits stretch and snap back. A quarter of the legging fabric is pure elastane.</p></div>
-        <div class="hp-feat fu d3"><span class="fig">Dry fast</span><span class="lab">Moisture</span><p>The training fabrics pull sweat off the skin &mdash; engineered for sessions one degree south of the equator.</p></div>
-        <div class="hp-feat fu d1"><span class="fig">S&ndash;XXL</span><span class="lab">The range</span><p>The apparel range, bought so the larger sizes sit in the middle of the run.</p></div>
-        <div class="hp-feat fu d2"><span class="fig">5,500</span><span class="lab">KES, leggings</span><p>International manufacturing tier, sold direct. You pay for the garment, not the journey.</p></div>
-        <div class="hp-feat fu d3"><span class="fig">100%</span><span class="lab">Lab-tested</span><p>Fabrics tested against international standards before anything enters production.</p></div>
+        <div class="hp-feat fu d1"><h3>Specified Per Garment</h3><p>Fourteen fabrics across thirteen garments — each piece gets the material its job demands. Composition and weight are published on every product page.</p></div>
+        <div class="hp-feat fu d2"><h3>Four-Way Stretch Knits</h3><p>The performance knits stretch four ways and snap back — a quarter of the legging fabric is pure elastane. Full range of motion, no restriction.</p></div>
+        <div class="hp-feat fu d3"><h3>Moisture Management</h3><p>The training fabrics pull sweat off the skin and dry fast — engineered for sessions one degree south of the equator.</p></div>
+        <div class="hp-feat fu d1"><h3>S to XXL, Cut for Every Body</h3><p>The apparel range runs S through XXL, bought so the larger sizes sit in the middle of the run &mdash; not tacked on the end as an afterthought.</p></div>
+        <div class="hp-feat fu d2"><h3>Priced Honestly</h3><p>Performance Leggings, KES 5,500. Built at international manufacturing tier and sold direct &mdash; what you pay for is the garment, not the journey it took to reach you.</p></div>
+        <div class="hp-feat fu d3"><h3>Lab-Tested Before Production</h3><p>100% of fabrics are tested against international standards before anything enters production. Every piece in the range, every time.</p></div>
       </div>
     </div>
   </section>
