@@ -130,9 +130,13 @@
       padding-bottom:env(safe-area-inset-bottom)}
 
     /* hero: monogram backplate */
-    #home-hero .hp-plate{position:absolute;left:-9%;top:-46%;height:190%;width:auto;opacity:0;pointer-events:none;
-      filter:invert(1);animation:hpPlate .9s .2s ease-out forwards;z-index:2}
-    @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.16;transform:none}}
+    /* Monogram behind the hero copy. Opacity lives on the element, NOT only on
+       the animation — if the animation is ever blocked (reduced motion, a
+       stalled paint), the mark must still be visible rather than stuck at 0. */
+    #home-hero .hp-plate{position:absolute;left:-9%;top:-46%;height:190%;width:auto;opacity:.2;pointer-events:none;
+      filter:invert(1);animation:hpPlate .9s .2s ease-out both;z-index:2}
+    @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.2;transform:none}}
+    @media(prefers-reduced-motion:reduce){#home-hero .hp-plate{animation:none;opacity:.2}}
     @media(max-width:767px){#home-hero .hp-plate{left:-22%;top:-30%;height:150%}}
 
 
@@ -329,16 +333,6 @@
         <div class="hp-feat fu d2"><h3>Priced Honestly</h3><p>Performance Leggings, KES 5,500. Built at international manufacturing tier and sold direct &mdash; what you pay for is the garment, not the journey it took to reach you.</p></div>
         <div class="hp-feat fu d3"><h3>Lab-Tested Before Production</h3><p>100% of fabrics are tested against international standards before anything enters production. Every piece in the range, every time.</p></div>
       </div>
-    </div>
-  </section>
-
-  <!-- WHY REVAÍ (dark) -->
-  <section style="background:#0a0a0a" class="py-16 md:py-20 px-6">
-    <div class="max-w-3xl mx-auto text-left">
-      <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Why REVAÍ</p>
-      <h2 class="t-h2 fu d1 text-white mb-6">Quality activewear. No gatekeeping.</h2>
-      <p class="fu d2 text-gray-400 text-lg leading-relaxed mb-10">Good activewear was either overpriced, badly fitting, or made for a body type that wasn&rsquo;t yours. We built REVA&Iacute; to fix that. Technical fabric, anatomical sizing, and prices that don&rsquo;t make you think twice &mdash; whether you&rsquo;re just starting out or you&rsquo;ve been at it for years.</p>
-      <a href="collections.html" class="fu d3 inline-flex items-center gap-2 bg-white text-black font-medium text-sm px-7 py-3.5 rounded-xl hover:bg-gray-100 transition-colors" style="text-decoration:none">Shop Now</a>
     </div>
   </section>
 
