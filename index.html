@@ -116,14 +116,14 @@
     .hp-door span{position:absolute;left:16px;bottom:14px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.14em;z-index:2}
     .hp-door:after{content:"";position:absolute;inset:auto 0 0;height:60%;background:linear-gradient(0deg,rgba(0,0,0,.72),transparent)}
 
-    .hp-first{background:#0a0a0a;color:#fff}
-    .hp-first .hp-in{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;padding:clamp(44px,5vw,72px) 0}
-    .hp-first h3{font-size:clamp(1.3rem,1rem + 1.1vw,1.9rem);font-weight:700;letter-spacing:-.02em;color:#fff}
-    .hp-first p{margin-top:8px;font-size:14px;color:#a8a8a8;max-width:42ch}
-    .hp-f{display:flex;border:1px solid #333}
-    .hp-f input{flex:1;background:none;border:0;color:#fff;font:inherit;font-size:14px;padding:14px 16px;outline:none}
-    .hp-f input::placeholder{color:#6d6d6d}
-    .hp-f button{background:#fff;color:#000;border:0;font:inherit;font-size:13px;font-weight:600;padding:0 22px;cursor:pointer;min-height:44px}
+    .hp-first{background:#fff;border-top:1px solid #e5e7eb}
+    .hp-first .hp-in{max-width:520px;margin:0 auto;text-align:center;padding:clamp(34px,4vw,52px) 0}
+    .hp-first h3{font-size:19px;font-weight:600;letter-spacing:-.015em;color:#0a0a0a}
+    .hp-first p{margin-top:7px;font-size:14px;color:#6b7280}
+    .hp-f{display:flex;border:1px solid #d9d9d9;margin:20px auto 0;max-width:420px}
+    .hp-f input{flex:1;background:none;border:0;color:#0a0a0a;font:inherit;font-size:14px;padding:12px 14px;outline:none;text-align:center}
+    .hp-f input::placeholder{color:#9ca3af}
+    .hp-f button{background:#0a0a0a;color:#fff;border:0;font:inherit;font-size:13px;font-weight:600;padding:0 20px;cursor:pointer;min-height:44px}
 
     .hp-sticky{position:fixed;left:0;right:0;bottom:0;z-index:70;background:#0a0a0a;color:#fff;height:56px;
       display:none;align-items:center;justify-content:center;font-size:14px;font-weight:600;letter-spacing:.06em;
@@ -131,8 +131,8 @@
 
     /* hero: monogram backplate */
     #home-hero .hp-plate{position:absolute;left:-9%;top:-46%;height:190%;width:auto;opacity:0;pointer-events:none;
-      filter:invert(1);animation:hpPlate .9s .2s ease-out forwards;z-index:1}
-    @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.11;transform:none}}
+      filter:invert(1);animation:hpPlate .9s .2s ease-out forwards;z-index:2}
+    @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.16;transform:none}}
     @media(max-width:767px){#home-hero .hp-plate{left:-22%;top:-30%;height:150%}}
 
 
@@ -235,14 +235,10 @@
     </video>
     <img class="hp-plate" src="images/revai-icon.png" alt="" aria-hidden="true">
     <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.22) 48%, rgba(0,0,0,.38) 100%)"></div>
-    <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 pt-24" style="padding-bottom:52px;z-index:2">
+    <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 pt-24" style="padding-bottom:52px;z-index:3">
       <p class="ha d1 text-xs font-semibold uppercase tracking-widest text-gray-300 mb-6">Collection 01 — SS26 &middot; Now in Nairobi</p>
       <h1 class="t-hero ha d2 mb-4 text-white" style="max-width:900px">Find Your Revival.</h1>
-      <p class="ha d3 text-lg text-gray-200 leading-relaxed max-w-lg mb-8">REVAÍ is activewear built for everyone — from your first class to your hundredth kilometre. High quality, honest sizing, and prices that make performance accessible.</p>
-      <div class="ha d3 flex flex-wrap items-center gap-x-7 gap-y-4">
-        <a href="#shop" class="btn-p px-7 py-3 text-sm" style="background:#fff;color:#000;border-radius:6px">Shop Collection 01</a>
-        <a href="#features" class="text-sm text-white" style="border-bottom:1px solid rgba(255,255,255,.7);padding-bottom:2px">Why it costs what it costs &darr;</a>
-      </div>
+      <p class="ha d3 text-lg text-gray-200 leading-relaxed max-w-lg">REVAÍ is activewear built for everyone — from your first class to your hundredth kilometre. High quality, honest sizing, and prices that make performance accessible.</p>
     </div>
   </section>
 
@@ -309,15 +305,6 @@
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- SERVICE LINE -->
-  <section class="hp-svc">
-    <div class="max-w-6xl mx-auto px-6"><div class="hp-in">
-      <div class="fu"><b>Payment</b><p>M-Pesa and major debit and credit cards. All prices in KES, no hidden conversion fees.</p></div>
-      <div class="fu d1"><b>Delivery</b><p>Free on orders over KES 20,000. Standard delivery KES 200&ndash;400. Dispatch in 1&ndash;2 business days, arrival in 2&ndash;3.</p></div>
-      <div class="fu d2"><b>Guarantee</b><p>30-day performance guarantee. If a piece doesn&rsquo;t perform, we make it right.</p></div>
-    </div></div>
   </section>
 
   <!-- BUILT TO MOVE — six-card information grid (copy from the previous homepage) -->
