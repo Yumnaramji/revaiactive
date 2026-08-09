@@ -51,10 +51,102 @@
        padding on a 405px box clips the eyebrow off the top on a 667px-tall
        phone. 72px keeps the copy clear of the fixed 64px nav at the 405px
        floor without ever binding before min-height does. */
-    #home-hero{height:78vh;min-height:540px}
+    #home-hero{height:62vh;min-height:470px}
     @media(max-width:767px){
-      #home-hero{height:auto;min-height:max(58.5vh,405px)}
+      #home-hero{height:auto;min-height:max(50vh,360px)}
       #home-hero .home-hero-body{padding-top:4.5rem}
+    }
+  
+    /* ===== HOMEPAGE v2 — film hero + shopfront (8 Aug 2026) ===== */
+    .hp-rail{border-bottom:1px solid #e5e7eb}
+    .hp-rail .hp-in{display:flex;gap:10px;overflow-x:auto;padding:16px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .hp-rail .hp-in::-webkit-scrollbar{display:none}
+    .hp-rail a{flex:0 0 auto;border:1px solid #e5e7eb;padding:9px 18px;font-size:13px;font-weight:500;border-radius:2px;white-space:nowrap;color:#0a0a0a;transition:border-color .15s}
+    .hp-rail a:hover{border-color:#0a0a0a}
+    .hp-rail a.on{background:#0a0a0a;color:#fff;border-color:#0a0a0a}
+
+    .hp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .hp-card{position:relative}
+    .hp-ph{position:relative;overflow:hidden;background:#f4f4f4;aspect-ratio:3/4}
+    .hp-ph img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+    .hp-meta{padding-top:12px}
+    .hp-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+    .hp-row p{margin:0}
+    .hp-name{font-size:15px;font-weight:600;color:#0a0a0a}
+    .hp-price{font-size:15px;font-weight:700;color:#0a0a0a;white-space:nowrap}
+    .hp-sizes{margin-top:6px;display:flex;flex-wrap:wrap}
+    /* neutralise the Tailwind state classes the size-pill JS toggles */
+    .hp-card .size-pill{background:none!important;border:0!important;border-radius:0!important;
+      padding:2px 0!important;font-size:11px!important;font-weight:500;letter-spacing:.1em;
+      color:#8a8a8a!important;position:relative;cursor:pointer;transition:color .15s}
+    .hp-card .size-pill + .size-pill{margin-left:14px}
+    .hp-card .size-pill + .size-pill::before{content:"\00b7";position:absolute;left:-9px;color:#c9c9c9}
+    .hp-card .size-pill:hover{color:#0a0a0a!important}
+    .hp-card .size-pill.selected{color:#0a0a0a!important;text-decoration:underline;text-underline-offset:3px}
+    .hp-add{position:absolute;left:0;right:0;bottom:0;z-index:3;width:100%;height:44px;border:0;border-radius:0;
+      background:rgba(255,255,255,.97);color:#0a0a0a;font-size:13px;font-weight:600;cursor:pointer;
+      transform:translateY(100%);transition:transform .25s ease}
+    @media(hover:hover){.hp-card:hover .hp-add{transform:none}}
+    .hp-add:focus-visible{transform:none;outline:2px solid #0a0a0a;outline-offset:-2px}
+    @media(hover:none){.hp-add{transform:none;background:rgba(255,255,255,.95);height:40px;font-size:12px}}
+
+    .hp-svc{background:#f6f6f6;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb}
+    .hp-svc .hp-in{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;padding:34px 0}
+    .hp-svc b{display:block;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;color:#0a0a0a}
+    .hp-svc p{font-size:14px;color:#5a5a5a;max-width:32ch}
+
+    .hp-gap{background:#0a0a0a;color:#fff}
+    .hp-gap .hp-in{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;padding:clamp(56px,7vw,96px) 0;align-items:center}
+    .hp-gap h2{font-size:clamp(1.6rem,1.1rem + 1.9vw,2.6rem);font-weight:700;letter-spacing:-.025em;line-height:1.12;max-width:15ch;color:#fff}
+    .hp-gap .mech{margin-top:16px;font-size:15px;color:#b9b9b9;max-width:44ch}
+    .hp-gap .fine{margin-top:10px;font-size:13px;color:#8a8a8a;max-width:46ch}
+    .hp-bars{display:grid;gap:22px}
+    .hp-bar .lb{font-size:13px;color:#b9b9b9;margin-bottom:8px;display:block}
+    .hp-bar .tr{height:6px;background:#242424;position:relative}
+    .hp-bar .tr b{position:absolute;inset:0 auto 0 0;display:block;background:#5a5a5a}
+    .hp-bar.us .lb{color:#fff}
+    .hp-bar.us .tr b{background:#fff;width:32%}
+    .hp-bar .amt{display:block;margin-top:8px;font-size:13px;color:#b9b9b9}
+    .hp-bar.us .amt{color:#fff;font-weight:700}
+
+    .hp-doors{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .hp-door{position:relative;overflow:hidden;display:block}
+    .hp-door img{aspect-ratio:1/1;object-fit:cover;width:100%;display:block;transition:transform .45s}
+    .hp-door:hover img{transform:scale(1.04)}
+    .hp-door span{position:absolute;left:16px;bottom:14px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.14em;z-index:2}
+    .hp-door:after{content:"";position:absolute;inset:auto 0 0;height:60%;background:linear-gradient(0deg,rgba(0,0,0,.72),transparent)}
+
+    .hp-first{background:#0a0a0a;color:#fff}
+    .hp-first .hp-in{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;padding:clamp(44px,5vw,72px) 0}
+    .hp-first h3{font-size:clamp(1.3rem,1rem + 1.1vw,1.9rem);font-weight:700;letter-spacing:-.02em;color:#fff}
+    .hp-first p{margin-top:8px;font-size:14px;color:#a8a8a8;max-width:42ch}
+    .hp-f{display:flex;border:1px solid #333}
+    .hp-f input{flex:1;background:none;border:0;color:#fff;font:inherit;font-size:14px;padding:14px 16px;outline:none}
+    .hp-f input::placeholder{color:#6d6d6d}
+    .hp-f button{background:#fff;color:#000;border:0;font:inherit;font-size:13px;font-weight:600;padding:0 22px;cursor:pointer;min-height:44px}
+
+    .hp-sticky{position:fixed;left:0;right:0;bottom:0;z-index:70;background:#0a0a0a;color:#fff;height:56px;
+      display:none;align-items:center;justify-content:center;font-size:14px;font-weight:600;letter-spacing:.06em;
+      padding-bottom:env(safe-area-inset-bottom)}
+
+    /* hero: monogram backplate */
+    #home-hero .hp-plate{position:absolute;left:-6%;top:-34%;height:150%;width:auto;opacity:0;pointer-events:none;
+      filter:invert(1);animation:hpPlate .9s .2s ease-out forwards;z-index:1}
+    @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.08;transform:none}}
+
+    @media(max-width:900px){
+      .hp-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+      .hp-svc .hp-in{grid-template-columns:1fr;gap:22px}
+      .hp-gap .hp-in{grid-template-columns:1fr;gap:34px}
+      .hp-doors{grid-template-columns:repeat(2,1fr)}
+      .hp-first .hp-in{grid-template-columns:1fr}
+      .hp-sticky{display:flex}
+      body{padding-bottom:56px}
+      .hp-row{display:block}
+      .hp-row p+p{margin-top:3px}
+      .hp-sizes{gap:3px 9px}
+      .hp-card .size-pill + .size-pill{margin-left:0}
+      .hp-card .size-pill + .size-pill::before{display:none}
     }
   </style>
   <script src="js/mobile-fix.js?v=20260808b" defer></script>
@@ -132,213 +224,191 @@
     <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.72">
       <source src="images/homepage-hero.mp4" type="video/mp4">
     </video>
+    <img class="hp-plate" src="images/revai-icon.png" alt="" aria-hidden="true">
     <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.22) 48%, rgba(0,0,0,.38) 100%)"></div>
-    <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 pt-40" style="padding-bottom:64px">
-      <p class="ha d1 text-xs font-semibold uppercase tracking-widest text-gray-300 mb-6">Collection 01 — SS26</p>
+    <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 pt-28" style="padding-bottom:56px;z-index:2">
+      <p class="ha d1 text-xs font-semibold uppercase tracking-widest text-gray-300 mb-6">Collection 01 — SS26 &middot; Now in Nairobi</p>
       <h1 class="t-hero ha d2 mb-4 text-white" style="max-width:900px">Find Your Revival.</h1>
-      <p class="ha d3 text-lg text-gray-200 leading-relaxed max-w-xl mb-8">REVAÍ is activewear built for everyone — from your first class to your hundredth kilometre. High quality, honest sizing, and prices that make performance accessible.</p>
-      <div class="ha d3 flex flex-wrap gap-3">
-        <a href="collections.html" class="btn-p px-7 py-3 text-sm" style="background:#fff;color:#000;border-radius:6px">Shop Collection 01</a>
-        <a href="about.html" class="btn-s px-7 py-3 text-sm" style="border-color:#fff;color:#fff;border-radius:6px">Our Story</a>
+      <p class="ha d3 text-lg text-gray-200 leading-relaxed max-w-lg mb-8">Performance activewear engineered to international specification. One colourway. S to XXL. Leggings from KES 5,500.</p>
+      <div class="ha d3 flex flex-wrap items-center gap-x-7 gap-y-4">
+        <a href="#shop" class="btn-p px-7 py-3 text-sm" style="background:#fff;color:#000;border-radius:6px">Shop Collection 01</a>
+        <a href="#gap" class="text-sm text-white" style="border-bottom:1px solid rgba(255,255,255,.7);padding-bottom:2px">Why it costs what it costs &darr;</a>
       </div>
     </div>
   </section>
 
-  <!-- FEATURES GRID -->
-  <section id="features" class="py-20 md:py-24 px-6">
+  <!-- CATEGORY RAIL -->
+  <div class="hp-rail" id="shop">
+    <div class="max-w-6xl mx-auto px-6"><div class="hp-in">
+      <a class="on" href="collections.html">All</a>
+      <a href="collections.html">Leggings</a>
+      <a href="collections.html">Sports bras</a>
+      <a href="collections.html">Tops</a>
+      <a href="collections.html">Men's</a>
+      <a href="collections.html">Outerwear</a>
+      <a href="collections.html">Accessories</a>
+      <a href="collection-yoga.html">Yoga</a>
+      <a href="collection-running.html">Running</a>
+      <a href="collection-gym.html">Gym</a>
+      <a href="collection-golf.html">Golf</a>
+    </div></div>
+  </div>
+
+  <!-- COLLECTION 01 -->
+  <section class="py-14 md:py-16 px-6">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="t-h2 fu mb-4">Built to Move. Made to Fit.</h2>
-        <p class="fu d1 text-gray-500 text-lg max-w-xl mx-auto">Every piece specified fabric by fabric, weight by weight, before a single unit was cut.</p>
+      <div class="flex items-end justify-between gap-4 flex-wrap mb-6">
+        <div>
+          <h2 class="t-h2 fu">Collection 01</h2>
+          <p class="fu d1 text-xs font-semibold uppercase tracking-widest text-gray-400 mt-2">Every piece cut S to XXL</p>
+        </div>
+        <a href="collections.html" class="fu d1 text-sm font-medium" style="border-bottom:1px solid currentColor;padding-bottom:2px">See all &rarr;</a>
       </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- Card 1: Specified Per Garment -->
-        <div class="card fu d1">
-          <div style="width:48px;height:48px;background:#f9fafb;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 7h18M3 12h10M3 17h6"/><rect x="15" y="10" width="7" height="7" rx="1"/></svg>
+      <div class="hp-grid">
+        <div class="hp-card fu d1">
+          <div class="hp-ph">
+            <img src="images/running-leggings-w-full-front.jpg" alt="Performance Leggings" loading="lazy">
+            <button class="hp-add" onclick="addToBag('Performance Leggings', 5500, 'running-leggings-w')">Add to Bag</button>
           </div>
-          <h3 class="t-h3 mb-3">Specified Per Garment</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">Fourteen fabrics across thirteen garments — each piece gets the material its job demands. Composition and weight are published on every product page.</p>
-        </div>
-
-        <!-- Card 2: Four-Way Stretch Knits -->
-        <div class="card fu d2">
-          <div style="width:48px;height:48px;background:#f9fafb;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">Performance Leggings</p><p class="hp-price">KES 5,500</p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="running-leggings-w" data-size="S">S</button><button class="size-pill" data-product="running-leggings-w" data-size="M">M</button><button class="size-pill" data-product="running-leggings-w" data-size="L">L</button><button class="size-pill" data-product="running-leggings-w" data-size="XL">XL</button><button class="size-pill" data-product="running-leggings-w" data-size="XXL">XXL</button></div>
           </div>
-          <h3 class="t-h3 mb-3">Four-Way Stretch Knits</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">The performance knits stretch four ways and snap back — a quarter of the legging fabric is pure elastane. Full range of motion, no restriction.</p>
         </div>
-
-        <!-- Card 3: Moisture Management -->
-        <div class="card fu d3">
-          <div style="width:48px;height:48px;background:#f9fafb;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+        <div class="hp-card fu d2">
+          <div class="hp-ph">
+            <img src="images/high-impact-bra.jpg" alt="High Impact Sports Bra" loading="lazy">
+            <button class="hp-add" onclick="addToBag('High Impact Sports Bra', 4950, 'high-impact-bra')">Add to Bag</button>
           </div>
-          <h3 class="t-h3 mb-3">Moisture Management</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">The training fabrics pull sweat off the skin and dry fast — engineered for sessions one degree south of the equator.</p>
-        </div>
-
-        <!-- Card 4: S to XXL, Cut for Every Body -->
-        <div class="card fu d1">
-          <div style="width:48px;height:48px;background:#f9fafb;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="7" r="2.5"/><path d="M3 20a6 6 0 0112 0"/><path d="M17 14a4 4 0 014 4"/></svg>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">High Impact Sports Bra</p><p class="hp-price">KES 4,950</p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="high-impact-bra" data-size="S">S</button><button class="size-pill" data-product="high-impact-bra" data-size="M">M</button><button class="size-pill" data-product="high-impact-bra" data-size="L">L</button><button class="size-pill" data-product="high-impact-bra" data-size="XL">XL</button><button class="size-pill" data-product="high-impact-bra" data-size="XXL">XXL</button></div>
           </div>
-          <h3 class="t-h3 mb-3">S to XXL, Cut for Every Body</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">The apparel range runs S through XXL, bought so the larger sizes sit in the middle of the run &mdash; not tacked on the end as an afterthought.</p>
         </div>
-
-        <!-- Card 5: Priced Honestly -->
-        <div class="card fu d2">
-          <div style="width:48px;height:48px;background:#f9fafb;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.6 13.4 12 22l-9-9V4a1 1 0 0 1 1-1h8l8.6 8.6a1.4 1.4 0 0 1 0 1.8Z"/><circle cx="7.5" cy="7.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+        <div class="hp-card fu d3">
+          <div class="hp-ph">
+            <img src="images/quarter-zip-m.jpg" alt="Men's Quarter Zip" loading="lazy">
+            <button class="hp-add" onclick="addToBag('Men\'s Quarter Zip', 5600, 'quarter-zip-m')">Add to Bag</button>
           </div>
-          <h3 class="t-h3 mb-3">Priced Honestly</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">Performance Leggings, KES 5,500. Built at international manufacturing tier and sold direct &mdash; what you pay for is the garment, not the journey it took to reach you.</p>
-        </div>
-
-        <!-- Card 6: Lab-Tested Before Production -->
-        <div class="card fu d3">
-          <div style="width:48px;height:48px;background:#f9fafb;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6.5L4.8 18a2 2 0 0 0 1.7 3h11a2 2 0 0 0 1.7-3L14 9.5V3"/><path d="M7.2 15h9.6"/></svg>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">Men's Quarter Zip</p><p class="hp-price">KES 5,600</p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="quarter-zip-m" data-size="S">S</button><button class="size-pill" data-product="quarter-zip-m" data-size="M">M</button><button class="size-pill" data-product="quarter-zip-m" data-size="L">L</button><button class="size-pill" data-product="quarter-zip-m" data-size="XL">XL</button><button class="size-pill" data-product="quarter-zip-m" data-size="XXL">XXL</button></div>
           </div>
-          <h3 class="t-h3 mb-3">Lab-Tested Before Production</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">100% of fabrics are tested against international standards before anything enters production. Every piece in the range, every time.</p>
         </div>
-
+        <div class="hp-card fu d3">
+          <div class="hp-ph">
+            <img src="images/jacket-w.jpg" alt="Women's Jacket" loading="lazy">
+            <button class="hp-add" onclick="addToBag('Women\'s Jacket', 7500, 'jacket-w')">Add to Bag</button>
+          </div>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">Women's Jacket</p><p class="hp-price">KES 7,500</p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="jacket-w" data-size="S">S</button><button class="size-pill" data-product="jacket-w" data-size="M">M</button><button class="size-pill" data-product="jacket-w" data-size="L">L</button><button class="size-pill" data-product="jacket-w" data-size="XL">XL</button><button class="size-pill" data-product="jacket-w" data-size="XXL">XXL</button></div>
+          </div>
+        </div>
+        <div class="hp-card fu d3">
+          <div class="hp-ph">
+            <img src="images/flared-leggings-w.jpg" alt="Flared Leggings" loading="lazy">
+            <button class="hp-add" onclick="addToBag('Flared Leggings', 5600, 'flared-leggings-w')">Add to Bag</button>
+          </div>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">Flared Leggings</p><p class="hp-price">KES 5,600</p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="flared-leggings-w" data-size="S">S</button><button class="size-pill" data-product="flared-leggings-w" data-size="M">M</button><button class="size-pill" data-product="flared-leggings-w" data-size="L">L</button><button class="size-pill" data-product="flared-leggings-w" data-size="XL">XL</button><button class="size-pill" data-product="flared-leggings-w" data-size="XXL">XXL</button></div>
+          </div>
+        </div>
+        <div class="hp-card fu d3">
+          <div class="hp-ph">
+            <img src="images/tshirt-w.jpg" alt="Women's T-Shirt" loading="lazy">
+            <button class="hp-add" onclick="addToBag('Women\'s T-Shirt', 4500, 'tshirt-w')">Add to Bag</button>
+          </div>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">Women's T-Shirt</p><p class="hp-price">KES 4,500</p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="tshirt-w" data-size="S">S</button><button class="size-pill" data-product="tshirt-w" data-size="M">M</button><button class="size-pill" data-product="tshirt-w" data-size="L">L</button><button class="size-pill" data-product="tshirt-w" data-size="XL">XL</button><button class="size-pill" data-product="tshirt-w" data-size="XXL">XXL</button></div>
+          </div>
+        </div>
+        <div class="hp-card fu d3">
+          <div class="hp-ph">
+            <img src="images/training-pants-m.jpg" alt="Training Pants" loading="lazy">
+            <button class="hp-add" onclick="addToBag('Training Pants', 6600, 'training-pants-m')">Add to Bag</button>
+          </div>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">Training Pants</p><p class="hp-price">KES 6,600</p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="training-pants-m" data-size="S">S</button><button class="size-pill" data-product="training-pants-m" data-size="M">M</button><button class="size-pill" data-product="training-pants-m" data-size="L">L</button><button class="size-pill" data-product="training-pants-m" data-size="XL">XL</button><button class="size-pill" data-product="training-pants-m" data-size="XXL">XXL</button></div>
+          </div>
+        </div>
+        <div class="hp-card fu d3">
+          <div class="hp-ph">
+            <img src="images/gym-bag.jpg" alt="Gym Bag" loading="lazy">
+            <button class="hp-add" onclick="addToBag('Gym Bag', 7500, 'gym-bag')">Add to Bag</button>
+          </div>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">Gym Bag</p><p class="hp-price">KES 7,500</p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="gym-bag" data-size="One Size">One Size</button></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- DIFFERENTIATOR (DARK) -->
-  <section style="background:#0a0a0a" class="py-20 md:py-24 px-6">
-    <div class="max-w-3xl mx-auto text-left">
-      <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Why REVAÍ</p>
-      <h2 class="t-h2 fu d1 text-white mb-6">Quality activewear. No gatekeeping.</h2>
-      <p class="fu d2 text-gray-400 text-lg leading-relaxed mb-10">Good activewear was either overpriced, badly fitting, or made for a body type that wasn't yours. We built REVAÍ to fix that. Technical fabric, anatomical sizing, and prices that don't make you think twice — whether you're just starting out or you've been at it for years.</p>
-      <a href="collections.html" class="fu d3 inline-flex items-center gap-2 bg-white text-black font-medium text-sm px-7 py-3.5 rounded-xl hover:bg-gray-100 transition-colors" style="text-decoration:none">Shop Now</a>
-    </div>
+  <!-- SERVICE LINE -->
+  <section class="hp-svc">
+    <div class="max-w-6xl mx-auto px-6"><div class="hp-in">
+      <div class="fu"><b>Payment</b><p>M-Pesa and major debit and credit cards. All prices in KES, no hidden conversion fees.</p></div>
+      <div class="fu d1"><b>Delivery</b><p>Free on orders over KES 20,000. Standard delivery KES 200&ndash;400. Dispatch in 1&ndash;2 business days, arrival in 2&ndash;3.</p></div>
+      <div class="fu d2"><b>Guarantee</b><p>30-day performance guarantee. If a piece doesn&rsquo;t perform, we make it right.</p></div>
+    </div></div>
   </section>
 
-  <!-- FEATURED PRODUCTS -->
-  <section id="products" class="py-20 md:py-24 px-6 bg-gray-50">
+  <!-- THE GAP -->
+  <section class="hp-gap" id="gap">
+    <div class="max-w-6xl mx-auto px-6"><div class="hp-in">
+      <div>
+        <p class="fu text-xs font-semibold uppercase tracking-widest mb-4" style="color:#8a8a8a">The gap</p>
+        <h2 class="fu d1">We didn&rsquo;t follow a trend. We filled a gap.</h2>
+        <p class="fu d2 mech">Same tech-pack tier. Same class of factory. Without the importer&rsquo;s markup.</p>
+        <p class="fu d2 fine">Priced from the specification, not from the shelf it landed on.</p>
+      </div>
+      <div class="hp-bars fu d2">
+        <div class="hp-bar them">
+          <span class="lb">Comparable construction, imported and retailed in Nairobi</span>
+          <div class="tr"><b style="width:100%"></b></div>
+          <span class="amt">KES 12,000 &ndash; 18,000</span>
+        </div>
+        <div class="hp-bar us">
+          <span class="lb">REVA&Iacute; Performance Leggings</span>
+          <div class="tr"><b></b></div>
+          <span class="amt">KES 5,500</span>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- SHOP BY ACTIVITY -->
+  <section class="py-14 md:py-16 px-6">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="t-h2 fu mb-3">New in — SS26</h2>
-        <p class="fu d1 text-gray-500 text-lg">The full REVAÍ launch collection. Every piece available now.</p>
-      </div>
-
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
-
-        <!-- Product 1: Performance Leggings -->
-        <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all duration-250 fu d1">
-          <div style="aspect-ratio:3/4;position:relative;overflow:hidden;">
-            <img src="images/running-leggings-w-full-front.jpg" alt="Performance Leggings" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-          </div>
-          <div class="p-5">
-            <span class="inline-block bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full mb-1">Women's</span>
-            <h3 class="text-base font-semibold mt-1">Performance Leggings</h3>
-            <p class="text-sm font-bold mt-1">KES 5,500</p>
-            <div class="flex items-center gap-2 mt-3">
-              <span style="width:16px;height:16px;border-radius:50%;background:#000;display:inline-block;cursor:pointer" title="Black"></span>
-              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
-              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
-              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
-            </div>
-            <div class="flex flex-wrap gap-1 mt-3">
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="running-leggings-w" data-size="S">S</button>
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="running-leggings-w" data-size="M">M</button>
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="running-leggings-w" data-size="L">L</button>
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="running-leggings-w" data-size="XL">XL</button>
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="running-leggings-w" data-size="XXL">XXL</button>
-            </div>
-            <button class="btn-p w-full justify-center mt-3 text-sm py-2.5" onclick="addToBag('Performance Leggings', 5500, 'running-leggings-w')">Add to Bag</button>
-          </div>
-        </div>
-
-        <!-- Product 2: High Impact Sports Bra -->
-        <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all duration-250 fu d2">
-          <div style="aspect-ratio:3/4;position:relative;overflow:hidden;">
-            <img src="images/high-impact-bra.jpg" alt="High Impact Sports Bra" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-          </div>
-          <div class="p-5">
-            <span class="inline-block bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full mb-1">Women's</span>
-            <h3 class="text-base font-semibold mt-1">High Impact Sports Bra</h3>
-            <p class="text-sm font-bold mt-1">KES 4,950</p>
-            <div class="flex items-center gap-2 mt-3">
-              <span style="width:16px;height:16px;border-radius:50%;background:#000;display:inline-block;cursor:pointer" title="Black"></span>
-              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
-              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
-              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
-            </div>
-            <div class="flex flex-wrap gap-1 mt-3">
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="high-impact-bra" data-size="S">S</button>
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="high-impact-bra" data-size="M">M</button>
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="high-impact-bra" data-size="L">L</button>
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="high-impact-bra" data-size="XL">XL</button>
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="high-impact-bra" data-size="XXL">XXL</button>
-            </div>
-            <button class="btn-p w-full justify-center mt-3 text-sm py-2.5" onclick="addToBag('High Impact Sports Bra', 4950, 'high-impact-bra')">Add to Bag</button>
-          </div>
-        </div>
-
-        <!-- Product 3: Men's Quarter Zip -->
-        <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all duration-250 fu d3">
-          <div style="aspect-ratio:3/4;position:relative;overflow:hidden;">
-            <img src="images/quarter-zip-m.jpg" alt="Men's Quarter Zip" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-          </div>
-          <div class="p-5">
-            <span class="inline-block bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full mb-1">Men's</span>
-            <h3 class="text-base font-semibold mt-1">Men's Quarter Zip</h3>
-            <p class="text-sm font-bold mt-1">KES 5,600</p>
-            <div class="flex items-center gap-2 mt-3">
-              <span style="width:16px;height:16px;border-radius:50%;background:#000;display:inline-block;cursor:pointer" title="Black"></span>
-              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
-              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
-              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
-            </div>
-            <div class="flex flex-wrap gap-1 mt-3">
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="quarter-zip-m" data-size="S">S</button>
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="quarter-zip-m" data-size="M">M</button>
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="quarter-zip-m" data-size="L">L</button>
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="quarter-zip-m" data-size="XL">XL</button>
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="quarter-zip-m" data-size="XXL">XXL</button>
-            </div>
-            <button class="btn-p w-full justify-center mt-3 text-sm py-2.5" onclick="addToBag('Men\'s Quarter Zip', 5600, 'quarter-zip-m')">Add to Bag</button>
-          </div>
-        </div>
-
-        <!-- Product 4: Gym Bag -->
-        <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all duration-250 fu d4">
-          <div style="aspect-ratio:3/4;position:relative;overflow:hidden;">
-            <img src="images/gym-bag.jpg" alt="Gym Bag" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-          </div>
-          <div class="p-5">
-            <h3 class="text-base font-semibold mt-1">Gym Bag</h3>
-            <p class="text-sm font-bold mt-1">KES 7,500</p>
-            <div class="flex items-center gap-2 mt-3">
-              <span style="width:16px;height:16px;border-radius:50%;background:#000;display:inline-block;cursor:pointer" title="Black"></span>
-              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
-              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
-              <span style="width:16px;height:16px;border-radius:50%;border:1.5px dashed #d1d5db;display:inline-block;cursor:pointer" title="More colours coming soon"></span>
-            </div>
-            <div class="flex flex-wrap gap-1 mt-3">
-              <button class="size-pill border border-gray-200 text-gray-700 rounded-lg px-2 py-1 text-xs cursor-pointer hover:border-gray-400 transition-colors" data-product="gym-bag" data-size="One Size">One Size</button>
-            </div>
-            <button class="btn-p w-full justify-center mt-3 text-sm py-2.5" onclick="addToBag('Gym Bag', 7500, 'gym-bag')">Add to Bag</button>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="text-center mt-12 fu">
-        <a href="collections.html" class="text-sm font-medium text-gray-600 hover:text-black transition-colors inline-flex items-center gap-2">View all products <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <h2 class="t-h2 fu mb-6">Shop by activity</h2>
+      <div class="hp-doors">
+        <a class="hp-door fu" href="collection-yoga.html"><img src="images/hero-yoga.jpg" alt="Yoga" loading="lazy"><span>YOGA</span></a>
+        <a class="hp-door fu d1" href="collection-running.html"><img src="images/hero-running.jpg" alt="Running" loading="lazy"><span>RUNNING</span></a>
+        <a class="hp-door fu d2" href="collection-gym.html"><img src="images/hero-gym.jpg" alt="Gym &amp; Training" loading="lazy"><span>GYM</span></a>
+        <a class="hp-door fu d3" href="collection-golf.html"><img src="images/hero-golf.jpg" alt="Golf" loading="lazy"><span>GOLF</span></a>
       </div>
     </div>
   </section>
 
-</main>
+  <!-- FIRST ACCESS -->
+  <section class="hp-first">
+    <div class="max-w-6xl mx-auto px-6"><div class="hp-in">
+      <div class="fu">
+        <h3>Collection 01 is small on purpose.</h3>
+        <p>Sizes sell through. Join the list for restocks and first access to what comes next.</p>
+      </div>
+      <form class="hp-f fu d1" onsubmit="showToast('Thanks — you\'re on the list \u2713');return false;">
+        <label for="hp-email" class="sr-only">Email address</label>
+        <input id="hp-email" type="email" placeholder="Email address" required>
+        <button type="submit">Join</button>
+      </form>
+    </div></div>
+  </section>
 
 <!-- FOOTER -->
 <footer style="background:#0a0a0a" class="px-6 pt-10 pb-8 border-t border-gray-800">
@@ -464,5 +534,6 @@ if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySe
   });
 })();
 </script>
+<a class="hp-sticky" href="#shop">SHOP COLLECTION 01 &rarr;</a>
 </body>
 </html>
