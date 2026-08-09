@@ -133,11 +133,11 @@
     /* Monogram behind the hero copy. Opacity lives on the element, NOT only on
        the animation — if the animation is ever blocked (reduced motion, a
        stalled paint), the mark must still be visible rather than stuck at 0. */
-    #home-hero .hp-plate{position:absolute;left:-9%;top:-46%;height:190%;width:auto;opacity:.2;pointer-events:none;
+    #home-hero .hp-plate{position:absolute;left:-5%;top:-20%;height:142%;width:auto;opacity:.2;pointer-events:none;
       filter:invert(1);animation:hpPlate .9s .2s ease-out both;z-index:2}
     @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.2;transform:none}}
     @media(prefers-reduced-motion:reduce){#home-hero .hp-plate{animation:none;opacity:.2}}
-    @media(max-width:767px){#home-hero .hp-plate{left:-22%;top:-30%;height:150%}}
+    @media(max-width:767px){#home-hero .hp-plate{left:-14%;top:-10%;height:112%}}
 
 
     /* Six-card information grid — copy restored from the previous homepage,
