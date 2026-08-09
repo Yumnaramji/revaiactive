@@ -51,10 +51,10 @@
        padding on a 405px box clips the eyebrow off the top on a 667px-tall
        phone. 72px keeps the copy clear of the fixed 64px nav at the 405px
        floor without ever binding before min-height does. */
-    #home-hero{height:62vh;min-height:470px}
+    #home-hero{height:52vh;min-height:420px}
     @media(max-width:767px){
-      #home-hero{height:auto;min-height:max(50vh,360px)}
-      #home-hero .home-hero-body{padding-top:4.5rem}
+      #home-hero{height:auto;min-height:max(44vh,330px)}
+      #home-hero .home-hero-body{padding-top:4rem}
     }
   
     /* ===== HOMEPAGE v2 — film hero + shopfront (8 Aug 2026) ===== */
@@ -226,7 +226,7 @@
     </video>
     <img class="hp-plate" src="images/revai-icon.png" alt="" aria-hidden="true">
     <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.22) 48%, rgba(0,0,0,.38) 100%)"></div>
-    <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 pt-28" style="padding-bottom:56px;z-index:2">
+    <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 pt-20" style="padding-bottom:44px;z-index:2">
       <p class="ha d1 text-xs font-semibold uppercase tracking-widest text-gray-300 mb-6">Collection 01 — SS26 &middot; Now in Nairobi</p>
       <h1 class="t-hero ha d2 mb-4 text-white" style="max-width:900px">Find Your Revival.</h1>
       <p class="ha d3 text-lg text-gray-200 leading-relaxed max-w-lg mb-8">Performance activewear engineered to international specification. One colourway. S to XXL. Leggings from KES 5,500.</p>
@@ -303,46 +303,6 @@
           <div class="hp-meta">
             <div class="hp-row"><p class="hp-name">Women's Jacket</p><p class="hp-price">KES 7,500</p></div>
             <div class="hp-sizes"><button class="size-pill" data-product="jacket-w" data-size="S">S</button><button class="size-pill" data-product="jacket-w" data-size="M">M</button><button class="size-pill" data-product="jacket-w" data-size="L">L</button><button class="size-pill" data-product="jacket-w" data-size="XL">XL</button><button class="size-pill" data-product="jacket-w" data-size="XXL">XXL</button></div>
-          </div>
-        </div>
-        <div class="hp-card fu d3">
-          <div class="hp-ph">
-            <img src="images/flared-leggings-w.jpg" alt="Flared Leggings" loading="lazy">
-            <button class="hp-add" onclick="addToBag('Flared Leggings', 5600, 'flared-leggings-w')">Add to Bag</button>
-          </div>
-          <div class="hp-meta">
-            <div class="hp-row"><p class="hp-name">Flared Leggings</p><p class="hp-price">KES 5,600</p></div>
-            <div class="hp-sizes"><button class="size-pill" data-product="flared-leggings-w" data-size="S">S</button><button class="size-pill" data-product="flared-leggings-w" data-size="M">M</button><button class="size-pill" data-product="flared-leggings-w" data-size="L">L</button><button class="size-pill" data-product="flared-leggings-w" data-size="XL">XL</button><button class="size-pill" data-product="flared-leggings-w" data-size="XXL">XXL</button></div>
-          </div>
-        </div>
-        <div class="hp-card fu d3">
-          <div class="hp-ph">
-            <img src="images/tshirt-w.jpg" alt="Women's T-Shirt" loading="lazy">
-            <button class="hp-add" onclick="addToBag('Women\'s T-Shirt', 4500, 'tshirt-w')">Add to Bag</button>
-          </div>
-          <div class="hp-meta">
-            <div class="hp-row"><p class="hp-name">Women's T-Shirt</p><p class="hp-price">KES 4,500</p></div>
-            <div class="hp-sizes"><button class="size-pill" data-product="tshirt-w" data-size="S">S</button><button class="size-pill" data-product="tshirt-w" data-size="M">M</button><button class="size-pill" data-product="tshirt-w" data-size="L">L</button><button class="size-pill" data-product="tshirt-w" data-size="XL">XL</button><button class="size-pill" data-product="tshirt-w" data-size="XXL">XXL</button></div>
-          </div>
-        </div>
-        <div class="hp-card fu d3">
-          <div class="hp-ph">
-            <img src="images/training-pants-m.jpg" alt="Training Pants" loading="lazy">
-            <button class="hp-add" onclick="addToBag('Training Pants', 6600, 'training-pants-m')">Add to Bag</button>
-          </div>
-          <div class="hp-meta">
-            <div class="hp-row"><p class="hp-name">Training Pants</p><p class="hp-price">KES 6,600</p></div>
-            <div class="hp-sizes"><button class="size-pill" data-product="training-pants-m" data-size="S">S</button><button class="size-pill" data-product="training-pants-m" data-size="M">M</button><button class="size-pill" data-product="training-pants-m" data-size="L">L</button><button class="size-pill" data-product="training-pants-m" data-size="XL">XL</button><button class="size-pill" data-product="training-pants-m" data-size="XXL">XXL</button></div>
-          </div>
-        </div>
-        <div class="hp-card fu d3">
-          <div class="hp-ph">
-            <img src="images/gym-bag.jpg" alt="Gym Bag" loading="lazy">
-            <button class="hp-add" onclick="addToBag('Gym Bag', 7500, 'gym-bag')">Add to Bag</button>
-          </div>
-          <div class="hp-meta">
-            <div class="hp-row"><p class="hp-name">Gym Bag</p><p class="hp-price">KES 7,500</p></div>
-            <div class="hp-sizes"><button class="size-pill" data-product="gym-bag" data-size="One Size">One Size</button></div>
           </div>
         </div>
       </div>
