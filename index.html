@@ -230,9 +230,16 @@
   <!-- HERO — full-bleed film, type carved over it. Height lives on #home-hero
        in the <style> block above, not inline — see the note there. -->
   <section id="home-hero" class="relative flex items-end" style="background:#000;overflow:hidden">
-    <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.72">
-      <source src="images/homepage-hero.mp4" type="video/mp4">
-    </video>
+    <!-- Hero film removed 9 Aug 2026 at Yumna's request — the hero is the
+         monogram over solid black until new footage exists. To restore, drop
+         this back in as the first child of #home-hero and give it a poster:
+         <video autoplay muted loop playsinline preload="none"
+                poster="images/homepage-hero-poster.jpg"
+                style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.72">
+           <source src="images/homepage-hero.mp4" type="video/mp4">
+         </video>
+         Note: the old homepage-hero.mp4 carries a burned-in KlingAI watermark
+         and should not go back up as-is. -->
     <img class="hp-plate" src="images/revai-icon.png" alt="" aria-hidden="true">
     <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.22) 48%, rgba(0,0,0,.38) 100%)"></div>
     <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 pt-24" style="padding-bottom:52px;z-index:3">
