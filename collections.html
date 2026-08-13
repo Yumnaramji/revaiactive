@@ -153,119 +153,12 @@
     <button type="button" class="filter-pill sel" data-gender="all" role="tab" aria-selected="true">All</button>
     <button type="button" class="filter-pill" data-gender="women" role="tab" aria-selected="false">Women</button>
     <button type="button" class="filter-pill" data-gender="men" role="tab" aria-selected="false">Men</button>
-    <button type="button" class="filter-pill" data-gender="kids" role="tab" aria-selected="false">Kids</button>
   </div>
 </div>
 
 <!-- PRODUCT GRID -->
 <section class="py-16 px-6">
   <div class="max-w-6xl mx-auto">
-    <style>
-      .cs-card{position:relative;background:#fff;border:0;border-radius:0;overflow:hidden;transition:none}
-      .cs-card:hover{transform:none;box-shadow:none}
-      .cs-img{position:relative;aspect-ratio:3/4;background:linear-gradient(135deg,#f3f4f6,#e5e7eb);display:flex;align-items:center;justify-content:center;overflow:hidden}
-      .cs-img .placeholder{width:64px;height:64px;background:#0a0a0a;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:24px}
-      .cs-overlay{position:absolute;inset:0;background:rgba(10,10,10,.55);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
-      .cs-pill{background:#fff;color:#0a0a0a;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:999px}
-      .cs-meta{padding:12px 0 0}
-      .cs-cat{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;margin-bottom:6px}
-      .cs-name{font-size:15px;font-weight:600;color:#0a0a0a;margin-bottom:4px;line-height:1.3}
-      .cs-eta{font-size:12px;color:#6b7280}
-    </style>
-
-    <div id="kids-coming-soon" style="display:none">
-      <div class="text-center mb-14">
-        <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Launching February 2027</p>
-        <h2 class="text-xl font-bold mb-2" style="letter-spacing:-.02em">The Kids Collection.</h2>
-        <p class="text-sm text-gray-500 max-w-sm mx-auto">Seven pieces, built to the same standard. Check back soon.</p>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-        <div class="cs-card">
-          <div class="cs-img">
-            <div class="placeholder">K</div>
-            <div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div>
-          </div>
-          <div class="cs-meta">
-            <p class="cs-cat">Girls</p>
-            <p class="cs-name">Sports Bra</p>
-            <p class="cs-eta">Launching Feb 2027</p>
-          </div>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-img">
-            <div class="placeholder">K</div>
-            <div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div>
-          </div>
-          <div class="cs-meta">
-            <p class="cs-cat">Girls</p>
-            <p class="cs-name">Pro Leggings</p>
-            <p class="cs-eta">Launching Feb 2027</p>
-          </div>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-img">
-            <div class="placeholder">K</div>
-            <div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div>
-          </div>
-          <div class="cs-meta">
-            <p class="cs-cat">Girls</p>
-            <p class="cs-name">Shorts</p>
-            <p class="cs-eta">Launching Feb 2027</p>
-          </div>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-img">
-            <div class="placeholder">K</div>
-            <div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div>
-          </div>
-          <div class="cs-meta">
-            <p class="cs-cat">Boys</p>
-            <p class="cs-name">Shorts</p>
-            <p class="cs-eta">Launching Feb 2027</p>
-          </div>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-img">
-            <div class="placeholder">K</div>
-            <div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div>
-          </div>
-          <div class="cs-meta">
-            <p class="cs-cat">Boys</p>
-            <p class="cs-name">T-Shirt</p>
-            <p class="cs-eta">Launching Feb 2027</p>
-          </div>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-img">
-            <div class="placeholder">K</div>
-            <div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div>
-          </div>
-          <div class="cs-meta">
-            <p class="cs-cat">Kids</p>
-            <p class="cs-name">Sports Cap</p>
-            <p class="cs-eta">Launching Feb 2027</p>
-          </div>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-img">
-            <div class="placeholder">K</div>
-            <div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div>
-          </div>
-          <div class="cs-meta">
-            <p class="cs-cat">Kids</p>
-            <p class="cs-name">Drawstring Bag</p>
-            <p class="cs-eta">Launching Feb 2027</p>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-5" id="product-grid">
 
       <!-- Jacket W -->
@@ -749,20 +642,14 @@ document.querySelectorAll('.prod-card').forEach(function(card){
 
 <script>
 (function(){
-  var VALID = ['all','women','men','kids'];
+  var VALID = ['all','women','men'];
   var pills = document.querySelectorAll('.filter-pill');
   var cards = document.querySelectorAll('.prod-card');
-  var grid = document.getElementById('product-grid');
-  var kidsSoon = document.getElementById('kids-coming-soon');
   if(!pills.length || !cards.length) return;
 
   function apply(gender){
     if(VALID.indexOf(gender) === -1) gender = 'all';
-    // Kids has no products yet — show a coming-soon message instead of the grid
-    var isKids = gender === 'kids';
-    if(grid) grid.style.display = isKids ? 'none' : '';
-    if(kidsSoon) kidsSoon.style.display = isKids ? '' : 'none';
-    if(!isKids) cards.forEach(function(card){
+    cards.forEach(function(card){
       var cg = card.getAttribute('data-gender');
       // unisex products show under all filters
       var show = (gender === 'all') || (cg === gender) || (cg === 'unisex');
