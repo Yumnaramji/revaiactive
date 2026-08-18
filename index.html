@@ -51,10 +51,10 @@
        padding on a 405px box clips the eyebrow off the top on a 667px-tall
        phone. 72px keeps the copy clear of the fixed 64px nav at the 405px
        floor without ever binding before min-height does. */
-    #home-hero{height:60vh;min-height:470px}
+    #home-hero{height:42vh;min-height:330px}
     @media(max-width:767px){
-      #home-hero{height:auto;min-height:max(50vh,370px)}
-      #home-hero .home-hero-body{padding-top:6rem;padding-bottom:2.5rem}
+      #home-hero{height:auto;min-height:max(34vh,270px)}
+      #home-hero .home-hero-body{padding-top:5rem;padding-bottom:2rem}
     }
   
     /* ===== HOMEPAGE v2 — film hero + shopfront (8 Aug 2026) ===== */
@@ -133,19 +133,12 @@
     .hp-story .eyeb{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#9a9a9a;margin-bottom:14px}
     .hp-story h2{font-size:clamp(1.7rem,1.2rem + 1.6vw,2.5rem);font-weight:600;letter-spacing:-.03em;line-height:1.12;margin-bottom:18px}
     .hp-story p{font-size:15px;line-height:1.72;color:#5a5a5a;max-width:48ch}
-    .hp-story .kicker{margin-top:18px;font-size:15px;font-weight:600;color:#0a0a0a;letter-spacing:-.01em}
-    .hp-story .more{margin-top:22px;display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#0a0a0a;text-decoration:none;border-bottom:1px solid #d8d8d8;padding-bottom:3px}
+    .hp-story .more{margin-top:26px;display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#0a0a0a;text-decoration:none;border-bottom:1px solid #d8d8d8;padding-bottom:3px}
     .hp-story .more:hover{border-color:#0a0a0a}
-    .hp-story .vals{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3.2vw,48px);margin-top:clamp(40px,5vw,68px)}
-    .hp-story .val{padding-top:18px;border-top:1px solid #e2e2e2}
-    .hp-story .val .no{font-size:11px;letter-spacing:.18em;color:#b0b0b0;margin-bottom:9px}
-    .hp-story .val h3{font-size:15.5px;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
-    .hp-story .val p{font-size:13.5px;line-height:1.62;color:#666;max-width:none}
     @media(max-width:860px){
       .hp-story .top{grid-template-columns:1fr;gap:26px}
       .hp-story .im{aspect-ratio:4/3}
       .hp-story .im img{object-position:50% 50%}
-      .hp-story .vals{grid-template-columns:1fr;gap:24px;margin-top:34px}
     }
 
     @media(max-width:900px){
@@ -248,8 +241,7 @@
     <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.22) 48%, rgba(0,0,0,.38) 100%)"></div>
     <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 text-center" style="padding-top:64px;z-index:3;text-align:center">
       <p class="ha d1 text-xs font-semibold uppercase tracking-widest text-gray-300 mb-6">Collection 01 — SS26 &middot; Now in Nairobi</p>
-      <h1 class="t-hero ha d2 mb-4 text-white" style="max-width:900px;margin-left:auto;margin-right:auto">Find Your Revival.</h1>
-      <p class="ha d3 text-lg text-gray-200 leading-relaxed max-w-lg" style="margin-left:auto;margin-right:auto">REVAÍ is activewear built for everyone — from your first class to your hundredth kilometre. High quality, honest sizing, and prices that make performance accessible.</p>
+      <h1 class="t-hero ha d2 text-white" style="max-width:900px;margin-left:auto;margin-right:auto">Find Your Revival.</h1>
     </div>
   </section>
 
@@ -316,27 +308,8 @@
         <div>
           <div class="eyeb fu">Our story &middot; Nairobi, 2026</div>
           <h2 class="fu">We didn&rsquo;t follow a trend.<br>We filled a gap.</h2>
-          <p class="fu d1">REVAÍ started from a straightforward desire &mdash; to find activewear that was genuinely high quality, honestly priced, and built to move with you, whatever movement looks like in your life.</p>
-          <p class="kicker fu d2">Kit for that moment. And every session after it.</p>
+          <p class="fu d1">REVAÍ started from a straightforward desire to create activewear that was genuinely high quality, honestly priced, and built to move with you, whatever movement looks like in your life.</p>
           <a class="more fu d2" href="about.html">Read our story &rarr;</a>
-        </div>
-      </div>
-
-      <div class="vals">
-        <div class="val fu d1">
-          <div class="no">01</div>
-          <h3>Engineered with Intent</h3>
-          <p>Every fabric, seam and panel carries out a unique function. Each piece is developed and designed by hand, then trained in by real athletes before it goes into production.</p>
-        </div>
-        <div class="val fu d2">
-          <div class="no">02</div>
-          <h3>Lab-Tested Before Production</h3>
-          <p>100% of fabrics are tested against international standards before anything enters production.</p>
-        </div>
-        <div class="val fu d3">
-          <div class="no">03</div>
-          <h3>S to XXL, Cut for Every Body</h3>
-          <p>Bodies change &mdash; through seasons, training blocks, years. S through XXL on every style, so the range moves with you instead of asking you to move first.</p>
         </div>
       </div>
 
