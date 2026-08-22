@@ -50,11 +50,6 @@
     .hp-door:after{content:"";position:absolute;inset:auto 0 0;height:60%;background:linear-gradient(0deg,rgba(0,0,0,.72),transparent)}
     @media(max-width:900px){.hp-doors{grid-template-columns:repeat(2,1fr)}}
 
-
-    /* SAMPLING image — the vertical stack is 1:3.23, so it is capped by height,
-       not width; left as auto width so the column never stretches it. */
-    .sampling-img{max-height:360px;width:auto}
-    @media(max-width:767px){.sampling-img{max-height:300px;margin:0 auto}}
   </style>
   <script src="js/mobile-fix.js?v=20260808b" defer></script>
 </head>
@@ -142,7 +137,7 @@
         <!-- Right: body copy -->
         <div>
           <p class="fu text-sm text-gray-600 leading-relaxed mb-7">REVAÍ started from a straightforward desire — to find activewear that was genuinely high quality, honestly priced, and built to move with you no matter what movement looks like in your life. Not just for one sport, one body type, or one level of fitness. For all of it.</p>
-          <p class="fu d1 text-sm text-gray-600 leading-relaxed mb-7">Movement means something different to everyone. For some it's five sessions a week. For others it's a Sunday walk, a yoga class, or a round of golf. REVAÍ is designed around that reality — kit that performs wherever you take it, fits across a full size range, and doesn't ask you to spend a fortune to get quality that lasts.</p>
+          <p class="fu d1 text-sm text-gray-600 leading-relaxed mb-7">Movement means something different to everyone. REVAÍ is designed around that reality — kit that performs wherever you take it, fits across a full size range, and doesn't ask you to spend a fortune to get quality that lasts.</p>
           <p class="fu d2 text-sm text-gray-600 leading-relaxed">We're based in Nairobi, Kenya, we launched in 2026, and we're building something we're genuinely proud of. Every piece is designed to perform, fit honestly, and last — whatever your version of movement is. We didn't follow a trend. We filled a gap.</p>
         </div>
       </div>
@@ -181,16 +176,14 @@
   <!-- SAMPLING — image and copy side by side; the source jpg is cropped to the garments (no baked-in white band) -->
   <section class="px-6 py-12 md:py-16">
     <div class="max-w-6xl mx-auto">
-      <div class="grid md:grid-cols-[auto_minmax(0,500px)] gap-10 lg:gap-16 items-center justify-center">
+      <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
         <div class="fu">
-          <!-- Vertical stack, 654x2114 (1:3.23). Height-capped, never width-capped —
-               at full column width it would run ~1750px tall. -->
-          <img alt="Sampling rounds for the REVAI sports bra" src="images/about-sampling-vertical.jpg" loading="lazy" class="sampling-img" style="height:auto;display:block"/>
-        </div>
-        <div class="fu d1">
           <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-6">Sampling</p>
           <h2 style="font-size:clamp(22px,2.6vw,32px);font-weight:700;letter-spacing:-.025em;line-height:1.15;color:#0a0a0a;margin-bottom:20px">Nothing here came off a shelf.</h2>
           <p class="text-base text-gray-600 leading-relaxed">Anyone can order activewear out of a catalogue and put their logo on it. We go through rounds of sampling and testing before the garments are ready to sell.</p>
+        </div>
+        <div class="fu d1">
+          <img alt="Sampling rounds for the REVAI sports bra" src="images/about-sampling.jpg" loading="lazy" style="width:100%;height:auto;display:block"/>
         </div>
       </div>
     </div>
