@@ -50,6 +50,11 @@
     .hp-door:after{content:"";position:absolute;inset:auto 0 0;height:60%;background:linear-gradient(0deg,rgba(0,0,0,.72),transparent)}
     @media(max-width:900px){.hp-doors{grid-template-columns:repeat(2,1fr)}}
 
+
+    /* SAMPLING image — the vertical stack is 1:3.23, so it is capped by height,
+       not width; left as auto width so the column never stretches it. */
+    .sampling-img{max-height:360px;width:auto}
+    @media(max-width:767px){.sampling-img{max-height:300px;margin:0 auto}}
   </style>
   <script src="js/mobile-fix.js?v=20260808b" defer></script>
 </head>
@@ -133,9 +138,6 @@
           <blockquote style="font-size:clamp(26px,3.5vw,42px);font-weight:700;letter-spacing:-.025em;line-height:1.15;color:#0a0a0a">
             "Kit for that moment. And every session after it."
           </blockquote>
-          <div class="mt-10 pt-10 border-t border-gray-100">
-            <p class="text-sm text-gray-400 leading-relaxed">Based in Nairobi, Kenya. Built for everyone.</p>
-          </div>
         </div>
         <!-- Right: body copy -->
         <div>
@@ -179,14 +181,16 @@
   <!-- SAMPLING — image and copy side by side; the source jpg is cropped to the garments (no baked-in white band) -->
   <section class="px-6 py-12 md:py-16">
     <div class="max-w-6xl mx-auto">
-      <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div class="grid md:grid-cols-[auto_minmax(0,500px)] gap-10 lg:gap-16 items-center justify-center">
         <div class="fu">
+          <!-- Vertical stack, 654x2114 (1:3.23). Height-capped, never width-capped —
+               at full column width it would run ~1750px tall. -->
+          <img alt="Sampling rounds for the REVAI sports bra" src="images/about-sampling-vertical.jpg" loading="lazy" class="sampling-img" style="height:auto;display:block"/>
+        </div>
+        <div class="fu d1">
           <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-6">Sampling</p>
           <h2 style="font-size:clamp(22px,2.6vw,32px);font-weight:700;letter-spacing:-.025em;line-height:1.15;color:#0a0a0a;margin-bottom:20px">Nothing here came off a shelf.</h2>
           <p class="text-base text-gray-600 leading-relaxed">Anyone can order activewear out of a catalogue and put their logo on it. We go through rounds of sampling and testing before the garments are ready to sell.</p>
-        </div>
-        <div class="fu d1">
-          <img alt="Sampling rounds for the REVAI sports bra" src="images/about-sampling.jpg" loading="lazy" style="width:100%;height:auto;display:block"/>
         </div>
       </div>
     </div>
