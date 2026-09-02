@@ -31,7 +31,6 @@
     {label:'Fit Guide',          url:'fit-guide.html'},
     {label:'Shipping & Returns', url:'shipping-returns.html'},
     {label:'Team Orders',        url:'team-orders.html'},
-    {label:'Ambassador Programme', url:'athlete-program.html'},
   ];
 
   /* ── Build overlay DOM ──────────────────────────────────────── */
