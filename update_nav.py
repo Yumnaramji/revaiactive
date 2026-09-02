@@ -26,8 +26,6 @@ import sys
 # Desktop Shop dropdown — full inner HTML between
 #   <div id="shop-dropdown-menu" ...>   and   the matching </div>
 DESKTOP_DROPDOWN_INNER = """
-          <a href="collection-new.html" class="block px-4 py-2.5 text-sm font-medium text-black hover:bg-gray-50">New Arrivals</a>
-          <div class="my-1 border-t border-gray-100"></div>
           <a href="collections.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">All Products</a>
           <a href="collection-gym.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Gym &amp; Training</a>
           <a href="collection-running.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Running</a>
@@ -38,7 +36,6 @@ DESKTOP_DROPDOWN_INNER = """
 # Mobile menu Shop section — full inner HTML between
 #   <p ...>Shop</p>   and   <div class="my-3 border-t border-gray-100"></div>
 MOBILE_SHOP_INNER = """
-    <a href="collection-new.html" class="mlink block py-2 text-sm font-medium text-black">New Arrivals</a>
     <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
     <a href="collection-gym.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Gym &amp; Training</a>
     <a href="collection-running.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Running</a>
@@ -49,7 +46,6 @@ MOBILE_SHOP_INNER = """
 # Footer Shop column — inner HTML of <ul class="space-y-3"> ... </ul>
 # (rendered on one line to match the existing footer compaction)
 FOOTER_SHOP_INNER = (
-    '<li><a href="collection-new.html" class="text-sm text-gray-400 hover:text-white transition-colors">New Arrivals</a></li>'
     '<li><a href="collections.html" class="text-sm text-gray-400 hover:text-white transition-colors">All Products</a></li>'
     '<li><a href="collection-gym.html" class="text-sm text-gray-400 hover:text-white transition-colors">Gym &amp; Training</a></li>'
     '<li><a href="collection-running.html" class="text-sm text-gray-400 hover:text-white transition-colors">Running</a></li>'
@@ -61,10 +57,9 @@ FOOTER_SHOP_INNER = (
 # Patterns — captured groups: ($1 = opening marker, $2 = content, $3 = closing marker)
 # --------------------------------------------------------------------------
 
-# Desktop dropdown: the inner <div class="my-1 border-t..."></div> is the only
-# nested div, and it's self-closing on one line — so a non-greedy .*? against
-# the menu's close pattern (8-space-indented </div> followed by the wrapper
-# close) is unambiguous.
+# Desktop dropdown: the menu now contains only one-line <a> links (no nested
+# divs), so a non-greedy .*? against the menu's close pattern (8-space-indented
+# </div> followed by the wrapper close) is unambiguous.
 DESKTOP_RE = re.compile(
     r'(<div id="shop-dropdown-menu"[^>]*>)(.*?)(\n        </div>\n      </div>)',
     re.DOTALL,

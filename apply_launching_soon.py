@@ -20,7 +20,6 @@ TARGETS = [
     # grid as of 4 Aug 2026, and the "already-converted" guard below would not
     # protect it (that guard only matches the placeholder's own copy).
     ("collection-yoga.html",      "<!-- PRODUCTS -->",      "<!-- TECH STRIP -->",       0),
-    ("collection-new.html",       "<!-- PRODUCTS -->",      "<!-- TECH STRIP -->",       0),
     ("collection-hiit.html",      "<!-- Products Grid -->", "<!-- Technology Strip -->", 2),
     ("collection-recovery.html",  "<!-- Products Grid -->", "<!-- Technology Strip -->", 2),
     ("collection-strength.html",  "<!-- Products Grid -->", "<!-- Technology Strip -->", 2),
