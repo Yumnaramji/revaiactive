@@ -188,7 +188,7 @@
         </a>
         <div style="flex:1;min-width:0">
           <p style="font-size:14px;font-weight:600;color:#000;margin:0 0 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${item.name}</p>
-          <p style="font-size:12px;color:#6b7280;margin:0 0 8px">Size: ${item.size}</p>
+          <p style="font-size:12px;color:#6b7280;margin:0 0 8px">Size: ${String(item.size).replace(/^XXL/,'2XL')}</p>
           <div style="display:flex;align-items:center;gap:10px">
             <div style="display:flex;align-items:center;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden">
               <button onclick="window.REVAI_CART.setQty(${idx},-1)" style="width:28px;height:28px;background:none;border:none;cursor:pointer;font-size:15px;color:#374151;display:flex;align-items:center;justify-content:center">−</button>

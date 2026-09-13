@@ -405,7 +405,7 @@ function loadProduct(){
     sw.innerHTML='';
     sizeList.forEach((s,i)=>{
       const btn=document.createElement('button');
-      const display=s.replace(/\s*\(Tall\)/,'');
+      const display=s.replace(/\s*\(Tall\)/,'').replace(/^XXL$/,'2XL');
       btn.className='sz-btn'+(s==='One Size'?' wide':'')+(i===0?' sel':'');
       btn.textContent=display;
       btn.dataset.size=s;
