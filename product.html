@@ -64,10 +64,10 @@
     .length-btn:not(:last-child){border-right:1px solid #e5e7eb}
     .length-btn:hover{color:#374151}
     .length-btn.sel{background:#000;color:#fff}
-    /* Colour swatch — a plain colour circle, no rim. The fill carries the
-       colour (and the grey edge that keeps a white swatch visible). */
+    /* Colour swatch — colour circle with a thin white rim and a light grey
+       outline, drawn with box-shadow so it doesn't change the 32px footprint. */
     .swatch{display:inline-flex;width:32px;height:32px;flex-shrink:0}
-    .swatch-fill{width:100%;height:100%;border-radius:50%;background:#0a0a0a}
+    .swatch-fill{width:100%;height:100%;border-radius:50%;background:#0a0a0a;box-shadow:0 0 0 3px #fff,0 0 0 4px #d1d5db}
     /* Add button */
     .add-btn{width:100%;background:#000;color:#fff;border:none;border-radius:0;padding:16px;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s;letter-spacing:-.01em}
     .add-btn:hover{background:#222}
