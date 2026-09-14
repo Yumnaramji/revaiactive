@@ -207,8 +207,9 @@
           <span id="colour-label" class="text-sm font-medium text-gray-700">Black</span>
         </div>
         <div class="flex items-center gap-3">
-          <div class="swatch sel" id="primary-swatch" data-name="Black" title="Black"><span class="swatch-fill" id="primary-swatch-fill"></span></div>
+          <div class="swatch" id="primary-swatch" data-name="Black" title="Black"><span class="swatch-fill" id="primary-swatch-fill"></span></div>
         </div>
+        <p id="colour-error" class="text-xs text-red-500 mt-2 hidden">Please select a colour to continue</p>
       </div>
 
       <!-- Size -->
@@ -440,6 +441,7 @@ function loadProduct(){
   renderSizes(p.sizes);
   // Add to bag
   document.getElementById('add-btn').addEventListener('click',()=>{
+    if(!document.querySelector('.swatch.sel')){document.getElementById('colour-error').classList.remove('hidden');return;}
     const sel=sw.querySelector('.sz-btn.sel');
     if(!sel){document.getElementById('size-error').classList.remove('hidden');return;}
     const btn=document.getElementById('add-btn');
@@ -502,7 +504,7 @@ loadProduct();
 
 // Colour swatches
 document.querySelectorAll('.swatch[data-name]').forEach(s=>{
-  s.addEventListener('click',()=>{document.querySelectorAll('.swatch').forEach(x=>x.classList.remove('sel'));s.classList.add('sel');document.getElementById('colour-label').textContent=s.dataset.name;});
+  s.addEventListener('click',()=>{document.querySelectorAll('.swatch').forEach(x=>x.classList.remove('sel'));s.classList.add('sel');document.getElementById('colour-label').textContent=s.dataset.name;document.getElementById('colour-error').classList.add('hidden');});
 });
 
 // Accordions
