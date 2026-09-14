@@ -38,7 +38,7 @@
     .thumb-strip::-webkit-scrollbar{display:none}
     @media(max-width:768px){.thumb-strip{flex-direction:row;width:100%;overflow-x:auto;overflow-y:hidden}}
     /* Square corners throughout — the photograph is the card, same as the
-       collections grid. Only the colour swatch stays round. */
+       collections grid. The colour swatch is square too. */
     .thumb{width:72px;height:96px;border-radius:0;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .15s;flex-shrink:0;background:#f3f4f6}
     .thumb img{width:100%;height:100%;object-fit:cover;object-position:center}
     .thumb.active{border-color:#000}
@@ -64,10 +64,10 @@
     .length-btn:not(:last-child){border-right:1px solid #e5e7eb}
     .length-btn:hover{color:#374151}
     .length-btn.sel{background:#000;color:#fff}
-    /* Colour swatch */
-    .swatch{width:28px;height:28px;border-radius:50%;cursor:pointer;position:relative;transition:transform .15s;flex-shrink:0}
-    .swatch.sel::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px solid #000}
-    .swatch:hover{transform:scale(1.1)}
+    /* Colour swatch — a white box with the colour square inside, sized and
+       bordered like .sz-btn so it reads as the same family of control. */
+    .swatch{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border:1px solid #e5e7eb;border-radius:2px;background:#fff;flex-shrink:0}
+    .swatch-fill{width:22px;height:22px;background:#0a0a0a}
     /* Add button */
     .add-btn{width:100%;background:#000;color:#fff;border:none;border-radius:0;padding:16px;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s;letter-spacing:-.01em}
     .add-btn:hover{background:#222}
@@ -205,10 +205,7 @@
           <span id="colour-label" class="text-sm font-medium text-gray-700">Black</span>
         </div>
         <div class="flex items-center gap-3">
-          <div class="swatch sel" id="primary-swatch" style="background:#0a0a0a" data-name="Black" title="Black"></div>
-          <div class="swatch" style="background:#e5e7eb;border:1px dashed #d1d5db;cursor:default" title="More colours coming soon"></div>
-          <div class="swatch" style="background:#e5e7eb;border:1px dashed #d1d5db;cursor:default" title="More colours coming soon"></div>
-          <span class="text-xs text-gray-400 ml-1">More colours coming soon</span>
+          <div class="swatch" id="primary-swatch" data-name="Black" title="Black"><span class="swatch-fill" id="primary-swatch-fill"></span></div>
         </div>
       </div>
 
@@ -345,9 +342,10 @@ function loadProduct(){
   // Colour swatch — defaults to Black, overridden when product specifies colour
   if(p.colour){
     const sw=document.getElementById('primary-swatch');
-    if(sw){
-      sw.style.background=p.swatchHex||'#0a0a0a';
-      if(p.swatchBorder) sw.style.border='1px solid '+p.swatchBorder;
+    const fill=document.getElementById('primary-swatch-fill');
+    if(sw&&fill){
+      fill.style.background=p.swatchHex||'#0a0a0a';
+      if(p.swatchBorder) fill.style.border='1px solid '+p.swatchBorder;
       sw.dataset.name=p.colour;
       sw.title=p.colour;
     }
