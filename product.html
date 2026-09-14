@@ -407,7 +407,7 @@ function loadProduct(){
     sizeList.forEach((s,i)=>{
       const btn=document.createElement('button');
       const display=s.replace(/\s*\(Tall\)/,'');
-      btn.className='sz-btn'+(s==='One Size'?' wide':'')+(i===0?' sel':'');
+      btn.className='sz-btn'+(s==='One Size'?' wide':'');
       btn.textContent=display;
       btn.dataset.size=s;
       btn.addEventListener('click',()=>{sw.querySelectorAll('.sz-btn').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');document.getElementById('size-error').classList.add('hidden');});
