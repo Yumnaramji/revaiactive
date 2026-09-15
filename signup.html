@@ -19,9 +19,8 @@
   <meta name="description" content="Create your REVAÍ account.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20260808b">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260915a">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -50,7 +49,8 @@
     .benefit-item .benefit-dot{width:8px;height:8px;border-radius:50%;background:#000;flex-shrink:0}
     .pw-hint{font-size:12px;color:#9ca3af;margin-top:4px}
   </style>
-  <script src="js/mobile-fix.js?v=20260808b" defer></script>
+  <script src="js/mobile-fix.js?v=20260915a" defer></script>
+  <link rel="stylesheet" href="css/tailwind.css?v=20260915a"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
 
@@ -214,11 +214,11 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=20260808b"></script>
-<script src="search.js?v=20260808b"></script>
-<script src="shopify-config.js?v=20260808b"></script>
-<script src="js/shopify-customer.js?v=20260808b"></script>
-<script src="cart-drawer.js?v=20260808b"></script>
+<script src="js/main.js?v=20260915a"></script>
+<script src="search.js?v=20260915a"></script>
+<script src="shopify-config.js?v=20260915a"></script>
+<script src="js/shopify-customer.js?v=20260915a"></script>
+<script src="cart-drawer.js?v=20260915a"></script>
 <script>
   REVAI_CUSTOMER.redirectIfAuthed('profile.html');
 

@@ -19,9 +19,8 @@
   <meta name="description" content="REVAÍ Gym &amp; Training collection. Versatile kit for every session — weights, classes, circuits. S–2XL, true to size.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20260808b">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260915a">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -80,7 +79,8 @@
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
   </style>
-  <script src="js/mobile-fix.js?v=20260808b" defer></script>
+  <script src="js/mobile-fix.js?v=20260915a" defer></script>
+  <link rel="stylesheet" href="css/tailwind.css?v=20260915a"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body class="nav-over-hero">
 
@@ -215,7 +215,7 @@
       <!-- T-Shirt W -->
       <div class="prod-card fu d3" data-gender="women" data-cat="gym">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/tshirt-w.jpg" alt="Women's T-Shirt" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+          <img loading="lazy" decoding="async" src="images/tshirt-w.jpg" alt="Women's T-Shirt" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <img src="images/tshirt-w-front-angle.jpg" alt="" aria-hidden="true" class="card-hover-img">
           <button class="add-btn" onclick="addToBag('tshirt-w','Women\'s T-Shirt',4500)">Add to Bag</button>
         </div>
@@ -234,7 +234,7 @@
       <!-- T-Shirt M -->
       <div class="prod-card fu" data-gender="men" data-cat="gym">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/tshirt-m.jpg" alt="Men's T-Shirt" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+          <img loading="lazy" decoding="async" src="images/tshirt-m.jpg" alt="Men's T-Shirt" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <img src="images/tshirt-m-side.jpg" alt="" aria-hidden="true" class="card-hover-img">
           <button class="add-btn" onclick="addToBag('tshirt-m','Men\'s T-Shirt',4500)">Add to Bag</button>
         </div>
@@ -253,7 +253,7 @@
       <!-- Training Pants M -->
       <div class="prod-card fu d1" data-gender="men" data-cat="gym">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/training-pants-m.jpg" alt="Training Pants" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+          <img loading="lazy" decoding="async" src="images/training-pants-m.jpg" alt="Training Pants" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <img src="images/training-pants-m-side.jpg" alt="" aria-hidden="true" class="card-hover-img">
           <button class="add-btn" onclick="addToBag('training-pants-m','Training Pants',6600)">Add to Bag</button>
         </div>
@@ -272,7 +272,7 @@
       <!-- Ankle Socks -->
       <div class="prod-card fu d2" data-gender="unisex" data-cat="gym">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/ankle-socks.jpg" alt="Ankle Socks" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+          <img loading="lazy" decoding="async" src="images/ankle-socks.jpg" alt="Ankle Socks" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <button class="add-btn" onclick="addToBag('ankle-socks','Ankle Socks',550)">Add to Bag</button>
         </div>
         <div class="p-4">
@@ -287,7 +287,7 @@
       <!-- 30L Gym Bag -->
       <div class="prod-card fu d3" data-gender="unisex" data-cat="gym">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
-          <img src="images/gym-bag.jpg" alt="30L Gym Bag" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+          <img loading="lazy" decoding="async" src="images/gym-bag.jpg" alt="30L Gym Bag" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <button class="add-btn" onclick="addToBag('gym-bag','Gym Bag',7500)">Add to Bag</button>
         </div>
         <div class="p-4">
@@ -324,9 +324,9 @@
   </div>
 </footer>
 
-<script src="search.js?v=20260808b"></script>
-<script src="shopify-config.js?v=20260808b"></script>
-<script src="cart-drawer.js?v=20260808b"></script>
+<script src="search.js?v=20260915a"></script>
+<script src="shopify-config.js?v=20260915a"></script>
+<script src="cart-drawer.js?v=20260915a"></script>
 <script>
 const nav=document.getElementById('nav');
 
@@ -385,7 +385,7 @@ function showPageToast(msg){
     pmImg.style.overflow='hidden';
     if(cardImg){
       pmImg.style.background='#f3f4f6';
-      pmImg.innerHTML='<img src="'+cardImg.src+'" alt="" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;min-height:300px;">';
+      pmImg.innerHTML='<img loading="lazy" decoding="async" src="'+cardImg.src+'" alt="" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;min-height:300px;">';
     } else {
       pmImg.style.background='linear-gradient(135deg,#f3f4f6,#e5e7eb)';
       pmImg.innerHTML='<div style="width:72px;height:56px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center"><span style="color:#fff;font-weight:700;font-size:28px">R</span></div>';
