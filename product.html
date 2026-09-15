@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<base href="/"><!-- keeps relative links working after the URL is rewritten to /p/<slug>/ for sharing -->
 <link rel="icon" type="image/png" href="images/revai-icon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Product</title>
+  <!-- Social share tags (Open Graph): what WhatsApp, Instagram and iMessage show when this link is pasted. Images live in images/share/, built by build-og.js. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="REVAÍ">
+  <meta property="og:title" content="REVAÍ Activewear">
+  <meta property="og:description" content="Find Your Revival.">
+  <meta property="og:url" content="https://revaiactive.com/product.html">
+  <meta property="og:image" content="https://revaiactive.com/images/share/default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="REVAÍ">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -342,6 +354,8 @@ const PRODUCTS={
 
 // Read a JSON array from localStorage without letting a corrupt value crash the page
 function readJSON(key){try{const v=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(v)?v:[];}catch(e){return [];}}
+// Clean share URLs: /p/<slug>/ is a static page carrying this product's own preview tags (built by build-og.js)
+const PRODUCT_SLUGS={"running-leggings-w":"performance-leggings","flared-leggings-w":"flared-leggings","high-impact-bra":"high-impact-sports-bra","low-impact-bra":"low-impact-sports-bra","tshirt-w":"womens-t-shirt","jacket-w":"womens-jacket","tshirt-m":"mens-t-shirt","quarter-zip-m":"mens-quarter-zip","shorts-m":"mens-shorts","training-pants-m":"mens-training-pants","ankle-socks":"ankle-socks","lifestyle-cap":"lifestyle-cap","gym-bag":"gym-bag"};
 function loadProduct(){
   const id=new URLSearchParams(window.location.search).get('id');
   const p=PRODUCTS[id];
@@ -353,6 +367,11 @@ function loadProduct(){
     return;
   }
   document.title=p.name;
+  // Share tags for this product + rewrite the address bar to the clean /p/<slug>/ URL so copied links carry the right preview
+  const setMeta=(prop,val)=>{const m=document.querySelector('meta[property="'+prop+'"]');if(m)m.setAttribute('content',val);};
+  setMeta('og:title',p.name+' · '+p.price); setMeta('og:image',location.origin+'/images/share/'+id+'.jpg'); setMeta('og:image:alt',p.name+' by REVAÍ');
+  const slug=PRODUCT_SLUGS[id];
+  if(slug){ setMeta('og:url',location.origin+'/p/'+slug+'/'); try{history.replaceState(history.state,'','/p/'+slug+'/'+location.hash);}catch(e){} }
   document.getElementById('breadcrumb-name').textContent=p.name;
   document.getElementById('prod-name').textContent=p.name;
   document.getElementById('prod-price').textContent=p.price;
