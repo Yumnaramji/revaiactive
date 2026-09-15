@@ -166,6 +166,7 @@
 <script src="js/shopify-customer.js?v=20260808b"></script>
 <script>
 const SAVED_KEY = 'revai_saved_v1';
+function readSaved(){ try{ const v=readSaved(); return Array.isArray(v)?v:[]; }catch(e){ return []; } }
 
 const PRODUCTS = {
   'running-leggings-w': "Women's Performance Leggings",
@@ -184,7 +185,7 @@ const PRODUCTS = {
 };
 
 function renderSaved(){
-  const saved = JSON.parse(localStorage.getItem(SAVED_KEY)||'[]');
+  const saved = readSaved();
   const grid = document.getElementById('saved-grid');
   const empty = document.getElementById('saved-empty');
   const subtitle = document.getElementById('wishlist-subtitle');
@@ -220,7 +221,7 @@ function renderSaved(){
 
 function removeSaved(e, id){
   e.preventDefault(); e.stopPropagation();
-  let saved = JSON.parse(localStorage.getItem(SAVED_KEY)||'[]');
+  let saved = readSaved();
   saved = saved.filter(s => s !== id);
   localStorage.setItem(SAVED_KEY, JSON.stringify(saved));
   renderSaved();

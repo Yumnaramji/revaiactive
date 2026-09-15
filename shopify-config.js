@@ -17,6 +17,8 @@ window.REVAI_SHOPIFY = {
     'quarter-zip-m':       { S:'gid://shopify/ProductVariant/47230533566642', M:'gid://shopify/ProductVariant/47230533599410', L:'gid://shopify/ProductVariant/47230533632178', XL:'gid://shopify/ProductVariant/47230533664946', '2XL':'gid://shopify/ProductVariant/47230533697714' },
     'shorts-m':            { S:'gid://shopify/ProductVariant/47230533763250', M:'gid://shopify/ProductVariant/47230533796018', L:'gid://shopify/ProductVariant/47230533828786', XL:'gid://shopify/ProductVariant/47230533861554', '2XL':'gid://shopify/ProductVariant/47230533894322' },
     'training-pants-m':    { S:'gid://shopify/ProductVariant/47311661662386', M:'gid://shopify/ProductVariant/47311661695154', L:'gid://shopify/ProductVariant/47311661727922', XL:'gid://shopify/ProductVariant/47311661760690', '2XL':'gid://shopify/ProductVariant/47311661793458' },
-    'ankle-socks':         { 'S/M':'gid://shopify/ProductVariant/47230793810098', 'L/XL':'gid://shopify/ProductVariant/47230794530994' }
+    'ankle-socks':         { 'S/M':'gid://shopify/ProductVariant/47230793810098', 'L/XL':'gid://shopify/ProductVariant/47230794530994' },
+    'lifestyle-cap':       { 'One Size':'gid://shopify/ProductVariant/47230534222002' },
+    'gym-bag':             { 'One Size':'gid://shopify/ProductVariant/47230534320306' }
   }
 };

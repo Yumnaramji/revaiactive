@@ -181,6 +181,7 @@
     const n = p.get('next');
     // whitelist of safe internal redirects
     const safe = ['profile.html','orders.html','wishlist.html','addresses.html'];
+    if(n && /^product\.html\?id=[a-z0-9-]+$/.test(n)) return n; // back to the product after the wishlist sign-in prompt
     return safe.includes(n) ? n : 'profile.html';
   }
 

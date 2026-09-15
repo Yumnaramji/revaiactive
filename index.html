@@ -375,7 +375,7 @@
 <script src="cart-drawer.js?v=20260808b"></script>
 <script>
 // Simple add-to-bag with size selection and toast
-const cartItems = JSON.parse(localStorage.getItem('revai_cart_v1')||'[]');
+let cartItems=[]; try{ cartItems=JSON.parse(localStorage.getItem('revai_cart_v1')||'[]'); if(!Array.isArray(cartItems)) cartItems=[]; }catch(e){ cartItems=[]; } // a corrupt value must not take the page down
 function addToBag(name, price, id) {
   const sizeEls = document.querySelectorAll('.size-pill.selected[data-product="'+id+'"]');
   const size = sizeEls.length ? sizeEls[0].dataset.size : null;

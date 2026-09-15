@@ -162,6 +162,18 @@
   </div>
 </div>
 <div id="moverlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
+<!-- Wishlist sign-in prompt — saving needs an account (Yumna, 15 Sep 2026). Shown when a guest presses Save. -->
+<div id="save-auth" class="fixed inset-0 z-[60] hidden" role="dialog" aria-modal="true" aria-labelledby="save-auth-title">
+  <div id="save-auth-bg" class="absolute inset-0 bg-black/40"></div>
+  <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-32px)] max-w-sm bg-white p-7" style="border:1px solid #e5e7eb">
+    <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Wishlist</p>
+    <h2 id="save-auth-title" class="text-xl font-semibold mb-2" style="letter-spacing:-.015em">Sign in to save this</h2>
+    <p class="text-sm text-gray-600 leading-relaxed mb-6">Your wishlist lives on your REVAÍ account. Sign in or create a free account and we'll save <span id="save-auth-name">this item</span> for you.</p>
+    <a id="save-auth-login" href="login.html" class="btn-p w-full justify-center mb-2">Sign in</a>
+    <a id="save-auth-signup" href="signup.html" class="btn-p w-full justify-center" style="background:#fff;color:#000;border:1px solid #000">Create account</a>
+    <button id="save-auth-close" type="button" class="block w-full text-center text-xs text-gray-500 hover:text-black mt-4 underline underline-offset-2">Not now</button>
+  </div>
+</div>
 
 <main style="padding-top:64px">
 
@@ -310,6 +322,7 @@
 <script src="search.js?v=20260808b"></script>
 <script src="shopify-config.js?v=20260808b"></script>
 <script src="cart-drawer.js?v=20260808b"></script>
+<script src="js/shopify-customer.js?v=20260808b"></script>
 <script>
 const PRODUCTS={
   'running-leggings-w':{name:'Performance Leggings',gender:"Women's",price:'KES 5,500',priceVal:5500,image:'images/running-leggings-w-full-front.jpg',images:['images/running-leggings-w-full-front.jpg','images/running-leggings-w.jpg','images/running-leggings-w-side.jpg','images/running-leggings-w-full-back.jpg','images/running-leggings-w-plus-front.jpg','images/running-leggings-w-plus-front-angle.jpg','images/running-leggings-w-plus-back.jpg'],sizes:['S','M','L','XL','2XL'],desc:"Engineered for road and trail. A contoured waistband defines the line without compressing. A pattern-cut panel lifts the silhouette at the top of the glute, while graduated compression holds the line without flattening shape. Four-way stretch fabric. Flatlock seams.",details:['Contoured waistband — defines without compressing','Pattern-cut lift at the top of the glute','Graduated compression through thigh and core','Four-way stretch performance fabric','Flatlock seam construction','Fabric: 75% Polyamide, 25% Elastane']},
@@ -327,6 +340,8 @@ const PRODUCTS={
   'gym-bag':{name:'Gym Bag',gender:'Unisex',price:'KES 7,500',priceVal:7500,image:'images/gym-bag.jpg',sizes:['One Size'],care:false,desc:"A structured gym bag built for daily use. Separate wet/dry compartment, padded laptop sleeve, and external water bottle pocket. Padded shoulder strap and top carry handle.",details:['30L capacity','Separate wet/dry compartment','Padded laptop sleeve (up to 15")','External water bottle pocket','Padded shoulder strap & carry handle','REVAÍ embossed logo','Fabric: 100% Polyester']}
 };
 
+// Read a JSON array from localStorage without letting a corrupt value crash the page
+function readJSON(key){try{const v=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(v)?v:[];}catch(e){return [];}}
 function loadProduct(){
   const id=new URLSearchParams(window.location.search).get('id');
   const p=PRODUCTS[id];
@@ -452,7 +467,7 @@ function loadProduct(){
       setTimeout(()=>{btn.textContent='Add to Bag';},2000);
     } else {
       // Fallback: write directly and open drawer when ready
-      const cart=JSON.parse(localStorage.getItem('revai_cart_v1')||'[]');
+      const cart=readJSON('revai_cart_v1');
       const key=id+'|'+sizeVal;
       const ex=cart.find(i=>i.key===key);
       if(ex){ex.qty=(ex.qty||1)+1;}else{cart.push({id,name:p.name,price:p.priceVal,size:sizeVal,key,qty:1,image:'images/'+id+'.jpg'});}
@@ -464,7 +479,7 @@ function loadProduct(){
   // Save / Wishlist
   const SAVED_KEY='revai_saved_v1';
   function updateSaveBtn(){
-    const saved=JSON.parse(localStorage.getItem(SAVED_KEY)||'[]');
+    const saved=readJSON(SAVED_KEY);
     const isSaved=saved.includes(id);
     const btn=document.getElementById('save-btn');
     const icon=document.getElementById('save-icon');
@@ -476,12 +491,35 @@ function loadProduct(){
     btn.setAttribute('aria-label',isSaved?'Remove from wishlist':'Save to wishlist');
   }
   updateSaveBtn();
-  document.getElementById('save-btn').addEventListener('click',()=>{
-    let saved=JSON.parse(localStorage.getItem(SAVED_KEY)||'[]');
+  // Wishlist needs an account (Yumna, 15 Sep 2026): guests see the sign-in prompt instead of a silent save.
+  const PENDING_KEY='revai_pending_save';
+  function isAuthed(){return !!(window.REVAI_CUSTOMER&&REVAI_CUSTOMER.isAuthed());}
+  const authBox=document.getElementById('save-auth');
+  function openSaveAuth(){
+    const next=encodeURIComponent('product.html?id='+id);
+    document.getElementById('save-auth-login').href='login.html?next='+next;
+    document.getElementById('save-auth-signup').href='signup.html?next='+next;
+    document.getElementById('save-auth-name').textContent=p.name;
+    try{sessionStorage.setItem(PENDING_KEY,id);}catch(e){}
+    authBox.classList.remove('hidden');
+    document.getElementById('save-auth-close').focus();
+  }
+  function closeSaveAuth(){authBox.classList.add('hidden');}
+  document.getElementById('save-auth-close').addEventListener('click',closeSaveAuth);
+  document.getElementById('save-auth-bg').addEventListener('click',closeSaveAuth);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!authBox.classList.contains('hidden'))closeSaveAuth();});
+  function toggleSaved(){
+    let saved=readJSON(SAVED_KEY);
     if(saved.includes(id)){saved=saved.filter(s=>s!==id);}else{saved.push(id);}
     localStorage.setItem(SAVED_KEY,JSON.stringify(saved));
     updateSaveBtn();
-  });
+  }
+  document.getElementById('save-btn').addEventListener('click',()=>{ if(!isAuthed()){openSaveAuth();return;} toggleSaved(); });
+  // Back from sign-in or sign-up: complete the save the guest started
+  try{
+    const pend=sessionStorage.getItem(PENDING_KEY);
+    if(pend===id&&isAuthed()){ sessionStorage.removeItem(PENDING_KEY); if(!readJSON(SAVED_KEY).includes(id)) toggleSaved(); }
+  }catch(e){}
 
   // Related
   const others=Object.entries(PRODUCTS).filter(([k])=>k!==id).sort(()=>Math.random()-.5).slice(0,4);
