@@ -13,10 +13,10 @@
   <meta property="og:description" content="Find Your Revival.">
   <meta property="og:url" content="https://revaiactive.com/product.html">
   <meta property="og:image" content="https://revaiactive.com/images/share/default.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="250">
+  <meta property="og:image:height" content="250">
   <meta property="og:image:alt" content="REVAÍ">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -370,6 +370,7 @@ function loadProduct(){
   // Share tags for this product + rewrite the address bar to the clean /p/<slug>/ URL so copied links carry the right preview
   const setMeta=(prop,val)=>{const m=document.querySelector('meta[property="'+prop+'"]');if(m)m.setAttribute('content',val);};
   setMeta('og:title',p.name+' · '+p.price); setMeta('og:image',location.origin+'/images/share/'+id+'.jpg'); setMeta('og:image:alt',p.name+' by REVAÍ');
+  setMeta('og:description','Find the '+p.name+' at REVAÍ — high quality, honestly priced, designed to fit all bodies.');
   const slug=PRODUCT_SLUGS[id];
   if(slug){ setMeta('og:url',location.origin+'/p/'+slug+'/'); try{history.replaceState(history.state,'','/p/'+slug+'/'+location.hash);}catch(e){} }
   document.getElementById('breadcrumb-name').textContent=p.name;
