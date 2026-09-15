@@ -369,7 +369,8 @@ function loadProduct(){
   document.title=p.name;
   // Share tags for this product + rewrite the address bar to the clean /p/<slug>/ URL so copied links carry the right preview
   const setMeta=(prop,val)=>{const m=document.querySelector('meta[property="'+prop+'"]');if(m)m.setAttribute('content',val);};
-  setMeta('og:title',p.name+' · '+p.price); setMeta('og:image',location.origin+'/images/share/'+id+'.jpg'); setMeta('og:image:alt',p.name+' by REVAÍ');
+  setMeta('og:title',p.name); // no price in previews (Yumna, 15 Sep 2026)
+  setMeta('og:image',location.origin+'/images/share/'+id+'.jpg'); setMeta('og:image:alt',p.name+' by REVAÍ');
   setMeta('og:description','Find the '+p.name+' at REVAÍ — high quality, honestly priced, designed to fit all bodies.');
   const slug=PRODUCT_SLUGS[id];
   if(slug){ setMeta('og:url',location.origin+'/p/'+slug+'/'); try{history.replaceState(history.state,'','/p/'+slug+'/'+location.hash);}catch(e){} }
