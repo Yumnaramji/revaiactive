@@ -14,7 +14,7 @@
     'running-leggings-w': { name: 'Performance Leggings',        gender: "Women's", price: 5500, sizes: ['S','M','L','XL','2XL'] },
     'flared-leggings-w':  { name: 'Flared Leggings',         gender: "Women's", price: 5600, sizes: ['S','M','L','XL','2XL'] },
     'high-impact-bra':    { name: 'High Impact Sports Bra',  gender: "Women's", price: 4950, sizes: ['S','M','L','XL','2XL'] },
-    'low-impact-bra':     { name: 'Low Impact Sports Bra',   gender: "Women's", price: 4950, sizes: ['S','M','L','XL','2XL'] },
+    'low-impact-bra':     { name: 'Low Impact Sports Bra',   gender: "Women's", price: 4450, sizes: ['S','M','L','XL','2XL'] },
     'jacket-w':           { name: "Women's Jacket",          gender: "Women's", price: 7500, sizes: ['S','M','L','XL','2XL'] },
     'tshirt-w':           { name: "Women's T-Shirt",         gender: "Women's", price: 4500, sizes: ['S','M','L','XL','2XL'] },
     'tshirt-m':           { name: "Men's T-Shirt",           gender: "Men's",   price: 4500, sizes: ['S','M','L','XL','2XL'] },

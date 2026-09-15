@@ -8,7 +8,7 @@
     {id:'running-leggings-w',  name:"Women's Performance Leggings",    cat:'Running · Women',  price:'KES 5,500'},
     {id:'flared-leggings-w',   name:"Women's Flared Leggings",      cat:'Gym · Women',      price:'KES 5,600'},
     {id:'high-impact-bra',     name:"High-Impact Sports Bra",       cat:'Women',            price:'KES 4,950'},
-    {id:'low-impact-bra',      name:"Low-Impact Sports Bra",        cat:'Yoga · Women',     price:'KES 4,950'},
+    {id:'low-impact-bra',      name:"Low-Impact Sports Bra",        cat:'Yoga · Women',     price:'KES 4,450'},
     {id:'jacket-w',            name:"Women's Performance Jacket",   cat:'Running · Women',  price:'KES 7,500'},
     {id:'tshirt-w',            name:"Women's Training T-Shirt",     cat:'Gym · Women',      price:'KES 4,500'},
     {id:'tshirt-m',            name:"Men's Training T-Shirt",       cat:'Gym · Men',        price:'KES 4,500'},
