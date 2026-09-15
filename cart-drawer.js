@@ -208,7 +208,7 @@
         <span style="font-size:14px;color:#6b7280">Subtotal</span>
         <span style="font-size:16px;font-weight:700;color:#000">KES ${total.toLocaleString()}</span>
       </div>
-      <p style="font-size:12px;color:#9ca3af;margin:0 0 14px">Free delivery across Kenya. Taxes included.</p>
+      <p style="font-size:12px;color:#9ca3af;margin:0 0 14px">Free delivery on orders over KES 20,000. Taxes included.</p>
       <button id="revai-checkout-btn" onclick="window.REVAI_CART.checkout()" style="width:100%;padding:14px;background:#000;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;letter-spacing:.02em;margin-bottom:10px">Checkout</button>
       <button onclick="window.REVAI_CART.closeDrawer()" style="width:100%;padding:12px;background:transparent;color:#374151;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer">Continue Shopping</button>
     `;
