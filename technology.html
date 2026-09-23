@@ -53,6 +53,14 @@
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     .tech-visual{border-radius:20px;overflow:hidden;aspect-ratio:4/3;position:relative}
+    /* Alternating tech rows. The image column is deliberately NARROWER than the copy
+       column (.78fr vs 1fr); .img-left mirrors it. Image side AND section background
+       alternate strictly down the page — don't break the zig-zag when adding a section. */
+    .tech-row{grid-template-columns:minmax(0,1fr)}
+    @media(min-width:768px){
+      .tech-row{grid-template-columns:minmax(0,1fr) minmax(0,.78fr)}
+      .tech-row.img-left{grid-template-columns:minmax(0,.78fr) minmax(0,1fr)}
+    }
     .tech-visual-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
     .spec-pill{display:inline-flex;align-items:center;background:#f0f0f0;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:500;color:#333;margin:3px}
   </style>
@@ -145,7 +153,7 @@
 <!-- Tech 1: Four-Way Stretch -->
 <section class="py-16 md:py-20 px-6" style="background:#f8f9fa">
 <div class="max-w-6xl mx-auto">
-<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="tech-row grid gap-16 items-center">
 <div>
 <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">01 — Fabric System</p>
 <h2 class="fu d1 t-h2 mb-6">Fourteen fabrics.<br/>Thirteen garments.</h2>
@@ -168,7 +176,7 @@
 <!-- Tech 2: Breathability -->
 <section class="py-16 md:py-20 px-6" style="background:#fff">
 <div class="max-w-6xl mx-auto">
-<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="tech-row img-left grid gap-16 items-center">
 <div class="order-2 md:order-1 fu">
 <div class="tech-visual" style="background:#1a1a2e;overflow:hidden"><img alt="Breathable performance fabric detail" src="images/tech-compression-structure.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
 </div>
@@ -188,13 +196,10 @@
 </div>
 </section>
 <!-- Tech 3: Quality Testing -->
-<section class="py-16 md:py-20 px-6" style="background:#fff">
+<section class="py-16 md:py-20 px-6" style="background:#f8f9fa">
 <div class="max-w-6xl mx-auto">
-<div class="grid md:grid-cols-2 gap-16 items-center">
-<div class="order-2 md:order-1 fu">
-<div class="tech-visual" style="background:#111;overflow:hidden;display:flex;align-items:center;justify-content:center;"><span style="color:#444;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase">Image Coming Soon</span></div>
-</div>
-<div class="order-1 md:order-2">
+<div class="tech-row grid gap-16 items-center">
+<div>
 <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">03 — Quality Testing</p>
 <h2 class="fu d1 t-h2 mb-6">International standards.<br/>Zero shortcuts.</h2>
 <p class="fu d2 text-gray-600 leading-relaxed mb-5">Quality isn't a feeling — it's a written specification. Every fabric in the collection is put through multiple international standard tests — for how it washes, wears, stretches, and holds its colour.</p>
@@ -204,14 +209,20 @@
 <span class="spec-pill">Run on pre-washed fabric</span>
 </div>
 </div>
+<div class="fu d2">
+<div class="tech-visual" style="background:#111;overflow:hidden;display:flex;align-items:center;justify-content:center;"><span style="color:#444;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase">Image Coming Soon</span></div>
+</div>
 </div>
 </div>
 </section>
 <!-- Tech 4: Construction -->
-<section class="py-16 md:py-20 px-6" style="background:#f8f9fa">
+<section class="py-16 md:py-20 px-6" style="background:#fff">
 <div class="max-w-6xl mx-auto">
-<div class="grid md:grid-cols-2 gap-16 items-center">
-<div>
+<div class="tech-row img-left grid gap-16 items-center">
+<div class="order-2 md:order-1 fu">
+<div class="tech-visual" style="background:#1a1a1a;overflow:hidden;display:flex;align-items:center;justify-content:center;"><span style="color:#555;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase">Image Coming Soon</span></div>
+</div>
+<div class="order-1 md:order-2">
 <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">04 — Construction</p>
 <h2 class="fu d1 t-h2 mb-6">Engineered on paper.<br/>Built at the top tier.</h2>
 <p class="fu d2 text-gray-600 leading-relaxed mb-5">Before it exists as clothing, every REVAÍ garment exists as an engineering document — pattern, seams, trims, and tolerances specified, then sampled round after round and corrected to the centimetre until the garment matches the maths.</p>
@@ -225,16 +236,13 @@
 <span class="spec-pill">Ankle zips · thumb holes · zip pockets</span>
 </div>
 </div>
-<div class="fu d2">
-<div class="tech-visual" style="background:#1a1a1a;overflow:hidden;display:flex;align-items:center;justify-content:center;"><span style="color:#555;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase">Image Coming Soon</span></div>
-</div>
 </div>
 </div>
 </section>
 <!-- Tech 5: Contoured Fit -->
-<section class="py-16 md:py-20 px-6" style="background:#fff">
+<section class="py-16 md:py-20 px-6" style="background:#f8f9fa">
 <div class="max-w-6xl mx-auto">
-<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="tech-row grid gap-16 items-center">
 <div>
 <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">05 — Contour Construction</p>
 <h2 class="fu d1 t-h2 mb-6">Sculpt, without<br/>the scrunch.</h2>
@@ -255,9 +263,9 @@
 </div>
 </section>
 <!-- Tech 6: Fit Engineering -->
-<section class="py-16 md:py-20 px-6" style="background:#f8f9fa">
+<section class="py-16 md:py-20 px-6" style="background:#fff">
 <div class="max-w-6xl mx-auto">
-<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="tech-row img-left grid gap-16 items-center">
 <div class="order-2 md:order-1 fu">
 <div class="tech-visual" style="background:#111;overflow:hidden;display:flex;align-items:center;justify-content:center;"><span style="color:#444;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase">Image Coming Soon</span></div>
 </div>
