@@ -22,7 +22,7 @@
     'shorts-m':           { name: "Men's Shorts",            gender: "Men's",   price: 6050, sizes: ['S','M','L','XL','2XL'] },
     'training-pants-m':   { name: "Training Pants",    gender: "Men's",   price: 6600, sizes: ['S','M','L','XL','2XL'] },
     'ankle-socks':      { name: 'Ankle Socks',             gender: 'Unisex',  price: 550,  sizes: ['S/M','L/XL'] },
-    'lifestyle-cap':      { name: 'Lifestyle Cap',           gender: 'Unisex',  price: 3500, sizes: ['One Size'] },
+    'lifestyle-cap':      { name: 'Lifestyle Cap',           gender: 'Unisex',  price: 3000, sizes: ['One Size'] },
     'gym-bag':            { name: 'Gym Bag',                 gender: 'Unisex',  price: 7500, sizes: ['One Size'] }
   };
 

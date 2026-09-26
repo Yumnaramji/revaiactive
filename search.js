@@ -16,7 +16,7 @@
     {id:'shorts-m',            name:"Men's Training Shorts",        cat:'Gym · Men',        price:'KES 6,050'},
     {id:'training-pants-m',  name:"Training Pants",       cat:'Running · Men',    price:'KES 6,600'},
     {id:'ankle-socks',         name:"Ankle Socks",                  cat:'Accessories',      price:'KES 550'},
-    {id:'lifestyle-cap',       name:"Lifestyle Cap",                cat:'Accessories',      price:'KES 3,500'},
+    {id:'lifestyle-cap',       name:"Lifestyle Cap",                cat:'Accessories',      price:'KES 3,000'},
     {id:'gym-bag',             name:"Gym Bag",                      cat:'Accessories',      price:'KES 7,500'},
   ];
 
