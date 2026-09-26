@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20260926a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260926b">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -57,8 +57,8 @@
     .asset-card{border:1px solid #ebebeb;border-radius:14px;overflow:hidden;transition:transform .2s ease,box-shadow .2s}
     .asset-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.07)}
   </style>
-  <script src="js/mobile-fix.js?v=20260926a" defer></script>
-  <link rel="stylesheet" href="css/tailwind.css?v=20260926a"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
+  <script src="js/mobile-fix.js?v=20260926b" defer></script>
+  <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
 
@@ -230,7 +230,7 @@
         <!-- Angle 2 -->
         <div class="fu d1 press-card">
           <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Fit &amp; range</span>
-          <h3 class="font-semibold text-base mt-3 mb-3 leading-snug">Designed across women's and men's, S–2XL</h3>
+          <h3 class="font-semibold text-base mt-3 mb-3 leading-snug">Designed across women's and men's, S–XXL</h3>
           <p class="text-sm text-gray-500 leading-relaxed">Thirteen pieces spanning leggings, sports bras, tops, outerwear, and accessories — cut as dedicated women's and men's products rather than afterthoughts, with a considered size range from the outset.</p>
         </div>
 
@@ -407,8 +407,8 @@ const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersec
 document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 </script>
-<script src="search.js?v=20260926a"></script>
-<script src="shopify-config.js?v=20260926a"></script>
-<script src="cart-drawer.js?v=20260926a"></script>
+<script src="search.js?v=20260926b"></script>
+<script src="shopify-config.js?v=20260926b"></script>
+<script src="cart-drawer.js?v=20260926b"></script>
 </body>
 </html>

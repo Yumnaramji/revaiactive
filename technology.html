@@ -21,7 +21,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20260926a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260926b">
 <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -64,8 +64,8 @@
     .tech-visual-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
     .spec-pill{display:inline-flex;align-items:center;background:#f0f0f0;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:500;color:#333;margin:3px}
   </style>
-  <script src="js/mobile-fix.js?v=20260926a" defer></script>
-  <link rel="stylesheet" href="css/tailwind.css?v=20260926a"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
+  <script src="js/mobile-fix.js?v=20260926b" defer></script>
+  <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
 <a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded-lg text-sm" href="#main">Skip to content</a>
@@ -273,9 +273,9 @@
 <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">06 — Fit Engineering</p>
 <h2 class="fu d1 t-h2 mb-6">Sized from the garment,<br/>not from a guess</h2>
 <p class="fu d2 text-gray-600 leading-relaxed mb-5">Most size charts are marketing documents. Ours is an engineering one — every measurement taken from the finished garments themselves, with each fabric's stretch factored in, so a compression knit is sized to hold, not to hope.</p>
-<p class="fu d3 text-gray-600 leading-relaxed mb-8">Five sizes, one promise: the ease that fits an S is the ease that fits a 2XL. And the flared legging is cut in two lengths — because three inches of inseam is the difference between almost-right and right.</p>
+<p class="fu d3 text-gray-600 leading-relaxed mb-8">Five sizes, one promise: the ease that fits an S is the ease that fits a XXL. And the flared legging is cut in two lengths — because three inches of inseam is the difference between almost-right and right.</p>
 <div class="fu d3 flex flex-wrap gap-1 mb-6">
-<span class="spec-pill">S–2XL across the range</span>
+<span class="spec-pill">S–XXL across the range</span>
 <span class="spec-pill">Chart derived from garment specs</span>
 <span class="spec-pill">Consistent ease at every size</span>
 <span class="spec-pill">Regular + Tall lengths (flared legging)</span>
@@ -362,8 +362,8 @@ document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 </script>
-<script src="search.js?v=20260926a"></script>
-<script src="shopify-config.js?v=20260926a"></script>
-<script src="cart-drawer.js?v=20260926a"></script>
+<script src="search.js?v=20260926b"></script>
+<script src="shopify-config.js?v=20260926b"></script>
+<script src="cart-drawer.js?v=20260926b"></script>
 </body>
 </html>

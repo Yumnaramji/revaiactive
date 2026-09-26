@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20260926a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260926b">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -61,8 +61,8 @@
     @media(max-width:900px){.hp-doors{grid-template-columns:repeat(2,1fr)}}
 
   </style>
-  <script src="js/mobile-fix.js?v=20260926a" defer></script>
-  <link rel="stylesheet" href="css/tailwind.css?v=20260926a"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
+  <script src="js/mobile-fix.js?v=20260926b" defer></script>
+  <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
 
@@ -168,7 +168,7 @@
         <div style="border-right:1px solid rgba(255,255,255,.1);padding:32px 32px">
           <p style="font-size:11px;font-weight:700;color:rgba(255,255,255,.25);letter-spacing:.1em;margin-bottom:20px">02</p>
           <h3 style="font-size:18px;font-weight:700;color:#fff;letter-spacing:-.02em;margin-bottom:12px">Every Body. Every Level.</h3>
-          <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7">S through 2XL. 5K to a marathon, 5am or 9pm. We work with professional athletes, personal trainers, gym regulars and everyday movers of every shape.</p>
+          <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7">S through XXL. 5K to a marathon, 5am or 9pm. We work with professional athletes, personal trainers, gym regulars and everyday movers of every shape.</p>
         </div>
 
         <div style="padding:32px 0 32px 32px">
@@ -283,8 +283,8 @@ const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.ta
 document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 </script>
-<script src="search.js?v=20260926a"></script>
-<script src="shopify-config.js?v=20260926a"></script>
-<script src="cart-drawer.js?v=20260926a"></script>
+<script src="search.js?v=20260926b"></script>
+<script src="shopify-config.js?v=20260926b"></script>
+<script src="cart-drawer.js?v=20260926b"></script>
 </body>
 </html>

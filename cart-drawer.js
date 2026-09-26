@@ -11,16 +11,16 @@
   // ── Catalog (minimal — only what upsell cards need) ──────────────────────────
   // Mirrors PRODUCTS in product.html. Keep in sync if product names/prices change.
   const CATALOG = {
-    'running-leggings-w': { name: 'Performance Leggings',        gender: "Women's", price: 5500, sizes: ['S','M','L','XL','2XL'] },
-    'flared-leggings-w':  { name: 'Flared Leggings',         gender: "Women's", price: 5600, sizes: ['S','M','L','XL','2XL'] },
-    'high-impact-bra':    { name: 'High Impact Sports Bra',  gender: "Women's", price: 4950, sizes: ['S','M','L','XL','2XL'] },
-    'low-impact-bra':     { name: 'Low Impact Sports Bra',   gender: "Women's", price: 4450, sizes: ['S','M','L','XL','2XL'] },
-    'jacket-w':           { name: "Women's Jacket",          gender: "Women's", price: 7500, sizes: ['S','M','L','XL','2XL'] },
-    'tshirt-w':           { name: "Women's T-Shirt",         gender: "Women's", price: 4500, sizes: ['S','M','L','XL','2XL'] },
-    'tshirt-m':           { name: "Men's T-Shirt",           gender: "Men's",   price: 4500, sizes: ['S','M','L','XL','2XL'] },
-    'quarter-zip-m':      { name: "Men's Quarter Zip",       gender: "Men's",   price: 5600, sizes: ['S','M','L','XL','2XL'] },
-    'shorts-m':           { name: "Men's Shorts",            gender: "Men's",   price: 6050, sizes: ['S','M','L','XL','2XL'] },
-    'training-pants-m':   { name: "Training Pants",    gender: "Men's",   price: 6600, sizes: ['S','M','L','XL','2XL'] },
+    'running-leggings-w': { name: 'Performance Leggings',        gender: "Women's", price: 5500, sizes: ['S','M','L','XL','XXL'] },
+    'flared-leggings-w':  { name: 'Flared Leggings',         gender: "Women's", price: 5600, sizes: ['S','M','L','XL','XXL'] },
+    'high-impact-bra':    { name: 'High Impact Sports Bra',  gender: "Women's", price: 4950, sizes: ['S','M','L','XL','XXL'] },
+    'low-impact-bra':     { name: 'Low Impact Sports Bra',   gender: "Women's", price: 4450, sizes: ['S','M','L','XL','XXL'] },
+    'jacket-w':           { name: "Women's Jacket",          gender: "Women's", price: 7500, sizes: ['S','M','L','XL','XXL'] },
+    'tshirt-w':           { name: "Women's T-Shirt",         gender: "Women's", price: 4500, sizes: ['S','M','L','XL','XXL'] },
+    'tshirt-m':           { name: "Men's T-Shirt",           gender: "Men's",   price: 4500, sizes: ['S','M','L','XL','XXL'] },
+    'quarter-zip-m':      { name: "Men's Quarter Zip",       gender: "Men's",   price: 5600, sizes: ['S','M','L','XL','XXL'] },
+    'shorts-m':           { name: "Men's Shorts",            gender: "Men's",   price: 6050, sizes: ['S','M','L','XL','XXL'] },
+    'training-pants-m':   { name: "Training Pants",    gender: "Men's",   price: 6600, sizes: ['S','M','L','XL','XXL'] },
     'ankle-socks':      { name: 'Ankle Socks',             gender: 'Unisex',  price: 550,  sizes: ['S/M','L/XL'] },
     'lifestyle-cap':      { name: 'Lifestyle Cap',           gender: 'Unisex',  price: 3000, sizes: ['One Size'] },
     'gym-bag':            { name: 'Gym Bag',                 gender: 'Unisex',  price: 7500, sizes: ['One Size'] }
@@ -188,7 +188,7 @@
         </a>
         <div style="flex:1;min-width:0">
           <p style="font-size:14px;font-weight:600;color:#000;margin:0 0 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${item.name}</p>
-          <p style="font-size:12px;color:#6b7280;margin:0 0 8px">Size: ${String(item.size).replace(/^XXL/,'2XL')}</p>
+          <p style="font-size:12px;color:#6b7280;margin:0 0 8px">Size: ${String(item.size).replace(/^2XL/,'XXL')}</p>
           <div style="display:flex;align-items:center;gap:10px">
             <div style="display:flex;align-items:center;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden">
               <button onclick="window.REVAI_CART.setQty(${idx},-1)" style="width:28px;height:28px;background:none;border:none;cursor:pointer;font-size:15px;color:#374151;display:flex;align-items:center;justify-content:center">−</button>
@@ -345,7 +345,7 @@
         const cartLines = [];
         let unmapped = false;
         cart.forEach(function(item) {
-          const vid = (variants[item.id] || {})[item.size] || (variants[item.id] || {})[String(item.size).replace(/^XXL/, '2XL')];
+          const vid = (variants[item.id] || {})[item.size] || (variants[item.id] || {})[String(item.size).replace(/^2XL/, 'XXL')];
           if (vid && vid.indexOf('gid://') === 0) {
             cartLines.push({ merchandiseId: vid, quantity: item.qty || 1 });
           } else {

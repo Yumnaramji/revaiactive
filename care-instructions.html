@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20260926a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260926b">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -58,8 +58,8 @@
     .do-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #f5f5f5}
     .do-item:last-child{border-bottom:none}
   </style>
-  <script src="js/mobile-fix.js?v=20260926a" defer></script>
-  <link rel="stylesheet" href="css/tailwind.css?v=20260926a"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
+  <script src="js/mobile-fix.js?v=20260926b" defer></script>
+  <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
 
@@ -151,7 +151,7 @@
                 <td class="font-semibold">Washing</td>
                 <td><span style="font-size:20px;">🫧</span></td>
                 <td>Machine wash — mild / delicate cycle, similar colours, inside out</td>
-                <td>Cold — max 30°C / 86°F</td>
+                <td>Max 30°C / 86°F, mild cycle</td>
               </tr>
               <tr>
                 <td class="font-semibold">Drying</td>
@@ -202,7 +202,7 @@
             <div class="do-item">
               <span class="text-green-500 font-bold mt-0.5 flex-shrink-0">✓</span>
               <div>
-                <p class="text-sm font-medium">Wash cold at 30°C / 86°F with similar colours</p>
+                <p class="text-sm font-medium">Wash at a maximum of 30°C / 86°F with similar colours</p>
                 <p class="text-xs text-gray-500 mt-0.5">Hot water breaks down elastane fibres and reduces compression performance over time. Washing with similar colours protects the finish.</p>
               </div>
             </div>
@@ -346,28 +346,54 @@
     <div class="max-w-6xl mx-auto">
       <div class="fu mb-8">
         <h2 class="t-h2 mb-2">Understanding Care Labels</h2>
-        <p class="text-gray-500 text-sm">Every REVAÍ garment has a care label. Here's what the standard symbols mean.</p>
+        <p class="text-gray-500 text-sm">Every REVAÍ product has a care label. These are the symbols we use and what they mean.</p>
       </div>
-      <div class="fu d1 grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+      <!-- Symbols drawn by js/care-icons.js — keep this list to the symbols that appear on REVAÍ labels -->
+      <div class="fu d1 grid grid-cols-2 sm:grid-cols-3 gap-4">
         <div class="bg-white border border-gray-100 rounded-2xl p-5 text-center">
-          <div class="text-4xl mb-3">🫧</div>
-          <p class="font-semibold text-sm mb-1">Tub with water</p>
-          <p class="text-xs text-gray-500">Machine washable. Number inside = max temperature in °C.</p>
+          <span data-care-icon="wash-30-mild" class="inline-flex h-8 mb-3 text-gray-900"></span>
+          <p class="font-semibold text-sm mb-1">Machine wash, 30°C mild</p>
+          <p class="text-xs text-gray-500">The number is the maximum temperature in °C. A bar underneath means a gentle, mild cycle.</p>
         </div>
         <div class="bg-white border border-gray-100 rounded-2xl p-5 text-center">
-          <div class="text-4xl mb-3">💧</div>
-          <p class="font-semibold text-sm mb-1">Dripping square</p>
-          <p class="text-xs text-gray-500">Do not tumble dry. Hang or lay flat to dry.</p>
+          <span data-care-icon="wash-40" class="inline-flex h-8 mb-3 text-gray-900"></span>
+          <p class="font-semibold text-sm mb-1">Machine wash, 40°C</p>
+          <p class="text-xs text-gray-500">Warm machine wash up to 40°C. No bar means a normal cycle.</p>
         </div>
         <div class="bg-white border border-gray-100 rounded-2xl p-5 text-center">
-          <div class="text-4xl mb-3">🔲</div>
-          <p class="font-semibold text-sm mb-1">Square with circle</p>
-          <p class="text-xs text-gray-500">Tumble dry. An X through it means do not tumble dry.</p>
+          <span data-care-icon="hand-wash" class="inline-flex h-8 mb-3 text-gray-900"></span>
+          <p class="font-semibold text-sm mb-1">Hand wash</p>
+          <p class="text-xs text-gray-500">Wash by hand only, in water no hotter than 40°C.</p>
         </div>
         <div class="bg-white border border-gray-100 rounded-2xl p-5 text-center">
-          <div class="text-4xl mb-3">⚠️</div>
-          <p class="font-semibold text-sm mb-1">Triangle</p>
-          <p class="text-xs text-gray-500">Bleaching guidance. Crossed triangle = no bleach of any kind.</p>
+          <span data-care-icon="no-wash" class="inline-flex h-8 mb-3 text-gray-900"></span>
+          <p class="font-semibold text-sm mb-1">Do not wash</p>
+          <p class="text-xs text-gray-500">Not for washing in water. Wipe clean with a damp cloth instead.</p>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-2xl p-5 text-center">
+          <span data-care-icon="no-bleach" class="inline-flex h-8 mb-3 text-gray-900"></span>
+          <p class="font-semibold text-sm mb-1">Do not bleach</p>
+          <p class="text-xs text-gray-500">No bleach of any kind, including oxygen-based stain removers.</p>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-2xl p-5 text-center">
+          <span data-care-icon="no-tumble-dry" class="inline-flex h-8 mb-3 text-gray-900"></span>
+          <p class="font-semibold text-sm mb-1">Do not tumble dry</p>
+          <p class="text-xs text-gray-500">Keep out of the dryer. Hang or lay flat to dry instead.</p>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-2xl p-5 text-center">
+          <span data-care-icon="iron-low" class="inline-flex h-8 mb-3 text-gray-900"></span>
+          <p class="font-semibold text-sm mb-1">Iron on low</p>
+          <p class="text-xs text-gray-500">One dot means low heat, a maximum of 110°C.</p>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-2xl p-5 text-center">
+          <span data-care-icon="no-iron" class="inline-flex h-8 mb-3 text-gray-900"></span>
+          <p class="font-semibold text-sm mb-1">Do not iron</p>
+          <p class="text-xs text-gray-500">Do not iron or steam.</p>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-2xl p-5 text-center">
+          <span data-care-icon="no-dry-clean" class="inline-flex h-8 mb-3 text-gray-900"></span>
+          <p class="font-semibold text-sm mb-1">Do not dry clean</p>
+          <p class="text-xs text-gray-500">Professional dry cleaning will damage the fabric.</p>
         </div>
       </div>
       <p class="fu d2 text-xs text-gray-400 mt-6 max-w-xl">All REVAÍ care labels also include written instructions in English. If a label has worn or faded, refer to this page or contact us at support@revaiactive.com.</p>
@@ -447,8 +473,9 @@ const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersec
 document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 </script>
-<script src="search.js?v=20260926a"></script>
-<script src="shopify-config.js?v=20260926a"></script>
-<script src="cart-drawer.js?v=20260926a"></script>
+<script src="search.js?v=20260926b"></script>
+<script src="shopify-config.js?v=20260926b"></script>
+<script src="cart-drawer.js?v=20260926b"></script>
+<script src="js/care-icons.js?v=20260913a"></script>
 </body>
 </html>

@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20260926a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20260926b">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -56,8 +56,8 @@
     .story-card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:28px;transition:transform .25s ease,box-shadow .25s ease;height:100%}
     .story-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.07)}
   </style>
-  <script src="js/mobile-fix.js?v=20260926a" defer></script>
-  <link rel="stylesheet" href="css/tailwind.css?v=20260926a"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
+  <script src="js/mobile-fix.js?v=20260926b" defer></script>
+  <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
 
@@ -307,7 +307,7 @@
     <div class="max-w-6xl mx-auto text-center">
       <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">Join them</p>
       <h2 class="fu d1 t-h2 mb-6">Whatever moving<br>looks like for you.</h2>
-      <p class="fu d2 text-gray-500 text-lg max-w-xl mx-auto mb-10">Gear built for every kind of movement, every kind of body. S–2XL, true to size.</p>
+      <p class="fu d2 text-gray-500 text-lg max-w-xl mx-auto mb-10">Gear built for every kind of movement, every kind of body. S–XXL, true to size.</p>
       <div class="fu d3 flex flex-col sm:flex-row gap-4 justify-center">
         <a href="collections.html" class="btn-p">Shop Collections</a>
         <a href="fit-guide.html" class="btn-s">Find Your Fit</a>
@@ -377,8 +377,8 @@ document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 </script>
-<script src="search.js?v=20260926a"></script>
-<script src="shopify-config.js?v=20260926a"></script>
-<script src="cart-drawer.js?v=20260926a"></script>
+<script src="search.js?v=20260926b"></script>
+<script src="shopify-config.js?v=20260926b"></script>
+<script src="cart-drawer.js?v=20260926b"></script>
 </body>
 </html>
