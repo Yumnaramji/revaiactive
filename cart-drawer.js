@@ -1,12 +1,12 @@
 /**
- * REVAÍ Cart Drawer  (v2 — with curated upsells)
+ * REVAÍ Cart Drawer  (v3 — WooCommerce checkout via shop.revaiactive.com, curated upsells)
  * Provides window.REVAI_CART with add(), remove(), openDrawer(), closeDrawer()
  * Provides window.REVAI_CATALOG with CATALOG, getUpsells(), resetUpsellCache()
  * Persists to localStorage key 'revai_cart_v1'
  */
 (function () {
   const STORAGE_KEY = 'revai_cart_v1';
-  console.log('[REVAI] cart-drawer.js v2 loaded — upsells enabled');
+  console.log('[REVAI] cart-drawer.js v3 loaded — WooCommerce checkout');
 
   // ── Catalog (minimal — only what upsell cards need) ──────────────────────────
   // Mirrors PRODUCTS in product.html. Keep in sync if product names/prices change.
@@ -315,11 +315,6 @@
       const cart = load();
       if (cart.length === 0) return;
 
-      // Single source of config — shopify-config.js (falls back if not loaded)
-      const CFG   = window.REVAI_SHOPIFY || {};
-      const TOKEN = CFG.storefrontToken || 'd247325e39b051aeface7e573e550d37';
-      const GQL   = CFG.endpoint || 'https://revai-518.myshopify.com/api/2024-10/graphql.json';
-
       // Works from both the drawer and the cart page
       const btn = document.getElementById('revai-checkout-btn') || document.getElementById('cart-page-checkout');
       const resetBtn = function() { if (btn) { btn.textContent = 'Checkout'; btn.disabled = false; } };
@@ -337,11 +332,36 @@
         notice.textContent = text;
       }
 
+      // ── WooCommerce checkout (shop.revaiactive.com) — see woo-config.js ──
+      if ((window.REVAI_CHECKOUT || 'woo') === 'woo' && window.REVAI_WOO) {
+        const WOO = window.REVAI_WOO;
+        const items = [];
+        let unmapped = false;
+        cart.forEach(function(item) {
+          const p = WOO.variations[item.id];
+          const size = String(item.size).replace(/^2XL/, 'XXL');
+          const vid = p && p.sizes && p.sizes[size];
+          if (vid) { items.push({ v: vid, q: item.qty || 1 }); } else { unmapped = true; }
+        });
+        if (unmapped || items.length === 0) {
+          showNotice('One of the items in your bag is not available online yet. Please remove it and try again.');
+          return;
+        }
+        // The shop rebuilds this bag server-side and opens the checkout.
+        const payload = btoa(JSON.stringify({ items: items }))
+          .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+        window.location.href = WOO.base + '/?revai-cart=' + payload;
+        return;
+      }
+
+      // ── Legacy Shopify checkout (kept as a fallback; set REVAI_CHECKOUT = 'shopify') ──
+      const CFG   = window.REVAI_SHOPIFY || {};
+      const TOKEN = CFG.storefrontToken || '';
+      const GQL   = CFG.endpoint || '';
+      if (!TOKEN || !GQL) { showNotice('Online checkout coming soon. To order, contact us directly.'); return; }
+
       try {
         const variants = CFG.variants || {};
-
-        // Map every bag line to a Shopify variant. If ANY line is unmapped,
-        // stop — never silently check out a partial bag.
         const cartLines = [];
         let unmapped = false;
         cart.forEach(function(item) {
@@ -352,12 +372,10 @@
             unmapped = true;
           }
         });
-
         if (unmapped || cartLines.length === 0) {
           showNotice('Online checkout coming soon. To order, contact us directly.');
           return;
         }
-
         const cartRes = await fetch(GQL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'X-Shopify-Storefront-Access-Token': TOKEN },
@@ -369,23 +387,11 @@
         const cartData = await cartRes.json();
         const result = cartData.data && cartData.data.cartCreate;
         const checkoutUrl = result && result.cart && result.cart.checkoutUrl;
-        const userErrors = (result && result.userErrors) || [];
-
-        if (checkoutUrl) {
-          window.location.href = checkoutUrl;
-        } else if (userErrors.some(function(e){ return /does not exist/i.test(e.message || ''); })) {
-          // Products not yet published to the storefront (pre-launch DRAFT state)
-          console.warn('Shopify checkout not yet live:', userErrors);
-          showNotice('Online checkout coming soon. To order, contact us directly.');
-        } else {
-          console.error('Shopify cart errors:', cartData);
-          alert('Could not create checkout. Please try again.');
-          resetBtn();
-        }
+        if (checkoutUrl) { window.location.href = checkoutUrl; }
+        else { console.error('Shopify cart errors:', cartData); showNotice('Could not create checkout. Please try again.'); }
       } catch (e) {
         console.error('Checkout error:', e);
-        alert('Something went wrong. Please try again.');
-        resetBtn();
+        showNotice('Something went wrong. Please try again.');
       }
     },
 
