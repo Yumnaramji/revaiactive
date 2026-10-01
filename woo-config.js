@@ -5,15 +5,8 @@
 window.REVAI_CHECKOUT = 'woo';
 window.REVAI_WOO = {
   base: 'https://shop.revaiactive.com',
-  account: {
-    login:    'https://shop.revaiactive.com/my-account/',
-    signup:   'https://shop.revaiactive.com/my-account/',
-    orders:   'https://shop.revaiactive.com/my-account/orders/',
-    addresses:'https://shop.revaiactive.com/my-account/edit-address/',
-    profile:  'https://shop.revaiactive.com/my-account/edit-account/',
-    recover:  'https://shop.revaiactive.com/my-account/lost-password/',
-    logout:   'https://shop.revaiactive.com/my-account/customer-logout/'
-  },
+  // Accounts stay on revaiactive.com (login.html, orders.html, ...) via js/woo-customer.js -> /wp-json/revai/v1/customer
+  api: 'https://shop.revaiactive.com/wp-json/revai/v1/customer',
   variations: {
     "gym-bag": { product: 129, sizes: { "One Size":130 } },
     "lifestyle-cap": { product: 126, sizes: { "One Size":127 } },
@@ -30,3 +23,21 @@ window.REVAI_WOO = {
     "running-leggings-w": { product: 20, sizes: { "S":21, "M":22, "L":23, "XL":24, "XXL":25 } }
   }
 };
+
+// Wishlist is an account feature (Yumna, 1 Oct 2026): the heart in the header and the
+// "Wishlist" menu link only show once the customer is signed in. The product page keeps
+// its own sign-in prompt for guests who press Save.
+(function () {
+  function signedIn() {
+    try {
+      var t = JSON.parse(localStorage.getItem('revai_customer_token_v1') || 'null');
+      return !!(t && t.accessToken && (!t.expiresAt || new Date(t.expiresAt) > new Date()));
+    } catch (e) { return false; }
+  }
+  function apply() {
+    if (signedIn()) return;
+    var els = document.querySelectorAll('a[aria-label="Wishlist"], a.mlink[href="wishlist.html"]');
+    for (var i = 0; i < els.length; i++) { els[i].style.display = 'none'; }
+  }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', apply); } else { apply(); }
+})();

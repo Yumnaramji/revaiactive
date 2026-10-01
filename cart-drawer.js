@@ -350,7 +350,8 @@
         // The shop rebuilds this bag server-side and opens the checkout.
         const payload = btoa(JSON.stringify({ items: items }))
           .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-        window.location.href = WOO.base + '/?revai-cart=' + payload;
+        var tok = (window.REVAI_CUSTOMER && window.REVAI_CUSTOMER.getToken && window.REVAI_CUSTOMER.getToken()) || null;
+        window.location.href = WOO.base + '/?revai-cart=' + payload + (tok ? '&revai-token=' + encodeURIComponent(tok.accessToken) : '');
         return;
       }
 
