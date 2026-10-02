@@ -351,6 +351,8 @@
         const payload = btoa(JSON.stringify({ items: items }))
           .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
         var tok = (window.REVAI_CUSTOMER && window.REVAI_CUSTOMER.getToken && window.REVAI_CUSTOMER.getToken()) || null;
+        // The shop server takes 2-3 s to answer, so say so instead of leaving the button looking stuck.
+        if (btn) { btn.textContent = 'Opening checkout…'; btn.disabled = true; }
         window.location.href = WOO.base + '/?revai-cart=' + payload + (tok ? '&revai-token=' + encodeURIComponent(tok.accessToken) : '');
         return;
       }
