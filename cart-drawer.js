@@ -255,10 +255,85 @@
   }
 
   // ── Open / Close ──────────────────────────────────────────────────────────────
+  // ── Checkout head start ──────────────────────────────────────────────────────
+  // The shop answers slowly (about 1-2 s per request), and checkout used to need two
+  // requests in a row after the tap: /?revai-cart=… to rebuild the bag, then /checkout/.
+  // While the bag is open the first one is now sent in the background, and the shop's
+  // own cart is read back to confirm it holds exactly this bag. Only then does the
+  // Checkout tap go straight to /checkout/. Anything else (not confirmed, still
+  // running, changed bag, request failed) falls back to the full two-step link.
+  const READY_KEY = 'revai_shop_cart_ready_v1';
+  const READY_MS = 5 * 60 * 1000;
+  let prepChain = Promise.resolve();
+  let prepBusy = 0;
+  let prepTimer = null;
+  let prepWanted = null;
+
+  function wooBag() {
+    if ((window.REVAI_CHECKOUT || 'woo') !== 'woo' || !window.REVAI_WOO) return null;
+    const WOO = window.REVAI_WOO;
+    const cart = load();
+    const qty = {};
+    let unmapped = false;
+    cart.forEach(function(item) {
+      const p = WOO.variations[item.id];
+      const size = String(item.size).replace(/^2XL/, 'XXL');
+      const vid = p && p.sizes && p.sizes[size];
+      if (vid) { qty[vid] = (qty[vid] || 0) + (item.qty || 1); } else { unmapped = true; }
+    });
+    const items = Object.keys(qty).map(function(v) { return { v: Number(v), q: qty[v] }; });
+    const payload = btoa(JSON.stringify({ items: items }))
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    const tok = (window.REVAI_CUSTOMER && window.REVAI_CUSTOMER.getToken && window.REVAI_CUSTOMER.getToken()) || null;
+    return {
+      base: WOO.base, items: items, unmapped: unmapped,
+      url: WOO.base + '/?revai-cart=' + payload + (tok ? '&revai-token=' + encodeURIComponent(tok.accessToken) : ''),
+      sig: payload + (tok ? '|in' : '|guest'),
+      want: items.map(function(i) { return i.v + 'x' + i.q; }).sort().join(',')
+    };
+  }
+  function shopReady(sig) {
+    try {
+      const r = JSON.parse(localStorage.getItem(READY_KEY) || 'null');
+      return !!(r && r.sig === sig && Date.now() - r.t < READY_MS);
+    } catch (e) { return false; }
+  }
+  function clearShopReady() { try { localStorage.removeItem(READY_KEY); } catch (e) {} }
+
+  async function buildShopCart(bag) {
+    if (prepWanted !== bag.sig || shopReady(bag.sig)) return;   // superseded, or already done
+    clearShopReady();
+    // The answer is a redirect the browser won't let this page read, so the request
+    // "fails" here even though the shop has rebuilt the bag. The read-back below decides.
+    try { await fetch(bag.url, { credentials: 'include', redirect: 'manual' }); } catch (e) {}
+    const res = await fetch(bag.base + '/wp-json/wc/store/v1/cart', { credentials: 'include', headers: { 'Accept': 'application/json' } });
+    if (!res.ok) return;
+    const data = await res.json();
+    const got = (data.items || []).map(function(i) { return i.id + 'x' + i.quantity; }).sort().join(',');
+    if (got === bag.want) localStorage.setItem(READY_KEY, JSON.stringify({ sig: bag.sig, t: Date.now() }));
+  }
+  // One build at a time, so an older bag can never land on the shop after a newer one.
+  function prepareCheckout(delay) {
+    clearTimeout(prepTimer);
+    prepTimer = setTimeout(function() {
+      prepTimer = null;
+      const bag = wooBag();
+      if (!bag || bag.unmapped || !bag.items.length) return;
+      prepWanted = bag.sig;
+      if (shopReady(bag.sig)) return;
+      prepBusy++;
+      prepChain = prepChain
+        .then(function() { return buildShopCart(bag); })
+        .catch(function() {})
+        .then(function() { prepBusy--; });
+    }, delay === undefined ? 500 : delay);
+  }
+
   function openDrawer() {
     resetUpsellCache();
     buildDrawer();
     renderDrawer();
+    prepareCheckout(0);
     const drawer = document.getElementById('revai-cart-drawer');
     const overlay = document.getElementById('revai-cart-overlay');
     overlay.style.display = 'block';
@@ -300,6 +375,7 @@
       save(cart);
       updateBadge();
       renderDrawer();
+      prepareCheckout();
     },
 
     setQty(idx, delta) {
@@ -309,7 +385,10 @@
       save(cart);
       updateBadge();
       renderDrawer();
+      prepareCheckout();
     },
+
+    prepareCheckout,
 
     checkout: async function() {
       const cart = load();
@@ -334,26 +413,30 @@
 
       // ── WooCommerce checkout (shop.revaiactive.com) — see woo-config.js ──
       if ((window.REVAI_CHECKOUT || 'woo') === 'woo' && window.REVAI_WOO) {
-        const WOO = window.REVAI_WOO;
-        const items = [];
-        let unmapped = false;
-        cart.forEach(function(item) {
-          const p = WOO.variations[item.id];
-          const size = String(item.size).replace(/^2XL/, 'XXL');
-          const vid = p && p.sizes && p.sizes[size];
-          if (vid) { items.push({ v: vid, q: item.qty || 1 }); } else { unmapped = true; }
-        });
-        if (unmapped || items.length === 0) {
+        const bag = wooBag();
+        if (bag.unmapped || bag.items.length === 0) {
           showNotice('One of the items in your bag is not available online yet. Please remove it and try again.');
           return;
         }
-        // The shop rebuilds this bag server-side and opens the checkout.
-        const payload = btoa(JSON.stringify({ items: items }))
-          .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-        var tok = (window.REVAI_CUSTOMER && window.REVAI_CUSTOMER.getToken && window.REVAI_CUSTOMER.getToken()) || null;
-        // The shop server takes 2-3 s to answer, so say so instead of leaving the button looking stuck.
+        // The shop server is slow to answer, so say so instead of leaving the button looking stuck.
         if (btn) { btn.textContent = 'Opening checkout…'; btn.disabled = true; }
-        window.location.href = WOO.base + '/?revai-cart=' + payload + (tok ? '&revai-token=' + encodeURIComponent(tok.accessToken) : '');
+        // A background build is still running: let it finish (it is the same work the
+        // full link would start again), but never wait long.
+        if (!shopReady(bag.sig) && (prepBusy > 0 || prepTimer)) {
+          if (prepTimer) prepareCheckout(0);
+          await new Promise(function(done) {
+            const giveUp = setTimeout(done, 6000);
+            (function wait() {
+              if (prepBusy === 0 && !prepTimer) { clearTimeout(giveUp); done(); return; }
+              setTimeout(wait, 100);
+            })();
+          });
+        }
+        // Confirmed on the shop: one request instead of two. The mark is used once, so a
+        // later tap (back button, second order) always re-checks.
+        const direct = shopReady(bag.sig);
+        clearShopReady();
+        window.location.href = direct ? bag.base + '/checkout/' : bag.url;
         return;
       }
 
@@ -429,4 +512,17 @@
 
   document.addEventListener('DOMContentLoaded', updateBadge);
   updateBadge();
+
+  // Coming back from the checkout with the back button restores this page as it was
+  // left: put the Checkout button back and get the head start ready again.
+  window.addEventListener('pageshow', function(e) {
+    if (!e.persisted) return;
+    const btn = document.getElementById('revai-checkout-btn') || document.getElementById('cart-page-checkout');
+    if (btn) { btn.textContent = 'Checkout'; btn.disabled = false; }
+    updateBadge();
+    const overlay = document.getElementById('revai-cart-overlay');
+    if ((overlay && overlay.style.display === 'block') || document.getElementById('cart-page-checkout')) prepareCheckout(0);
+  });
+  // The bag page has its own Checkout button and no drawer to open first.
+  if (document.getElementById('cart-page-checkout')) prepareCheckout(0);
 })();

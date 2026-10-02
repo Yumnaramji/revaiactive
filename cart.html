@@ -225,7 +225,7 @@
 <script src="search.js?v=20260926b"></script>
 <script src="shopify-config.js?v=20260926b"></script>
 <script src="woo-config.js?v=20261002d"></script>
-<script src="cart-drawer.js?v=20261002b"></script>
+<script src="cart-drawer.js?v=20261002c"></script>
 <script>
 const STORAGE_KEY = 'revai_cart_v1';
 
@@ -358,7 +358,10 @@ window.addEventListener('storage', renderPage);  // cross-tab
 let lastSnapshot = JSON.stringify(loadCart());
 setInterval(() => {
   const snap = JSON.stringify(loadCart());
-  if(snap !== lastSnapshot){ lastSnapshot = snap; renderPage(); }
+  if(snap !== lastSnapshot){
+    lastSnapshot = snap; renderPage();
+    if(window.REVAI_CART && window.REVAI_CART.prepareCheckout) window.REVAI_CART.prepareCheckout();   // checkout head start, see cart-drawer.js
+  }
 }, 600);
 
 // Checkout button on the page reuses the drawer's checkout flow
