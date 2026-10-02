@@ -80,17 +80,19 @@
     .hp-name{font-size:15px;font-weight:600;color:#0a0a0a}
     .hp-price{font-size:15px;font-weight:700;color:#0a0a0a;white-space:nowrap}
     .hp-sizes{margin-top:6px;display:flex;flex-wrap:wrap}
-    /* Phones: no size row under the cards and no Add to Bag bar on the photo (Yumna, 2 Oct 2026).
-       Tapping the photo or the name opens the product page, where colour and size are chosen. */
-    @media(max-width:767px){.hp-sizes,.hp-add{display:none!important}}
-    /* Phone card text (Yumna, 2 Oct 2026, from a Gymshark reference): name, then colour, then price,
-       stacked under the photo; colour and price in grey. The colour line only shows on phones. */
-    .hp-colour{display:none}
-    @media(max-width:767px){
-      .hp-row{display:block}
-      .hp-row .hp-name{font-size:14px;font-weight:500;line-height:1.3}
-      .hp-row .hp-colour{display:block;margin-top:8px;font-size:13px;line-height:1.3;color:#6b7280}
-      .hp-row .hp-price{margin-top:3px;font-size:13px;font-weight:400;color:#6b7280}
+    /* Cards are photo, name, colour, price - on every screen size (Yumna, 2 Oct 2026: phones first, then
+       the same on desktop). No size row and no Add to Bag bar; tapping or clicking the photo or the name
+       opens the product page, where colour and size are chosen. */
+    .hp-sizes,.hp-add{display:none!important}
+    /* Card text (from a Gymshark reference): name, then colour, then price, stacked under the photo;
+       colour and price in grey. One step larger from 768px up. */
+    .hp-card .hp-row{display:block}
+    .hp-row .hp-name{font-size:14px;font-weight:500;line-height:1.3}
+    .hp-row .hp-colour{display:block;margin-top:8px;font-size:13px;line-height:1.3;color:#6b7280}
+    .hp-row .hp-price{margin-top:3px;font-size:13px;font-weight:400;color:#6b7280}
+    @media(min-width:768px){
+      .hp-row .hp-name{font-size:15px}
+      .hp-row .hp-colour,.hp-row .hp-price{font-size:14px}
     }
     /* neutralise the Tailwind state classes the size-pill JS toggles */
     .hp-card .size-pill{background:none!important;border:0!important;border-radius:0!important;
@@ -402,8 +404,8 @@
 // Simple add-to-bag with size selection and toast
 let cartItems=[]; try{ cartItems=JSON.parse(localStorage.getItem('revai_cart_v1')||'[]'); if(!Array.isArray(cartItems)) cartItems=[]; }catch(e){ cartItems=[]; } // a corrupt value must not take the page down
 function addToBag(name, price, id) {
-  // Phones have no size row and no Add to Bag bar on the cards; kept as a guard in case the bar is ever shown again.
-  if(window.matchMedia('(max-width:767px)').matches){window.location.href='product.html?id='+id;return;}
+  // The cards have no size row and no Add to Bag bar any more; if this is ever called, open the product page.
+  if(!document.querySelector('.size-pill.selected[data-product="'+id+'"]')){window.location.href='product.html?id='+id;return;}
   const sizeEls = document.querySelectorAll('.size-pill.selected[data-product="'+id+'"]');
   const size = sizeEls.length ? sizeEls[0].dataset.size : null;
   if(!size){showToast('Please select a size'); return;}
