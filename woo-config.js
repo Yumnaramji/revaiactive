@@ -24,9 +24,12 @@ window.REVAI_WOO = {
   }
 };
 
-// Wishlist is an account feature (Yumna, 1 Oct 2026): the heart in the header and the
-// "Wishlist" menu link only show once the customer is signed in. The product page keeps
-// its own sign-in prompt for guests who press Save.
+// Wishlist is an account feature (Yumna, 1 Oct 2026; revised 2 Oct 2026). The heart sits
+// next to the bag in the header on every page, phone and desktop, for guests too. A guest
+// who taps it gets this sign-in / create-account prompt (same look as the product page's
+// Save prompt); a signed-in customer goes straight to wishlist.html. There is no
+// "Wishlist" line in the phone menu any more. The prompt is built here, not in the page
+// markup, so one script covers all 31 pages.
 (function () {
   function signedIn() {
     try {
@@ -34,10 +37,47 @@ window.REVAI_WOO = {
       return !!(t && t.accessToken && (!t.expiresAt || new Date(t.expiresAt) > new Date()));
     } catch (e) { return false; }
   }
-  function apply() {
-    if (signedIn()) return;
-    var els = document.querySelectorAll('a[aria-label="Wishlist"], a.mlink[href="wishlist.html"]');
-    for (var i = 0; i < els.length; i++) { els[i].style.display = 'none'; }
+  var box = null;
+  var btn = 'display:flex;justify-content:center;align-items:center;width:100%;box-sizing:border-box;font-size:14px;font-weight:500;border-radius:9px;padding:11px 24px;text-decoration:none;font-family:inherit;';
+  function build() {
+    if (box) return box;
+    box = document.createElement('div');
+    box.id = 'revai-wish-auth';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-labelledby', 'revai-wish-auth-title');
+    box.style.cssText = 'position:fixed;inset:0;z-index:60;display:none;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif';
+    box.innerHTML =
+      '<div data-close style="position:absolute;inset:0;background:rgba(0,0,0,.4)"></div>' +
+      '<div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:calc(100% - 32px);max-width:24rem;background:#fff;padding:28px;border:1px solid #e5e7eb;box-sizing:border-box">' +
+        '<p style="margin:0 0 12px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#9ca3af">Wishlist</p>' +
+        '<h2 id="revai-wish-auth-title" style="margin:0 0 8px;font-size:20px;font-weight:600;letter-spacing:-.015em;color:#0a0a0a">Sign in to see your wishlist</h2>' +
+        '<p style="margin:0 0 24px;font-size:14px;line-height:1.6;color:#4b5563">Your wishlist lives on your REVAÍ account. Sign in or create a free account to save pieces for later.</p>' +
+        '<a href="login.html?next=wishlist.html" style="' + btn + 'background:#000;color:#fff;margin-bottom:8px">Sign in</a>' +
+        '<a href="signup.html?next=wishlist.html" style="' + btn + 'background:#fff;color:#000;border:1px solid #000">Create account</a>' +
+        '<button type="button" data-close style="display:block;width:100%;margin-top:16px;background:none;border:0;padding:0;font:inherit;font-size:12px;color:#6b7280;text-decoration:underline;text-underline-offset:2px;cursor:pointer">Not now</button>' +
+      '</div>';
+    box.addEventListener('click', function (e) { if (e.target.hasAttribute('data-close')) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && box.style.display !== 'none') close(); });
+    document.body.appendChild(box);
+    return box;
   }
-  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', apply); } else { apply(); }
+  function open() {
+    build().style.display = 'block';
+    var b = box.querySelector('button[data-close]');
+    if (b) b.focus();
+  }
+  function close() { if (box) box.style.display = 'none'; }
+  function wire() {
+    var hearts = document.querySelectorAll('a[aria-label="Wishlist"]');
+    for (var i = 0; i < hearts.length; i++) {
+      hearts[i].addEventListener('click', function (e) {
+        if (signedIn()) return;   // the link opens wishlist.html as normal
+        e.preventDefault();
+        open();
+      });
+    }
+  }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', wire); } else { wire(); }
+  window.REVAI_WISHLIST_PROMPT = { open: open, close: close };
 })();
