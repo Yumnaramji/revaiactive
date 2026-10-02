@@ -45,6 +45,9 @@
     .size-pill + .size-pill::before{content:"\00b7";position:absolute;left:-9px;color:#c9c9c9}
     .size-pill:hover{color:#0a0a0a}
     .size-pill.sel{background:none;color:#0a0a0a;border:0;text-decoration:underline;text-underline-offset:3px}
+    /* Phones: no size row under the cards (Yumna, 2 Oct 2026) - it crowded the two-column grid.
+       Tapping the photo, the name or Add to Bag opens the product page, where colour and size are chosen. */
+    @media(max-width:767px){.prod-card .p-4 > .flex{display:none!important}}
     .prod-card .p-4 > .flex{gap:0!important;margin-top:6px!important}
     @media (hover:hover) and (pointer:fine){
       .prod-card .size-pill{opacity:1!important}
@@ -483,6 +486,8 @@ document.addEventListener('click',function(e){
   }
 });
 function addToBag(id,name,price){
+  // Phones have no size row on the cards: Add to Bag opens the product page instead.
+  if(window.matchMedia('(max-width:767px)').matches){window.location.href='product.html?id='+id;return;}
   const sel=document.querySelector(`.size-pill.sel[data-pid="${id}"]`);
   const size=sel?sel.dataset.size:'';
   if(!size){showPageToast('Please select a size');return;}
