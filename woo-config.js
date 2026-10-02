@@ -29,6 +29,8 @@ window.REVAI_WOO = {
 // once the customer is signed in. Guests never see it. The only heart a guest sees is the
 // Save button on a product page, which opens the sign-in / create-account prompt there
 // (#save-auth in product.html). There is no "Wishlist" line in the phone menu.
+// The account icon sits next to the bag on phone and desktop. For a guest it opens login.html
+// directly: profile.html would only bounce them there after a second page load.
 (function () {
   function signedIn() {
     try {
@@ -37,9 +39,14 @@ window.REVAI_WOO = {
     } catch (e) { return false; }
   }
   function apply() {
-    if (!signedIn()) return;
-    var els = document.querySelectorAll("a[data-wish-nav]");
-    for (var i = 0; i < els.length; i++) { els[i].style.display = ""; }
+    var i, els;
+    if (!signedIn()) {
+      els = document.querySelectorAll('a[href="profile.html"]');
+      for (i = 0; i < els.length; i++) { els[i].setAttribute("href", "login.html"); }
+      return;
+    }
+    els = document.querySelectorAll("a[data-wish-nav]");
+    for (i = 0; i < els.length; i++) { els[i].style.display = ""; }
   }
   if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", apply); } else { apply(); }
 })();

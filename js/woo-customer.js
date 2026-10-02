@@ -8,6 +8,9 @@
    Depends on: woo-config.js (window.REVAI_WOO.base)
    Token storage: localStorage key `revai_customer_token_v1`
      { accessToken: string, expiresAt: ISO date string }
+   Customer cache: localStorage key `revai_customer_cache_v1` holds the last /me
+     answer so profile, orders and addresses paint at once and refresh behind it
+     (the shop takes 1-3 s per request). Cleared with the token.
 
    Exposed as window.REVAI_CUSTOMER.
    ───────────────────────────────────────────────────────────────── */
@@ -15,6 +18,7 @@
   'use strict';
 
   const TOKEN_KEY = 'revai_customer_token_v1';
+  const CACHE_KEY = 'revai_customer_cache_v1';
   const api = () => ((window.REVAI_WOO && window.REVAI_WOO.base) || 'https://shop.revaiactive.com') + '/wp-json/revai/v1/customer';
 
   /* ── Storage helpers ──────────────────────────────────────────── */
@@ -25,14 +29,20 @@
       const t = JSON.parse(raw);
       if(!t || !t.accessToken) return null;
       if(t.expiresAt && new Date(t.expiresAt) < new Date()){
-        localStorage.removeItem(TOKEN_KEY);
+        clearToken();
         return null;
       }
       return t;
     } catch(e){ return null; }
   }
   function setToken(t){ localStorage.setItem(TOKEN_KEY, JSON.stringify({ accessToken: t.accessToken, expiresAt: t.expiresAt })); }
-  function clearToken(){ localStorage.removeItem(TOKEN_KEY); }
+  function clearToken(){ localStorage.removeItem(TOKEN_KEY); clearCache(); }
+  function cacheCustomer(c){ try { if(c) localStorage.setItem(CACHE_KEY, JSON.stringify(c)); } catch(e){} }
+  function clearCache(){ try { localStorage.removeItem(CACHE_KEY); } catch(e){} }
+  function getCachedCustomer(){
+    if(!getToken()) return null;
+    try { return JSON.parse(localStorage.getItem(CACHE_KEY) || 'null'); } catch(e){ return null; }
+  }
   function isAuthed(){ return !!getToken(); }
 
   /* ── Low-level caller ─────────────────────────────────────────── */
@@ -81,7 +91,9 @@
   async function getCustomer(){
     if(!getToken()) return null;
     try {
-      return await call('GET', '/me');
+      const c = await call('GET', '/me');
+      cacheCustomer(c);
+      return c;
     } catch(e){
       if(!getToken()) return null;   // token was rejected and cleared
       throw e;
@@ -91,25 +103,30 @@
     if(!getToken()) throw new Error('Not signed in.');
     const data = await call('PUT', '/me', updates);
     if(data.accessToken) setToken(data);   // password changes come back with a fresh token
+    clearCache();
     return data.customer;
   }
 
   /* ── Addresses ────────────────────────────────────────────────── */
   async function addAddress(address){
     if(!getToken()) throw new Error('Not signed in.');
+    clearCache();
     return await call('POST', '/addresses', { address });
   }
   async function updateAddress(id, address){
     if(!getToken()) throw new Error('Not signed in.');
+    clearCache();
     return await call('PUT', '/addresses/' + encodeURIComponent(id), { address });
   }
   async function deleteAddress(id){
     if(!getToken()) throw new Error('Not signed in.');
+    clearCache();
     await call('DELETE', '/addresses/' + encodeURIComponent(id));
     return true;
   }
   async function setDefaultAddress(id){
     if(!getToken()) throw new Error('Not signed in.');
+    clearCache();
     await call('POST', '/addresses/' + encodeURIComponent(id) + '/default');
     return true;
   }
@@ -139,6 +156,7 @@
     logout,
     recover,
     getCustomer,
+    getCachedCustomer,
     updateCustomer,
     addAddress,
     updateAddress,
