@@ -412,3 +412,99 @@ body.nav-collapsed .summary-sticky {
 body.nav-collapsed .sticky.top-16 {
   top: 0;
 }
+
+/* 11. Fewer boxes, tighter rhythm — site-wide (2 Oct 2026, Yumna)
+   She had the boxed All / Women / Men filter on Shop All stripped of its borders and
+   the gap under it shortened, then asked for the same pass across the site.
+   - Hairline boxes drawn round content are gone: info cards, callouts, table frames,
+     story and press cards, the bag page's suggestion cards. The border is made
+     transparent rather than removed, so nothing shifts by a pixel.
+   - FAQ rows are a plain list with one line between questions.
+   - The FAQ topic filter is text tabs, as on Shop All.
+   - Kept on purpose, because there the border IS the control: form fields, outline
+     buttons (.btn-s), the size and Save buttons on the product page, the gift-card
+     amounts, and the account pages' cards.
+   - Sections had 64px (phone) / 80px (desktop) above and below, so two neighbours left
+     128-160px of white. Now 36 / 48px. Page intros sit 32px under the bar, not 48px. */
+.card,
+.press-card,
+.asset-card,
+.story-card,
+.upsell-card,
+.map-placeholder,
+.card:hover,
+.press-card:hover,
+.asset-card:hover,
+.story-card:hover,
+.upsell-card:hover,
+section div.border[class*="rounded"],
+section form.border[class*="rounded"] {
+  border-color: transparent !important;
+}
+/* FAQ: a list, not a stack of boxes */
+section .faq-row {
+  border: 0 !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+section .faq-row .faq-btn,
+section .faq-row .faq-body {
+  padding-left: 0;
+  padding-right: 0;
+}
+/* FAQ topic filter: text tabs (the chosen one black and underlined) */
+button.pill {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+  padding: 6px 0 !important;
+  margin-right: 14px;
+  color: #6b7280 !important;
+}
+button.pill:hover {
+  color: #0a0a0a !important;
+}
+button.pill.active {
+  color: #0a0a0a !important;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 7px;
+  text-decoration-thickness: 1.5px;
+}
+/* Section rhythm. .shop-grid (Shop All) sets its own, smaller top gap. */
+body section.py-16 {
+  padding-bottom: 36px;
+}
+body section.py-16:not(.shop-grid) {
+  padding-top: 36px;
+}
+body section.pt-28.pb-14,
+body section.pt-28.pb-16:not(.chero) {
+  padding-top: 96px;
+  padding-bottom: 28px;
+}
+/* about.html reuses the intro spacing on a section halfway down the page, where there is
+   no bar to clear: treat that one like any other section. */
+body section.pt-28.pb-16:not(.chero) {
+  padding-bottom: 40px;
+}
+body section.pt-28.pb-16 ~ section.pt-28.pb-16:not(.chero) {
+  padding-top: 36px;
+  padding-bottom: 36px;
+}
+section .mb-16 { margin-bottom: 40px; }
+section .mb-14 { margin-bottom: 36px; }
+#upsell-section.mt-20 { margin-top: 48px; }
+@media (min-width: 768px) {
+  body section.py-16 {
+    padding-bottom: 48px;
+  }
+  body section.pt-28.pb-16 ~ section.pt-28.pb-16:not(.chero) {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  body section.py-16:not(.shop-grid) {
+    padding-top: 48px;
+  }
+}
