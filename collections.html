@@ -64,9 +64,15 @@
       .prod-card .size-pill{opacity:1!important}
       .prod-card .add-btn{opacity:1}
     }
-    .filter-pill{display:inline-flex;align-items:center;padding:9px 18px;border-radius:2px;border:1px solid #e5e7eb;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;background:#fff;color:#374151;letter-spacing:.01em}
-    .filter-pill:hover{border-color:#000;color:#000}
-    .filter-pill.sel{background:#000;color:#fff;border-color:#000}
+    /* All / Women / Men: plain text tabs, no boxes (Yumna, 2 Oct 2026). The chosen one is black and
+       underlined. The id selector and !important beat the phone padding in css/mobile-fix.css. */
+    #gender-filter-pills{gap:26px}
+    #gender-filter-pills .filter-pill{display:inline-flex;align-items:center;padding:6px 0!important;border:0;border-radius:0;background:none;font-size:14px;font-weight:500;cursor:pointer;transition:color .15s;color:#6b7280;letter-spacing:.01em}
+    #gender-filter-pills .filter-pill:hover{color:#0a0a0a}
+    #gender-filter-pills .filter-pill.sel{background:none;color:#0a0a0a;font-weight:600;text-decoration:underline;text-underline-offset:7px;text-decoration-thickness:1.5px}
+    /* the grid starts close under the tabs (was 64-80px) */
+    section.shop-grid{padding-top:18px}
+    @media(min-width:768px){section.shop-grid{padding-top:22px}}
     .prod-card{background:#fff;border:0;border-radius:0;overflow:visible;transition:none;position:relative}
     .card-hover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity .45s ease;pointer-events:none}
     @media(hover:hover){.prod-card:hover .card-hover-img{opacity:1}}
@@ -179,7 +185,7 @@
 </div>
 
 <!-- PRODUCT GRID -->
-<section class="py-16 md:py-20 px-6">
+<section class="shop-grid py-16 md:py-20 px-6">
   <div class="max-w-6xl mx-auto">
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-5" id="product-grid">
 
