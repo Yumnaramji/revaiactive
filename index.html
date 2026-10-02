@@ -80,9 +80,9 @@
     .hp-name{font-size:15px;font-weight:600;color:#0a0a0a}
     .hp-price{font-size:15px;font-weight:700;color:#0a0a0a;white-space:nowrap}
     .hp-sizes{margin-top:6px;display:flex;flex-wrap:wrap}
-    /* Phones: no size row under the cards (Yumna, 2 Oct 2026) - it crowded the two-column grid.
-       Tapping the photo, the name or Add to Bag opens the product page, where colour and size are chosen. */
-    @media(max-width:767px){.hp-sizes{display:none!important}}
+    /* Phones: no size row under the cards and no Add to Bag bar on the photo (Yumna, 2 Oct 2026).
+       Tapping the photo or the name opens the product page, where colour and size are chosen. */
+    @media(max-width:767px){.hp-sizes,.hp-add{display:none!important}}
     /* neutralise the Tailwind state classes the size-pill JS toggles */
     .hp-card .size-pill{background:none!important;border:0!important;border-radius:0!important;
       padding:2px 0!important;font-size:11px!important;font-weight:500;letter-spacing:.1em;
@@ -393,7 +393,7 @@
 // Simple add-to-bag with size selection and toast
 let cartItems=[]; try{ cartItems=JSON.parse(localStorage.getItem('revai_cart_v1')||'[]'); if(!Array.isArray(cartItems)) cartItems=[]; }catch(e){ cartItems=[]; } // a corrupt value must not take the page down
 function addToBag(name, price, id) {
-  // Phones have no size row on the cards: Add to Bag opens the product page instead.
+  // Phones have no size row and no Add to Bag bar on the cards; kept as a guard in case the bar is ever shown again.
   if(window.matchMedia('(max-width:767px)').matches){window.location.href='product.html?id='+id;return;}
   const sizeEls = document.querySelectorAll('.size-pill.selected[data-product="'+id+'"]');
   const size = sizeEls.length ? sizeEls[0].dataset.size : null;
