@@ -1,5 +1,5 @@
 /* REVAÍ — Quick add (2 Oct 2026)
-   A round bag-plus button on every product card photo. It opens a small window
+   A small round bag-plus button at the top right of every product card photo. It opens a small window
    (a sheet from the bottom on phones, a centred box from 768px up) where the
    shopper picks a size and adds to the bag without leaving the page.
 
@@ -12,12 +12,12 @@
   'use strict';
 
   var CSS = [
-    '.qa-btn{position:absolute;left:10px;bottom:10px;z-index:4;width:40px;height:40px;border-radius:50%;border:0;padding:0;',
+    '.qa-btn{position:absolute;right:10px;top:10px;z-index:4;width:32px;height:32px;border-radius:50%;border:0;padding:0;',
     'background:#fff;color:#0a0a0a;display:flex;align-items:center;justify-content:center;cursor:pointer;',
     'box-shadow:0 1px 4px rgba(0,0,0,.14);transition:transform .15s ease}',
     '.qa-btn:hover{transform:scale(1.06)}',
     '.qa-btn:focus-visible{outline:2px solid #0a0a0a;outline-offset:2px}',
-    '@media(max-width:767px){.qa-btn{left:8px;bottom:8px;width:36px;height:36px}}',
+    '@media(max-width:767px){.qa-btn{right:8px;top:8px;width:30px;height:30px}}',
     '#qa-overlay{position:fixed;inset:0;z-index:120;background:rgba(0,0,0,.45);display:none;align-items:flex-end;justify-content:center}',
     '#qa-overlay.open{display:flex}',
     '#qa-panel{position:relative;width:100%;max-height:92vh;overflow-y:auto;background:#fff;color:#0a0a0a;padding:22px 20px 24px;',
@@ -44,7 +44,7 @@
     '.qa-more:hover{color:#0a0a0a}'
   ].join('');
 
-  var ICON = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="8" width="14" height="12.5" rx="1"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/><path d="M12 11.5v5.5M9.25 14.25h5.5"/></svg>';
+  var ICON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="8" width="14" height="12.5" rx="1"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/><path d="M12 11.5v5.5M9.25 14.25h5.5"/></svg>';
 
   var overlay, panel, lastFocus = null, current = null;
 
