@@ -508,3 +508,15 @@ section .mb-14 { margin-bottom: 36px; }
     padding-top: 48px;
   }
 }
+
+/* §12 Footer on phones (Yumna, 5 Oct 2026): brand block full width on top,
+   then the three link columns side by side instead of stacked. */
+@media (max-width: 767px) {
+  footer .grid.md\:grid-cols-4 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    column-gap: 16px !important;
+    row-gap: 32px !important;
+  }
+  footer .grid.md\:grid-cols-4 > :first-child { grid-column: 1 / -1; }
+  footer .grid.md\:grid-cols-4 a { overflow-wrap: anywhere; }
+}
