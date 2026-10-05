@@ -658,9 +658,8 @@ document.querySelectorAll('.prod-card').forEach(function(card){
     if(VALID.indexOf(gender) === -1) gender = 'all';
     cards.forEach(function(card){
       var cg = card.getAttribute('data-gender');
-      // unisex products show under all filters
-      // accessories = the unisex cards only; men/women also keep the unisex accessories alongside their garments
-      var show = (gender === 'all') || (cg === gender) || (cg === 'unisex' && gender !== 'accessories') || (gender === 'accessories' && cg === 'unisex');
+      // accessories = the unisex cards only; Women / Men show clothing only (Yumna, 5 Oct 2026)
+      var show = (gender === 'all') || (cg === gender) || (gender === 'accessories' && cg === 'unisex');
       card.style.display = show ? '' : 'none';
     });
     pills.forEach(function(p){
