@@ -22,9 +22,9 @@
 
   const PAGES = [
     {label:'Collections',        url:'collections.html'},
-    {label:'Running',            url:'collection-running.html'},
-    {label:'Gym & Training',     url:'collection-gym.html'},
-    {label:'Yoga & Pilates',     url:'collection-yoga.html'},
+    {label:'Women',              url:'collections.html?gender=women'},
+    {label:'Men',                url:'collections.html?gender=men'},
+    {label:'Accessories',        url:'collections.html?gender=accessories'},
     {label:'Technology',         url:'technology.html'},
     {label:'About',              url:'about.html'},
     {label:'Sustainability',     url:'sustainability.html'},

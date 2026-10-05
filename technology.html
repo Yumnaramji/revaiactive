@@ -54,16 +54,32 @@
     #mmenu.open{transform:translateX(0)}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
-    .tech-visual{border-radius:20px;overflow:hidden;aspect-ratio:4/3;position:relative}
+    .tech-visual{border-radius:12px;overflow:hidden;aspect-ratio:1/1;position:relative;width:100%;max-width:360px}
+    .tech-row:not(.img-left) .tech-visual{margin-left:auto}
+    @media(max-width:767px){.tech-visual{max-width:none;aspect-ratio:16/9}}
     /* Alternating tech rows. The image column is deliberately NARROWER than the copy
        column (.78fr vs 1fr); .img-left mirrors it. Image side AND section background
        alternate strictly down the page — don't break the zig-zag when adding a section. */
     .tech-row{grid-template-columns:minmax(0,1fr)}
     @media(min-width:768px){
-      .tech-row{grid-template-columns:minmax(0,1fr) minmax(0,.78fr)}
-      .tech-row.img-left{grid-template-columns:minmax(0,.78fr) minmax(0,1fr)}
+      .tech-row{grid-template-columns:minmax(0,1fr) minmax(0,.6fr)}
+      .tech-row.img-left{grid-template-columns:minmax(0,.6fr) minmax(0,1fr)}
     }
     .tech-visual-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+    /* Phone: each chapter folds to its headline (tap to open). Desktop unaffected. */
+    .tf-btn{all:unset;display:block;cursor:default;font:inherit;color:inherit;letter-spacing:inherit;line-height:inherit;width:100%}
+    .tf-chev{display:none}
+    @media(max-width:767px){
+      .tf-btn{cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;-webkit-tap-highlight-color:transparent}
+      .tf-btn:focus-visible{outline:2px solid #000;outline-offset:4px;border-radius:2px}
+      .tf-chev{display:block;flex:none;margin-top:.35em;color:#9ca3af;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+      .tech-row.open .tf-chev{transform:rotate(180deg);color:#111}
+      .tech-row:not(.open) .tf-body{display:none}
+      .tech-row:not(.open) .t-h2{margin-bottom:0}
+      .tech-row.open .tf-body{animation:tfIn .45s cubic-bezier(.16,1,.3,1)}
+      @keyframes tfIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+      .tech-row .tf-body.fu{opacity:1;transform:none}
+    }
     .spec-pill{display:inline-flex;align-items:center;background:#f0f0f0;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:500;color:#333;margin:3px}
   </style>
   <script src="js/mobile-fix.js?v=20260926b" defer></script>
@@ -79,10 +95,9 @@
         <button id="shop-dropdown-btn" class="text-sm font-medium text-gray-500 hover:text-black transition-colors flex items-center gap-1">Shop<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></button>
         <div id="shop-dropdown-menu" class="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 transition-all duration-200 z-50" style="opacity:0;pointer-events:none">
           <a href="collections.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">All Products</a>
-          <a href="collection-gym.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Gym &amp; Training</a>
-          <a href="collection-running.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Running</a>
-          <a href="collection-golf.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Golf</a>
-          <a href="collection-yoga.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Yoga &amp; Pilates</a>
+          <a href="collections.html?gender=women" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Women</a>
+          <a href="collections.html?gender=men" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Men</a>
+          <a href="collections.html?gender=accessories" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Accessories</a>
         
         </div>
       </div>
@@ -115,10 +130,9 @@
   <div class="flex flex-col gap-1 flex-1">
     <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2 mt-2">Shop</p>
     <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
-    <a href="collection-gym.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Gym &amp; Training</a>
-    <a href="collection-running.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Running</a>
-    <a href="collection-golf.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Golf</a>
-    <a href="collection-yoga.html" class="mlink block py-2 text-sm font-medium text-gray-700 hover:text-black">Yoga &amp; Pilates</a>
+    <a href="collections.html?gender=women" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Women</a>
+    <a href="collections.html?gender=men" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Men</a>
+    <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
     <div class="my-3 border-t border-gray-100"></div>
     <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About</a>
     <a href="stories.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Stories</a>
@@ -133,7 +147,7 @@
 <div class="max-w-3xl">
 <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">The Technology</p>
 <h1 class="fu d1 t-hero mb-4">Built to the world's standard.<br/>Engineered to be felt.</h1>
-<p class="fu d2 text-lg text-gray-500 leading-relaxed max-w-xl">Fourteen fabrics engineered across thirteen garments, tested to international standards — a tier of activewear arriving in Kenya for the first time. Lighter, cooler, held in the right places: you'll feel the difference the moment you put it on.</p>
+<p class="fu d2 text-lg text-gray-500 leading-relaxed max-w-xl">Fourteen fabrics across thirteen garments. Lighter, cooler, held in the right places — you'll feel it the moment it's on.</p>
 </div>
 <div class="fu d3 mt-14 grid grid-cols-1 sm:grid-cols-3 gap-px border border-gray-100 rounded-2xl overflow-hidden" style="background:#e5e7eb">
 <div class="bg-white px-6 py-6 sm:px-8 sm:py-7">
@@ -157,18 +171,16 @@
 <div class="tech-row grid gap-16 items-center">
 <div>
 <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">01 — Fabric System</p>
-<h2 class="fu d1 t-h2 mb-6">Fourteen fabrics.<br/>Thirteen garments.</h2>
-<p class="fu d2 text-gray-600 leading-relaxed mb-5">There is no house fabric stretched across a range here. Every piece gets the material its job demands — from a featherweight 120gsm tee to the dense 270gsm body that gives the high-impact bra its hold. That bra alone carries three fabrics, each doing different work.</p>
-<p class="fu d3 text-gray-600 leading-relaxed mb-8">The performance knits stretch four ways and snap back — a quarter of the legging knit is pure elastane — because your body doesn't follow a grid.</p>
-<div class="fu d3 flex flex-wrap gap-1 mb-6">
+<h2 class="fu d1 t-h2 mb-6"><button type="button" class="tf-btn" aria-expanded="false"><span>Fourteen fabrics.<br/>Thirteen garments.</span><svg class="tf-chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></h2>
+<p class="tf-body fu d2 text-gray-600 leading-relaxed mb-8">No house fabric stretched across the range. Every piece gets the material its job demands — the high-impact bra alone carries three.</p>
+<div class="tf-body fu d3 flex flex-wrap gap-1 mb-6">
 <span class="spec-pill">Four-way stretch knits</span>
 <span class="spec-pill">75/25 polyamide-elastane leggings</span>
-<span class="spec-pill">120gsm tees · 270gsm bra body</span>
 <span class="spec-pill">90–270gsm, specified per garment</span>
-<span class="spec-pill">Composition published on every product</span>
+<span class="spec-pill">Composition on every product</span>
 </div>
 </div>
-<div class="fu d2">
+<div class="tf-body fu d2">
 <div class="tech-visual" style="background:#0a0a0a;overflow:hidden"><img alt="REVAÍ fabric system — performance knit detail" src="images/tech-quick-dry-fabric.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
 </div>
 </div>
@@ -178,19 +190,18 @@
 <section class="py-16 md:py-20 px-6" style="background:#fff">
 <div class="max-w-6xl mx-auto">
 <div class="tech-row img-left grid gap-16 items-center">
-<div class="order-2 md:order-1 fu">
+<div class="tf-body order-2 md:order-1 fu">
 <div class="tech-visual" style="background:#1a1a2e;overflow:hidden"><img alt="Breathable performance fabric detail" src="images/tech-compression-structure.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
 </div>
 <div class="order-1 md:order-2">
 <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">02 — Breathability</p>
-<h2 class="fu d1 t-h2 mb-6">One degree south<br/>of the equator</h2>
-<p class="fu d2 text-gray-600 leading-relaxed mb-5">This collection was specified in Nairobi and sampled for the heat. Fabric after fabric was rejected for running hot or heavy — some pieces went three materials deep before one earned its place.</p>
-<p class="fu d3 text-gray-600 leading-relaxed mb-8">Then we made it measurable. Every fabric faced a laboratory airflow test (ASTM D737) against the breathability bar we set for training in the heat — and nothing went to production until it was signed off.</p>
-<div class="fu d3 flex flex-wrap gap-1 mb-6">
+<h2 class="fu d1 t-h2 mb-6"><button type="button" class="tf-btn" aria-expanded="false"><span>One degree south<br/>of the equator</span><svg class="tf-chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></h2>
+<p class="tf-body fu d2 text-gray-600 leading-relaxed mb-8">This collection was specified in Nairobi and sampled for the heat. Fabric after fabric was refined until nothing ran hot or heavy — some pieces went three materials deep before one earned its place.</p>
+<div class="tf-body fu d3 flex flex-wrap gap-1 mb-6">
 <span class="spec-pill">Air permeability · ASTM D737</span>
-<span class="spec-pill">Every fabric signed off before production</span>
-<span class="spec-pill">Open mesh panels · 90gsm shorts outer</span>
-<span class="spec-pill">Engineered for hot-climate training</span>
+<span class="spec-pill">Open mesh panels</span>
+<span class="spec-pill">90gsm shorts outer</span>
+<span class="spec-pill">Built for hot-climate training</span>
 </div>
 </div>
 </div>
@@ -202,15 +213,15 @@
 <div class="tech-row grid gap-16 items-center">
 <div>
 <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">03 — Quality Testing</p>
-<h2 class="fu d1 t-h2 mb-6">International standards.<br/>Zero shortcuts.</h2>
-<p class="fu d2 text-gray-600 leading-relaxed mb-5">Quality isn't a feeling — it's a written specification. Every fabric in the collection is put through multiple international standard tests — for how it washes, wears, stretches, and holds its colour.</p>
-<p class="fu d3 text-gray-600 leading-relaxed mb-8">And every durability test runs on pre-washed fabric, never factory-fresh — the collection is built to keep its stretch, shape, and colour through many washes. The twentieth wear should feel like the first.</p>
-<div class="fu d3 flex flex-wrap gap-1 mb-6">
-<span class="spec-pill">Multiple international standard tests</span>
+<h2 class="fu d1 t-h2 mb-6"><button type="button" class="tf-btn" aria-expanded="false"><span>International standards.<br/>Zero shortcuts.</span><svg class="tf-chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></h2>
+<p class="tf-body fu d2 text-gray-600 leading-relaxed mb-8">Quality isn't a feeling — it's a written specification. Every fabric is tested for how it washes, wears, stretches and holds its colour.</p>
+<div class="tf-body fu d3 flex flex-wrap gap-1 mb-6">
+<span class="spec-pill">International standard tests</span>
 <span class="spec-pill">Run on pre-washed fabric</span>
+<span class="spec-pill">Stretch · shape · colour retention</span>
 </div>
 </div>
-<div class="fu d2">
+<div class="tf-body fu d2">
 <div class="tech-visual" style="background:#111;overflow:hidden;display:flex;align-items:center;justify-content:center;"><span style="color:#444;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase">Image Coming Soon</span></div>
 </div>
 </div>
@@ -220,20 +231,18 @@
 <section class="py-16 md:py-20 px-6" style="background:#fff">
 <div class="max-w-6xl mx-auto">
 <div class="tech-row img-left grid gap-16 items-center">
-<div class="order-2 md:order-1 fu">
+<div class="tf-body order-2 md:order-1 fu">
 <div class="tech-visual" style="background:#1a1a1a;overflow:hidden;display:flex;align-items:center;justify-content:center;"><span style="color:#555;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase">Image Coming Soon</span></div>
 </div>
 <div class="order-1 md:order-2">
 <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">04 — Construction</p>
-<h2 class="fu d1 t-h2 mb-6">Engineered on paper.<br/>Built at the top tier.</h2>
-<p class="fu d2 text-gray-600 leading-relaxed mb-5">Before it exists as clothing, every REVAÍ garment exists as an engineering document — pattern, seams, trims, and tolerances specified, then sampled round after round and corrected to the centimetre until the garment matches the maths.</p>
-<p class="fu d3 text-gray-600 leading-relaxed mb-8">Then it's built where the world's leading activewear brands build — the same manufacturing tier, the same construction discipline, arriving here for the first time. Flatlock seams lie flat against the skin: nothing to ridge, nothing to chafe.</p>
-<div class="fu d3 flex flex-wrap gap-1 mb-6">
+<h2 class="fu d1 t-h2 mb-6"><button type="button" class="tf-btn" aria-expanded="false"><span>Engineered on paper.<br/>Built at the top tier.</span><svg class="tf-chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></h2>
+<p class="tf-body fu d2 text-gray-600 leading-relaxed mb-8">Before it exists as clothing, every REVAÍ garment exists as an engineering document — pattern, seams, trims and tolerances set, then sampled round after round and corrected to the centimetre until the garment matches the specification. Then it's built where the world's leading activewear brands build.</p>
+<div class="tf-body fu d3 flex flex-wrap gap-1 mb-6">
 <span class="spec-pill">Tech-pack engineered</span>
-<span class="spec-pill">Flatlock seam construction</span>
+<span class="spec-pill">Flatlock seams</span>
 <span class="spec-pill">Multiple sampling rounds</span>
-<span class="spec-pill">Moulded bra support · mesh venting</span>
-<span class="spec-pill">Internal compression liners</span>
+<span class="spec-pill">Moulded bra support · compression liners</span>
 <span class="spec-pill">Ankle zips · thumb holes · zip pockets</span>
 </div>
 </div>
@@ -246,42 +255,17 @@
 <div class="tech-row grid gap-16 items-center">
 <div>
 <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">05 — Contour Construction</p>
-<h2 class="fu d1 t-h2 mb-6">Sculpt, without<br/>the scrunch.</h2>
-<p class="fu d2 text-gray-600 leading-relaxed mb-5">We filled a gap. Premium sculpt-fit leggings have run on one idea — the scrunch seam. We built the alternative: compression that supports, lift that's cut into the pattern, a silhouette that holds.</p>
-<p class="fu d3 text-gray-600 leading-relaxed mb-8">A waistband contoured to define, not compress, stays put through squats and sprints. Below it, graduated compression holds the line while a pattern-cut panel lifts at the top of the glute. The shape you see is the shape you already have, brought forward.</p>
-<div class="fu d3 flex flex-wrap gap-1 mb-6">
+<h2 class="fu d1 t-h2 mb-6"><button type="button" class="tf-btn" aria-expanded="false"><span>Sculpt, without<br/>the scrunch.</span><svg class="tf-chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></h2>
+<p class="tf-body fu d2 text-gray-600 leading-relaxed mb-8">Premium sculpt-fit leggings have run on one idea — the scrunch seam. We built the alternative: lift cut into the pattern, compression that holds the line.</p>
+<div class="tf-body fu d3 flex flex-wrap gap-1 mb-6">
 <span class="spec-pill">Contoured waistband</span>
 <span class="spec-pill">Graduated compression</span>
-<span class="spec-pill">Engineered lift</span>
+<span class="spec-pill">Pattern-cut lift</span>
 <span class="spec-pill">No-roll construction</span>
-<span class="spec-pill">Pattern-cut shaping</span>
 </div>
 </div>
-<div class="fu d2">
+<div class="tf-body fu d2">
 <div class="tech-visual" style="background:#0d1117;overflow:hidden"><img alt="Contoured fit construction" src="images/tech-squat-proof.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-</div>
-</div>
-</div>
-</section>
-<!-- Tech 6: Fit Engineering -->
-<section class="py-16 md:py-20 px-6" style="background:#fff">
-<div class="max-w-6xl mx-auto">
-<div class="tech-row img-left grid gap-16 items-center">
-<div class="order-2 md:order-1 fu">
-<div class="tech-visual" style="background:#111;overflow:hidden;display:flex;align-items:center;justify-content:center;"><span style="color:#444;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase">Image Coming Soon</span></div>
-</div>
-<div class="order-1 md:order-2">
-<p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">06 — Fit Engineering</p>
-<h2 class="fu d1 t-h2 mb-6">Sized from the garment,<br/>not from a guess</h2>
-<p class="fu d2 text-gray-600 leading-relaxed mb-5">Most size charts are marketing documents. Ours is an engineering one — every measurement taken from the finished garments themselves, with each fabric's stretch factored in, so a compression knit is sized to hold, not to hope.</p>
-<p class="fu d3 text-gray-600 leading-relaxed mb-8">Five sizes, one promise: the ease that fits an S is the ease that fits a XXL. And the flared legging is cut in two lengths — because three inches of inseam is the difference between almost-right and right.</p>
-<div class="fu d3 flex flex-wrap gap-1 mb-6">
-<span class="spec-pill">S–XXL across the range</span>
-<span class="spec-pill">Chart derived from garment specs</span>
-<span class="spec-pill">Consistent ease at every size</span>
-<span class="spec-pill">Regular + Tall lengths (flared legging)</span>
-</div>
-<a class="fu d3 text-sm font-medium underline underline-offset-4 hover:text-gray-600 transition-colors" href="fit-guide.html">Find your size →</a>
 </div>
 </div>
 </div>
@@ -291,7 +275,7 @@
 <div class="max-w-6xl mx-auto text-center">
 <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">See it in action</p>
 <h2 class="fu d1 t-h2 text-white mb-6">Technology you can feel<br/>from the first wear.</h2>
-<p class="fu d2 text-gray-400 text-lg max-w-xl mx-auto mb-10">Everything on this page is in the garments — the fabric, the standards, the construction. Nothing is held back for a higher tier. Put it on. You'll know.</p>
+<p class="fu d2 text-gray-400 text-lg max-w-xl mx-auto mb-10">Nothing is held back for a higher tier. Put it on. You'll know.</p>
 <div class="fu d3 flex flex-col sm:flex-row gap-4 justify-center">
 <a class="btn-p" href="collections.html" style="background:#fff;color:#000">Shop Collections</a>
 <a class="btn-s" href="sustainability.html" style="border-color:#333;color:#fff">Our Sustainability Pledge</a>
@@ -310,11 +294,9 @@
 <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Collections</h3>
 <ul class="space-y-3">
 <li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="collections.html">All Products</a></li>
-<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="collection-gym.html">Gym &amp; Training</a></li>
-<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="collection-running.html">Running</a></li>
-
-<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="collection-golf.html">Golf</a></li>
-<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="collection-yoga.html">Yoga &amp; Pilates</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="collections.html?gender=women">Women</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="collections.html?gender=men">Men</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white transition-colors" href="collections.html?gender=accessories">Accessories</a></li>
 </ul>
 </div>
 <div>
@@ -360,6 +342,8 @@ if(hbg)hbg.addEventListener('click',openM);if(mclose)mclose.addEventListener('cl
 document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM));
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+document.querySelectorAll('.tech-row').forEach(row=>{const b=row.querySelector('.tf-btn');if(!b)return;b.addEventListener('click',()=>{if(window.innerWidth>=768)return;const o=row.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');if(o)row.querySelectorAll('.fu').forEach(el=>el.classList.add('in'))})});
+
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 </script>

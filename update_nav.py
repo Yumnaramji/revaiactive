@@ -27,30 +27,27 @@ import sys
 #   <div id="shop-dropdown-menu" ...>   and   the matching </div>
 DESKTOP_DROPDOWN_INNER = """
           <a href="collections.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">All Products</a>
-          <a href="collection-gym.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Gym &amp; Training</a>
-          <a href="collection-running.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Running</a>
-          <a href="collection-golf.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Golf</a>
-          <a href="collection-yoga.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Yoga &amp; Pilates</a>
+          <a href="collections.html?gender=women" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Women</a>
+          <a href="collections.html?gender=men" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Men</a>
+          <a href="collections.html?gender=accessories" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Accessories</a>
         """  # trailing whitespace + indent matches existing close pattern
 
 # Mobile menu Shop section — full inner HTML between
 #   <p ...>Shop</p>   and   <div class="my-3 border-t border-gray-100"></div>
 MOBILE_SHOP_INNER = """
     <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
-    <a href="collection-gym.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Gym &amp; Training</a>
-    <a href="collection-running.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Running</a>
-    <a href="collection-golf.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Golf</a>
-    <a href="collection-yoga.html" class="mlink block py-2 text-sm font-medium text-gray-700 hover:text-black">Yoga &amp; Pilates</a>
+    <a href="collections.html?gender=women" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Women</a>
+    <a href="collections.html?gender=men" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Men</a>
+    <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
     """  # trailing whitespace + indent matches existing close pattern
 
 # Footer Shop column — inner HTML of <ul class="space-y-3"> ... </ul>
 # (rendered on one line to match the existing footer compaction)
 FOOTER_SHOP_INNER = (
     '<li><a href="collections.html" class="text-sm text-gray-400 hover:text-white transition-colors">All Products</a></li>'
-    '<li><a href="collection-gym.html" class="text-sm text-gray-400 hover:text-white transition-colors">Gym &amp; Training</a></li>'
-    '<li><a href="collection-running.html" class="text-sm text-gray-400 hover:text-white transition-colors">Running</a></li>'
-    '<li><a href="collection-golf.html" class="text-sm text-gray-400 hover:text-white transition-colors">Golf</a></li>'
-    '<li><a href="collection-yoga.html" class="text-sm text-gray-400 hover:text-white transition-colors">Yoga &amp; Pilates</a></li>'
+    '<li><a href="collections.html?gender=women" class="text-sm text-gray-400 hover:text-white transition-colors">Women</a></li>'
+    '<li><a href="collections.html?gender=men" class="text-sm text-gray-400 hover:text-white transition-colors">Men</a></li>'
+    '<li><a href="collections.html?gender=accessories" class="text-sm text-gray-400 hover:text-white transition-colors">Accessories</a></li>'
 )
 
 # --------------------------------------------------------------------------
