@@ -171,8 +171,7 @@
       .hp-svc .hp-in{grid-template-columns:1fr;gap:22px}
       .hp-gap .hp-in{grid-template-columns:1fr;gap:34px}
       .hp-doors{grid-template-columns:repeat(2,1fr)}
-      .hp-sticky{display:flex}
-      body{padding-bottom:56px}
+      /* .hp-sticky bar removed 5 Oct 2026 — the hero now sends people to Women or Men directly */
       .hp-row{display:block}
       .hp-row p+p{margin-top:3px}
       .hp-sizes{gap:3px 9px}
@@ -276,7 +275,7 @@
        film notes are in git history (commit before this one) if ever needed again. -->
   <section id="home-hero" aria-label="Shop women or men">
     <a class="half women" href="collections.html?gender=women"><img src="images/hero-split-women.jpg" alt="Women's activewear" fetchpriority="high"><div class="lbl"><b>Women</b><span>Shop women</span></div></a>
-    <a class="half men" href="collections.html?gender=men"><img src="images/hero-split-men.jpg" alt="Men's activewear" fetchpriority="high"><div class="lbl"><b>Men</b><span>Shop men</span></div></a>
+    <a class="half men" href="collections.html?gender=men"><img src="images/quarter-zip-m-front.jpg" alt="Men's activewear" fetchpriority="high"><div class="lbl"><b>Men</b><span>Shop men</span></div></a>
     <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 text-center">
       <p class="ha d1 text-xs font-semibold uppercase tracking-widest text-gray-300 mb-6">Collection 01 &middot; Now in Nairobi</p>
       <h1 class="t-hero ha d2 text-white" style="max-width:900px;margin-left:auto;margin-right:auto">Find Your Revival.</h1>
@@ -483,6 +482,5 @@ if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySe
   });
 })();
 </script>
-<a class="hp-sticky" href="#shop">SHOP COLLECTION 01 &rarr;</a>
 </body>
 </html>
