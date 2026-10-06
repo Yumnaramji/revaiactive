@@ -5,16 +5,16 @@
   'use strict';
 
   const PRODUCTS = [
-    {id:'running-leggings-w',  name:"Women's Performance Leggings",    cat:'Running · Women',  price:'KES 5,500'},
-    {id:'flared-leggings-w',   name:"Women's Flared Leggings",      cat:'Gym · Women',      price:'KES 5,600'},
+    {id:'running-leggings-w',  name:"Women's Performance Leggings",    cat:'Women',          price:'KES 5,500'},
+    {id:'flared-leggings-w',   name:"Women's Flared Leggings",      cat:'Women',          price:'KES 5,600'},
     {id:'high-impact-bra',     name:"High-Impact Sports Bra",       cat:'Women',            price:'KES 4,950'},
-    {id:'low-impact-bra',      name:"Low-Impact Sports Bra",        cat:'Yoga · Women',     price:'KES 4,450'},
-    {id:'jacket-w',            name:"Women's Performance Jacket",   cat:'Running · Women',  price:'KES 7,500'},
-    {id:'tshirt-w',            name:"Women's Training T-Shirt",     cat:'Gym · Women',      price:'KES 4,500'},
-    {id:'tshirt-m',            name:"Men's Training T-Shirt",       cat:'Gym · Men',        price:'KES 4,500'},
-    {id:'quarter-zip-m',       name:"Men's Quarter-Zip",            cat:'Running · Men',    price:'KES 5,600'},
-    {id:'shorts-m',            name:"Men's Training Shorts",        cat:'Gym · Men',        price:'KES 6,050'},
-    {id:'training-pants-m',  name:"Training Pants",       cat:'Running · Men',    price:'KES 6,600'},
+    {id:'low-impact-bra',      name:"Low-Impact Sports Bra",        cat:'Women',          price:'KES 4,450'},
+    {id:'jacket-w',            name:"Women's Performance Jacket",   cat:'Women',          price:'KES 7,500'},
+    {id:'tshirt-w',            name:"Women's Training T-Shirt",     cat:'Women',          price:'KES 4,500'},
+    {id:'tshirt-m',            name:"Men's Training T-Shirt",       cat:'Men',            price:'KES 4,500'},
+    {id:'quarter-zip-m',       name:"Men's Quarter-Zip",            cat:'Men',            price:'KES 5,600'},
+    {id:'shorts-m',            name:"Men's Training Shorts",        cat:'Men',            price:'KES 6,050'},
+    {id:'training-pants-m',  name:"Training Pants",       cat:'Men',            price:'KES 6,600'},
     {id:'ankle-socks',         name:"Ankle Socks",                  cat:'Accessories',      price:'KES 550'},
     {id:'lifestyle-cap',       name:"Lifestyle Cap",                cat:'Accessories',      price:'KES 3,000'},
     {id:'gym-bag',             name:"Gym Bag",                      cat:'Accessories',      price:'KES 7,500'},
@@ -97,7 +97,7 @@
         <div id="revai-search-default">
           <p style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:14px">Popular searches</p>
           <div style="display:flex;flex-wrap:wrap;gap:8px">
-            ${['Leggings','Sports Bra','Running','Shorts','Accessories','Gym'].map(t=>
+            ${['Leggings','Sports Bra','T-Shirt','Shorts','Accessories'].map(t=>
               `<button style="border:1px solid #e5e7eb;border-radius:999px;padding:7px 18px;font-size:13px;font-weight:500;background:#fff;cursor:pointer;font-family:inherit;color:#374151;transition:all .15s"
                 onmouseenter="this.style.borderColor='#000';this.style.color='#000'"
                 onmouseleave="this.style.borderColor='#e5e7eb';this.style.color='#374151'"

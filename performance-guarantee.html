@@ -419,7 +419,7 @@ document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 document.querySelectorAll('.faq-btn').forEach(btn=>{btn.addEventListener('click',()=>{const row=btn.parentElement,body=row.querySelector('.faq-body'),isOpen=row.classList.contains('open');document.querySelectorAll('.faq-row').forEach(r=>{r.classList.remove('open');r.querySelector('.faq-body').classList.remove('open');r.querySelector('.faq-btn').setAttribute('aria-expanded','false')});if(!isOpen){row.classList.add('open');body.classList.add('open');btn.setAttribute('aria-expanded','true')}})});
 </script>
-<script src="search.js?v=20260926b"></script>
+<script src="search.js?v=20261006a"></script>
 <script src="shopify-config.js?v=20260926b"></script>
 <script src="woo-config.js?v=20261002d"></script>
 <script src="cart-drawer.js?v=20261002c"></script>

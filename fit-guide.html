@@ -349,7 +349,7 @@
     <div class="max-w-6xl mx-auto text-center">
       <div class="fu">
         <h2 class="t-h2 mb-4">Ready to find your kit?</h2>
-        <p class="text-gray-500 mb-8 max-w-md mx-auto">Browse every collection — from running essentials to gym, golf, and yoga. All styles are true to size — order your usual size with confidence.</p>
+        <p class="text-gray-500 mb-8 max-w-md mx-auto">Browse the full collection. All styles are true to size — order your usual size with confidence.</p>
         <div class="flex flex-wrap gap-3 justify-center">
           <a href="collections.html" class="btn-p">Shop Collections</a>
           <a href="contact.html" class="btn-s">Talk to Support</a>
@@ -419,7 +419,7 @@ document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 document.querySelectorAll('.faq-btn').forEach(btn=>{btn.addEventListener('click',()=>{const row=btn.parentElement,body=row.querySelector('.faq-body'),isOpen=row.classList.contains('open');document.querySelectorAll('.faq-row').forEach(r=>{r.classList.remove('open');r.querySelector('.faq-body').classList.remove('open');r.querySelector('.faq-btn').setAttribute('aria-expanded','false')});if(!isOpen){row.classList.add('open');body.classList.add('open');btn.setAttribute('aria-expanded','true')}})});
 </script>
-<script src="search.js?v=20260926b"></script>
+<script src="search.js?v=20261006a"></script>
 <script src="shopify-config.js?v=20260926b"></script>
 <script src="woo-config.js?v=20261002d"></script>
 <script src="cart-drawer.js?v=20261002c"></script>
