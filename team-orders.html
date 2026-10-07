@@ -63,7 +63,7 @@
   <script src="js/mobile-fix.js?v=20260926b" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
-<body class="nav-over-hero">
+<body>
 <a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded-lg text-sm" href="#main">Skip to content</a>
 <nav id="nav" class="fixed top-0 inset-x-0 z-50 h-16" style="background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .25s">
   <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
@@ -114,15 +114,15 @@
 <div class="fixed inset-0 bg-black/20 z-40 hidden" id="moverlay"></div>
 <main id="main">
 <!-- Hero -->
-<section class="pt-28 pb-14 px-6" style="background:#0a0a0a">
+<section class="pt-28 pb-14 px-6" style="background:#f8f9fa">
 <div class="max-w-6xl mx-auto">
 <div class="max-w-2xl">
-<p class="fu text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Team Orders</p>
-<h1 class="fu d1 t-h2 mb-5 text-white">Kit your whole crew.</h1>
-<p class="fu d2 text-lg text-gray-400 leading-relaxed mb-8">10 pieces or more? We'll handle everything — pricing, custom printing, coordination, and delivery — with a dedicated account manager from first enquiry to final delivery.</p>
+<p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Team Orders</p>
+<h1 class="fu d1 t-hero font-bold tracking-tight mb-5" style="line-height:1.07">Kit your whole crew.</h1>
+<p class="fu d2 text-lg text-gray-500 leading-relaxed mb-8">10 pieces or more? We'll handle everything — pricing, custom printing, coordination, and delivery — with a dedicated account manager from first enquiry to final delivery.</p>
 <div class="fu d3 flex flex-wrap gap-3">
 <a class="btn-p" href="#enquire">Submit an Enquiry</a>
-<a class="btn-s" href="collections.html" onmouseout="this.style.background='transparent'" onmouseover="this.style.background='rgba(255,255,255,0.05)'" style="border-color:#444;color:#ccc;">Browse Products</a>
+<a class="btn-s" href="collections.html">Browse Products</a>
 </div>
 </div>
 </div>
