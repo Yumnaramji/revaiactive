@@ -126,7 +126,7 @@ html {
 /* 5. Ensure fixed/offscreen menus don't intercept touches while closed.
    Adds visibility:hidden via inline transform-style (mobile menus use
    inline style="transform:translateX(100%)" when closed on this site). */
-#mmenu[style*="translateX(100%)"] {
+#mmenu[style*="translateX(-100%)"] {
   pointer-events: none;
 }
 #moverlay.hidden {
@@ -520,3 +520,16 @@ section .mb-14 { margin-bottom: 36px; }
   footer .grid.md\:grid-cols-4 > :first-child { grid-column: 1 / -1; }
   footer .grid.md\:grid-cols-4 a { overflow-wrap: anywhere; }
 }
+
+/* 7. SITE HEADER (7 Oct 2026, Yumna): menu button left, logo dead centre, account + bag right,
+   on every screen size. The four headings (Shop, About, Stories, Technology) and search live in the
+   slide-in menu, which now opens from the LEFT (translateX(-100%) when closed). Pages opt in via the
+   .nav-links / .nav-right / .nav-mob classes on the nav's three groups. */
+#nav > div { position: relative; }
+#nav > div > a:first-child { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+#nav .nav-links, #nav .nav-right { display: none !important; }
+#nav .nav-mob { display: flex !important; margin-left: auto; }
+#nav .nav-mob [data-wish-nav] { display: none !important; }
+#nav #hbg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); }
+#mmenu { left: 0 !important; right: auto !important; }
+#mmenu[style*="translateX(-100%)"] { box-shadow: none; }

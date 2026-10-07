@@ -23,7 +23,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261005a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261007a">
 <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -50,7 +50,7 @@
     .btn-s:hover{background:rgba(0,0,0,.04);transform:translateY(-1px)}
     .card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:32px;transition:transform .25s ease,box-shadow .25s ease}
     .card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.07)}
-    #mmenu{transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+    #mmenu{transform:translateX(-100%);transition:transform .35s cubic-bezier(.16,1,.3,1)}
     #mmenu.open{transform:translateX(0)}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
@@ -90,7 +90,7 @@
 <nav id="nav" class="fixed top-0 inset-x-0 z-50 h-16" role="navigation" aria-label="Main" style="background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .25s">
   <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
     <a href="index.html" class="rv-lock text-black" aria-label="REVAÍ — home"><img src="images/revai-icon.png" alt="" aria-hidden="true" width="26" height="31"><span>REVAÍ</span></a>
-    <div class="hidden md:flex items-center gap-8">
+    <div class="nav-links hidden md:flex items-center gap-8">
       <div class="relative" id="shop-dropdown-wrap">
         <button id="shop-dropdown-btn" class="text-sm font-medium text-gray-500 hover:text-black transition-colors flex items-center gap-1">Shop<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></button>
         <div id="shop-dropdown-menu" class="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 transition-all duration-200 z-50" style="opacity:0;pointer-events:none">
@@ -105,7 +105,7 @@
       <a href="stories.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Stories</a>
       <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
     </div>
-    <div class="hidden md:flex items-center gap-3">
+    <div class="nav-right hidden md:flex items-center gap-3">
       <button onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
       <a href="wishlist.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Wishlist" data-wish-nav style="display:none"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></a><a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
       <button id="nav-cart-btn" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open cart" onclick="if(window.REVAI_CART) window.REVAI_CART.openDrawer()">
@@ -113,14 +113,14 @@
         <span id="cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span>
       </button>
     </div>
-    <div class="md:hidden flex items-center gap-1"><a href="wishlist.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Wishlist" data-wish-nav style="display:none"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></a><a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a><button id="m-cart-btn" aria-label="Open cart" onclick="if(window.REVAI_CART) window.REVAI_CART.openDrawer()" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span id="m-cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span></button><button id="hbg" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open menu" aria-expanded="false">
+    <div class="nav-mob md:hidden flex items-center gap-1"><a href="wishlist.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Wishlist" data-wish-nav style="display:none"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></a><a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a><button id="m-cart-btn" aria-label="Open cart" onclick="if(window.REVAI_CART) window.REVAI_CART.openDrawer()" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span id="m-cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span></button><button id="hbg" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open menu" aria-expanded="false">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="14" x2="17" y2="14"/></svg>
     </button></div>
   </div>
 </nav>
 
 <!-- MOBILE MENU -->
-<div id="mmenu" class="fixed top-0 right-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col" style="transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1)">
+<div id="mmenu" class="fixed top-0 left-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col" style="transform:translateX(-100%);transition:transform .35s cubic-bezier(.16,1,.3,1)">
   <div class="flex justify-between items-center mb-10">
     <span class="rv-lock"><img src="images/revai-icon.png" alt="" aria-hidden="true" width="24" height="29"><span>REVAÍ</span></span>
     <button id="mclose" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Close menu">
@@ -128,6 +128,7 @@
     </button>
   </div>
   <div class="flex flex-col gap-1 flex-1">
+    <button type="button" onclick="var c=document.getElementById('mclose');if(c)c.click();if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="m-search flex items-center gap-3 py-2 mb-4 text-sm text-gray-700 hover:text-black text-left"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>Search</button>
     <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2 mt-2">Shop</p>
     <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
     <a href="collections.html?gender=women" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Women</a>
@@ -332,7 +333,7 @@ const nav=document.getElementById('nav');
 (function(){var btn=document.getElementById('shop-dropdown-btn');var menu=document.getElementById('shop-dropdown-menu');var wrap=document.getElementById('shop-dropdown-wrap');if(!btn||!menu)return;btn.addEventListener('click',function(){var open=menu.style.opacity==='1';menu.style.opacity=open?'0':'1';menu.style.pointerEvents=open?'none':'auto';});document.addEventListener('click',function(e){if(wrap&&!wrap.contains(e.target)){menu.style.opacity='0';menu.style.pointerEvents='none';}});})();
 const hbg=document.getElementById('hbg'),mmenu=document.getElementById('mmenu'),moverlay=document.getElementById('moverlay'),mclose=document.getElementById('mclose');
 function openM(){mmenu.style.transform='translateX(0)';mmenu.classList.add('open');moverlay.classList.remove('hidden');hbg.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'}
-function closeM(){mmenu.style.transform='translateX(100%)';mmenu.classList.remove('open');moverlay.classList.add('hidden');hbg.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+function closeM(){mmenu.style.transform='translateX(-100%)';mmenu.classList.remove('open');moverlay.classList.add('hidden');hbg.setAttribute('aria-expanded','false');document.body.style.overflow=''}
 if(hbg)hbg.addEventListener('click',openM);if(mclose)mclose.addEventListener('click',closeM);if(moverlay)moverlay.addEventListener('click',closeM);
 document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM));
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});

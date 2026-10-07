@@ -8,7 +8,7 @@ const mmenu = document.getElementById('mmenu');
 const moverlay = document.getElementById('moverlay');
 const mclose = document.getElementById('mclose');
 function openM(){ if(!mmenu) return; mmenu.classList.add('open'); mmenu.style.transform='translateX(0)'; moverlay.classList.remove('hidden'); hbg.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; document.body.classList.add('menu-open'); }
-function closeM(){ if(!mmenu) return; mmenu.classList.remove('open'); mmenu.style.transform='translateX(100%)'; moverlay.classList.add('hidden'); hbg.setAttribute('aria-expanded','false'); document.body.style.overflow=''; document.body.classList.remove('menu-open'); }
+function closeM(){ if(!mmenu) return; mmenu.classList.remove('open'); mmenu.style.transform='translateX(-100%)'; moverlay.classList.add('hidden'); hbg.setAttribute('aria-expanded','false'); document.body.style.overflow=''; document.body.classList.remove('menu-open'); }
 if(hbg) hbg.addEventListener('click', openM);
 if(mclose) mclose.addEventListener('click', closeM);
 if(moverlay) moverlay.addEventListener('click', closeM);
