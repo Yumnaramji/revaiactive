@@ -63,9 +63,9 @@
        padding on a 405px box clips the eyebrow off the top on a 667px-tall
        phone. 72px keeps the copy clear of the fixed 64px nav at the 405px
        floor without ever binding before min-height does. */
-    #home-hero{height:42vh;min-height:330px}
+    #home-hero{height:50vh;min-height:390px}
     @media(max-width:767px){
-      #home-hero{height:auto;min-height:max(34vh,270px)}
+      #home-hero{height:auto;min-height:max(40vh,320px)}
       #home-hero .home-hero-body{padding-top:5rem;padding-bottom:2rem}
     }
     /* ===== HOMEPAGE v2 — film hero + shopfront (8 Aug 2026) ===== */
@@ -301,11 +301,12 @@
   <!-- COLLECTION 01 -->
   <section class="py-16 md:py-20 px-6" id="shop" style="background:#f9f9f7">
     <div class="max-w-6xl mx-auto">
-      <div class="flex items-end justify-between gap-4 flex-wrap mb-6">
-        <div>
-          <h2 class="t-h2 fu">Collection 01</h2>
+      <h2 class="sr-only">Collection 01</h2>
+      <div class="flex items-end gap-4 flex-wrap mb-6">
+        <div class="fu d1 flex gap-6">
+          <a href="collections.html?gender=women" class="text-sm font-medium" style="border-bottom:1px solid currentColor;padding-bottom:2px">Shop Women &rarr;</a>
+          <a href="collections.html?gender=men" class="text-sm font-medium" style="border-bottom:1px solid currentColor;padding-bottom:2px">Shop Men &rarr;</a>
         </div>
-        <a href="collections.html" class="fu d1 text-sm font-medium" style="border-bottom:1px solid currentColor;padding-bottom:2px">See all &rarr;</a>
       </div>
       <div class="hp-grid">
         <div class="hp-card fu d1">
