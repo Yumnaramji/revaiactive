@@ -80,6 +80,36 @@
       return !!(m && m.classList.contains('open'));
     }
 
+
+    // Header colour follows whatever sits directly behind it (7 Oct 2026, Yumna:
+    // "make sure it blends into whatever colour is behind it"). Samples the
+    // element just under the bar and copies the first solid background found
+    // walking up from it - grey on the grey page tops, white elsewhere. Pages
+    // whose bar sits transparent over a dark hero keep that until it scrolls past.
+    function solidBg(el) {
+      for (; el && el.nodeType === 1; el = el.parentElement) {
+        var c = getComputedStyle(el).backgroundColor;
+        if (c && c !== 'transparent' && !/^rgba\(.*,\s*0\)$/.test(c)) return c;
+      }
+      return 'rgb(255, 255, 255)';
+    }
+    function blend(past) {
+      if (document.body.classList.contains('nav-over-hero') && !past) {
+        nav.style.removeProperty('background-color');
+        return;
+      }
+      var y = nav.offsetHeight + 1, x = Math.round(window.innerWidth / 2);
+      var els = document.elementsFromPoint ? document.elementsFromPoint(x, y) : [];
+      var under = null;
+      for (var i = 0; i < els.length; i++) {
+        var e = els[i];
+        if (nav.contains(e) || e.id === 'mmenu' || e.id === 'moverlay' ||
+            (e.closest && (e.closest('#mmenu') || e.closest('#moverlay')))) continue;
+        under = e; break;
+      }
+      nav.style.setProperty('background-color', solidBg(under), 'important');
+    }
+
     function update() {
       var y = window.pageYOffset;
       if (menuOpen()) {
@@ -102,6 +132,7 @@
       // can close the gap when the bar leaves — product.html's sticky
       // gallery is the one that needs it.
       document.body.classList.toggle('nav-collapsed', past);
+      blend(past);
       ticking = false;
     }
 
@@ -111,6 +142,8 @@
         window.requestAnimationFrame(update);
       }
     }, { passive: true });
+    window.addEventListener('resize', function () { blend(window.pageYOffset > threshold()); });
+    window.addEventListener('load', function () { blend(window.pageYOffset > threshold()); });
 
     update();
   }

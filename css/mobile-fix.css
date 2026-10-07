@@ -532,3 +532,9 @@ section .mb-14 { margin-bottom: 36px; }
 #nav .nav-mob [data-wish-nav] { display: none !important; }
 #mmenu { right: 0 !important; left: auto !important; }
 #mmenu[style*="translateX(-100%)"] { transform: translateX(100%) !important; box-shadow: none; }
+/* Slide-in menu: no logo at the top, just the close button on the right (7 Oct 2026, Yumna). */
+#mmenu > div:first-child { justify-content: flex-end; }
+#mmenu > div:first-child > :not(#mclose) { display: none !important; }
+/* The header's colour is set by js/mobile-fix.js to match what is behind it; drop the frosted blur
+   so the colour reads flat. */
+body:not(.nav-over-hero) #nav { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
