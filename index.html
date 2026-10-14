@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261007c">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261014a">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -186,7 +186,7 @@
        Both bands sit on the same warm off-white so they read as one quiet run down to the footer.
        Best sellers: four 3:4 product photos, all four on one straight line (7 Oct: stagger dropped); name only, no price.
        Who we are: centred, light-weight display type, one sentence, one link. */
-    .hp-best,.hp-who{background:#f9f9f7}
+    .hp-best,.hp-who{background:#fff}
     .hp-best{padding:clamp(40px,5vw,72px) 24px clamp(24px,3vw,48px)}
     .hp-best .eyeb{text-align:right;font-size:12px;letter-spacing:.32em;margin-right:-.32em;text-transform:uppercase;color:#8f8f8f;margin-bottom:clamp(28px,3.4vw,48px)}
     .hp-best .row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;align-items:start}
@@ -197,8 +197,10 @@
     .hp-best .nm{margin-top:16px;font-size:clamp(15px,1.25vw,18px);font-weight:400;color:#4a4a4a;letter-spacing:.005em}
     /* Philosophy (14 Oct 2026, option 5): site font, small title, narrow column, rule sign-off */
     .hp-who{padding:clamp(48px,6vw,80px) 24px clamp(64px,8vw,104px);text-align:center}
-    .hp-who .eyeb{font-size:10.5px;letter-spacing:.32em;margin-right:-.32em;text-transform:uppercase;color:#0a0a0a;font-weight:600}
-    .hp-who h2{margin-top:12px;font-size:clamp(26px,1.2rem + 0.8vw,30px);font-weight:600;letter-spacing:-.01em;line-height:1.2;color:#0a0a0a}
+    /* Eyebrow + title use the hero's type (Yumna, 14 Oct): eyebrow = hero "A new movement" (12px, 600, .1em caps);
+       title = hero "Find Your Revival." (.t-hero: 28–40px, 700, -.02em). */
+    .hp-who .eyeb{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#0a0a0a}
+    .hp-who h2{margin-top:16px;font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:#0a0a0a}
     .hp-who .col{max-width:28em;margin:18px auto 0}
     .hp-who p{font-size:14px;line-height:1.75;color:#6b6b6b}
     .hp-who p+p{margin-top:10px}
@@ -301,7 +303,7 @@
 
   <!-- COLLECTION 01 row restored 7 Oct 2026 in place of Best sellers (Best sellers markup parked in _parked/best-sellers-section.html). -->
   <!-- COLLECTION 01 -->
-  <section class="py-16 md:py-20 px-6" id="shop" style="background:#f9f9f7">
+  <section class="py-16 md:py-20 px-6" id="shop" style="background:#fff">
     <div class="max-w-6xl mx-auto">
       <h2 class="sr-only">Collection 01</h2>
       <div class="fu d1 flex items-end justify-between gap-4 mb-6">
