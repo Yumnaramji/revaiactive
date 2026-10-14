@@ -149,6 +149,18 @@
     @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.2;transform:none}}
     @media(prefers-reduced-motion:reduce){#home-hero .hp-plate{animation:none;opacity:.2}}
     @media(max-width:767px){#home-hero .hp-plate{right:-14%;top:-10%;height:112%}}
+    /* Hero edge details (14 Oct 2026, from the Lovable launch page): vertical line on the right edge (centred below the 64px nav),
+       location pin bottom right, sitting just left of the vertical line so the two never collide. Vertical line hides on phones (hero is too short for it). */
+    #home-hero .hp-vert{position:absolute;right:26px;top:calc(50% + 32px);transform:translateY(-50%);writing-mode:vertical-rl;
+      z-index:3;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.72);white-space:nowrap;pointer-events:none}
+    #home-hero .hp-loc{position:absolute;right:58px;bottom:22px;z-index:3;display:inline-flex;align-items:center;gap:10px;
+      font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.82);text-decoration:none;transition:color .2s}
+    #home-hero .hp-loc:hover{color:#fff}
+    #home-hero .hp-loc svg{flex:none}
+    @media(max-width:767px){
+      #home-hero .hp-vert{display:none}
+      #home-hero .hp-loc{right:16px;bottom:14px;font-size:10px;letter-spacing:.2em;gap:8px}
+    }
 
 
     /* --- OUR STORY --- */
@@ -197,12 +209,12 @@
     .hp-best .nm{margin-top:16px;font-size:clamp(15px,1.25vw,18px);font-weight:400;color:#4a4a4a;letter-spacing:.005em}
     /* Philosophy (14 Oct 2026, option 5): site font, small title, narrow column, rule sign-off */
     .hp-who{padding:clamp(48px,6vw,80px) 24px clamp(64px,8vw,104px);text-align:center}
-    .hp-who .eyeb{font-size:10.5px;letter-spacing:.32em;margin-right:-.32em;text-transform:uppercase;color:#9a9a9a}
+    .hp-who .eyeb{font-size:10.5px;letter-spacing:.32em;margin-right:-.32em;text-transform:uppercase;color:#0a0a0a}
     .hp-who h2{margin-top:12px;font-size:26px;font-weight:400;letter-spacing:-.01em;line-height:1.2;color:#0a0a0a}
     .hp-who .col{max-width:28em;margin:18px auto 0}
     .hp-who p{font-size:14px;line-height:1.75;color:#6b6b6b}
     .hp-who p+p{margin-top:10px}
-    .hp-who .sign{display:inline-flex;align-items:center;gap:14px;margin-top:20px;font-size:13px;color:#5a5a5a}
+    .hp-who .sign{display:inline-flex;align-items:center;gap:14px;margin-top:20px;font-size:13px;color:#9a9a9a}
     .hp-who .sign .ln{display:block;width:24px;height:1px;background:currentColor;flex:none}
     @media(max-width:767px){
       .hp-best{padding-left:16px;padding-right:16px}
@@ -294,6 +306,8 @@
       <p class="ha d1 text-xs font-semibold uppercase tracking-widest text-gray-300 mb-6"><span aria-hidden="true" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#fff;margin-right:14px;vertical-align:middle;position:relative;top:-1px"></span>A new movement. Nairobi, Kenya.</p>
       <h1 class="t-hero ha d2 text-white" style="max-width:900px;margin-left:auto;margin-right:auto">Find Your Revival.</h1>
     </div>
+    <div class="hp-vert" aria-hidden="true">Rooted in Nairobi. Made to move.</div>
+    <a class="hp-loc" href="#shop"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Nairobi, Kenya<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6"/></svg></a>
   </section>
 
   <!-- COLLECTION 01 product rail removed 5 Oct 2026 (Yumna): the hero sends people straight to Women or Men. Markup is in git history. -->
