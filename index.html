@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261014a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261014b">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -93,6 +93,10 @@
     @media(min-width:768px){
       .hp-row .hp-name{font-size:15px}
       .hp-row .hp-colour,.hp-row .hp-price{font-size:14px}
+      /* name left, price right on one line, same as the shop page (Yumna, 14 Oct 2026) */
+      .hp-card .hp-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+      .hp-card .hp-row .hp-name{font-size:14px}
+      .hp-card .hp-row .hp-price{margin-top:0;font-size:13px;white-space:nowrap}
     }
     /* neutralise the Tailwind state classes the size-pill JS toggles */
     .hp-card .size-pill{background:none!important;border:0!important;border-radius:0!important;
@@ -200,7 +204,7 @@
     /* Eyebrow + title use the hero's type (Yumna, 14 Oct): eyebrow = hero "A new movement" (12px, 600, .1em caps);
        title = hero "Find Your Revival." (.t-hero: 28–40px, 700, -.02em). */
     .hp-who .eyeb{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#0a0a0a}
-    .hp-who h2{margin-top:16px;font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:#0a0a0a}
+    .hp-who h2{margin-top:16px;font-size:clamp(28px,3vw,40px);font-weight:400;letter-spacing:-.02em;line-height:1.1;color:#0a0a0a}
     .hp-who .col{max-width:28em;margin:18px auto 0}
     .hp-who p{font-size:14px;line-height:1.75;color:#6b6b6b}
     .hp-who p+p{margin-top:10px}

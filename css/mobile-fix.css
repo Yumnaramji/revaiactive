@@ -553,3 +553,10 @@ footer a[style*="margin-bottom:16px"] { margin-bottom: 10px !important; }
 footer .flex.gap-4 svg { width: 16px; height: 16px; }
 footer .text-xs { font-size: 11px !important; }
 footer .max-w-6xl > div:last-child { padding-top: 10px !important; }
+
+/* §14 Header lines up with the page (14 Oct 2026, Yumna). Page content sits in max-w-6xl (72rem) inside a
+   px-6 section, but the header put its px-6 INSIDE its max-w-6xl, so the logo and icons sat 24px in from
+   the content edges. Widening the header box by the padding puts logo and icons on the same edges. */
+#nav > .max-w-6xl { max-width: calc(72rem + 3rem) !important; }
+/* On phones the menu button is widened to a 44px tap target, which pushed the icon 8px in; pull it back. */
+@media (max-width: 767px) { #nav .nav-mob { margin-right: -16px !important; } }
