@@ -209,26 +209,6 @@
       .hp-best .row{grid-template-columns:repeat(2,1fr);gap:14px;row-gap:28px}
       .hp-best .nm{margin-top:10px}
     }
-    /* Welcome offer (14 Oct 2026): email only, discount-led. Sits under the philosophy, above the footer.
-       NO BACKEND YET: set WELCOME_ENDPOINT in the script at the bottom of this page (Mailchimp or similar)
-       before main goes live. Until then the form says sign-up isn't open; it must never fake a success. */
-    .hp-who{padding-bottom:clamp(40px,5vw,64px)}
-    .hp-join{background:#f9f9f7;padding:0 24px clamp(28px,3vw,44px)}
-    .hp-join .jin{max-width:72rem;margin:0 auto;padding-top:clamp(52px,6vw,88px);
-      display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,8vw,128px);align-items:end}
-    .hp-join h2{margin-top:0;font-size:clamp(18px,0.85rem + 0.4vw,21px);font-weight:600;letter-spacing:-.03em;line-height:1.05;color:#0a0a0a;max-width:12ch}
-    .hp-join .lede{margin-top:12px;font-size:13.5px;line-height:1.65;color:#6b6b6b;max-width:34em}
-    .hp-join .offer{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:500;color:#0a0a0a;letter-spacing:-.01em}
-    .hp-join .offer b{font-weight:600}
-    .hp-join .offer svg{flex:none}
-    .hp-join form{margin-top:14px;display:flex;align-items:center;border-bottom:1px solid #0a0a0a}
-    .hp-join input{flex:1;min-width:0;border:0;outline:0;padding:0;height:40px;font:inherit;font-size:14px;background:transparent;color:#0a0a0a}
-    .hp-join input::placeholder{color:#9a9a9a}
-    .hp-join button{border:0;background:none;color:#0a0a0a;padding:0 0 0 16px;height:40px;display:flex;align-items:center;cursor:pointer}
-    .hp-join button:disabled{opacity:.4;cursor:default}
-    .hp-join .form-col{position:relative}
-    .hp-join .msg{position:absolute;left:0;top:100%;margin-top:10px;font-size:13px;color:#5a5a5a}
-    @media(max-width:860px){.hp-join .jin{grid-template-columns:1fr;gap:28px;align-items:start}.hp-join{padding-left:16px;padding-right:16px}}
   </style>
   <script src="js/mobile-fix.js?v=20261007a" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
@@ -385,25 +365,6 @@
     <div class="sign fu d3"><span class="ln" aria-hidden="true"></span>Just you, finding your revival.</div>
   </section>
 
-
-  <!-- WELCOME OFFER (14 Oct 2026) — see the CSS note: needs WELCOME_ENDPOINT before go-live -->
-  <section class="hp-join" aria-labelledby="hp-join-title">
-    <div class="jin">
-      <div>
-        <h2 id="hp-join-title" class="fu d1">The next chapter starts with you.</h2>
-        <p class="lede fu d2">Be a part of REVAÍ. Get launch updates, the first look at our collections, and a little something for your first order.</p>
-      </div>
-      <div class="form-col fu d2">
-        <div class="offer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l1.9 5.3L19 10l-5.1 1.7L12 17l-1.9-5.3L5 10l5.1-1.7z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7L19 20l-.7-1.8-1.8-.7 1.8-.7z"/></svg><span><b>5% off your first order.</b></span></div>
-        <form id="hp-join-form" novalidate>
-          <input type="email" name="email" placeholder="Email address" aria-label="Email address" autocomplete="email" required>
-          <button type="submit" aria-label="Sign up for 5% off"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></button>
-        </form>
-        <p class="msg" id="hp-join-msg" role="status" aria-live="polite"></p>
-      </div>
-    </div>
-  </section>
-
 <!-- FOOTER -->
 <footer style="background:#0a0a0a" class="px-6 pt-10 pb-5 border-t border-gray-800">
   <div class="max-w-6xl mx-auto">
@@ -452,6 +413,7 @@
 <script src="shopify-config.js?v=20260926b"></script>
 <script src="woo-config.js?v=20261002d"></script>
 <script src="cart-drawer.js?v=20261002c"></script>
+<script src="js/welcome-popup.js?v=20261014a" defer></script>
 <script src="js/quick-add.js?v=20261002b" defer></script>
 <script>
 // Simple add-to-bag with size selection and toast
@@ -528,26 +490,6 @@ if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySe
       if(e.target.closest('.size-pill')||e.target.closest('.hp-add'))return;
       window.location.href=url;
     });
-  });
-})();
-</script>
-<script>
-// Welcome-offer sign-up. WELCOME_ENDPOINT is empty until a mailing-list backend exists (Mailchimp or similar).
-// While empty the form only says sign-up isn't open yet: it must never show a fake success.
-(function(){
-  var WELCOME_ENDPOINT='';
-  var f=document.getElementById('hp-join-form'), m=document.getElementById('hp-join-msg');
-  if(!f) return;
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    var em=(f.email.value||'').trim();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ m.textContent='Please enter a valid email address.'; return; }
-    if(!WELCOME_ENDPOINT){ m.textContent='Sign-up opens soon.'; return; }
-    var btn=f.querySelector('button'); btn.disabled=true; m.textContent='';
-    fetch(WELCOME_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em})})
-      .then(function(r){ if(!r.ok) throw 0; m.textContent='You’re in. Check your inbox for your 5% code.'; f.reset(); })
-      .catch(function(){ m.textContent='Something went wrong. Please try again.'; })
-      .then(function(){ btn.disabled=false; });
   });
 })();
 </script>
