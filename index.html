@@ -195,15 +195,13 @@
     .hp-best .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block;transition:transform .8s cubic-bezier(.16,1,.3,1)}
     .hp-best a:hover .ph img{transform:scale(1.025)}
     .hp-best .nm{margin-top:16px;font-size:clamp(15px,1.25vw,18px);font-weight:400;color:#4a4a4a;letter-spacing:.005em}
-    /* Philosophy band (14 Oct 2026, from Yumna's reference): left-aligned, eyebrow, bold display heading, three
-       paragraphs, short rule + sign-off. Same warm off-white as Best sellers. */
-    .hp-who{padding:clamp(40px,5vw,72px) 24px clamp(72px,9vw,120px)}
-    .hp-who .wrap{max-width:72rem;margin:0 auto}
-    .hp-who .eyeb{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#0a0a0a;font-weight:500}
-    .hp-who h2{margin-top:clamp(20px,2.4vw,32px);font-size:clamp(40px,6.4vw,84px);font-weight:600;letter-spacing:-.035em;line-height:1.04;color:#0a0a0a}
-    .hp-who p{margin-top:clamp(22px,2.4vw,32px);max-width:42em;font-size:clamp(16px,1.35vw,19px);font-weight:400;line-height:1.85;color:#4a4a4a}
-    .hp-who .sign{display:flex;align-items:center;gap:20px;margin-top:clamp(32px,3.6vw,48px);font-size:15px;color:#0a0a0a}
-    .hp-who .sign .ln{display:block;width:52px;height:1px;background:#0a0a0a;flex:none}
+    .hp-who{padding:clamp(36px,4.5vw,64px) 24px clamp(72px,9vw,120px);text-align:center}
+    .hp-who .eyeb{font-size:12px;letter-spacing:.32em;margin-right:-.32em;text-transform:uppercase;color:#8f8f8f}
+    .hp-who h2{margin-top:18px;font-size:clamp(30px,4vw,48px);font-weight:300;letter-spacing:-.02em;line-height:1.12;color:#0a0a0a}
+    .hp-who p{margin:20px auto 0;max-width:34em;font-size:16px;font-weight:400;line-height:1.72;color:#4a4a4a}
+    .hp-who p.pillars{margin-top:10px}
+    .hp-who .more{display:inline-block;margin-top:24px;font-size:14px;color:#0a0a0a;text-decoration:none;border-bottom:1px solid #0a0a0a;padding-bottom:5px}
+    .hp-who .more:hover{opacity:.6}
     @media(max-width:767px){
       .hp-best{padding-left:16px;padding-right:16px}
       .hp-best .row{grid-template-columns:repeat(2,1fr);gap:14px;row-gap:28px}
@@ -353,16 +351,15 @@
     </div>
   </section>
 
-  <!-- THE REVAÍ PHILOSOPHY (14 Oct 2026) — replaces "Who we are" (7 Oct); old markup in git history -->
+  <!-- THE REVAÍ PHILOSOPHY (14 Oct 2026) — new copy in the 7 Oct "Who we are" design; old copy in git history -->
   <section class="hp-who">
-    <div class="wrap">
-      <div class="eyeb fu">The REVAÍ Philosophy</div>
-      <h2 class="fu d1">A return to you.</h2>
-      <p class="fu d2">The early run. The last rep. The quiet stretch.<br>Movement is more than what you do. It’s how you come back to yourself.</p>
-      <p class="fu d2">Born in Nairobi, REVAÍ is a premium unisex performance activewear brand. Built for the way we actually move — from Karura trails to the studio, from your first session to your next breakthrough.</p>
-      <p class="fu d2">No mould to fit. No version of you to chase.<br>Just you, finding your revival.</p>
-      <div class="sign fu d3"><span class="ln" aria-hidden="true"></span>Rooted here. Ready for wherever you go.</div>
-    </div>
+    <div class="eyeb fu">The REVAÍ Philosophy</div>
+    <h2 class="fu d1">A return to you.</h2>
+    <p class="fu d2">The early run. The last rep. The quiet stretch.<br>Movement is more than what you do. It’s how you come back to yourself.</p>
+    <p class="fu d2">Born in Nairobi, REVAÍ is a premium unisex performance activewear brand. Built for the way we actually move — from Karura trails to the studio, from your first session to your next breakthrough.</p>
+    <p class="fu d2">No mould to fit. No version of you to chase.<br>Just you, finding your revival.</p>
+    <p class="fu d2">Rooted here. Ready for wherever you go.</p>
+    <a class="more fu d3" href="about.html">Read our story</a>
   </section>
 
 
