@@ -21,7 +21,7 @@
   <meta name="description" content="Shop all REVAÍ activewear. S–XXL, true to size. All prices in KES.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/mobile-fix.css?v=20261014a">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
@@ -64,15 +64,35 @@
       .prod-card .size-pill{opacity:1!important}
       .prod-card .add-btn{opacity:1}
     }
-    /* All / Women / Men: plain text tabs, no boxes (Yumna, 2 Oct 2026). The chosen one is black and
-       underlined. The id selector and !important beat the phone padding in css/mobile-fix.css. */
-    #gender-filter-pills{gap:26px}
-    #gender-filter-pills .filter-pill{display:inline-flex;align-items:center;padding:6px 0!important;border:0;border-radius:0;background:none;font-size:14px;font-weight:500;cursor:pointer;transition:color .15s;color:#6b7280;letter-spacing:.01em}
+    /* Shop layout (14 Oct 2026, from Yumna's Lovable reference): large light title ("Men."), then
+       All / Women / Men / Accessories tabs on one hairline with a piece count on the right, a 3-up grid
+       of larger photos, and name left / price right under each photo. */
+    .shop-intro{padding-bottom:clamp(28px,4vw,56px)!important}
+    .shop-title{font-size:clamp(52px,8.5vw,120px);font-weight:200;letter-spacing:-.03em;line-height:1;color:#0a0a0a}
+    .shop-tabs{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;border-bottom:1px solid #e5e7eb}
+    #gender-filter-pills{display:flex;gap:clamp(22px,3.4vw,48px);overflow-x:auto;scrollbar-width:none}
+    #gender-filter-pills::-webkit-scrollbar{display:none}
+    #gender-filter-pills .filter-pill{position:relative;display:inline-flex;align-items:center;padding:0 0 18px!important;margin:0;border:0;border-radius:0;background:none;
+      font-size:16px;font-weight:400;color:#6b7280;cursor:pointer;white-space:nowrap;transition:color .15s}
     #gender-filter-pills .filter-pill:hover{color:#0a0a0a}
-    #gender-filter-pills .filter-pill.sel{background:none;color:#0a0a0a;font-weight:600;text-decoration:underline;text-underline-offset:7px;text-decoration-thickness:1.5px}
-    /* the grid starts close under the tabs (was 64-80px) */
-    section.shop-grid{padding-top:18px}
-    @media(min-width:768px){section.shop-grid{padding-top:22px}}
+    #gender-filter-pills .filter-pill.sel{color:#0a0a0a;font-weight:400;text-decoration:none}
+    #gender-filter-pills .filter-pill.sel::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1.5px;background:#0a0a0a}
+    .shop-count{padding-bottom:18px;font-size:14px;color:#6b7280;white-space:nowrap}
+    section.shop-grid{padding-top:0}
+    #product-grid{margin-top:clamp(28px,4vw,56px);column-gap:clamp(14px,2.6vw,38px)!important;row-gap:clamp(32px,4vw,56px)!important}
+    @media(min-width:1024px){#product-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+    .prod-card .p-4{padding:14px 0 0!important}
+    .prod-card .pc-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+    .prod-card .pc-row p:first-child{font-size:16px;font-weight:400;color:#0a0a0a}
+    .prod-card .pc-row p:last-child{margin-top:0;font-size:15px;font-weight:400;color:#6b7280;white-space:nowrap}
+    @media(max-width:767px){
+      .shop-title{font-size:48px}
+      #gender-filter-pills .filter-pill{font-size:15px;padding-bottom:14px!important}
+      .shop-count{display:none}
+      .prod-card .pc-row{display:block}
+      .prod-card .pc-row p:first-child{font-size:14px}
+      .prod-card .pc-row p:last-child{margin-top:4px;font-size:13px}
+    }
     .prod-card{background:#fff;border:0;border-radius:0;overflow:visible;transition:none;position:relative}
     .card-hover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity .45s ease;pointer-events:none}
     @media(hover:hover){.prod-card:hover .card-hover-img{opacity:1}}
@@ -157,12 +177,10 @@
 
 <!-- INTRO — white page-top band (same pattern as technology.html). The black .chero
      hero was removed 5 Oct 2026 (Yumna chose the white intro; no hero photo was ever set). -->
-<section id="main" class="pt-28 pb-14 px-6" style="background:#fff">
+<section id="main" class="shop-intro pt-28 pb-14 px-6" style="background:#fff">
   <div class="max-w-6xl mx-auto">
     <div class="chero-copy max-w-3xl">
-      <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">Collection</p>
-      <h1 class="fu d1 t-hero mb-4">Shop REVAÍ</h1>
-      <p class="fu d2 text-lg text-gray-500 leading-relaxed max-w-xl">Activewear built for everyone. S–XXL, true to size. All prices in KES.</p>
+      <h1 class="fu shop-title">Shop REVAÍ.</h1>
     </div>
   </div>
 </section>
@@ -171,6 +189,15 @@
 <!-- PRODUCT GRID -->
 <section class="shop-grid py-16 md:py-20 px-6">
   <div class="max-w-6xl mx-auto">
+    <div class="shop-tabs fu" role="tablist" aria-label="Filter products">
+      <div id="gender-filter-pills">
+        <button type="button" class="filter-pill" role="tab" data-gender="all">All</button>
+        <button type="button" class="filter-pill" role="tab" data-gender="women">Women</button>
+        <button type="button" class="filter-pill" role="tab" data-gender="men">Men</button>
+        <button type="button" class="filter-pill" role="tab" data-gender="accessories">Accessories</button>
+      </div>
+      <span class="shop-count" id="shop-count" aria-live="polite"></span>
+    </div>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-5" id="product-grid">
 
       <!-- T-Shirt W -->
@@ -670,9 +697,10 @@ document.querySelectorAll('.prod-card').forEach(function(card){
 
 <script>
 (function(){
-  // Filter is driven by the Shop menu (?gender=men|women|accessories); the on-page pill bar was removed 5 Oct 2026.
+  // Filter: ?gender=men|women|accessories from the Shop menu, or the on-page tabs (back 14 Oct 2026, Lovable reference).
   var VALID = ['all','women','men','accessories'];
-  var TITLES = {all:'Shop REVAÍ', women:'Women', men:'Men', accessories:'Accessories'};
+  var TITLES = {all:'Shop REVAÍ.', women:'Women.', men:'Men.', accessories:'Accessories.'};
+  var countEl = document.getElementById('shop-count');
   var pills = document.querySelectorAll('.filter-pill');
   var cards = document.querySelectorAll('.prod-card');
   var h1 = document.querySelector('.chero-copy h1');
@@ -697,7 +725,8 @@ document.querySelectorAll('.prod-card').forEach(function(card){
     });
     if(h1){ h1.textContent = TITLES[gender]; }
     if(sub){ sub.textContent = SUBS[gender] || subDefault; }
-    if(gender !== 'all') document.title = TITLES[gender] + ' | REVAÍ';
+    if(countEl){ var n=0; cards.forEach(function(c){ if(c.style.display!=='none') n++; }); countEl.textContent = n + (n===1?' piece':' pieces'); }
+    if(gender !== 'all') document.title = TITLES[gender].replace(/\.$/,'') + ' | REVAÍ';
     var url = new URL(window.location.href);
     if(gender === 'all') url.searchParams.delete('gender');
     else url.searchParams.set('gender', gender);
