@@ -53,7 +53,7 @@
     '@media(max-width:640px){' +
       '.rwp{align-items:flex-end;padding:0}' +
       '.rwp-box{grid-template-columns:1fr;max-width:none;transform:translateY(40px)}' +
-      '.rwp-img{min-height:0;aspect-ratio:2/1;background-size:cover;background-position:center 52%}' +
+      '.rwp-img{min-height:0;aspect-ratio:16/9;background-size:cover;background-position:center 52%}' +
       '.rwp-body{padding:26px 20px calc(24px + env(safe-area-inset-bottom))}' +
       '.rwp h2{font-size:22px}' +
       '.rwp-x{color:#fff}' +
