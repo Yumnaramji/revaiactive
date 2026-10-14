@@ -373,7 +373,7 @@ function loadProduct(){
   document.getElementById('breadcrumb-name').textContent=p.name;
   document.getElementById('prod-name').textContent=p.name;
   document.getElementById('prod-price').textContent=p.price;
-  document.getElementById('prod-gender').textContent=p.gender==='Unisex'?'':p.gender;
+  document.getElementById('prod-gender').textContent=p.gender; // accessories now show 'Unisex' too (Yumna, 14 Oct 2026)
   // Colour swatch — defaults to Black, overridden when product specifies colour
   if(p.colour){
     const sw=document.getElementById('primary-swatch');
