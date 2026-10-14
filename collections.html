@@ -68,7 +68,7 @@
        All / Women / Men / Accessories tabs on one hairline with a piece count on the right, a 3-up grid
        of larger photos, and name left / price right under each photo. */
     .shop-intro{padding-bottom:clamp(28px,4vw,56px)!important}
-    .shop-title{font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:#0a0a0a} /* = homepage "Find Your Revival." */
+    .shop-title{font-size:clamp(28px,3vw,40px);font-weight:400;letter-spacing:-.02em;line-height:1.1;color:#0a0a0a} /* = homepage "Find Your Revival." */
     .shop-tabs{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;border-bottom:1px solid #e5e7eb}
     #gender-filter-pills{display:flex;gap:clamp(22px,3.4vw,48px);overflow-x:auto;scrollbar-width:none}
     #gender-filter-pills::-webkit-scrollbar{display:none}
@@ -180,7 +180,7 @@
 <section id="main" class="shop-intro pt-28 pb-14 px-6" style="background:#fff">
   <div class="max-w-6xl mx-auto">
     <div class="chero-copy max-w-3xl">
-      <h1 class="fu shop-title">Shop REVAÍ.</h1>
+      <h1 class="fu shop-title">Shop REVAÍ</h1>
     </div>
   </div>
 </section>
@@ -699,7 +699,7 @@ document.querySelectorAll('.prod-card').forEach(function(card){
 (function(){
   // Filter: ?gender=men|women|accessories from the Shop menu, or the on-page tabs (back 14 Oct 2026, Lovable reference).
   var VALID = ['all','women','men','accessories'];
-  var TITLES = {all:'Shop REVAÍ.', women:'Women.', men:'Men.', accessories:'Accessories.'};
+  var TITLES = {all:'Shop REVAÍ', women:'Women', men:'Men', accessories:'Accessories'};
   var countEl = document.getElementById('shop-count');
   var pills = document.querySelectorAll('.filter-pill');
   var cards = document.querySelectorAll('.prod-card');
