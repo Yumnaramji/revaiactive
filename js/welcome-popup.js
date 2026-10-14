@@ -64,8 +64,8 @@
       '<div class="rwp-img" role="img" aria-label="REVAÍ"></div>' +
       '<div class="rwp-body">' +
         '<div class="rwp-eyeb"><i aria-hidden="true"></i>Be here from the beginning</div>' +
-        '<h2 id="rwp-title">The next chapter starts with you.</h2>' +
-        '<p class="rwp-lede">Be a part of REVAÍ. Get launch updates, the first look at our collections, and a little something for your first order.</p>' +
+        '<h2 id="rwp-title">Be part of REVAÍ.</h2>' +
+        '<p class="rwp-lede">Get launch updates, the first look at our collections, and a little something for your first order.</p>' +
         '<div class="rwp-offer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l1.9 5.3L19 10l-5.1 1.7L12 17l-1.9-5.3L5 10l5.1-1.7z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7L19 20l-.7-1.8-1.8-.7 1.8-.7z"/></svg>5% off your first order.</div>' +
         '<form novalidate>' +
           '<input type="email" name="email" placeholder="Email address" aria-label="Email address" autocomplete="email" required>' +
