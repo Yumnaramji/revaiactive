@@ -1,5 +1,5 @@
 /* REVAÍ welcome pop-up (14 Oct 2026, Yumna).
-   Logo on the left, "The next chapter starts with you." + 5% first-order offer + email on the right.
+   Logo on the left (desktop only; phones get a small centred card without it, Yumna), "The next chapter starts with you." + 5% first-order offer + email on the right.
    Shown once per visitor, a few seconds after the page loads; closing it keeps it away for 14 days,
    signing up keeps it away for good. Skipped on sign-in / account / bag pages.
    Add ?popup=1 to any URL to force it open for testing.
@@ -51,12 +51,11 @@
     '.rwp-x{position:absolute;top:10px;right:10px;width:36px;height:36px;border:0;background:none;color:#0a0a0a;cursor:pointer;' +
       'display:flex;align-items:center;justify-content:center}' +
     '@media(max-width:640px){' +
-      '.rwp{align-items:flex-end;padding:0}' +
-      '.rwp-box{grid-template-columns:1fr;max-width:none;transform:translateY(40px)}' +
-      '.rwp-img{min-height:0;aspect-ratio:16/9;background-size:cover;background-position:center 52%}' +
-      '.rwp-body{padding:26px 20px calc(24px + env(safe-area-inset-bottom))}' +
+      '.rwp{padding:16px}' +
+      '.rwp-box{grid-template-columns:1fr;max-width:420px}' +
+      '.rwp-img{display:none}' +
+      '.rwp-body{padding:36px 22px 24px}' +
       '.rwp h2{font-size:22px}' +
-      '.rwp-x{color:#fff}' +
     '}' +
     '@media(prefers-reduced-motion:reduce){.rwp,.rwp-box{transition:none}}';
 
