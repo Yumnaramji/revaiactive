@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261014b">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261007c">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -49,12 +49,12 @@
        the same on desktop). No size row and no Add to Bag bar; tapping or clicking the photo or the name
        opens the product page, where colour and size are chosen. */
     .prod-card .p-4 > .flex,.prod-card .add-btn{display:none!important}
-    /* Card text (from a Gymshark reference): name, then price (colour line hidden 14 Oct 2026, Yumna; kept in the markup because quick-add reads it), stacked under the photo;
+    /* Card text (from a Gymshark reference): name, then colour, then price, stacked under the photo;
        colour and price in grey. One step larger from 768px up. */
     .prod-card .pc-row{display:block}
     .pc-row p:first-child{font-size:14px;font-weight:500;line-height:1.3}
-    .pc-row .pc-colour{display:none;margin-top:8px;font-size:13px;line-height:1.3;color:#6b7280}
-    .pc-row p:last-child{margin-top:6px;font-size:13px;font-weight:400;color:#6b7280}
+    .pc-row .pc-colour{display:block;margin-top:8px;font-size:13px;line-height:1.3;color:#6b7280}
+    .pc-row p:last-child{margin-top:3px;font-size:13px;font-weight:400;color:#6b7280}
     @media(min-width:768px){
       .pc-row p:first-child{font-size:15px}
       .pc-row .pc-colour,.pc-row p:last-child{font-size:14px}
@@ -64,33 +64,15 @@
       .prod-card .size-pill{opacity:1!important}
       .prod-card .add-btn{opacity:1}
     }
-    /* Shop layout (14 Oct 2026, from Yumna's Lovable reference): large light title ("Men."), then
-       All / Women / Men / Accessories tabs on one hairline with a piece count on the right, a 3-up grid
-       of larger photos, and name left / price right under each photo. */
-    .shop-intro{padding-top:96px!important;padding-bottom:0!important} /* visible title removed 14 Oct (Yumna): the tabs name the page; h1 kept for screen readers */
-    .shop-title{font-size:clamp(28px,3vw,40px);font-weight:400;letter-spacing:-.02em;line-height:1.1;color:#0a0a0a} /* = homepage "Find Your Revival." */
-    .shop-tabs{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;border-bottom:1px solid #e5e7eb}
-    #gender-filter-pills{display:flex;gap:clamp(22px,3.4vw,48px);overflow-x:auto;scrollbar-width:none}
-    #gender-filter-pills::-webkit-scrollbar{display:none}
-    #gender-filter-pills .filter-pill{position:relative;display:inline-flex;align-items:center;padding:0 0 18px!important;margin:0;border:0;border-radius:0;background:none;
-      font-size:14px;font-weight:500;color:#6b7280;cursor:pointer;white-space:nowrap;transition:color .15s}
+    /* All / Women / Men: plain text tabs, no boxes (Yumna, 2 Oct 2026). The chosen one is black and
+       underlined. The id selector and !important beat the phone padding in css/mobile-fix.css. */
+    #gender-filter-pills{gap:26px}
+    #gender-filter-pills .filter-pill{display:inline-flex;align-items:center;padding:6px 0!important;border:0;border-radius:0;background:none;font-size:14px;font-weight:500;cursor:pointer;transition:color .15s;color:#6b7280;letter-spacing:.01em}
     #gender-filter-pills .filter-pill:hover{color:#0a0a0a}
-    #gender-filter-pills .filter-pill.sel{color:#0a0a0a;font-weight:500;text-decoration:none}
-    #gender-filter-pills .filter-pill.sel::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1.5px;background:#0a0a0a}
-    section.shop-grid{padding-top:0}
-    #product-grid{margin-top:clamp(28px,4vw,56px);column-gap:clamp(14px,2.6vw,38px)!important;row-gap:clamp(32px,4vw,56px)!important}
-    @media(min-width:1024px){#product-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
-    .prod-card .p-4{padding:14px 0 0!important}
-    .prod-card .pc-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-    .prod-card .pc-row p:first-child{font-size:15px;font-weight:500;line-height:1.3;color:#0a0a0a} /* = homepage card name */
-    .prod-card .pc-row p:last-child{margin-top:0;font-size:14px;font-weight:400;color:#6b7280;white-space:nowrap}
-    @media(max-width:767px){
-      .shop-title{font-size:28px}
-      #gender-filter-pills .filter-pill{font-size:14px;padding-bottom:14px!important}
-        .prod-card .pc-row{display:block}
-      .prod-card .pc-row p:first-child{font-size:14px}
-      .prod-card .pc-row p:last-child{margin-top:4px;font-size:13px}
-    }
+    #gender-filter-pills .filter-pill.sel{background:none;color:#0a0a0a;font-weight:600;text-decoration:underline;text-underline-offset:7px;text-decoration-thickness:1.5px}
+    /* the grid starts close under the tabs (was 64-80px) */
+    section.shop-grid{padding-top:18px}
+    @media(min-width:768px){section.shop-grid{padding-top:22px}}
     .prod-card{background:#fff;border:0;border-radius:0;overflow:visible;transition:none;position:relative}
     .card-hover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity .45s ease;pointer-events:none}
     @media(hover:hover){.prod-card:hover .card-hover-img{opacity:1}}
@@ -175,10 +157,12 @@
 
 <!-- INTRO — white page-top band (same pattern as technology.html). The black .chero
      hero was removed 5 Oct 2026 (Yumna chose the white intro; no hero photo was ever set). -->
-<section id="main" class="shop-intro pt-28 pb-14 px-6" style="background:#fff">
+<section id="main" class="pt-28 pb-14 px-6" style="background:#fff">
   <div class="max-w-6xl mx-auto">
     <div class="chero-copy max-w-3xl">
-      <h1 class="sr-only shop-title">Shop REVAÍ</h1>
+      <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">Collection</p>
+      <h1 class="fu d1 t-hero mb-4">Shop REVAÍ</h1>
+      <p class="fu d2 text-lg text-gray-500 leading-relaxed max-w-xl">Activewear built for everyone. S–XXL, true to size. All prices in KES.</p>
     </div>
   </div>
 </section>
@@ -187,14 +171,6 @@
 <!-- PRODUCT GRID -->
 <section class="shop-grid py-16 md:py-20 px-6">
   <div class="max-w-6xl mx-auto">
-    <div class="shop-tabs fu" role="tablist" aria-label="Filter products">
-      <div id="gender-filter-pills">
-        <button type="button" class="filter-pill" role="tab" data-gender="all">All</button>
-        <button type="button" class="filter-pill" role="tab" data-gender="women">Women</button>
-        <button type="button" class="filter-pill" role="tab" data-gender="men">Men</button>
-        <button type="button" class="filter-pill" role="tab" data-gender="accessories">Accessories</button>
-      </div>
-    </div>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-5" id="product-grid">
 
       <!-- T-Shirt W -->
@@ -434,6 +410,41 @@
   </div>
 </section>
 
+<!-- TRUST BAR -->
+<section class="py-16 md:py-20 bg-gray-50 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div class="fu">
+        <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
+          <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h3l4 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <p class="text-sm font-semibold text-black">Free delivery over KES 20,000</p>
+        <p class="text-xs text-gray-500 mt-1">Standard delivery KES 200–400</p>
+      </div>
+      <div class="fu d1">
+        <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
+          <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <p class="text-sm font-semibold text-black">S–XXL, true to size</p>
+        <p class="text-xs text-gray-500 mt-1">Consistent fit across all styles</p>
+      </div>
+      <div class="fu d2">
+        <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
+          <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <p class="text-sm font-semibold text-black">30-Day Performance Guarantee</p>
+        <p class="text-xs text-gray-500 mt-1">Faulty items replaced free</p>
+      </div>
+      <div class="fu d3">
+        <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
+          <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <p class="text-sm font-semibold text-black">Sustainable packaging</p>
+        <p class="text-xs text-gray-500 mt-1">Minimal, recyclable materials</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer style="background:#0a0a0a" class="px-6 pt-10 pb-5 border-t border-gray-800">
@@ -441,6 +452,7 @@
     <div class="grid md:grid-cols-4 gap-10 mb-6">
       <div>
         <a href="index.html" style="display:inline-block;margin-bottom:16px"><img src="images/revai-icon.png" alt="REVAÍ" style="height:44px;width:auto;display:block;margin-left:-2px;filter:invert(1)"></a>
+        <p class="text-gray-400 text-sm leading-relaxed mb-6">Activewear built for people who move — whatever that looks like for you.</p>
         <div class="flex gap-4">
           <a href="https://www.instagram.com/revaiactive" target="_blank" rel="noopener" aria-label="Instagram" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></a><a href="mailto:support@revaiactive.com" aria-label="Email REVAÍ" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4.5" width="20" height="15" rx="2.5"/><path d="m3 7 8.13 5.42a1.6 1.6 0 0 0 1.74 0L21 7"/></svg></a>
         </div>
@@ -483,7 +495,6 @@
 <script src="shopify-config.js?v=20260926b"></script>
 <script src="woo-config.js?v=20261002d"></script>
 <script src="cart-drawer.js?v=20261002c"></script>
-<script src="js/welcome-popup.js?v=20261014a" defer></script>
 <script src="js/quick-add.js?v=20261002b" defer></script>
 <script>
 const nav=document.getElementById('nav');
@@ -659,10 +670,9 @@ document.querySelectorAll('.prod-card').forEach(function(card){
 
 <script>
 (function(){
-  // Filter: ?gender=men|women|accessories from the Shop menu, or the on-page tabs (back 14 Oct 2026, Lovable reference).
+  // Filter is driven by the Shop menu (?gender=men|women|accessories); the on-page pill bar was removed 5 Oct 2026.
   var VALID = ['all','women','men','accessories'];
   var TITLES = {all:'Shop REVAÍ', women:'Women', men:'Men', accessories:'Accessories'};
-  var countEl = document.getElementById('shop-count');
   var pills = document.querySelectorAll('.filter-pill');
   var cards = document.querySelectorAll('.prod-card');
   var h1 = document.querySelector('.chero-copy h1');
@@ -687,8 +697,7 @@ document.querySelectorAll('.prod-card').forEach(function(card){
     });
     if(h1){ h1.textContent = TITLES[gender]; }
     if(sub){ sub.textContent = SUBS[gender] || subDefault; }
-    if(countEl){ var n=0; cards.forEach(function(c){ if(c.style.display!=='none') n++; }); countEl.textContent = n + (n===1?' piece':' pieces'); }
-    if(gender !== 'all') document.title = TITLES[gender].replace(/\.$/,'') + ' | REVAÍ';
+    if(gender !== 'all') document.title = TITLES[gender] + ' | REVAÍ';
     var url = new URL(window.location.href);
     if(gender === 'all') url.searchParams.delete('gender');
     else url.searchParams.set('gender', gender);
