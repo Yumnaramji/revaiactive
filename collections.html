@@ -695,6 +695,10 @@ document.querySelectorAll('.prod-card').forEach(function(card){
       p.setAttribute('aria-selected', sel ? 'true' : 'false');
     });
     if(h1){ h1.textContent = TITLES[gender]; }
+    // All Products: no visible title (Yumna, 16 Oct 2026). The heading stays for screen readers; Women/Men/Accessories keep theirs.
+    var copy = document.querySelector('.chero-copy'), intro = document.getElementById('main');
+    if(copy){ copy.classList.toggle('sr-only', gender === 'all'); }
+    if(intro){ intro.style.paddingBottom = (gender === 'all') ? '0' : ''; }
     if(sub){ sub.textContent = SUBS[gender] || subDefault; }
     if(gender !== 'all') document.title = TITLES[gender] + ' | REVAÍ';
     var url = new URL(window.location.href);
