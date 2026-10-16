@@ -538,3 +538,10 @@ section .mb-14 { margin-bottom: 36px; }
 /* The header's colour is set by js/mobile-fix.js to match what is behind it; drop the frosted blur
    so the colour reads flat. */
 body:not(.nav-over-hero) #nav { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+
+/* §14 Header lines up with the page (re-applied 16 Oct 2026, Yumna). Page content sits in max-w-6xl (72rem)
+   inside a px-6 section, but the header put its px-6 INSIDE its max-w-6xl, so the logo and icons sat 24px in
+   from the content edges. Widening the header box by the padding puts them on the same edges. */
+#nav > .max-w-6xl { max-width: calc(72rem + 3rem) !important; }
+/* On phones the menu button is a 44px tap target, which pushed the icon 8px in; pull it back. */
+@media (max-width: 767px) { #nav .nav-mob { margin-right: -16px !important; } }
