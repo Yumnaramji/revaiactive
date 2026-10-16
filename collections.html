@@ -170,6 +170,13 @@
 <!-- PRODUCT GRID -->
 <section class="shop-grid py-16 md:py-20 px-6">
   <div class="max-w-6xl mx-auto">
+    <!-- All / Women / Men / Accessories filter (back 16 Oct 2026, Yumna). Same tabs as the Shop menu; styles at #gender-filter-pills. -->
+    <div id="gender-filter-pills" class="fu" role="tablist" aria-label="Filter products" style="display:flex;flex-wrap:wrap;margin-bottom:28px">
+      <button type="button" class="filter-pill" role="tab" data-gender="all">All</button>
+      <button type="button" class="filter-pill" role="tab" data-gender="women">Women</button>
+      <button type="button" class="filter-pill" role="tab" data-gender="men">Men</button>
+      <button type="button" class="filter-pill" role="tab" data-gender="accessories">Accessories</button>
+    </div>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-5" id="product-grid">
 
       <!-- T-Shirt W -->
@@ -669,7 +676,7 @@ document.querySelectorAll('.prod-card').forEach(function(card){
 
 <script>
 (function(){
-  // Filter is driven by the Shop menu (?gender=men|women|accessories); the on-page pill bar was removed 5 Oct 2026.
+  // Filter: ?gender=men|women|accessories from the Shop menu, or the on-page tabs (back 16 Oct 2026).
   var VALID = ['all','women','men','accessories'];
   var TITLES = {all:'Shop REVAÍ', women:'Women', men:'Men', accessories:'Accessories'};
   var pills = document.querySelectorAll('.filter-pill');
@@ -695,10 +702,9 @@ document.querySelectorAll('.prod-card').forEach(function(card){
       p.setAttribute('aria-selected', sel ? 'true' : 'false');
     });
     if(h1){ h1.textContent = TITLES[gender]; }
-    // All Products: no visible title (Yumna, 16 Oct 2026). The heading stays for screen readers; Women/Men/Accessories keep theirs.
-    var copy = document.querySelector('.chero-copy'), intro = document.getElementById('main');
-    if(copy){ copy.classList.toggle('sr-only', gender === 'all'); }
-    if(intro){ intro.style.paddingBottom = (gender === 'all') ? '0' : ''; }
+    // All Products: "Collection" stays, no visible "Shop REVAÍ" title (Yumna, 16 Oct 2026); h1 kept for screen readers.
+    if(h1){ h1.classList.toggle('sr-only', gender === 'all'); }
+    var intro = document.getElementById('main'); if(intro){ intro.style.paddingBottom = (gender === 'all') ? '8px' : ''; }
     if(sub){ sub.textContent = SUBS[gender] || subDefault; }
     if(gender !== 'all') document.title = TITLES[gender] + ' | REVAÍ';
     var url = new URL(window.location.href);
