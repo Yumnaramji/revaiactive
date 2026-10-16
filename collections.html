@@ -704,8 +704,6 @@ document.querySelectorAll('.prod-card').forEach(function(card){
     if(h1){ h1.textContent = TITLES[gender]; }
     // All Products: "Collection" stays, no visible "Shop REVAÍ" title (Yumna, 16 Oct 2026); h1 kept for screen readers.
     if(h1){ h1.classList.toggle('sr-only', gender === 'all'); }
-    // Tabs only on All Products (Yumna, 16 Oct 2026); Women / Men / Accessories show their title instead.
-    var bar = document.getElementById('gender-filter-pills'); if(bar){ bar.style.display = (gender === 'all') ? 'flex' : 'none'; }
     var intro = document.getElementById('main'); if(intro){ intro.style.paddingBottom = (gender === 'all') ? '8px' : ''; }
     if(sub){ sub.textContent = SUBS[gender] || subDefault; }
     if(gender !== 'all') document.title = TITLES[gender] + ' | REVAÍ';
