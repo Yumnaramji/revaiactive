@@ -196,14 +196,22 @@
     .hp-best a:hover .ph img{transform:scale(1.025)}
     .hp-best .nm{margin-top:16px;font-size:clamp(15px,1.25vw,18px);font-weight:400;color:#4a4a4a;letter-spacing:.005em}
     /* Philosophy (14 Oct 2026, option 5): site font, small title, narrow column, rule sign-off */
-    .hp-who{padding:clamp(16px,2vw,28px) 24px clamp(64px,8vw,104px);text-align:center}
-    .hp-who .eyeb{font-size:10.5px;letter-spacing:.32em;margin-right:-.32em;text-transform:uppercase;color:#9a9a9a}
-    .hp-who h2{margin-top:12px;font-size:26px;font-weight:400;letter-spacing:-.01em;line-height:1.2;color:#0a0a0a}
-    .hp-who .col{max-width:28em;margin:18px auto 0}
+    /* Philosophy (16 Oct 2026, Yumna): full content width, label centred, small title, three columns on desktop
+       with the sign-off under the last one; stacks on phones. */
+    .hp-who{padding:clamp(16px,2vw,28px) max(24px,calc((100% - 72rem)/2)) clamp(64px,8vw,104px);text-align:left}
+    .hp-who .eyeb{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#9a9a9a;text-align:center}
+    .hp-who h2{margin-top:12px;font-size:20px;font-weight:400;letter-spacing:-.01em;line-height:1.2;color:#0a0a0a}
+    .hp-who .col{margin-top:10px}
     .hp-who p{font-size:14px;line-height:1.75;color:#6b6b6b}
-    .hp-who p+p{margin-top:10px}
+    .hp-who p+p,.hp-who .last{margin-top:10px}
     .hp-who .sign{display:inline-flex;align-items:center;gap:14px;margin-top:20px;font-size:13px;color:#5a5a5a}
     .hp-who .sign .ln{display:block;width:24px;height:1px;background:currentColor;flex:none}
+    @media(min-width:861px){
+      .hp-who{padding-top:clamp(32px,4vw,56px)}
+      .hp-who .col{margin-top:14px;display:grid;grid-template-columns:1fr 1.3fr 1fr;column-gap:clamp(28px,4vw,64px)}
+      .hp-who p{font-size:15px}
+      .hp-who p+p,.hp-who .last{margin-top:0}
+    }
     @media(max-width:767px){
       .hp-best{padding-left:16px;padding-right:16px}
       .hp-best .row{grid-template-columns:repeat(2,1fr);gap:14px;row-gap:28px}
@@ -360,9 +368,11 @@
     <div class="col">
       <p class="fu d2">The early run. The last rep. The quiet stretch. Movement is more than what you do. It’s how you come back to yourself.</p>
       <p class="fu d2">Born in Nairobi, REVAÍ is a premium performance activewear brand. Built for the way we actually move — from Karura trails to the studio, from your first session to your next breakthrough.</p>
-      <p class="fu d2">No mould to fit. No version of you to chase.</p>
+      <div class="last">
+        <p class="fu d2">No mould to fit. No version of you to chase.</p>
+        <div class="sign fu d3"><span class="ln" aria-hidden="true"></span>Just you, finding your revival.</div>
+      </div>
     </div>
-    <div class="sign fu d3"><span class="ln" aria-hidden="true"></span>Just you, finding your revival.</div>
   </section>
 
 
