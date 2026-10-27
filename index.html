@@ -197,7 +197,9 @@
     .hp-best .nm{margin-top:16px;font-size:clamp(15px,1.25vw,18px);font-weight:400;color:#4a4a4a;letter-spacing:.005em}
     /* Track photo above the philosophy (27 Oct 2026, Yumna): portrait, centred, no crop. */
     .hp-photo{padding:clamp(40px,5vw,72px) max(24px,calc((100% - 72rem)/2)) clamp(24px,3vw,40px);display:flex;justify-content:center}
-    .hp-photo img{display:block;width:100%;max-width:520px;aspect-ratio:1200/1506;height:auto;object-fit:cover}
+    .hp-photo img{display:block;width:100%;max-width:520px;height:auto}
+    /* Second photo, after the philosophy (27 Oct 2026, Yumna): the philosophy already ends with generous space, so no top padding. */
+    .hp-photo.end{padding-top:0;padding-bottom:clamp(64px,8vw,104px)}
     @media(max-width:767px){.hp-photo{padding-left:16px;padding-right:16px}}
     /* Philosophy (14 Oct 2026, option 5): site font, small title, narrow column, rule sign-off */
     /* Philosophy (16 Oct 2026, Yumna): full content width, label centred, small title, three columns on desktop
@@ -328,6 +330,9 @@
       </div>
     </div>
   </section>
+
+  <!-- Photo after the philosophy (27 Oct 2026) -->
+  <section class="hp-photo end"><img class="fu" src="images/home-studio.jpg" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1200" height="1200" loading="lazy" decoding="async"></section>
 
 
 <!-- FOOTER -->
