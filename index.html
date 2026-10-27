@@ -195,11 +195,12 @@
     .hp-best .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block;transition:transform .8s cubic-bezier(.16,1,.3,1)}
     .hp-best a:hover .ph img{transform:scale(1.025)}
     .hp-best .nm{margin-top:16px;font-size:clamp(15px,1.25vw,18px);font-weight:400;color:#4a4a4a;letter-spacing:.005em}
-    /* Track photo above the philosophy (27 Oct 2026, Yumna): portrait, centred, no crop. */
-    .hp-photo{padding:clamp(40px,5vw,72px) max(24px,calc((100% - 72rem)/2)) clamp(24px,3vw,40px);display:flex;justify-content:center}
-    .hp-photo img{display:block;width:100%;max-width:520px;height:auto}
-    /* Second photo, after the philosophy (27 Oct 2026, Yumna): the philosophy already ends with generous space, so no top padding. */
-    .hp-photo.end{padding-top:0;padding-bottom:clamp(64px,8vw,104px)}
+    /* Two photos side by side above the philosophy (27 Oct 2026, Yumna): man left, woman right, same 4:5 shape
+       on every screen size. The studio shot is square, so it is trimmed at the sides (object-position keeps her
+       face, the shoe and the bottle). */
+    .hp-photo{padding:clamp(40px,5vw,72px) max(24px,calc((100% - 72rem)/2)) clamp(24px,3vw,40px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(8px,1.4vw,18px)}
+    .hp-photo img{display:block;width:100%;height:100%;aspect-ratio:4/5;object-fit:cover}
+    .hp-photo img.studio{object-position:40% 50%}
     @media(max-width:767px){.hp-photo{padding-left:16px;padding-right:16px}}
     /* Philosophy (14 Oct 2026, option 5): site font, small title, narrow column, rule sign-off */
     /* Philosophy (16 Oct 2026, Yumna): full content width, label centred, small title, three columns on desktop
@@ -314,8 +315,8 @@
 
   <!-- COLLECTION 01 row removed 27 Oct 2026 (Yumna). Markup parked in _parked/collection01-row-2026-10-27.html and in git history. -->
 
-  <!-- Photo above the philosophy (27 Oct 2026) -->
-  <section class="hp-photo"><img class="fu" src="images/home-track.jpg" alt="Man in a black REVAÍ T-shirt and shorts standing on a running track" width="1200" height="1506" loading="lazy" decoding="async"></section>
+  <!-- Photos above the philosophy, side by side (27 Oct 2026) -->
+  <section class="hp-photo"><img class="fu" src="images/home-track.jpg" alt="Man in a black REVAÍ T-shirt and shorts standing on a running track" width="1200" height="1506" loading="lazy" decoding="async"><img class="fu d1 studio" src="images/home-studio.jpg" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1200" height="1200" loading="lazy" decoding="async"></section>
 
   <!-- THE REVAÍ PHILOSOPHY (14 Oct 2026) — new copy in the 7 Oct "Who we are" design; old copy in git history -->
   <section class="hp-who">
@@ -330,9 +331,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Photo after the philosophy (27 Oct 2026) -->
-  <section class="hp-photo end"><img class="fu" src="images/home-studio.jpg" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1200" height="1200" loading="lazy" decoding="async"></section>
 
 
 <!-- FOOTER -->
