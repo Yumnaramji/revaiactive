@@ -200,7 +200,8 @@
        Both bands sit on the same warm off-white so they read as one quiet run down to the footer.
        Best sellers: four 3:4 product photos, all four on one straight line (7 Oct: stagger dropped); name only, no price.
        Who we are: centred, light-weight display type, one sentence, one link. */
-    .hp-best,.hp-who{background:#f9f9f7}
+    .hp-best{background:#f9f9f7}
+    /* .hp-who has no background (27 Oct 2026, Yumna): the page watermark carries through the philosophy. */
     .hp-best{padding:clamp(40px,5vw,72px) 24px clamp(24px,3vw,48px)}
     .hp-best .eyeb{text-align:right;font-size:12px;letter-spacing:.32em;margin-right:-.32em;text-transform:uppercase;color:#8f8f8f;margin-bottom:clamp(28px,3.4vw,48px)}
     .hp-best .row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;align-items:start}
@@ -212,17 +213,13 @@
     /* Three small photos in one row above the philosophy (27 Oct 2026, Yumna): man, woman, Flared Leggings.
        Same 4:5 shape on every screen size; the row is capped at 46rem so each photo stays small. The studio
        shot is square, so it is trimmed at the sides (object-position keeps her face, the shoe and the bottle). */
-    .hp-photo{padding:clamp(12px,1.6vw,24px) 16px clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(6px,1vw,12px);max-width:76rem;margin:0 auto;box-sizing:content-box}
+    .hp-photo{padding:clamp(12px,1.6vw,24px) 16px clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,1vw,12px);max-width:46rem;margin:0 auto;box-sizing:content-box}
     .hp-photo img{display:block;width:100%;height:100%;aspect-ratio:4/5;object-fit:cover}
     .hp-photo img.studio{object-position:40% 50%}
-    /* Five photos on ONE line, women and men alternating (27 Oct 2026, Yumna), each the size it was in the
-       first row of three. Phones: still one line, as a sideways-swipe strip (five across would be ~65px each).
-       (home-gym-bra-2.jpg, the braids version, was compared and dropped: "the first looks more real".) */
-    @media(max-width:767px){
-      .hp-photo{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;max-width:none}
-      .hp-photo::-webkit-scrollbar{display:none}
-      .hp-photo img{flex:0 0 42vw;width:42vw;height:auto;scroll-snap-align:start}
-    }
+    /* Five photos split around the philosophy (27 Oct 2026, Yumna: one line was too packed): three above, two
+       below, every photo the size it was in the original row of three. The lower pair is 2/3 of the width,
+       centred. Same on phones, just smaller. (The braids gym-bra shot was compared and dropped.) */
+    .hp-photo.end{grid-template-columns:repeat(2,1fr);max-width:calc((46rem - 2 * clamp(6px,1vw,12px)) * 2 / 3 + clamp(6px,1vw,12px));padding-top:0;padding-bottom:clamp(64px,8vw,104px)}
     /* Philosophy (14 Oct 2026, option 5): site font, small title, narrow column, rule sign-off */
     /* Philosophy (16 Oct 2026, Yumna): full content width, label centred, small title, three columns on desktop
        with the sign-off under the last one; stacks on phones. */
@@ -335,8 +332,8 @@
 
   <!-- COLLECTION 01 row removed 27 Oct 2026 (Yumna). Markup parked in _parked/collection01-row-2026-10-27.html and in git history. -->
 
-  <!-- Five small photos on one line above the philosophy, women and men alternating (27 Oct 2026) -->
-  <section class="hp-photo"><img class="fu" src="images/home-flared-bright.jpg" alt="Woman in black REVAÍ Flared Leggings and a sports bra on outdoor steps, seen from behind" width="1000" height="1255" loading="lazy" decoding="async"><img class="fu d1" src="images/home-track.jpg" alt="Man in a black REVAÍ T-shirt and shorts standing on a running track" width="1000" height="1255" loading="lazy" decoding="async"><img class="fu d2" src="images/home-gym-bra.jpg" alt="Woman in a black REVAÍ sports bra with crossover straps, seen from behind in a gym" width="1000" height="1241" loading="lazy" decoding="async"><img class="fu d3" src="images/home-gym-bench.jpg" alt="Man in a black REVAÍ T-shirt and shorts sitting on a bench in front of a squat rack" width="1000" height="1255" loading="lazy" decoding="async"><img class="fu d4 studio" src="images/home-studio.jpg" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1000" height="1000" loading="lazy" decoding="async"></section>
+  <!-- Three small photos above the philosophy (27 Oct 2026); two more sit below it -->
+  <section class="hp-photo"><img class="fu" src="images/home-track.jpg" alt="Man in a black REVAÍ T-shirt and shorts standing on a running track" width="1000" height="1255" loading="lazy" decoding="async"><img class="fu d1 studio" src="images/home-studio.jpg" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1000" height="1000" loading="lazy" decoding="async"><img class="fu d2" src="images/home-flared-bright.jpg" alt="Woman in black REVAÍ Flared Leggings and a sports bra on outdoor steps, seen from behind" width="1000" height="1255" loading="lazy" decoding="async"></section>
 
   <!-- THE REVAÍ PHILOSOPHY (14 Oct 2026) — new copy in the 7 Oct "Who we are" design; old copy in git history -->
   <section class="hp-who">
@@ -351,6 +348,9 @@
       </div>
     </div>
   </section>
+
+  <!-- Two small photos below the philosophy (27 Oct 2026) -->
+  <section class="hp-photo end"><img class="fu" src="images/home-gym-bra.jpg" alt="Woman in a black REVAÍ sports bra with crossover straps, seen from behind in a gym" width="1000" height="1241" loading="lazy" decoding="async"><img class="fu d1" src="images/home-gym-bench.jpg" alt="Man in a black REVAÍ T-shirt and shorts sitting on a bench in front of a squat rack" width="1000" height="1255" loading="lazy" decoding="async"></section>
 
 
 <!-- FOOTER -->
