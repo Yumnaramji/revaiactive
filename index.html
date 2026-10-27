@@ -86,10 +86,12 @@
     .hp-sizes,.hp-add{display:none!important}
     /* Card text (from a Gymshark reference): name, then price (colour line hidden 15 Oct 2026, Yumna; kept in the markup because quick-add reads it), stacked under the photo;
        colour and price in grey. One step larger from 768px up. */
-    .hp-card .hp-row{display:block}
+    .hp-card .hp-row{display:flex}
+    /* Price on the right of the name, same line (27 Oct 2026, Yumna). */
+    .hp-row .hp-name{min-width:0}
     .hp-row .hp-name{font-size:14px;font-weight:500;line-height:1.3}
     .hp-row .hp-colour{display:none;margin-top:8px;font-size:13px;line-height:1.3;color:#6b7280}
-    .hp-row .hp-price{margin-top:6px;font-size:13px;font-weight:400;color:#6b7280}
+    .hp-row .hp-price{margin-top:0;font-size:13px;font-weight:400;color:#6b7280;flex-shrink:0}
     @media(min-width:768px){
       .hp-row .hp-name{font-size:15px}
       .hp-row .hp-colour,.hp-row .hp-price{font-size:14px}
