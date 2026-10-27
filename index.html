@@ -33,10 +33,16 @@
     body.nav-over-hero #nav.scrolled .rv-lock img{filter:none}
     /* Homepage only: header logo centred (27 Oct 2026, Yumna); search, account, bag and menu stay on the right. */
     #nav > .max-w-6xl{position:relative}
+    /* Bigger header logo on the homepage (27 Oct 2026, Yumna: "very small"): R 26 -> 34px, word 17 -> 22px; phones
+       up to 480px: R 23 -> 28px, word 15 -> 18px. The centring shift below is half of (R width + gap). */
+    #nav > .max-w-6xl > a.rv-lock{gap:12px}
+    #nav > .max-w-6xl > a.rv-lock img{height:34px}
+    #nav > .max-w-6xl > a.rv-lock span{font-size:22px}
+    @media(max-width:480px){#nav > .max-w-6xl > a.rv-lock{gap:10px}#nav > .max-w-6xl > a.rv-lock img{height:28px}#nav > .max-w-6xl > a.rv-lock span{font-size:18px}}
     /* The word "REVAÍ" (not the R + word unit) is centred, so it lines up with the centred hero writing
-       (Yumna: "the logo and the hero writing are not in line"). Shift = half of (R width + gap): 26+10 desktop, 23+8 small phones. */
-    #nav > .max-w-6xl > a.rv-lock{position:absolute;left:50%;top:50%;transform:translate(calc(-50% - 18px),-50%)}
-    @media(max-width:480px){#nav > .max-w-6xl > a.rv-lock{transform:translate(calc(-50% - 15.5px),-50%)}}
+       (Yumna: "the logo and the hero writing are not in line"). Shift = half of (R width + gap): 34+12 desktop, 28+10 small phones. */
+    #nav > .max-w-6xl > a.rv-lock{position:absolute;left:50%;top:50%;transform:translate(calc(-50% - 23px),-50%)}
+    @media(max-width:480px){#nav > .max-w-6xl > a.rv-lock{transform:translate(calc(-50% - 19px),-50%)}}
     /* Narrow phones (<=400px): the four icons on the right would touch the centred wordmark, so show the R alone. */
     @media(max-width:400px){#nav > .max-w-6xl > a.rv-lock span{display:none}#nav > .max-w-6xl > a.rv-lock{transform:translate(-50%,-50%)}}
 
