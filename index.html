@@ -31,20 +31,9 @@
     @media(max-width:480px){.rv-lock{gap:8px}.rv-lock img{height:23px}.rv-lock span{font-size:15px}}
     body.nav-over-hero #nav .rv-lock img{filter:invert(1)}
     body.nav-over-hero #nav.scrolled .rv-lock img{filter:none}
-    /* Homepage only: header logo centred (27 Oct 2026, Yumna); search, account, bag and menu stay on the right. */
-    #nav > .max-w-6xl{position:relative}
-    /* Bigger header logo on the homepage (27 Oct 2026, Yumna: "very small"): R 26 -> 34px, word 17 -> 22px; phones
-       up to 480px: R 23 -> 28px, word 15 -> 18px. The centring shift below is half of (R width + gap). */
-    #nav > .max-w-6xl > a.rv-lock{gap:12px}
-    #nav > .max-w-6xl > a.rv-lock img{height:34px}
-    #nav > .max-w-6xl > a.rv-lock span{font-size:22px}
-    @media(max-width:480px){#nav > .max-w-6xl > a.rv-lock{gap:10px}#nav > .max-w-6xl > a.rv-lock img{height:28px}#nav > .max-w-6xl > a.rv-lock span{font-size:18px}}
-    /* The word "REVAÍ" (not the R + word unit) is centred, so it lines up with the centred hero writing
-       (Yumna: "the logo and the hero writing are not in line"). Shift = half of (R width + gap): 34+12 desktop, 28+10 small phones. */
-    #nav > .max-w-6xl > a.rv-lock{position:absolute;left:50%;top:50%;transform:translate(calc(-50% - 23px),-50%)}
-    @media(max-width:480px){#nav > .max-w-6xl > a.rv-lock{transform:translate(calc(-50% - 19px),-50%)}}
-    /* Narrow phones (<=400px): the four icons on the right would touch the centred wordmark, so show the R alone. */
-    @media(max-width:400px){#nav > .max-w-6xl > a.rv-lock span{display:none}#nav > .max-w-6xl > a.rv-lock{transform:translate(-50%,-50%)}}
+    /* Homepage only (27 Oct 2026, Yumna): the logo moved out of the header into the hero, where it is bigger and
+       more visible. The header shows only search, account, bag and menu on this page; every other page keeps its logo. */
+    #nav > .max-w-6xl > a.rv-lock{visibility:hidden}
 
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
@@ -187,6 +176,14 @@
     /* The R hangs slightly off the right edge (27 Oct 2026, Yumna: "more to the right"); clip stops that adding sideways scroll. */
     html{overflow-x:clip}
     #home-hero{background:transparent!important}
+    /* Hero logo (27 Oct 2026, Yumna): the R + REVAÍ lockup lives here on the homepage instead of the header.
+       The word is centred over the eyebrow; the lockup is shifted by half of (R width + gap). R = 1840:2184. */
+    .hero-lock{display:inline-flex;align-items:center;gap:18px;margin:0 0 22px;color:#0a0a0a;line-height:1;
+      transform:translateX(calc(-1 * (54px * 1840 / 2184 + 18px) / 2))}
+    .hero-lock img{height:54px;width:auto;display:block}
+    .hero-lock span{font-size:40px;font-weight:600;letter-spacing:.22em;margin-right:-.22em}
+    @media(max-width:767px){.hero-lock{gap:12px;margin-bottom:16px;transform:translateX(calc(-1 * (38px * 1840 / 2184 + 12px) / 2))}
+      .hero-lock img{height:38px}.hero-lock span{font-size:28px}}
     /* Hero writing smaller than the site-wide .t-hero (27 Oct 2026, Yumna). */
     #home-hero h1.t-hero{font-size:clamp(22px,2.6vw,30px)!important}
     #home-hero .home-hero-body p{font-size:11px}
@@ -339,8 +336,9 @@
          Note: the old homepage-hero.mp4 carries a burned-in KlingAI watermark
          and should not go back up as-is. -->
     <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 text-center" style="padding-top:64px;z-index:3;text-align:center">
-      <p class="ha d1 text-xs font-semibold uppercase tracking-widest text-gray-500 mb-6"><span aria-hidden="true" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#0a0a0a;margin-right:14px;vertical-align:middle;position:relative;top:-1px"></span>Collection 01. Nairobi, Kenya.</p>
-      <h1 class="sr-only">REVAÍ</h1><!-- "Find Your Revival." removed from the hero 27 Oct 2026 (Yumna) -->
+      <div class="ha"><h1 class="hero-lock"><img src="images/revai-mark.svg" alt="" aria-hidden="true"><span>REVAÍ</span></h1></div>
+      <p class="ha d1 text-xs font-semibold uppercase tracking-widest text-gray-500"><span aria-hidden="true" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#0a0a0a;margin-right:14px;vertical-align:middle;position:relative;top:-1px"></span>Collection 01. Nairobi, Kenya.</p>
+      
     </div>
   </section>
 
