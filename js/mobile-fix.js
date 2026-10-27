@@ -93,8 +93,10 @@
       }
       return 'rgb(255, 255, 255)';
     }
+    // body[data-nav-clear] (homepage, 27 Oct 2026): the bar stays see-through over the top of the page, like
+    // nav-over-hero but without the white-on-dark styling, so the hero logo can sit up behind it.
     function blend(past) {
-      if (document.body.classList.contains('nav-over-hero') && !past) {
+      if ((document.body.classList.contains('nav-over-hero') || document.body.hasAttribute('data-nav-clear')) && !past) {
         nav.style.removeProperty('background-color');
         return;
       }
