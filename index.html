@@ -178,14 +178,12 @@
     /* The R hangs slightly off the right edge (27 Oct 2026, Yumna: "more to the right"); clip stops that adding sideways scroll. */
     html{overflow-x:clip}
     #home-hero{background:transparent!important}
-    /* Hero logo (27 Oct 2026, Yumna): the R + REVAÍ lockup lives here on the homepage instead of the header.
-       The word is centred over the eyebrow; the lockup is shifted by half of (R width + gap). R = 1840:2184. */
-    .hero-lock{display:inline-flex;align-items:center;gap:18px;margin:0 0 22px;color:#0a0a0a;line-height:1;
-      transform:translateX(calc(-1 * (54px * 1840 / 2184 + 18px) / 2))}
-    .hero-lock img{height:54px;width:auto;display:block}
-    .hero-lock span{font-size:40px;font-weight:600;letter-spacing:.22em;margin-right:-.22em}
-    @media(max-width:767px){.hero-lock{gap:12px;margin-bottom:16px;transform:translateX(calc(-1 * (38px * 1840 / 2184 + 12px) / 2))}
-      .hero-lock img{height:38px}.hero-lock span{font-size:28px}}
+    /* Hero logo (27 Oct 2026, Yumna): the R + REVAÍ lockup lives here on the homepage instead of the header,
+       stacked: R on top, the word centred underneath. */
+    .hero-lock{display:inline-flex;flex-direction:column;align-items:center;gap:14px;margin:0 0 22px;color:#0a0a0a;line-height:1}
+    .hero-lock img{height:64px;width:auto;display:block}
+    .hero-lock span{font-size:36px;font-weight:600;letter-spacing:.22em;margin-right:-.22em}
+    @media(max-width:767px){.hero-lock{gap:10px;margin-bottom:16px}.hero-lock img{height:46px}.hero-lock span{font-size:26px}}
     /* Hero writing smaller than the site-wide .t-hero (27 Oct 2026, Yumna). */
     #home-hero h1.t-hero{font-size:clamp(22px,2.6vw,30px)!important}
     #home-hero .home-hero-body p{font-size:11px}
