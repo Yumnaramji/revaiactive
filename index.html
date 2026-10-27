@@ -212,11 +212,12 @@
     /* Three small photos in one row above the philosophy (27 Oct 2026, Yumna): man, woman, Flared Leggings.
        Same 4:5 shape on every screen size; the row is capped at 46rem so each photo stays small. The studio
        shot is square, so it is trimmed at the sides (object-position keeps her face, the shoe and the bottle). */
-    .hp-photo{padding:clamp(12px,1.6vw,24px) 16px clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(6px,1vw,12px);max-width:76rem;margin:0 auto;box-sizing:content-box}
+    .hp-photo{padding:clamp(12px,1.6vw,24px) 16px clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,1vw,12px);max-width:46rem;margin:0 auto;box-sizing:content-box}
     .hp-photo img{display:block;width:100%;height:100%;aspect-ratio:4/5;object-fit:cover}
     .hp-photo img.studio{object-position:40% 50%}
-    /* Fourth photo added 27 Oct 2026 (Yumna): row widened 46rem -> 61rem so each photo keeps its size; 2 x 2 on phones.
-       TEMPORARY fifth photo (home-gym-bra-2.jpg) beside it for comparison: 5 columns, 76rem. Remove whichever gym shot loses. */
+    /* Six photos (27 Oct 2026, Yumna): two rows of three at 46rem, so each photo is the size it was in the first
+       row of three; two per row on phones. home-gym-bra.jpg and home-gym-bra-2.jpg are a comparison pair:
+       Yumna will keep one. */
     @media(max-width:767px){.hp-photo{grid-template-columns:repeat(2,1fr)}}
     /* Philosophy (14 Oct 2026, option 5): site font, small title, narrow column, rule sign-off */
     /* Philosophy (16 Oct 2026, Yumna): full content width, label centred, small title, three columns on desktop
@@ -330,8 +331,8 @@
 
   <!-- COLLECTION 01 row removed 27 Oct 2026 (Yumna). Markup parked in _parked/collection01-row-2026-10-27.html and in git history. -->
 
-  <!-- Four small photos above the philosophy (27 Oct 2026) -->
-  <section class="hp-photo"><img class="fu" src="images/home-track.jpg" alt="Man in a black REVAÍ T-shirt and shorts standing on a running track" width="1000" height="1255" loading="lazy" decoding="async"><img class="fu d1 studio" src="images/home-studio.jpg" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1000" height="1000" loading="lazy" decoding="async"><img class="fu d2" src="images/home-flared-bright.jpg" alt="Woman in black REVAÍ Flared Leggings and a sports bra on outdoor steps, seen from behind" width="1000" height="1255" loading="lazy" decoding="async"><img class="fu d3" src="images/home-gym-bra.jpg" alt="Woman in a black REVAÍ sports bra with crossover straps, seen from behind in a gym" width="1000" height="1241" loading="lazy" decoding="async"><img class="fu d4" src="images/home-gym-bra-2.jpg" alt="Woman with braids in a black REVAÍ sports bra and leggings, seen from behind in a gym" width="1000" height="1255" loading="lazy" decoding="async"></section>
+  <!-- Six small photos above the philosophy, two rows of three (27 Oct 2026) -->
+  <section class="hp-photo"><img class="fu" src="images/home-track.jpg" alt="Man in a black REVAÍ T-shirt and shorts standing on a running track" width="1000" height="1255" loading="lazy" decoding="async"><img class="fu d1 studio" src="images/home-studio.jpg" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1000" height="1000" loading="lazy" decoding="async"><img class="fu d2" src="images/home-flared-bright.jpg" alt="Woman in black REVAÍ Flared Leggings and a sports bra on outdoor steps, seen from behind" width="1000" height="1255" loading="lazy" decoding="async"><img class="fu d3" src="images/home-gym-bra.jpg" alt="Woman in a black REVAÍ sports bra with crossover straps, seen from behind in a gym" width="1000" height="1241" loading="lazy" decoding="async"><img class="fu d4" src="images/home-gym-bra-2.jpg" alt="Woman with braids in a black REVAÍ sports bra and leggings, seen from behind in a gym" width="1000" height="1255" loading="lazy" decoding="async"><img class="fu d5" src="images/home-gym-bench.jpg" alt="Man in a black REVAÍ T-shirt and shorts sitting on a bench in front of a squat rack" width="1000" height="1255" loading="lazy" decoding="async"></section>
 
   <!-- THE REVAÍ PHILOSOPHY (14 Oct 2026) — new copy in the 7 Oct "Who we are" design; old copy in git history -->
   <section class="hp-who">
