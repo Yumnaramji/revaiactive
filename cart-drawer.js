@@ -195,7 +195,7 @@
               <span style="width:28px;text-align:center;font-size:13px;font-weight:500">${item.qty || 1}</span>
               <button onclick="window.REVAI_CART.setQty(${idx},1)" style="width:28px;height:28px;background:none;border:none;cursor:pointer;font-size:15px;color:#374151;display:flex;align-items:center;justify-content:center">+</button>
             </div>
-            <span style="font-size:13px;font-weight:600;color:#000">KES ${(item.price * (item.qty || 1)).toLocaleString()}</span>
+            <span style="font-size:13px;font-weight:400;color:#000">KES ${(item.price * (item.qty || 1)).toLocaleString()}</span>
           </div>
         </div>
         <button onclick="window.REVAI_CART.remove(${idx})" style="background:none;border:none;cursor:pointer;color:#9ca3af;padding:2px;display:flex;align-items:center;flex-shrink:0" aria-label="Remove item">
@@ -206,7 +206,7 @@
     footerEl.innerHTML = `
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
         <span style="font-size:14px;color:#6b7280">Subtotal</span>
-        <span style="font-size:16px;font-weight:700;color:#000">KES ${total.toLocaleString()}</span>
+        <span style="font-size:16px;font-weight:400;color:#000">KES ${total.toLocaleString()}</span>
       </div>
       <p style="font-size:12px;color:#9ca3af;margin:0 0 14px">Free delivery on orders over KES 20,000. Taxes included.</p>
       <button id="revai-checkout-btn" onclick="window.REVAI_CART.checkout()" style="width:100%;padding:14px;background:#000;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;letter-spacing:.02em;margin-bottom:10px">Checkout</button>
@@ -245,7 +245,7 @@
               <div style="padding:10px 10px 12px">
                 <p style="font-size:11px;color:#9ca3af;margin:0 0 1px">${p.gender}</p>
                 <p style="font-size:12px;font-weight:600;color:#000;margin:0 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</p>
-                <p style="font-size:12px;font-weight:700;color:#000;margin:0 0 8px">KES ${p.price.toLocaleString()}</p>
+                <p style="font-size:12px;font-weight:400;color:#000;margin:0 0 8px">KES ${p.price.toLocaleString()}</p>
                 <button onclick="${onClick}" style="width:100%;padding:7px 8px;background:#000;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;letter-spacing:.02em">${btnLabel}</button>
               </div>
             </div>`;

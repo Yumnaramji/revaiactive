@@ -221,7 +221,7 @@
 
       <p id="prod-gender" class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3"></p>
       <h1 id="prod-name" class="fu d1 mb-2" style="font-size:clamp(26px,3vw,36px);font-weight:700;letter-spacing:-.025em;line-height:1.1"></h1>
-      <p id="prod-price" class="fu d1 mb-8 text-lg font-semibold" style="letter-spacing:-.01em"></p>
+      <p id="prod-price" class="fu d1 mb-8 text-lg font-normal" style="letter-spacing:-.01em"></p>
 
       <!-- Colour -->
       <div class="fu d2 mb-7">
@@ -324,10 +324,10 @@
   </div>
 </footer>
 
-<script src="search.js?v=20261006a"></script>
+<script src="search.js?v=20261027a"></script>
 <script src="shopify-config.js?v=20260926b"></script>
 <script src="woo-config.js?v=20261002d"></script>
-<script src="cart-drawer.js?v=20261002c"></script>
+<script src="cart-drawer.js?v=20261027a"></script>
 <script src="js/woo-customer.js?v=20261002b"></script>
 <script src="js/care-icons.js?v=20260913a"></script>
 <script>
@@ -551,7 +551,7 @@ function loadProduct(){
     others.forEach(([k,rp])=>{
       const a=document.createElement('a');
       a.href='product.html?id='+k; a.className='rel-card';
-      a.innerHTML=`<div class="rel-img"><img src="${rp.image}" alt="${rp.name}" onerror="this.style.display='none'"></div><div class="pc-row"><p class="text-sm font-semibold">${rp.name}</p><p class="text-sm font-bold">${rp.price}</p></div>`;
+      a.innerHTML=`<div class="rel-img"><img src="${rp.image}" alt="${rp.name}" onerror="this.style.display='none'"></div><div class="pc-row"><p class="text-sm font-semibold">${rp.name}</p><p class="text-sm font-normal">${rp.price}</p></div>`;
       grid.appendChild(a);
     });
   }

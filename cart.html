@@ -172,7 +172,7 @@
           <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-5">Order Summary</h2>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
             <span class="text-sm text-gray-600">Subtotal</span>
-            <span id="cart-subtotal" class="text-sm font-semibold text-black">KES 0</span>
+            <span id="cart-subtotal" class="text-sm font-normal text-black">KES 0</span>
           </div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
             <span class="text-sm text-gray-600">Shipping</span>
@@ -180,7 +180,7 @@
           </div>
           <div style="border-top:1px solid #e5e7eb;padding-top:16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center">
             <span class="text-sm font-semibold text-black">Total</span>
-            <span id="cart-total" class="text-lg font-bold text-black">KES 0</span>
+            <span id="cart-total" class="text-lg font-normal text-black">KES 0</span>
           </div>
           <button id="cart-page-checkout" class="btn-p" style="width:100%;justify-content:center;padding:14px;font-size:14px">Checkout</button>
           <p class="text-[11px] text-gray-400 mt-3 text-center">Taxes calculated at checkout. Secure payment via M-Pesa &amp; card.</p>
@@ -250,10 +250,10 @@
 </footer>
 
 <script src="js/main.js?v=20261002a"></script>
-<script src="search.js?v=20261006a"></script>
+<script src="search.js?v=20261027a"></script>
 <script src="shopify-config.js?v=20260926b"></script>
 <script src="woo-config.js?v=20261002d"></script>
-<script src="cart-drawer.js?v=20261002c"></script>
+<script src="cart-drawer.js?v=20261027a"></script>
 <script>
 const STORAGE_KEY = 'revai_cart_v1';
 
@@ -308,7 +308,7 @@ function renderPage(){
             <span class="qty-num">${item.qty || 1}</span>
             <button class="qty-btn" onclick="setQty(${idx},1)" aria-label="Increase">+</button>
           </div>
-          <span class="text-sm font-semibold text-black">KES ${(item.price * (item.qty || 1)).toLocaleString()}</span>
+          <span class="text-sm font-normal text-black">KES ${(item.price * (item.qty || 1)).toLocaleString()}</span>
         </div>
       </div>
     </div>
@@ -343,7 +343,7 @@ function renderUpsells(cart){
         <div style="padding:14px 16px 16px;flex:1;display:flex;flex-direction:column">
           <p class="text-[11px] uppercase tracking-wider text-gray-400 mb-1">${p.gender}</p>
           <p class="text-sm font-semibold text-black mb-1">${p.name}</p>
-          <p class="text-sm font-bold text-black mb-4">KES ${p.price.toLocaleString()}</p>
+          <p class="text-sm font-normal text-black mb-4">KES ${p.price.toLocaleString()}</p>
           <button onclick="${onClick}" class="mt-auto" style="width:100%;padding:10px 12px;background:#000;color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;letter-spacing:.02em">${btnLabel}</button>
         </div>
       </div>

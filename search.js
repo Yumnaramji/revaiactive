@@ -174,7 +174,7 @@
               <p style="font-size:15px;font-weight:600;color:#0a0a0a;margin:0 0 3px;line-height:1.3">${highlight(p.name, q)}</p>
               <p style="font-size:12px;color:#9ca3af;margin:0">${p.cat}</p>
             </div>
-            <p style="font-size:14px;font-weight:700;color:#0a0a0a;margin:0;flex-shrink:0">${p.price}</p>
+            <p style="font-size:14px;font-weight:400;color:#0a0a0a;margin:0;flex-shrink:0">${p.price}</p>
             <svg class="rs-arrow" width="16" height="16" fill="none" stroke="#d1d5db" stroke-width="1.75" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>`;
       });
