@@ -88,18 +88,16 @@
     /* Five smaller cards (27 Oct 2026, Yumna: "try 5"), photos on pure white (images/white/, keyed from the studio shots;
        the product pages keep the grey). */
     .hp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-    /* Coming-soon placeholders (27 Oct 2026, Yumna: new product images on the way): the 6 Oct holding page
-       (origin/holding index.html) in miniature: black, glow, R + REVAÍ, thin line, COMING SOON. The white-background
-       photos stay in images/white/ (unused). Quick-add is hidden on these cards until the photos are back. */
-    #shop .hp-ph{background:#050505}
-    .hp-soon{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-      background:radial-gradient(ellipse 70% 55% at 50% 55%,rgba(255,255,255,.07),transparent 70%)}
-    .hs-lock{display:flex;align-items:center;gap:7px;color:#fff}
-    .hp-ph .hs-lock img{width:auto;height:18px;filter:invert(1);object-fit:contain}
-    .hs-lock span{font-size:12px;font-weight:600;letter-spacing:.32em;margin-right:-.32em}
-    .hs-line{width:1px;height:26px;background:linear-gradient(#fff0,#ffffff55,#fff0);margin:16px 0 14px}
-    .hs-soon{font-size:8.5px;font-weight:500;letter-spacing:.32em;margin-right:-.32em;text-transform:uppercase;color:#d4d4d4}
-    @media(max-width:767px){.hp-ph .hs-lock img{height:13px}.hs-lock{gap:5px}.hs-lock span{font-size:9px}.hs-line{height:18px;margin:10px 0 9px}.hs-soon{font-size:7px}}
+    /* Coming-soon placeholders (27 Oct 2026, Yumna: new product images on the way): the Running collection's
+       coming-soon card (CSS from _parked/collection-running.html): grey gradient, black R circle, dark blurred veil,
+       white "Coming Soon" pill. The white-background photos stay in images/white/ (unused). Quick-add is hidden on
+       these cards until the photos are back. */
+    #shop .hp-ph{background:linear-gradient(135deg,#f3f4f6,#e5e7eb)}
+    .hp-soon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .hp-soon .placeholder{width:64px;height:64px;background:#0a0a0a;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:24px}
+    .hp-soon .cs-overlay{position:absolute;inset:0;background:rgba(10,10,10,.55);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+    .hp-soon .cs-pill{background:#fff;color:#0a0a0a;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:999px;white-space:nowrap}
+    @media(max-width:767px){.hp-soon .placeholder{width:44px;height:44px;font-size:17px}.hp-soon .cs-pill{font-size:9px;padding:5px 10px}}
     #shop .qa-btn{display:none!important}
     .hp-card{position:relative}
     .hp-ph{position:relative;overflow:hidden;background:#f4f4f4;aspect-ratio:3/4}
@@ -364,7 +362,7 @@
       <div class="hp-grid">
         <div class="hp-card fu d1">
           <div class="hp-ph">
-            <div class="hp-soon" role="img" aria-label="Performance Leggings, coming soon"><span class="hs-lock"><img src="images/revai-mark.svg" alt=""><span>REVAÍ</span></span><span class="hs-line"></span><span class="hs-soon">Coming soon</span></div>
+            <div class="hp-soon" role="img" aria-label="Performance Leggings, coming soon"><div class="placeholder">R</div><div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div></div>
             <button class="hp-add" onclick="addToBag('Performance Leggings', 5500, 'running-leggings-w')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -374,7 +372,7 @@
         </div>
         <div class="hp-card fu d2">
           <div class="hp-ph">
-            <div class="hp-soon" role="img" aria-label="Men's Quarter Zip, coming soon"><span class="hs-lock"><img src="images/revai-mark.svg" alt=""><span>REVAÍ</span></span><span class="hs-line"></span><span class="hs-soon">Coming soon</span></div>
+            <div class="hp-soon" role="img" aria-label="Men's Quarter Zip, coming soon"><div class="placeholder">R</div><div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div></div>
             <button class="hp-add" onclick="addToBag('Men\'s Quarter Zip', 5600, 'quarter-zip-m')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -384,7 +382,7 @@
         </div>
         <div class="hp-card fu d3">
           <div class="hp-ph">
-            <div class="hp-soon" role="img" aria-label="High Impact Sports Bra, coming soon"><span class="hs-lock"><img src="images/revai-mark.svg" alt=""><span>REVAÍ</span></span><span class="hs-line"></span><span class="hs-soon">Coming soon</span></div>
+            <div class="hp-soon" role="img" aria-label="High Impact Sports Bra, coming soon"><div class="placeholder">R</div><div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div></div>
             <button class="hp-add" onclick="addToBag('High Impact Sports Bra', 4950, 'high-impact-bra')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -394,7 +392,7 @@
         </div>
         <div class="hp-card fu d3">
           <div class="hp-ph">
-            <div class="hp-soon" role="img" aria-label="Men's T-Shirt, coming soon"><span class="hs-lock"><img src="images/revai-mark.svg" alt=""><span>REVAÍ</span></span><span class="hs-line"></span><span class="hs-soon">Coming soon</span></div>
+            <div class="hp-soon" role="img" aria-label="Men's T-Shirt, coming soon"><div class="placeholder">R</div><div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div></div>
             <button class="hp-add" onclick="addToBag('Men\'s T-Shirt', 4500, 'tshirt-m')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -404,7 +402,7 @@
         </div>
         <div class="hp-card fu d4">
           <div class="hp-ph">
-            <div class="hp-soon" role="img" aria-label="Flared Leggings, coming soon"><span class="hs-lock"><img src="images/revai-mark.svg" alt=""><span>REVAÍ</span></span><span class="hs-line"></span><span class="hs-soon">Coming soon</span></div>
+            <div class="hp-soon" role="img" aria-label="Flared Leggings, coming soon"><div class="placeholder">R</div><div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div></div>
             <button class="hp-add" onclick="addToBag('Flared Leggings', 5600, 'flared-leggings-w')">Add to Bag</button>
           </div>
           <div class="hp-meta">
