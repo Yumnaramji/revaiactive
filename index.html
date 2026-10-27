@@ -64,10 +64,12 @@
        phone. 72px keeps the copy clear of the fixed 64px nav at the 405px
        floor without ever binding before min-height does. */
     /* Shorter (27 Oct 2026, Yumna: writing higher, photos up with it). Was 46vh / 360px; phones max(37vh,295px). */
-    #home-hero{height:32vh;min-height:260px}
+    /* No visible hero text since 27 Oct 2026, so the band is only as tall as the header (64px): the photos start
+       just under it, with the watermark behind them. Was 32vh / 260px; phones max(26vh,215px). */
+    #home-hero{height:auto;min-height:0}
     @media(max-width:767px){
-      #home-hero{height:auto;min-height:max(26vh,215px)}
-      #home-hero .home-hero-body{padding-top:4.5rem;padding-bottom:1.25rem}
+      #home-hero{height:auto;min-height:0}
+      #home-hero .home-hero-body{padding-top:64px;padding-bottom:0}
     }
     /* ===== HOMEPAGE v2 — film hero + shopfront (8 Aug 2026) ===== */
 
