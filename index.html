@@ -76,8 +76,10 @@
     }
     /* ===== HOMEPAGE v2 — film hero + shopfront (8 Aug 2026) ===== */
 
-    /* Six smaller cards (27 Oct 2026, Yumna: "make the collection even smaller"; Flared Leggings + Training Pants added). */
-    .hp-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+    /* Five smaller cards (27 Oct 2026, Yumna: "try 5"), photos on pure white (images/white/, keyed from the studio shots;
+       the product pages keep the grey). */
+    .hp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    #shop .hp-ph{background:#fff}
     .hp-card{position:relative}
     .hp-ph{position:relative;overflow:hidden;background:#f4f4f4;aspect-ratio:3/4}
     .hp-ph img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
@@ -359,7 +361,7 @@
       <div class="hp-grid">
         <div class="hp-card fu d1">
           <div class="hp-ph">
-            <img src="images/running-leggings-w-full-front.jpg" alt="Performance Leggings" loading="lazy">
+            <img src="images/white/running-leggings-w-full-front.jpg" alt="Performance Leggings" loading="lazy">
             <button class="hp-add" onclick="addToBag('Performance Leggings', 5500, 'running-leggings-w')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -369,7 +371,7 @@
         </div>
         <div class="hp-card fu d2">
           <div class="hp-ph">
-            <img src="images/quarter-zip-m.jpg" alt="Men's Quarter Zip" loading="lazy">
+            <img src="images/white/quarter-zip-m.jpg" alt="Men's Quarter Zip" loading="lazy">
             <button class="hp-add" onclick="addToBag('Men\'s Quarter Zip', 5600, 'quarter-zip-m')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -379,7 +381,7 @@
         </div>
         <div class="hp-card fu d3">
           <div class="hp-ph">
-            <img src="images/high-impact-bra.jpg" alt="High Impact Sports Bra" loading="lazy">
+            <img src="images/white/high-impact-bra.jpg" alt="High Impact Sports Bra" loading="lazy">
             <button class="hp-add" onclick="addToBag('High Impact Sports Bra', 4950, 'high-impact-bra')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -389,7 +391,7 @@
         </div>
         <div class="hp-card fu d3">
           <div class="hp-ph">
-            <img src="images/tshirt-m.jpg" alt="Men's T-Shirt" loading="lazy">
+            <img src="images/white/tshirt-m.jpg" alt="Men's T-Shirt" loading="lazy">
             <button class="hp-add" onclick="addToBag('Men\'s T-Shirt', 4500, 'tshirt-m')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -399,22 +401,12 @@
         </div>
         <div class="hp-card fu d4">
           <div class="hp-ph">
-            <img src="images/flared-leggings-w.jpg" alt="Flared Leggings" loading="lazy">
+            <img src="images/white/flared-leggings-w.jpg" alt="Flared Leggings" loading="lazy">
             <button class="hp-add" onclick="addToBag('Flared Leggings', 5600, 'flared-leggings-w')">Add to Bag</button>
           </div>
           <div class="hp-meta">
             <div class="hp-row"><p class="hp-name">Flared Leggings</p><p class="hp-colour">Black</p><p class="hp-price">KES 5,600</p></div>
             <div class="hp-sizes"><button class="size-pill" data-product="flared-leggings-w" data-size="S">S</button><button class="size-pill" data-product="flared-leggings-w" data-size="M">M</button><button class="size-pill" data-product="flared-leggings-w" data-size="L">L</button><button class="size-pill" data-product="flared-leggings-w" data-size="XL">XL</button><button class="size-pill" data-product="flared-leggings-w" data-size="XXL">XXL</button></div>
-          </div>
-        </div>
-        <div class="hp-card fu d5">
-          <div class="hp-ph">
-            <img src="images/training-pants-m.jpg" alt="Men's Training Pants" loading="lazy">
-            <button class="hp-add" onclick="addToBag('Men\'s Training Pants', 6600, 'training-pants-m')">Add to Bag</button>
-          </div>
-          <div class="hp-meta">
-            <div class="hp-row"><p class="hp-name">Men's Training Pants</p><p class="hp-colour">Black</p><p class="hp-price">KES 6,600</p></div>
-            <div class="hp-sizes"><button class="size-pill" data-product="training-pants-m" data-size="S">S</button><button class="size-pill" data-product="training-pants-m" data-size="M">M</button><button class="size-pill" data-product="training-pants-m" data-size="L">L</button><button class="size-pill" data-product="training-pants-m" data-size="XL">XL</button><button class="size-pill" data-product="training-pants-m" data-size="XXL">XXL</button></div>
           </div>
         </div>
       </div>
