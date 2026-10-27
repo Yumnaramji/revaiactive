@@ -152,11 +152,11 @@
     /* Watermark on the PAGE, not just the hero (27 Oct 2026, Yumna): starts under the header and runs down
        behind the photos and the philosophy. It sits at z-index 0; the hero, photo row, philosophy and footer
        are lifted to z-index 1 so the R is always behind them (the photos are opaque, so it never tints them). */
-    .hp-plate{position:absolute;left:0;right:0;margin:0 auto;top:64px;height:min(118vh,1150px);width:auto;opacity:.13;pointer-events:none;
+    .hp-plate{position:absolute;right:-3%;top:64px;height:min(118vh,1150px);width:auto;opacity:.13;pointer-events:none;
       animation:hpPlate .9s .2s ease-out both;z-index:0}
     @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.13;transform:none}}
     @media(prefers-reduced-motion:reduce){.hp-plate{animation:none;opacity:.13}}
-    @media(max-width:767px){.hp-plate{height:min(82vh,640px)}} /* centred (27 Oct 2026, Yumna); html{overflow-x:clip} stops a wider-than-screen R adding sideways scroll */
+    @media(max-width:767px){.hp-plate{right:0;height:min(82vh,640px)}} /* right:0, never negative: the page has no overflow-x guard, so a negative right would add sideways scroll */
     #home-hero,.hp-photo,.hp-who,#shop,footer{position:relative;z-index:1}
     /* The R hangs slightly off the right edge (27 Oct 2026, Yumna: "more to the right"); clip stops that adding sideways scroll. */
     html{overflow-x:clip}
