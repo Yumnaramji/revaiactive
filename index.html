@@ -146,11 +146,15 @@
        stalled paint), the mark must still be visible rather than stuck at 0. */
     /* White hero (27 Oct 2026, Yumna, trial): the black R at 7% reads as a light grey watermark. The black
        version (bg #000, invert(1), opacity .2, dark gradient, white type, body.nav-over-hero) is in git history. */
-    #home-hero .hp-plate{position:absolute;right:-5%;top:-20%;height:142%;width:auto;opacity:.07;pointer-events:none;
+    /* Same day: watermark smaller (142% -> 92% of the hero height, fully inside it) and darker (.07 -> .13). */
+    #home-hero .hp-plate{position:absolute;right:2%;top:4%;height:92%;width:auto;opacity:.13;pointer-events:none;
       animation:hpPlate .9s .2s ease-out both;z-index:2}
-    @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.07;transform:none}}
-    @media(prefers-reduced-motion:reduce){#home-hero .hp-plate{animation:none;opacity:.07}}
-    @media(max-width:767px){#home-hero .hp-plate{right:-14%;top:-10%;height:112%}}
+    @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.13;transform:none}}
+    @media(prefers-reduced-motion:reduce){#home-hero .hp-plate{animation:none;opacity:.13}}
+    @media(max-width:767px){#home-hero .hp-plate{right:-4%;top:8%;height:84%}}
+    /* Hero writing smaller than the site-wide .t-hero (27 Oct 2026, Yumna). */
+    #home-hero h1.t-hero{font-size:clamp(22px,2.6vw,30px)!important}
+    #home-hero .home-hero-body p{font-size:11px}
 
 
     /* --- OUR STORY --- */
