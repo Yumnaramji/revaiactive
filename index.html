@@ -33,9 +33,12 @@
     body.nav-over-hero #nav.scrolled .rv-lock img{filter:none}
     /* Homepage only: header logo centred (27 Oct 2026, Yumna); search, account, bag and menu stay on the right. */
     #nav > .max-w-6xl{position:relative}
-    #nav > .max-w-6xl > a.rv-lock{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+    /* The word "REVAÍ" (not the R + word unit) is centred, so it lines up with the centred hero writing
+       (Yumna: "the logo and the hero writing are not in line"). Shift = half of (R width + gap): 26+10 desktop, 23+8 small phones. */
+    #nav > .max-w-6xl > a.rv-lock{position:absolute;left:50%;top:50%;transform:translate(calc(-50% - 18px),-50%)}
+    @media(max-width:480px){#nav > .max-w-6xl > a.rv-lock{transform:translate(calc(-50% - 15.5px),-50%)}}
     /* Narrow phones (<=400px): the four icons on the right would touch the centred wordmark, so show the R alone. */
-    @media(max-width:400px){#nav > .max-w-6xl > a.rv-lock span{display:none}}
+    @media(max-width:400px){#nav > .max-w-6xl > a.rv-lock span{display:none}#nav > .max-w-6xl > a.rv-lock{transform:translate(-50%,-50%)}}
 
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
@@ -79,7 +82,16 @@
     /* Five smaller cards (27 Oct 2026, Yumna: "try 5"), photos on pure white (images/white/, keyed from the studio shots;
        the product pages keep the grey). */
     .hp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-    #shop .hp-ph{background:#fff}
+    /* Coming-soon placeholders (27 Oct 2026, Yumna: new product images on the way). Same look as the old
+       coming-soon cards: grey gradient, the R, a dark veil and a white "Coming Soon" pill. The white-background
+       photos stay in images/white/ (unused). Quick-add is hidden on these cards until the photos are back. */
+    #shop .hp-ph{background:linear-gradient(135deg,#f3f4f6,#e5e7eb)}
+    .hp-soon{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+    .hp-soon img{position:relative;z-index:1;width:26%;height:auto;filter:invert(1);opacity:.9}
+    .hp-soon::after{content:"";position:absolute;inset:0;background:rgba(10,10,10,.55)}
+    .hp-soon .cs-pill{position:relative;z-index:1;background:#fff;color:#0a0a0a;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:999px;white-space:nowrap}
+    @media(max-width:767px){.hp-soon{gap:8px}.hp-soon .cs-pill{font-size:9px;padding:5px 9px}}
+    #shop .qa-btn{display:none!important}
     .hp-card{position:relative}
     .hp-ph{position:relative;overflow:hidden;background:#f4f4f4;aspect-ratio:3/4}
     .hp-ph img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
@@ -209,7 +221,6 @@
        Best sellers: four 3:4 product photos, all four on one straight line (7 Oct: stagger dropped); name only, no price.
        Who we are: centred, light-weight display type, one sentence, one link. */
     .hp-best{background:#f9f9f7}
-    /* .hp-who has no background (27 Oct 2026, Yumna): the page watermark carries through the philosophy. */
     .hp-best{padding:clamp(40px,5vw,72px) 24px clamp(24px,3vw,48px)}
     .hp-best .eyeb{text-align:right;font-size:12px;letter-spacing:.32em;margin-right:-.32em;text-transform:uppercase;color:#8f8f8f;margin-bottom:clamp(28px,3.4vw,48px)}
     .hp-best .row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;align-items:start}
@@ -235,24 +246,7 @@
       .hp-photo img{flex:0 0 74vw;width:74vw;height:auto;scroll-snap-align:start}
     }
     /* Order (27 Oct 2026, Yumna): hero, 3 photos, Collection 01 strip, 3 photos (2 for now), philosophy. */
-    .hp-photo.pair{padding-top:clamp(40px,5vw,64px)}
-    /* Philosophy (14 Oct 2026, option 5): site font, small title, narrow column, rule sign-off */
-    /* Philosophy (16 Oct 2026, Yumna): full content width, label centred, small title, three columns on desktop
-       with the sign-off under the last one; stacks on phones. */
-    .hp-who{padding:clamp(16px,2vw,28px) max(24px,calc((100% - 72rem)/2)) clamp(64px,8vw,104px);text-align:left}
-    .hp-who .eyeb{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#9a9a9a;text-align:center}
-    .hp-who h2{margin-top:36px;font-size:19px;font-weight:400;letter-spacing:-.01em;line-height:1.2;color:#0a0a0a}
-    .hp-who .col{margin-top:10px}
-    .hp-who p{font-size:14px;line-height:1.75;color:#6b6b6b}
-    .hp-who p+p,.hp-who .last{margin-top:10px}
-    .hp-who .sign{display:inline-flex;align-items:center;gap:14px;margin-top:20px;font-size:13px;color:#5a5a5a}
-    .hp-who .sign .ln{display:block;width:24px;height:1px;background:currentColor;flex:none}
-    @media(min-width:861px){
-      .hp-who{padding-top:clamp(18px,2.4vw,34px)}
-      .hp-who .col{margin-top:14px;display:grid;grid-template-columns:1fr 1.3fr 1fr;column-gap:clamp(28px,4vw,64px)}
-      .hp-who p{font-size:15px}
-      .hp-who p+p,.hp-who .last{margin-top:0}
-    }
+    .hp-photo.pair{padding-top:clamp(40px,5vw,64px);padding-bottom:clamp(64px,8vw,104px)} /* last section before the footer since the philosophy moved to About (27 Oct 2026) */
     @media(max-width:767px){
       .hp-best{padding-left:16px;padding-right:16px}
       .hp-best .row{grid-template-columns:repeat(2,1fr);gap:14px;row-gap:28px}
@@ -361,7 +355,7 @@
       <div class="hp-grid">
         <div class="hp-card fu d1">
           <div class="hp-ph">
-            <img src="images/white/running-leggings-w-full-front.jpg" alt="Performance Leggings" loading="lazy">
+            <div class="hp-soon" role="img" aria-label="Performance Leggings, coming soon"><img src="images/revai-mark.svg" alt="" aria-hidden="true"><span class="cs-pill">Coming Soon</span></div>
             <button class="hp-add" onclick="addToBag('Performance Leggings', 5500, 'running-leggings-w')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -371,7 +365,7 @@
         </div>
         <div class="hp-card fu d2">
           <div class="hp-ph">
-            <img src="images/white/quarter-zip-m.jpg" alt="Men's Quarter Zip" loading="lazy">
+            <div class="hp-soon" role="img" aria-label="Men's Quarter Zip, coming soon"><img src="images/revai-mark.svg" alt="" aria-hidden="true"><span class="cs-pill">Coming Soon</span></div>
             <button class="hp-add" onclick="addToBag('Men\'s Quarter Zip', 5600, 'quarter-zip-m')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -381,7 +375,7 @@
         </div>
         <div class="hp-card fu d3">
           <div class="hp-ph">
-            <img src="images/white/high-impact-bra.jpg" alt="High Impact Sports Bra" loading="lazy">
+            <div class="hp-soon" role="img" aria-label="High Impact Sports Bra, coming soon"><img src="images/revai-mark.svg" alt="" aria-hidden="true"><span class="cs-pill">Coming Soon</span></div>
             <button class="hp-add" onclick="addToBag('High Impact Sports Bra', 4950, 'high-impact-bra')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -391,7 +385,7 @@
         </div>
         <div class="hp-card fu d3">
           <div class="hp-ph">
-            <img src="images/white/tshirt-m.jpg" alt="Men's T-Shirt" loading="lazy">
+            <div class="hp-soon" role="img" aria-label="Men's T-Shirt, coming soon"><img src="images/revai-mark.svg" alt="" aria-hidden="true"><span class="cs-pill">Coming Soon</span></div>
             <button class="hp-add" onclick="addToBag('Men\'s T-Shirt', 4500, 'tshirt-m')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -401,7 +395,7 @@
         </div>
         <div class="hp-card fu d4">
           <div class="hp-ph">
-            <img src="images/white/flared-leggings-w.jpg" alt="Flared Leggings" loading="lazy">
+            <div class="hp-soon" role="img" aria-label="Flared Leggings, coming soon"><img src="images/revai-mark.svg" alt="" aria-hidden="true"><span class="cs-pill">Coming Soon</span></div>
             <button class="hp-add" onclick="addToBag('Flared Leggings', 5600, 'flared-leggings-w')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -415,21 +409,6 @@
 
   <!-- Second photo group, between the collection strip and the philosophy (27 Oct 2026). Two photos until a third arrives. -->
   <section class="hp-photo pair"><img class="fu" src="images/home-gym-bra.jpg" alt="Woman in a black REVAÍ sports bra with crossover straps, seen from behind in a gym" width="1000" height="1241" loading="lazy" decoding="async"><img class="fu d1" src="images/home-gym-bench.jpg" alt="Man in a black REVAÍ T-shirt and shorts sitting on a bench in front of a squat rack" width="1000" height="1255" loading="lazy" decoding="async"></section>
-
-  <!-- THE REVAÍ PHILOSOPHY (14 Oct 2026) — new copy in the 7 Oct "Who we are" design; old copy in git history -->
-  <section class="hp-who">
-    <div class="eyeb fu">The REVAÍ Philosophy</div>
-    <h2 class="fu d1">A Return To You</h2>
-    <div class="col">
-      <p class="fu d2">The early run. The last rep. The quiet stretch. Movement is more than what we do. It’s how we come back to ourselves.</p>
-      <p class="fu d2">Born in Nairobi, REVAÍ is a premium performance activewear brand. Built for the way we move — from Karura trails to the studio, from your first session to your next breakthrough.</p>
-      <div class="last">
-        <p class="fu d2">No one shape. No one way to move.</p>
-        <div class="sign fu d3"><span class="ln" aria-hidden="true"></span>Just you, finding your revival.</div>
-      </div>
-    </div>
-  </section>
-
 
 <!-- FOOTER -->
 <footer style="background:#0a0a0a" class="px-6 pt-10 pb-5 border-t border-gray-800">
