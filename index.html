@@ -82,15 +82,18 @@
     /* Five smaller cards (27 Oct 2026, Yumna: "try 5"), photos on pure white (images/white/, keyed from the studio shots;
        the product pages keep the grey). */
     .hp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-    /* Coming-soon placeholders (27 Oct 2026, Yumna: new product images on the way). Same look as the old
-       coming-soon cards: grey gradient, the R, a dark veil and a white "Coming Soon" pill. The white-background
+    /* Coming-soon placeholders (27 Oct 2026, Yumna: new product images on the way): the 6 Oct holding page
+       (origin/holding index.html) in miniature: black, glow, R + REVAÍ, thin line, COMING SOON. The white-background
        photos stay in images/white/ (unused). Quick-add is hidden on these cards until the photos are back. */
-    #shop .hp-ph{background:linear-gradient(135deg,#f3f4f6,#e5e7eb)}
-    .hp-soon{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
-    .hp-soon img{position:relative;z-index:1;width:26%;height:auto;filter:invert(1);opacity:.9}
-    .hp-soon::after{content:"";position:absolute;inset:0;background:rgba(10,10,10,.55)}
-    .hp-soon .cs-pill{position:relative;z-index:1;background:#fff;color:#0a0a0a;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:999px;white-space:nowrap}
-    @media(max-width:767px){.hp-soon{gap:8px}.hp-soon .cs-pill{font-size:9px;padding:5px 9px}}
+    #shop .hp-ph{background:#050505}
+    .hp-soon{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+      background:radial-gradient(ellipse 70% 55% at 50% 55%,rgba(255,255,255,.07),transparent 70%)}
+    .hs-lock{display:flex;align-items:center;gap:7px;color:#fff}
+    .hp-ph .hs-lock img{width:auto;height:18px;filter:invert(1);object-fit:contain}
+    .hs-lock span{font-size:12px;font-weight:600;letter-spacing:.32em;margin-right:-.32em}
+    .hs-line{width:1px;height:26px;background:linear-gradient(#fff0,#ffffff55,#fff0);margin:16px 0 14px}
+    .hs-soon{font-size:8.5px;font-weight:500;letter-spacing:.32em;margin-right:-.32em;text-transform:uppercase;color:#d4d4d4}
+    @media(max-width:767px){.hp-ph .hs-lock img{height:13px}.hs-lock{gap:5px}.hs-lock span{font-size:9px}.hs-line{height:18px;margin:10px 0 9px}.hs-soon{font-size:7px}}
     #shop .qa-btn{display:none!important}
     .hp-card{position:relative}
     .hp-ph{position:relative;overflow:hidden;background:#f4f4f4;aspect-ratio:3/4}
@@ -333,7 +336,7 @@
          and should not go back up as-is. -->
     <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 text-center" style="padding-top:64px;z-index:3;text-align:center">
       <p class="ha d1 text-xs font-semibold uppercase tracking-widest text-gray-500 mb-6"><span aria-hidden="true" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#0a0a0a;margin-right:14px;vertical-align:middle;position:relative;top:-1px"></span>Collection 01. Nairobi, Kenya.</p>
-      <h1 class="t-hero ha d2 text-black" style="max-width:900px;margin-left:auto;margin-right:auto">Find Your Revival.</h1>
+      <h1 class="sr-only">REVAÍ</h1><!-- "Find Your Revival." removed from the hero 27 Oct 2026 (Yumna) -->
     </div>
   </section>
 
@@ -355,7 +358,7 @@
       <div class="hp-grid">
         <div class="hp-card fu d1">
           <div class="hp-ph">
-            <div class="hp-soon" role="img" aria-label="Performance Leggings, coming soon"><img src="images/revai-mark.svg" alt="" aria-hidden="true"><span class="cs-pill">Coming Soon</span></div>
+            <div class="hp-soon" role="img" aria-label="Performance Leggings, coming soon"><span class="hs-lock"><img src="images/revai-mark.svg" alt=""><span>REVAÍ</span></span><span class="hs-line"></span><span class="hs-soon">Coming soon</span></div>
             <button class="hp-add" onclick="addToBag('Performance Leggings', 5500, 'running-leggings-w')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -365,7 +368,7 @@
         </div>
         <div class="hp-card fu d2">
           <div class="hp-ph">
-            <div class="hp-soon" role="img" aria-label="Men's Quarter Zip, coming soon"><img src="images/revai-mark.svg" alt="" aria-hidden="true"><span class="cs-pill">Coming Soon</span></div>
+            <div class="hp-soon" role="img" aria-label="Men's Quarter Zip, coming soon"><span class="hs-lock"><img src="images/revai-mark.svg" alt=""><span>REVAÍ</span></span><span class="hs-line"></span><span class="hs-soon">Coming soon</span></div>
             <button class="hp-add" onclick="addToBag('Men\'s Quarter Zip', 5600, 'quarter-zip-m')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -375,7 +378,7 @@
         </div>
         <div class="hp-card fu d3">
           <div class="hp-ph">
-            <div class="hp-soon" role="img" aria-label="High Impact Sports Bra, coming soon"><img src="images/revai-mark.svg" alt="" aria-hidden="true"><span class="cs-pill">Coming Soon</span></div>
+            <div class="hp-soon" role="img" aria-label="High Impact Sports Bra, coming soon"><span class="hs-lock"><img src="images/revai-mark.svg" alt=""><span>REVAÍ</span></span><span class="hs-line"></span><span class="hs-soon">Coming soon</span></div>
             <button class="hp-add" onclick="addToBag('High Impact Sports Bra', 4950, 'high-impact-bra')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -385,7 +388,7 @@
         </div>
         <div class="hp-card fu d3">
           <div class="hp-ph">
-            <div class="hp-soon" role="img" aria-label="Men's T-Shirt, coming soon"><img src="images/revai-mark.svg" alt="" aria-hidden="true"><span class="cs-pill">Coming Soon</span></div>
+            <div class="hp-soon" role="img" aria-label="Men's T-Shirt, coming soon"><span class="hs-lock"><img src="images/revai-mark.svg" alt=""><span>REVAÍ</span></span><span class="hs-line"></span><span class="hs-soon">Coming soon</span></div>
             <button class="hp-add" onclick="addToBag('Men\'s T-Shirt', 4500, 'tshirt-m')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -395,7 +398,7 @@
         </div>
         <div class="hp-card fu d4">
           <div class="hp-ph">
-            <div class="hp-soon" role="img" aria-label="Flared Leggings, coming soon"><img src="images/revai-mark.svg" alt="" aria-hidden="true"><span class="cs-pill">Coming Soon</span></div>
+            <div class="hp-soon" role="img" aria-label="Flared Leggings, coming soon"><span class="hs-lock"><img src="images/revai-mark.svg" alt=""><span>REVAÍ</span></span><span class="hs-line"></span><span class="hs-soon">Coming soon</span></div>
             <button class="hp-add" onclick="addToBag('Flared Leggings', 5600, 'flared-leggings-w')">Add to Bag</button>
           </div>
           <div class="hp-meta">
