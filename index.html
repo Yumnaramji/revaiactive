@@ -151,7 +151,7 @@
     /* Watermark on the PAGE, not just the hero (27 Oct 2026, Yumna): starts under the header and runs down
        behind the photos and the philosophy. It sits at z-index 0; the hero, photo row, philosophy and footer
        are lifted to z-index 1 so the R is always behind them (the photos are opaque, so it never tints them). */
-    .hp-plate{position:absolute;right:2%;top:64px;height:min(118vh,1150px);width:auto;opacity:.13;pointer-events:none;
+    .hp-plate{position:absolute;right:8%;top:64px;height:min(118vh,1150px);width:auto;opacity:.13;pointer-events:none;
       animation:hpPlate .9s .2s ease-out both;z-index:0}
     @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.13;transform:none}}
     @media(prefers-reduced-motion:reduce){.hp-plate{animation:none;opacity:.13}}
@@ -208,9 +208,9 @@
     .hp-best a:hover .ph img{transform:scale(1.025)}
     .hp-best .nm{margin-top:16px;font-size:clamp(15px,1.25vw,18px);font-weight:400;color:#4a4a4a;letter-spacing:.005em}
     /* Three small photos in one row above the philosophy (27 Oct 2026, Yumna): man, woman, Flared Leggings.
-       Same 4:5 shape on every screen size; the row is capped at 46rem so each photo stays small. The studio
+       Same 4:5 shape on every screen size; the row is capped at 54rem (was 46rem) so each photo stays small. The studio
        shot is square, so it is trimmed at the sides (object-position keeps her face, the shoe and the bottle). */
-    .hp-photo{padding:clamp(12px,1.6vw,24px) 16px clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,1vw,12px);max-width:46rem;margin:0 auto;box-sizing:content-box}
+    .hp-photo{padding:clamp(12px,1.6vw,24px) 16px clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,1vw,12px);max-width:54rem;margin:0 auto;box-sizing:content-box}
     .hp-photo img{display:block;width:100%;height:100%;aspect-ratio:4/5;object-fit:cover}
     .hp-photo img.studio{object-position:40% 50%}
     /* Philosophy (14 Oct 2026, option 5): site font, small title, narrow column, rule sign-off */
