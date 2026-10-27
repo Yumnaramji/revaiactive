@@ -521,9 +521,9 @@ section .mb-14 { margin-bottom: 36px; }
   footer .grid.md\:grid-cols-4 a { overflow-wrap: anywhere; }
 }
 
-/* 7. SITE HEADER (7 Oct 2026, Yumna, revised the same day): logo LEFT; account, bag, then the
+/* 7. SITE HEADER (7 Oct 2026, Yumna, revised the same day; search moved out of the menu 27 Oct): logo LEFT; search, account, bag, then the
    menu button on the RIGHT, on every screen size. The four headings (Shop, About, Stories, Technology)
-   and search live in the slide-in menu, which opens from the RIGHT next to its button. Pages opt in via
+   live in the slide-in menu, which opens from the RIGHT next to its button. Pages opt in via
    the .nav-links / .nav-right / .nav-mob classes on the nav's three groups.
    The pages' inline style and main.js still write translateX(-100%) for "closed"; the rule below
    turns that into an off-screen-right position, so no page markup had to change. */
