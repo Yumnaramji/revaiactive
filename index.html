@@ -156,7 +156,7 @@
     @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.13;transform:none}}
     @media(prefers-reduced-motion:reduce){.hp-plate{animation:none;opacity:.13}}
     @media(max-width:767px){.hp-plate{right:0;height:min(82vh,640px)}} /* right:0, never negative: the page has no overflow-x guard, so a negative right would add sideways scroll */
-    #home-hero,.hp-photo,.hp-who,footer{position:relative;z-index:1}
+    #home-hero,.hp-photo,.hp-who,#shop,footer{position:relative;z-index:1}
     /* The R hangs slightly off the right edge (27 Oct 2026, Yumna: "more to the right"); clip stops that adding sideways scroll. */
     html{overflow-x:clip}
     #home-hero{background:transparent!important}
@@ -219,7 +219,9 @@
     /* Five photos split around the philosophy (27 Oct 2026, Yumna: one line was too packed): three above, two
        below, every photo the size it was in the original row of three. The lower pair is 2/3 of the width,
        centred. Same on phones, just smaller. (The braids gym-bra shot was compared and dropped.) */
-    .hp-photo.end{grid-template-columns:repeat(2,1fr);max-width:calc((46rem - 2 * clamp(6px,1vw,12px)) * 2 / 3 + clamp(6px,1vw,12px));padding-top:0;padding-bottom:clamp(64px,8vw,104px)}
+    .hp-photo.pair{grid-template-columns:repeat(2,1fr);max-width:calc((46rem - 2 * clamp(6px,1vw,12px)) * 2 / 3 + clamp(6px,1vw,12px))}
+    /* Order (27 Oct 2026, Yumna): hero, 3 photos, Collection 01 strip, 3 photos (2 for now), philosophy. */
+    .hp-photo.pair{padding-top:clamp(40px,5vw,64px)}
     /* Philosophy (14 Oct 2026, option 5): site font, small title, narrow column, rule sign-off */
     /* Philosophy (16 Oct 2026, Yumna): full content width, label centred, small title, three columns on desktop
        with the sign-off under the last one; stacks on phones. */
@@ -330,10 +332,65 @@
   <!-- COLLECTION 01 product rail removed 5 Oct 2026 (Yumna): the hero sends people straight to Women or Men. Markup is in git history. -->
 
 
-  <!-- COLLECTION 01 row removed 27 Oct 2026 (Yumna). Markup parked in _parked/collection01-row-2026-10-27.html and in git history. -->
 
-  <!-- Three small photos above the philosophy (27 Oct 2026); two more sit below it -->
+  <!-- First photo group: three small photos under the hero (27 Oct 2026) -->
   <section class="hp-photo"><img class="fu" src="images/home-track.jpg" alt="Man in a black REVAÍ T-shirt and shorts standing on a running track" width="1000" height="1255" loading="lazy" decoding="async"><img class="fu d1 studio" src="images/home-studio.jpg" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1000" height="1000" loading="lazy" decoding="async"><img class="fu d2" src="images/home-flared-bright.jpg" alt="Woman in black REVAÍ Flared Leggings and a sports bra on outdoor steps, seen from behind" width="1000" height="1255" loading="lazy" decoding="async"></section>
+
+  <!-- COLLECTION 01 strip restored 27 Oct 2026 (Yumna), between the two photo groups. -->
+  <!-- COLLECTION 01 -->
+  <section class="py-16 md:py-20 px-6" id="shop" style="background:#f9f9f7">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="sr-only">Collection 01</h2>
+      <div class="fu d1 flex items-end gap-4 mb-6" style="justify-content:flex-end">
+        <a href="collections.html" class="text-sm font-medium" style="border-bottom:1px solid currentColor;padding-bottom:2px">Shop Collection &rarr;</a>
+      </div>
+      <div class="hp-grid">
+        <div class="hp-card fu d1">
+          <div class="hp-ph">
+            <img src="images/running-leggings-w-full-front.jpg" alt="Performance Leggings" loading="lazy">
+            <button class="hp-add" onclick="addToBag('Performance Leggings', 5500, 'running-leggings-w')">Add to Bag</button>
+          </div>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">Performance Leggings</p><p class="hp-colour">Black</p><p class="hp-price">KES 5,500</p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="running-leggings-w" data-size="S">S</button><button class="size-pill" data-product="running-leggings-w" data-size="M">M</button><button class="size-pill" data-product="running-leggings-w" data-size="L">L</button><button class="size-pill" data-product="running-leggings-w" data-size="XL">XL</button><button class="size-pill" data-product="running-leggings-w" data-size="XXL">XXL</button></div>
+          </div>
+        </div>
+        <div class="hp-card fu d2">
+          <div class="hp-ph">
+            <img src="images/quarter-zip-m.jpg" alt="Men's Quarter Zip" loading="lazy">
+            <button class="hp-add" onclick="addToBag('Men\'s Quarter Zip', 5600, 'quarter-zip-m')">Add to Bag</button>
+          </div>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">Men's Quarter Zip</p><p class="hp-colour">Black</p><p class="hp-price">KES 5,600</p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="quarter-zip-m" data-size="S">S</button><button class="size-pill" data-product="quarter-zip-m" data-size="M">M</button><button class="size-pill" data-product="quarter-zip-m" data-size="L">L</button><button class="size-pill" data-product="quarter-zip-m" data-size="XL">XL</button><button class="size-pill" data-product="quarter-zip-m" data-size="XXL">XXL</button></div>
+          </div>
+        </div>
+        <div class="hp-card fu d3">
+          <div class="hp-ph">
+            <img src="images/high-impact-bra.jpg" alt="High Impact Sports Bra" loading="lazy">
+            <button class="hp-add" onclick="addToBag('High Impact Sports Bra', 4950, 'high-impact-bra')">Add to Bag</button>
+          </div>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">High Impact Sports Bra</p><p class="hp-colour">Black</p><p class="hp-price">KES 4,950</p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="high-impact-bra" data-size="S">S</button><button class="size-pill" data-product="high-impact-bra" data-size="M">M</button><button class="size-pill" data-product="high-impact-bra" data-size="L">L</button><button class="size-pill" data-product="high-impact-bra" data-size="XL">XL</button><button class="size-pill" data-product="high-impact-bra" data-size="XXL">XXL</button></div>
+          </div>
+        </div>
+        <div class="hp-card fu d3">
+          <div class="hp-ph">
+            <img src="images/tshirt-m.jpg" alt="Men's T-Shirt" loading="lazy">
+            <button class="hp-add" onclick="addToBag('Men\'s T-Shirt', 4500, 'tshirt-m')">Add to Bag</button>
+          </div>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">Men's T-Shirt</p><p class="hp-colour">Black</p><p class="hp-price">KES 4,500</p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="tshirt-m" data-size="S">S</button><button class="size-pill" data-product="tshirt-m" data-size="M">M</button><button class="size-pill" data-product="tshirt-m" data-size="L">L</button><button class="size-pill" data-product="tshirt-m" data-size="XL">XL</button><button class="size-pill" data-product="tshirt-m" data-size="XXL">XXL</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Second photo group, between the collection strip and the philosophy (27 Oct 2026). Two photos until a third arrives. -->
+  <section class="hp-photo pair"><img class="fu" src="images/home-gym-bra.jpg" alt="Woman in a black REVAÍ sports bra with crossover straps, seen from behind in a gym" width="1000" height="1241" loading="lazy" decoding="async"><img class="fu d1" src="images/home-gym-bench.jpg" alt="Man in a black REVAÍ T-shirt and shorts sitting on a bench in front of a squat rack" width="1000" height="1255" loading="lazy" decoding="async"></section>
 
   <!-- THE REVAÍ PHILOSOPHY (14 Oct 2026) — new copy in the 7 Oct "Who we are" design; old copy in git history -->
   <section class="hp-who">
@@ -348,9 +405,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Two small photos below the philosophy (27 Oct 2026) -->
-  <section class="hp-photo end"><img class="fu" src="images/home-gym-bra.jpg" alt="Woman in a black REVAÍ sports bra with crossover straps, seen from behind in a gym" width="1000" height="1241" loading="lazy" decoding="async"><img class="fu d1" src="images/home-gym-bench.jpg" alt="Man in a black REVAÍ T-shirt and shorts sitting on a bench in front of a squat rack" width="1000" height="1255" loading="lazy" decoding="async"></section>
 
 
 <!-- FOOTER -->
