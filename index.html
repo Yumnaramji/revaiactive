@@ -34,6 +34,8 @@
     /* Homepage only: header logo centred (27 Oct 2026, Yumna); search, account, bag and menu stay on the right. */
     #nav > .max-w-6xl{position:relative}
     #nav > .max-w-6xl > a.rv-lock{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+    /* Narrow phones (<=400px): the four icons on the right would touch the centred wordmark, so show the R alone. */
+    @media(max-width:400px){#nav > .max-w-6xl > a.rv-lock span{display:none}}
 
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
