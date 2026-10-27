@@ -31,9 +31,6 @@
     @media(max-width:480px){.rv-lock{gap:8px}.rv-lock img{height:23px}.rv-lock span{font-size:15px}}
     body.nav-over-hero #nav .rv-lock img{filter:invert(1)}
     body.nav-over-hero #nav.scrolled .rv-lock img{filter:none}
-    /* Homepage only (27 Oct 2026, Yumna): the logo moved out of the header into the hero, where it is bigger and
-       more visible. The header shows only search, account, bag and menu on this page; every other page keeps its logo. */
-    #nav > .max-w-6xl > a.rv-lock{visibility:hidden}
 
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
@@ -178,16 +175,6 @@
     /* The R hangs slightly off the right edge (27 Oct 2026, Yumna: "more to the right"); clip stops that adding sideways scroll. */
     html{overflow-x:clip}
     #home-hero{background:transparent!important}
-    /* Hero logo (27 Oct 2026, Yumna): the R + REVAÍ lockup lives here on the homepage instead of the header,
-       stacked: R on top, the word centred underneath. */
-    .hero-lock{display:inline-flex;flex-direction:column;align-items:center;gap:14px;margin:0 0 54px;color:#0a0a0a;line-height:1}
-    /* The whole hero block (R, word, eyebrow) sits higher in the hero (27 Oct 2026, Yumna). */
-    #home-hero{align-items:flex-start}
-    @media(min-width:768px){#home-hero .home-hero-body{padding-top:56px!important}} /* header is see-through at the top (body[data-nav-clear], js/mobile-fix.js), so the R can sit up behind it: its top lands ~24px down */
-    @media(max-width:767px){#home-hero .home-hero-body{padding-top:3.5rem!important}} /* phones: same idea, R top ~32px down */
-    .hero-lock img{height:64px;width:auto;display:block;margin:-12px 0 12px} /* R lifted 12px for a bigger gap above the word; the word does not move (Yumna, 27 Oct) */
-    .hero-lock span{font-size:36px;font-weight:600;letter-spacing:.22em;margin-right:-.22em}
-    @media(max-width:767px){.hero-lock{gap:10px;margin-bottom:42px}.hero-lock img{height:46px;margin:-8px 0 8px}.hero-lock span{font-size:26px}}
     /* Hero writing smaller than the site-wide .t-hero (27 Oct 2026, Yumna). */
     #home-hero h1.t-hero{font-size:clamp(22px,2.6vw,30px)!important}
     #home-hero .home-hero-body p{font-size:11px}
@@ -264,7 +251,7 @@
   <script src="js/mobile-fix.js?v=20261027a" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
-<body data-nav-clear>
+<body>
 <img class="hp-plate" src="images/revai-mark.svg" alt="" aria-hidden="true">
 
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded-lg text-sm">Skip to content</a>
@@ -340,7 +327,7 @@
          Note: the old homepage-hero.mp4 carries a burned-in KlingAI watermark
          and should not go back up as-is. -->
     <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 text-center" style="padding-top:64px;z-index:3;text-align:center">
-      <div class="ha"><h1 class="hero-lock"><img src="images/revai-mark.svg" alt="" aria-hidden="true"><span>REVAÍ</span></h1></div>
+      <h1 class="sr-only">REVAÍ</h1><!-- Hero logo tried 27 Oct and removed; the logo is back in the header (Yumna) -->
       <p class="ha d1 text-xs font-semibold uppercase tracking-widest text-gray-500"><span aria-hidden="true" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#0a0a0a;margin-right:14px;vertical-align:middle;position:relative;top:-1px"></span>Collection 01. Nairobi, Kenya.</p>
       
     </div>
