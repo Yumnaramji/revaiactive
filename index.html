@@ -71,7 +71,7 @@
        background-IMAGE on purpose: js/mobile-fix.js tints the header from the first background-COLOR it finds
        under it, and a dark colour here would turn the header black with black icons. */
     #home-hero .hv{position:relative;height:560px;background:linear-gradient(#0d0d0d,#0d0d0d);overflow:hidden}
-    #home-hero .hv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    #home-hero .hv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 15%} /* heads sit near the top of the frame (28 Oct 2026 placeholder video, 1280x720, 10 s) */
     #home-hero .home-hero-body{padding-bottom:0!important}
     @media(max-width:767px){
       #home-hero{height:auto;min-height:0}
@@ -353,6 +353,7 @@
          Specs given to Yumna: desktop 1920x1080 (subject in the middle 1920x820), phone 1080x1350, MP4 H.264,
          no sound, 8-15 s loop, under 8MB / 4MB, plus a poster JPG of each. -->
     <div class="hv" aria-hidden="true">
+      <video autoplay muted loop playsinline preload="auto" poster="images/hero-video-poster.jpg"><source src="images/hero-video.mp4" type="video/mp4"></video>
       
     </div>
   </section>
