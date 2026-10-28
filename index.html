@@ -231,6 +231,11 @@
        shot is square, so it is trimmed at the sides (object-position keeps her face, the shoe and the bottle). */
     .hp-photo{padding:clamp(12px,1.6vw,24px) 24px clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:72rem;margin:0 auto;box-sizing:content-box}
     .hp-photo img{display:block;width:100%;height:100%;aspect-ratio:4/5;object-fit:cover}
+    /* One small word on each photo (28 Oct 2026, Yumna chose option A of the draft): Run, Reset, Breathe, Train, Recover.
+       White, spaced capitals, bottom left, on a soft shade so it always reads (like Gymshark's activity tiles). */
+    .hp-tile{position:relative;margin:0;overflow:hidden;min-width:0}
+    .hp-tile::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;background:linear-gradient(to top,rgba(0,0,0,.45),transparent);pointer-events:none}
+    .hp-word{position:absolute;left:18px;bottom:16px;z-index:1;color:#fff;font-size:13px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;line-height:1}
     .hp-photo img.studio{object-position:40% 50%}
     /* Five photos split around the philosophy (27 Oct 2026, Yumna: one line was too packed): three above, two
        below, every photo the size it was in the original row of three. The lower pair is 2/3 of the width,
@@ -240,7 +245,9 @@
     @media(max-width:767px){
       .hp-photo,.hp-photo.pair{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-left:16px;padding-right:16px;max-width:none}
       .hp-photo::-webkit-scrollbar{display:none}
-      .hp-photo img{flex:0 0 74vw;width:74vw;height:auto;scroll-snap-align:start}
+      .hp-photo .hp-tile{flex:0 0 74vw;width:74vw;scroll-snap-align:start}
+      .hp-photo img{height:auto}
+      .hp-word{left:14px;bottom:13px;font-size:12px;letter-spacing:.28em}
     }
     /* Order (27 Oct 2026, Yumna): hero, 3 photos, Collection 01 strip, 3 photos (2 for now), philosophy. */
     .hp-photo.pair{padding-top:clamp(40px,5vw,64px);padding-bottom:clamp(64px,8vw,104px)} /* last section before the footer since the philosophy moved to About (27 Oct 2026) */
@@ -339,7 +346,7 @@
 
 
   <!-- First photo group: three small photos under the hero (27 Oct 2026) -->
-  <section class="hp-photo"><img class="fu" src="images/home-track.jpg" alt="Man in a black REVAÍ T-shirt and shorts standing on a running track" width="1000" height="1255" loading="lazy" decoding="async"><img class="fu d1 studio" src="images/home-studio.jpg" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1000" height="1000" loading="lazy" decoding="async"><img class="fu d2" src="images/home-flared-forest.jpg" alt="Woman in black REVAÍ Flared Leggings and a sports bra on a forest path, seen from behind" width="1000" height="1255" loading="lazy" decoding="async"></section>
+  <section class="hp-photo"><figure class="hp-tile fu"><img src="images/home-track.jpg" alt="Man in a black REVAÍ T-shirt and shorts standing on a running track" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Run</span></figure><figure class="hp-tile fu d1"><img class="studio" src="images/home-studio.jpg" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1000" height="1000" loading="lazy" decoding="async"><span class="hp-word">Reset</span></figure><figure class="hp-tile fu d2"><img src="images/home-flared-forest.jpg" alt="Woman in black REVAÍ Flared Leggings and a sports bra on a forest path, seen from behind" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Breathe</span></figure></section>
 
   <!-- COLLECTION 01 strip restored 27 Oct 2026 (Yumna), between the two photo groups. -->
   <!-- COLLECTION 01 -->
@@ -405,7 +412,7 @@
   </section>
 
   <!-- Second photo group, between the collection strip and the philosophy (27 Oct 2026). Two photos until a third arrives. -->
-  <section class="hp-photo pair"><img class="fu" src="images/home-gym-bra.jpg" alt="Woman in a black REVAÍ sports bra with crossover straps, seen from behind in a gym" width="1000" height="1241" loading="lazy" decoding="async"><img class="fu d1" src="images/home-gym-bench.jpg" alt="Man in a black REVAÍ T-shirt and shorts sitting on a bench in front of a squat rack" width="1000" height="1255" loading="lazy" decoding="async"></section>
+  <section class="hp-photo pair"><figure class="hp-tile fu"><img src="images/home-gym-bra.jpg" alt="Woman in a black REVAÍ sports bra with crossover straps, seen from behind in a gym" width="1000" height="1241" loading="lazy" decoding="async"><span class="hp-word">Train</span></figure><figure class="hp-tile fu d1"><img src="images/home-gym-bench.jpg" alt="Man in a black REVAÍ T-shirt and shorts sitting on a bench in front of a squat rack" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Recover</span></figure></section>
 
 <!-- FOOTER -->
 <footer style="background:#0a0a0a" class="px-6 pt-10 pb-5 border-t border-gray-800">
