@@ -66,10 +66,17 @@
     /* Shorter (27 Oct 2026, Yumna: writing higher, photos up with it). Was 46vh / 360px; phones max(37vh,295px). */
     /* No visible hero text since 27 Oct 2026, so the band is only as tall as the header (64px): the photos start
        just under it, with the watermark behind them. Was 32vh / 260px; phones max(26vh,215px). */
-    #home-hero{height:auto;min-height:0}
+    #home-hero{height:auto;min-height:0;display:block!important}
+    /* Hero video space (28 Oct 2026): full width under the header, 560px tall (phones 360px). The dark fill is a
+       background-IMAGE on purpose: js/mobile-fix.js tints the header from the first background-COLOR it finds
+       under it, and a dark colour here would turn the header black with black icons. */
+    #home-hero .hv{position:relative;height:560px;background:linear-gradient(#0d0d0d,#0d0d0d);overflow:hidden}
+    #home-hero .hv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    #home-hero .home-hero-body{padding-bottom:0!important}
     @media(max-width:767px){
       #home-hero{height:auto;min-height:0}
       #home-hero .home-hero-body{padding-top:64px;padding-bottom:0}
+      #home-hero .hv{height:360px}
     }
     /* ===== HOMEPAGE v2 — film hero + shopfront (8 Aug 2026) ===== */
 
@@ -168,11 +175,11 @@
     /* Watermark on the PAGE, not just the hero (27 Oct 2026, Yumna): starts under the header and runs down
        behind the photos and the philosophy. It sits at z-index 0; the hero, photo row, philosophy and footer
        are lifted to z-index 1 so the R is always behind them (the photos are opaque, so it never tints them). */
-    .hp-plate{position:absolute;right:-3%;top:64px;height:min(118vh,1150px);width:auto;opacity:.13;pointer-events:none;
+    .hp-plate{position:absolute;right:-3%;top:624px;height:min(118vh,1150px);width:auto;opacity:.13;pointer-events:none;
       animation:hpPlate .9s .2s ease-out both;z-index:0}
     @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.13;transform:none}}
     @media(prefers-reduced-motion:reduce){.hp-plate{animation:none;opacity:.13}}
-    @media(max-width:767px){.hp-plate{right:0;height:min(82vh,640px)}} /* right:0, never negative: the page has no overflow-x guard, so a negative right would add sideways scroll */
+    @media(max-width:767px){.hp-plate{right:0;top:424px;height:min(82vh,640px)}} /* right:0, never negative: the page has no overflow-x guard, so a negative right would add sideways scroll */
     #home-hero,.hp-photo,.hp-who,#shop,footer{position:relative;z-index:1}
     /* The R hangs slightly off the right edge (27 Oct 2026, Yumna: "more to the right"); clip stops that adding sideways scroll. */
     html{overflow-x:clip}
@@ -245,9 +252,9 @@
     @media(max-width:767px){
       .hp-photo,.hp-photo.pair{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-left:16px;padding-right:16px;max-width:none}
       .hp-photo::-webkit-scrollbar{display:none}
-      .hp-photo .hp-tile{flex:0 0 74vw;width:74vw;scroll-snap-align:start}
+      .hp-photo .hp-tile{flex:0 0 44vw;width:44vw;scroll-snap-align:start} /* small sliding photos on phones (28 Oct 2026, Yumna) */
       .hp-photo img{height:auto}
-      .hp-word{left:14px;bottom:13px;font-size:12px;letter-spacing:.28em}
+      .hp-word{left:10px;bottom:10px;font-size:10px;letter-spacing:.24em}
     }
     /* Order (27 Oct 2026, Yumna): hero, 3 photos, Collection 01 strip, 3 photos (2 for now), philosophy. */
     .hp-photo.pair{padding-top:clamp(40px,5vw,64px);padding-bottom:clamp(64px,8vw,104px)} /* last section before the footer since the philosophy moved to About (27 Oct 2026) */
@@ -337,6 +344,15 @@
          and should not go back up as-is. -->
     <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 text-center" style="padding-top:64px;z-index:3;text-align:center">
       <h1 class="sr-only">REVAÍ</h1><!-- Hero logo tried 27 Oct and removed; the logo is back in the header (Yumna) -->
+    </div>
+    <!-- HERO VIDEO SPACE (28 Oct 2026, Yumna). Placeholder until the video arrives. To add it, put this inside .hv:
+         <video autoplay muted loop playsinline preload="metadata" poster="images/hero-video-poster.jpg">
+           <source src="images/hero-video-mobile.mp4" type="video/mp4" media="(max-width:767px)">
+           <source src="images/hero-video.mp4" type="video/mp4">
+         </video>
+         Specs given to Yumna: desktop 1920x1080 (subject in the middle 1920x820), phone 1080x1350, MP4 H.264,
+         no sound, 8-15 s loop, under 8MB / 4MB, plus a poster JPG of each. -->
+    <div class="hv" aria-hidden="true">
       
     </div>
   </section>
@@ -345,10 +361,7 @@
 
 
 
-  <!-- First photo group: three small photos under the hero (27 Oct 2026) -->
-  <section class="hp-photo"><figure class="hp-tile fu"><img src="images/home-track.jpg" alt="Man in a black REVAÍ T-shirt and shorts standing on a running track" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Run</span></figure><figure class="hp-tile fu d1"><img class="studio" src="images/home-studio.jpg" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1000" height="1000" loading="lazy" decoding="async"><span class="hp-word">Reset</span></figure><figure class="hp-tile fu d2"><img src="images/home-flared-forest.jpg" alt="Woman in black REVAÍ Flared Leggings and a sports bra on a forest path, seen from behind" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Breathe</span></figure></section>
-
-  <!-- COLLECTION 01 strip restored 27 Oct 2026 (Yumna), between the two photo groups. -->
+  <!-- COLLECTION 01 strip: straight under the hero video since 28 Oct 2026 (Yumna); the photos follow it. -->
   <!-- COLLECTION 01 -->
   <section class="py-16 md:py-20 px-6" id="shop">
     <div class="max-w-6xl mx-auto">
@@ -410,6 +423,11 @@
       </div>
     </div>
   </section>
+
+  <!-- First photo group (three), under the collection since 28 Oct 2026 -->
+  <section class="hp-photo"><figure class="hp-tile fu"><img src="images/home-track.jpg" alt="Man in a black REVAÍ T-shirt and shorts standing on a running track" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Run</span></figure><figure class="hp-tile fu d1"><img class="studio" src="images/home-studio.jpg" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1000" height="1000" loading="lazy" decoding="async"><span class="hp-word">Reset</span></figure><figure class="hp-tile fu d2"><img src="images/home-flared-forest.jpg" alt="Woman in black REVAÍ Flared Leggings and a sports bra on a forest path, seen from behind" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Breathe</span></figure></section>
+
+
 
   <!-- Second photo group, between the collection strip and the philosophy (27 Oct 2026). Two photos until a third arrives. -->
   <section class="hp-photo pair"><figure class="hp-tile fu"><img src="images/home-gym-bra.jpg" alt="Woman in a black REVAÍ sports bra with crossover straps, seen from behind in a gym" width="1000" height="1241" loading="lazy" decoding="async"><span class="hp-word">Train</span></figure><figure class="hp-tile fu d1"><img src="images/home-gym-bench.jpg" alt="Man in a black REVAÍ T-shirt and shorts sitting on a bench in front of a squat rack" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Lift</span></figure></section>
