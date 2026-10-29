@@ -71,6 +71,13 @@
        background-IMAGE on purpose: js/mobile-fix.js tints the header from the first background-COLOR it finds
        under it, and a dark colour here would turn the header black with black icons. */
     #home-hero .hv{position:relative;aspect-ratio:2048/1152;background:linear-gradient(#0d0d0d,#0d0d0d);overflow:hidden} /* 29 Oct (Yumna): band takes the photo's own 16:9 shape so the whole picture shows on every screen (was a fixed 560px / 360px on phones) */
+    /* Hero copy, bottom left (29 Oct 2026, Yumna chose option A): bold white title + white Shop now button over a soft corner shade. */
+    #home-hero .hero-shade{position:absolute;left:0;bottom:0;width:60%;height:55%;background:linear-gradient(to top right,rgba(0,0,0,.55),rgba(0,0,0,0) 60%);pointer-events:none}
+    #home-hero .hero-copy{position:absolute;left:56px;bottom:56px;z-index:2;color:#fff;text-align:left}
+    #home-hero .hero-title{margin:0 0 20px;font-size:clamp(26px,3.4vw,44px);font-weight:600;letter-spacing:-.02em;line-height:1.05;color:#fff}
+    #home-hero .hero-btn{display:inline-block;background:#fff;color:#0a0a0a;font-size:14px;font-weight:600;padding:14px 28px;border-radius:4px;text-decoration:none;transition:opacity .2s}
+    #home-hero .hero-btn:hover{opacity:.85}
+    @media(max-width:767px){#home-hero .hero-copy{left:20px;bottom:20px}#home-hero .hero-title{margin-bottom:12px}#home-hero .hero-btn{font-size:12px;padding:10px 18px}#home-hero .hero-shade{width:85%;height:70%}}
     #home-hero .hv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%} /* hero photo (29 Oct, rocks + sky; was the high-five team shot): pinned to the top so her head stays in on wide screens */
     #home-hero .hv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%} /* hero video (28 Oct 2026, Kive.ai campaign clip, 1280x720, 6 s): keeps faces in when the band crops it */
     #home-hero .home-hero-body{padding-bottom:0!important}
@@ -88,7 +95,7 @@
        coming-soon card (CSS from _parked/collection-running.html): grey gradient, black R circle, dark blurred veil,
        white "Coming Soon" pill. The white-background photos stay in images/white/ (unused). Quick-add is hidden on
        these cards until the photos are back. */
-    #shop .hp-ph{background:linear-gradient(135deg,#f3f4f6,#e5e7eb)}
+    #shop .hp-ph{background:#fff} /* 29 Oct 2026 (Yumna): product photos back in place of the Coming Soon placeholders (white-background set, images/white/) */
     /* Wider side margins on the collection strip (27 Oct 2026, Yumna): 72rem -> 60rem, so the five cards are slightly smaller (~219px -> ~180px). */
     #shop > .max-w-6xl{max-width:66rem} /* 28 Oct 2026, Yumna: cards slightly bigger, less margin (60rem -> 66rem, ~180px -> ~200px cards) */
     .hp-soon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -96,7 +103,6 @@
     .hp-soon .cs-overlay{position:absolute;inset:0;background:rgba(10,10,10,.55);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
     .hp-soon .cs-pill{background:#fff;color:#0a0a0a;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:999px;white-space:nowrap}
     @media(max-width:767px){.hp-soon .placeholder{width:44px;height:44px;font-size:17px}.hp-soon .cs-pill{font-size:9px;padding:5px 10px}}
-    #shop .qa-btn{display:none!important}
     .hp-card{position:relative}
     .hp-ph{position:relative;overflow:hidden;background:#f4f4f4;aspect-ratio:3/4}
     .hp-ph img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
@@ -353,8 +359,8 @@
          </video>
          Specs given to Yumna: desktop 1920x1080 (subject in the middle 1920x820), phone 1080x1350, MP4 H.264,
          no sound, 8-15 s loop, under 8MB / 4MB, plus a poster JPG of each. -->
-    <div class="hv" aria-hidden="true">
-      <img src="images/hero-photo.jpg" alt="" fetchpriority="high" decoding="async"><!-- Hero photo (28 Oct 2026, Yumna) in place of the video. To bring the video back, swap this line for:
+    <div class="hv">
+      <img src="images/hero-photo.jpg" alt="" fetchpriority="high" decoding="async"><div class="hero-shade"></div><div class="hero-copy"><p class="hero-title">A return to you</p><a class="hero-btn" href="collections.html">Shop now</a></div><!-- Hero photo (28 Oct 2026, Yumna) in place of the video. To bring the video back, swap this line for:
            <video autoplay muted loop playsinline preload="auto" poster="images/hero-video-poster.jpg"><source src="images/hero-video.mp4" type="video/mp4"></video> -->
       
     </div>
@@ -375,7 +381,7 @@
       <div class="hp-grid">
         <div class="hp-card fu d1">
           <div class="hp-ph">
-            <div class="hp-soon" role="img" aria-label="Performance Leggings, coming soon"><div class="placeholder">R</div><div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div></div>
+            <img src="images/white/running-leggings-w-full-front.jpg" alt="Performance Leggings" loading="lazy">
             <button class="hp-add" onclick="addToBag('Performance Leggings', 5500, 'running-leggings-w')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -385,7 +391,7 @@
         </div>
         <div class="hp-card fu d2">
           <div class="hp-ph">
-            <div class="hp-soon" role="img" aria-label="Men's Quarter Zip, coming soon"><div class="placeholder">R</div><div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div></div>
+            <img src="images/white/quarter-zip-m.jpg" alt="Men's Quarter Zip" loading="lazy">
             <button class="hp-add" onclick="addToBag('Men\'s Quarter Zip', 5600, 'quarter-zip-m')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -395,7 +401,7 @@
         </div>
         <div class="hp-card fu d3">
           <div class="hp-ph">
-            <div class="hp-soon" role="img" aria-label="High Impact Sports Bra, coming soon"><div class="placeholder">R</div><div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div></div>
+            <img src="images/white/high-impact-bra.jpg" alt="High Impact Sports Bra" loading="lazy">
             <button class="hp-add" onclick="addToBag('High Impact Sports Bra', 4950, 'high-impact-bra')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -405,7 +411,7 @@
         </div>
         <div class="hp-card fu d3">
           <div class="hp-ph">
-            <div class="hp-soon" role="img" aria-label="Men's T-Shirt, coming soon"><div class="placeholder">R</div><div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div></div>
+            <img src="images/white/tshirt-m.jpg" alt="Men's T-Shirt" loading="lazy">
             <button class="hp-add" onclick="addToBag('Men\'s T-Shirt', 4500, 'tshirt-m')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -415,7 +421,7 @@
         </div>
         <div class="hp-card fu d4">
           <div class="hp-ph">
-            <div class="hp-soon" role="img" aria-label="Flared Leggings, coming soon"><div class="placeholder">R</div><div class="cs-overlay"><span class="cs-pill">Coming Soon</span></div></div>
+            <img src="images/white/flared-leggings-w.jpg" alt="Flared Leggings" loading="lazy">
             <button class="hp-add" onclick="addToBag('Flared Leggings', 5600, 'flared-leggings-w')">Add to Bag</button>
           </div>
           <div class="hp-meta">
