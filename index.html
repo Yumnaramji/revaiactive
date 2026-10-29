@@ -265,6 +265,11 @@
       .hp-word{left:10px;bottom:10px;font-size:10px;letter-spacing:.24em}
     }
     /* Order (27 Oct 2026, Yumna): hero, 3 photos, Collection 01 strip, 3 photos (2 for now), philosophy. */
+    /* Photos open Shop Women / Shop Men by who is in them (29 Oct 2026, Yumna); "Shop All" link under them, same style as "Shop Collection". */
+    .hp-tile-link{position:absolute;inset:0;z-index:2}
+    .hp-tile{cursor:pointer}
+    .hp-shopall{position:relative;z-index:1;text-align:center;margin:-56px 0 0;padding:0 24px clamp(64px,8vw,104px)}
+    @media(max-width:767px){.hp-shopall{margin-top:-40px}}
     .hp-photo.pair{padding-top:clamp(40px,5vw,64px);padding-bottom:clamp(64px,8vw,104px)} /* last section before the footer since the philosophy moved to About (27 Oct 2026) */
     @media(max-width:767px){
       .hp-best{padding-left:16px;padding-right:16px}
@@ -435,12 +440,13 @@
   </section>
 
   <!-- First photo group (three), under the collection since 28 Oct 2026 -->
-  <section class="hp-photo"><figure class="hp-tile fu"><img src="images/home-track.jpg" alt="Man in a black REVAÍ T-shirt and shorts standing on a running track" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Train</span></figure><figure class="hp-tile fu d1"><img class="studio" src="images/home-studio.jpg" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1000" height="1000" loading="lazy" decoding="async"><span class="hp-word">Reset</span></figure><figure class="hp-tile fu d2"><img src="images/home-flared-forest.jpg" alt="Woman in black REVAÍ Flared Leggings and a sports bra on a forest path, seen from behind" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Breathe</span></figure></section>
+  <section class="hp-photo"><figure class="hp-tile fu"><img src="images/home-track.jpg" alt="Man in a black REVAÍ T-shirt and shorts standing on a running track" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Train</span><a class="hp-tile-link" href="collections.html?gender=men" aria-label="Shop men"></a></figure><figure class="hp-tile fu d1"><img class="studio" src="images/home-studio.jpg" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1000" height="1000" loading="lazy" decoding="async"><span class="hp-word">Reset</span><a class="hp-tile-link" href="collections.html?gender=women" aria-label="Shop women"></a></figure><figure class="hp-tile fu d2"><img src="images/home-flared-forest.jpg" alt="Woman in black REVAÍ Flared Leggings and a sports bra on a forest path, seen from behind" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Breathe</span><a class="hp-tile-link" href="collections.html?gender=women" aria-label="Shop women"></a></figure></section>
 
 
 
   <!-- Second photo group, between the collection strip and the philosophy (27 Oct 2026). Two photos until a third arrives. -->
-  <section class="hp-photo pair"><figure class="hp-tile fu"><img src="images/home-gym-bra.jpg" alt="Woman in a black REVAÍ sports bra with crossover straps, seen from behind in a gym" width="1000" height="1241" loading="lazy" decoding="async"><span class="hp-word">Empower</span></figure><figure class="hp-tile fu d1"><img src="images/home-gym-bench.jpg" alt="Man in a black REVAÍ T-shirt and shorts sitting on a bench in front of a squat rack" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Lift</span></figure></section>
+  <section class="hp-photo pair"><figure class="hp-tile fu"><img src="images/home-gym-bra.jpg" alt="Woman in a black REVAÍ sports bra with crossover straps, seen from behind in a gym" width="1000" height="1241" loading="lazy" decoding="async"><span class="hp-word">Empower</span><a class="hp-tile-link" href="collections.html?gender=women" aria-label="Shop women"></a></figure><figure class="hp-tile fu d1"><img src="images/home-gym-bench.jpg" alt="Man in a black REVAÍ T-shirt and shorts sitting on a bench in front of a squat rack" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Lift</span><a class="hp-tile-link" href="collections.html?gender=men" aria-label="Shop men"></a></figure></section>
+  <div class="hp-shopall"><a href="collections.html" class="text-sm font-medium" style="border-bottom:1px solid currentColor;padding-bottom:2px">Shop All &rarr;</a></div>
 
 <!-- FOOTER -->
 <footer style="background:#0a0a0a" class="px-6 pt-10 pb-5 border-t border-gray-800">
