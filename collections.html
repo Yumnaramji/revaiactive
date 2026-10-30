@@ -21,7 +21,7 @@
   <meta name="description" content="Shop all REVAÍ activewear. S–XXL, true to size. All prices in KES.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="css/mobile-fix.css?v=20261016a">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
@@ -182,7 +182,7 @@
       <div class="prod-card fu" data-gender="women">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/tshirt-w.jpg" alt="Women's T-Shirt" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-          <img src="images/tshirt-w-front-angle.jpg" alt="" aria-hidden="true" class="card-hover-img">
+          <img src="images/tshirt-w-front-angle.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
           <button class="add-btn" onclick="addToBag('tshirt-w','Women\'s T-Shirt',4500)">Add to Bag</button>
         </div>
         <div class="p-4">
@@ -201,7 +201,7 @@
       <div class="prod-card fu d1" data-gender="men">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/tshirt-m.jpg" alt="Men's T-Shirt" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-          <img src="images/tshirt-m-side.jpg" alt="" aria-hidden="true" class="card-hover-img">
+          <img src="images/tshirt-m-side.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
           <button class="add-btn" onclick="addToBag('tshirt-m','Men\'s T-Shirt',4500)">Add to Bag</button>
         </div>
         <div class="p-4">
@@ -220,7 +220,7 @@
       <div class="prod-card fu d2" data-gender="men">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/quarter-zip-m.jpg" alt="Men's Quarter Zip" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-          <img src="images/quarter-zip-m-front.jpg" alt="" aria-hidden="true" class="card-hover-img">
+          <img src="images/quarter-zip-m-front.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
           <button class="add-btn" onclick="addToBag('quarter-zip-m','Men\'s Quarter Zip',5600)">Add to Bag</button>
         </div>
         <div class="p-4">
@@ -239,7 +239,7 @@
       <div class="prod-card fu d3" data-gender="women">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/jacket-w.jpg" alt="Women's Jacket" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-          <img src="images/jacket-w-front-angle.jpg" alt="" aria-hidden="true" class="card-hover-img">
+          <img src="images/jacket-w-front-angle.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
           <button class="add-btn" onclick="addToBag('jacket-w','Women\'s Jacket',7500)">Add to Bag</button>
         </div>
         <div class="p-4">
@@ -258,7 +258,7 @@
       <div class="prod-card fu" data-gender="women">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/running-leggings-w-full-front.jpg" alt="Women's Performance Leggings" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-          <img src="images/running-leggings-w-full-back.jpg" alt="" aria-hidden="true" class="card-hover-img">
+          <img src="images/running-leggings-w-full-back.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
           <button class="add-btn" onclick="addToBag('running-leggings-w','Performance Leggings',5500)">Add to Bag</button>
         </div>
         <div class="p-4">
@@ -277,7 +277,7 @@
       <div class="prod-card fu d1" data-gender="women">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/flared-leggings-w.jpg" alt="Flared Leggings" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-          <img src="images/flared-leggings-w-back.jpg" alt="" aria-hidden="true" class="card-hover-img">
+          <img src="images/flared-leggings-w-back.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
           <button class="add-btn" onclick="addToBag('flared-leggings-w','Flared Leggings',5600)">Add to Bag</button>
         </div>
         <div class="p-4">
@@ -296,7 +296,7 @@
       <div class="prod-card fu d2" data-gender="men">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/shorts-m.jpg" alt="Men's Shorts" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-          <img src="images/shorts-m-side.jpg" alt="" aria-hidden="true" class="card-hover-img">
+          <img src="images/shorts-m-side.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
           <button class="add-btn" onclick="addToBag('shorts-m','Men\'s Shorts',6050)">Add to Bag</button>
         </div>
         <div class="p-4">
@@ -315,7 +315,7 @@
       <div class="prod-card fu d3" data-gender="men">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/training-pants-m.jpg" alt="Training Pants" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-          <img src="images/training-pants-m-side.jpg" alt="" aria-hidden="true" class="card-hover-img">
+          <img src="images/training-pants-m-side.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
           <button class="add-btn" onclick="addToBag('training-pants-m','Training Pants',6600)">Add to Bag</button>
         </div>
         <div class="p-4">
@@ -334,7 +334,7 @@
       <div class="prod-card fu" data-gender="women">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/high-impact-bra.jpg" alt="High Impact Sports Bra" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-          <img src="images/high-impact-bra-back.jpg" alt="" aria-hidden="true" class="card-hover-img">
+          <img src="images/high-impact-bra-back.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
           <button class="add-btn" onclick="addToBag('high-impact-bra','High Impact Sports Bra',4950)">Add to Bag</button>
         </div>
         <div class="p-4">
@@ -353,7 +353,7 @@
       <div class="prod-card fu d1" data-gender="women">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/low-impact-bra.jpg" alt="Low Impact Sports Bra" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">
-          <img src="images/low-impact-bra-side.jpg" alt="" aria-hidden="true" class="card-hover-img" style="object-position:center 20%">
+          <img src="images/low-impact-bra-side.jpg" alt="" aria-hidden="true" class="card-hover-img" style="object-position:center 20%" loading="lazy" decoding="async">
           <button class="add-btn" onclick="addToBag('low-impact-bra','Low Impact Sports Bra',4450)">Add to Bag</button>
         </div>
         <div class="p-4">
@@ -386,7 +386,7 @@
       <div class="prod-card fu d3" data-gender="unisex">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/lifestyle-cap.jpg" alt="Lifestyle Cap" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-          <img src="images/lifestyle-cap-back.jpg" alt="" aria-hidden="true" class="card-hover-img">
+          <img src="images/lifestyle-cap-back.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
         </div>
         <div class="p-4">
           <div class="pc-row"><p class="text-base font-semibold text-black">Lifestyle Cap</p><p class="pc-colour">Black</p><p class="text-sm font-normal text-black">KES 3,000</p></div>
