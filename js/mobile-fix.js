@@ -109,7 +109,15 @@
             (e.closest && (e.closest('#mmenu') || e.closest('#moverlay')))) continue;
         under = e; break;
       }
-      nav.style.setProperty('background-color', solidBg(under), 'important');
+      var col = solidBg(under);
+      if (col !== lastBlend) { lastBlend = col; nav.style.setProperty('background-color', col, 'important'); }
+    }
+    var lastBlend = null, lastBlendAt = 0;
+    // Scrolling: sample the colour at most every 120ms (30 Oct 2026, "scrolling is slow"); elementsFromPoint forces layout.
+    function blendThrottled(past) {
+      var now = performance.now();
+      if (now - lastBlendAt < 120) return;
+      lastBlendAt = now; blend(past);
     }
 
     function update() {
@@ -134,7 +142,7 @@
       // can close the gap when the bar leaves — product.html's sticky
       // gallery is the one that needs it.
       document.body.classList.toggle('nav-collapsed', past);
-      blend(past);
+      blendThrottled(past);
       ticking = false;
     }
 

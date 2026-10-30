@@ -185,7 +185,7 @@
        are lifted to z-index 1 so the R is always behind them (the photos are opaque, so it never tints them). */
     .hp-plate{position:absolute;right:-3%;top:624px;height:min(118vh,1150px);width:auto;opacity:.13;pointer-events:none;
       animation:hpPlate .9s .2s ease-out both;z-index:0}
-    @keyframes hpPlate{from{opacity:0;transform:scale(1.04)}to{opacity:.13;transform:none}}
+    @keyframes hpPlate{from{opacity:0}to{opacity:.13}} /* opacity only (30 Oct 2026): the scale version kept a big composited layer alive and cost scroll frames */
     @media(prefers-reduced-motion:reduce){.hp-plate{animation:none;opacity:.13}}
     @media(max-width:767px){.hp-plate{right:0;top:424px;height:min(82vh,640px)}} /* right:0, never negative: the page has no overflow-x guard, so a negative right would add sideways scroll */
     #home-hero,.hp-photo,.hp-who,#shop,footer{position:relative;z-index:1}
@@ -258,7 +258,7 @@
     .hp-photo.pair{grid-template-columns:repeat(2,1fr);max-width:calc((72rem - 36px) * 2 / 3 + 18px)}
     /* Phones: cards are two across, so the photos become a sideways swipe strip at 74vw each (bigger than a card). */
     @media(max-width:767px){
-      .hp-photo,.hp-photo.pair{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-left:16px;padding-right:16px;max-width:none}
+      .hp-photo,.hp-photo.pair{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;padding-left:16px;padding-right:16px;max-width:none}
       .hp-photo::-webkit-scrollbar{display:none}
       .hp-photo .hp-tile{flex:0 0 44vw;width:44vw;scroll-snap-align:start} /* small sliding photos on phones (28 Oct 2026, Yumna) */
       .hp-photo img{height:auto}
@@ -277,7 +277,7 @@
       .hp-best .nm{margin-top:10px}
     }
   </style>
-  <script src="js/mobile-fix.js?v=20261027a" defer></script>
+  <script src="js/mobile-fix.js?v=20261030a" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
