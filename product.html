@@ -211,8 +211,7 @@
     <nav class="text-xs text-gray-400 flex items-center gap-2">
       <a href="index.html" class="hover:text-black transition-colors">Home</a>
       <span>/</span>
-      <a href="collections.html" class="hover:text-black transition-colors">All Products</a>
-      <span>/</span>
+      <span id="breadcrumb-trail"><a href="collections.html" class="hover:text-black transition-colors">All Products</a><span> /</span></span>
       <span id="breadcrumb-name" class="text-gray-700 font-medium">Product</span>
     </nav>
   </div>
@@ -388,6 +387,12 @@ function loadProduct(){
   const slug=PRODUCT_SLUGS[id];
   if(slug){ setMeta('og:url',location.origin+'/p/'+slug+'/'); try{history.replaceState(history.state,'','/p/'+slug+'/'+location.hash);}catch(e){} }
   document.getElementById('breadcrumb-name').textContent=p.name;
+  // Breadcrumb follows the menu (5 Nov 2026, Yumna): Home / Women / Leggings / Performance Leggings, so a shopper can step back to the range or the category.
+  (function(){const CRUMB={'running-leggings-w':['women','Women','leggings','Leggings'],'flared-leggings-w':['women','Women','leggings','Leggings'],'high-impact-bra':['women','Women','sports-bras','Sports Bras'],'low-impact-bra':['women','Women','sports-bras','Sports Bras'],'tshirt-w':['women','Women','tops','Tops'],'jacket-w':['women','Women','jackets','Jackets'],'tshirt-m':['men','Men','tshirts','T-Shirts'],'quarter-zip-m':['men','Men','quarter-zips','Quarter Zips'],'shorts-m':['men','Men','shorts','Shorts'],'training-pants-m':['men','Men','pants','Pants'],'ankle-socks':['accessories','Accessories'],'lifestyle-cap':['accessories','Accessories'],'gym-bag':['accessories','Accessories']};
+    const c=CRUMB[id],t=document.getElementById('breadcrumb-trail');if(!c||!t)return;
+    let h='<a href="collections.html?gender='+c[0]+'" class="hover:text-black transition-colors">'+c[1]+'</a><span> /</span>';
+    if(c[2])h+=' <a href="collections.html?gender='+c[0]+'&cat='+c[2]+'" class="hover:text-black transition-colors">'+c[3]+'</a><span> /</span>';
+    t.innerHTML=h;})();
   document.getElementById('prod-name').textContent=p.name;
   document.getElementById('prod-price').textContent=p.price;
   document.getElementById('prod-gender').textContent=p.gender==='Unisex'?'':p.gender;
