@@ -707,11 +707,6 @@ document.querySelectorAll('.prod-card').forEach(function(card){
   var CATS = {leggings:'Leggings','sports-bras':'Sports Bras',tops:'Tops',jackets:'Jackets',tshirts:'T-Shirts',shorts:'Shorts',pants:'Pants','quarter-zips':'Quarter Zips'};
   var cat = (new URLSearchParams(window.location.search).get('cat') || '').toLowerCase();
   if(!CATS[cat]) cat = '';
-  var catLabel = document.createElement('p');
-  catLabel.id = 'cat-label';
-  catLabel.style.cssText = 'margin:10px 0 0;font-size:13px;color:#6b7280';
-  var pillRow = document.getElementById('gender-filter-pills');
-  if(pillRow && pillRow.parentNode) pillRow.parentNode.insertBefore(catLabel, pillRow.nextSibling);
 
   function apply(gender){
     if(VALID.indexOf(gender) === -1) gender = 'all';
@@ -736,8 +731,6 @@ document.querySelectorAll('.prod-card').forEach(function(card){
     var intro = document.getElementById('main'); if(intro){ intro.style.paddingBottom = '8px'; }
     if(sub){ sub.textContent = SUBS[gender] || subDefault; }
     if(gender !== 'all') document.title = (cat ? CATS[cat] + ' · ' : '') + TITLES[gender] + ' | REVAÍ';
-    catLabel.style.display = cat ? '' : 'none';
-    if(cat) catLabel.innerHTML = '<span style="color:#111;font-weight:500">' + CATS[cat] + '</span> &nbsp;<a href="collections.html?gender=' + gender + '" style="color:#6b7280;text-decoration:underline;text-underline-offset:3px">Show all ' + TITLES[gender].toLowerCase() + '</a>';
     var url = new URL(window.location.href);
     if(gender === 'all') url.searchParams.delete('gender');
     else url.searchParams.set('gender', gender);
