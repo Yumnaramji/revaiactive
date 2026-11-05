@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page-top options</title>
+<style>
+  body{margin:0;font-family:Inter,Helvetica,Arial,sans-serif;background:#ececec;color:#0a0a0a}
+  header{padding:28px 32px 8px}
+  h1{font-size:22px;font-weight:600;margin:0 0 6px}
+  header p{margin:0;color:#6b7280;font-size:14px;max-width:70ch;line-height:1.6}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:16px 32px 40px}
+  .col h2{font-size:15px;font-weight:600;margin:0 0 4px}
+  .col .sub{font-size:13px;color:#6b7280;margin:0 0 14px}
+  .shot{margin-bottom:18px}
+  .shot .lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8f8f8f;margin-bottom:6px}
+  .frame{width:100%;aspect-ratio:1280/520;overflow:hidden;border-radius:8px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12);position:relative}
+  .frame iframe{position:absolute;left:0;top:0;width:1280px;height:520px;border:0;transform-origin:0 0}
+  @media(max-width:900px){.cols{grid-template-columns:1fr}}
+</style></head><body>
+<header>
+  <h1>Option 3: one style for the top of every page</h1>
+  <p>Real pages with the style applied. Three samples each: FAQ (grey band today), Shipping &amp; Returns (centred today) and Team Orders (black band today). Heading left-aligned on the same column as the rest of the page, same size and weight everywhere.</p>
+</header>
+<div class="cols">
+  <div class="col"><h2>A. Grey band, heading left</h2><p class="sub">Light grey strip behind the title, white page below. Already used by most pages.</p>
+    <div class="shot"><div class="lbl">FAQ</div><div class="frame"><iframe data-src="../faq.html" data-opt="A"></iframe></div></div>
+    <div class="shot"><div class="lbl">Shipping &amp; Returns</div><div class="frame"><iframe data-src="../shipping-returns.html" data-opt="A"></iframe></div></div>
+    <div class="shot"><div class="lbl">Team Orders</div><div class="frame"><iframe data-src="../team-orders.html" data-opt="A"></iframe></div></div>
+  </div>
+  <div class="col"><h2>B. Plain white, heading left</h2><p class="sub">No band; the title sits on white like About and Technology. Closest to the homepage's minimal look.</p>
+    <div class="shot"><div class="lbl">FAQ</div><div class="frame"><iframe data-src="../faq.html" data-opt="B"></iframe></div></div>
+    <div class="shot"><div class="lbl">Shipping &amp; Returns</div><div class="frame"><iframe data-src="../shipping-returns.html" data-opt="B"></iframe></div></div>
+    <div class="shot"><div class="lbl">Team Orders</div><div class="frame"><iframe data-src="../team-orders.html" data-opt="B"></iframe></div></div>
+  </div>
+</div>
+<script>
+const CSS=bg=>`
+  body.nav-over-hero #nav{background:rgba(255,255,255,.85)!important}
+  .fu{opacity:1!important;transform:none!important}
+  .intro-x{background:${bg}!important;background-image:none!important;text-align:left!important;padding-top:112px!important;padding-bottom:48px!important}
+  .intro-x>div[style*="position:absolute"]{display:none!important}
+  .intro-x .max-w-2xl,.intro-x .max-w-3xl,.intro-x .max-w-4xl,.intro-x .max-w-6xl{max-width:72rem!important;margin-left:auto!important;margin-right:auto!important}
+  .intro-x h1{font-size:38px!important;font-weight:700!important;letter-spacing:-.025em!important;line-height:1.1!important;color:#0a0a0a!important;margin:0 0 14px!important;text-align:left!important}
+  .intro-x p{color:#6b7280!important;text-align:left!important;margin-left:0!important;max-width:40rem!important}
+  .intro-x p.uppercase{color:#9ca3af!important}
+  .intro-x .text-white{color:#0a0a0a!important}
+  .intro-x .justify-center{justify-content:flex-start!important}
+  .intro-x .mx-auto:not(.max-w-6xl):not(.max-w-4xl):not(.max-w-3xl):not(.max-w-2xl){margin-left:0!important}`;
+function fit(){document.querySelectorAll('.frame').forEach(f=>{const i=f.querySelector('iframe');i.style.transform='scale('+(f.clientWidth/1280)+')'})}
+document.querySelectorAll('iframe').forEach(fr=>{
+  fr.addEventListener('load',()=>{try{const d=fr.contentDocument;d.body.classList.remove('nav-over-hero');
+    const s=d.querySelector('main section, body > section');if(s)s.classList.add('intro-x');
+    const st=d.createElement('style');st.textContent=CSS(fr.dataset.opt==='A'?'#f8f9fa':'#fff');d.head.appendChild(st);}catch(e){}});
+  fr.src=fr.dataset.src;});
+addEventListener('resize',fit);fit();
+</script>
+</body></html>

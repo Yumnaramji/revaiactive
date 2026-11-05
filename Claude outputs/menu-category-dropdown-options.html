@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Menu: category sub-dropdown options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#e9e9e9;font-family:Inter,system-ui,sans-serif;color:#111}
+h1{font-size:14px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin:32px 32px 8px}
+p.note{margin:0 32px 28px;font-size:13px;color:#6b7280;max-width:60em}
+.row{display:flex;gap:28px;flex-wrap:wrap;margin:0 32px 40px}
+.opt h2{font-size:13px;font-weight:500;margin:0 0 10px}
+.opt h2 span{color:#6b7280;font-weight:400;margin-left:8px}
+.phone{width:320px;height:640px;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.15);position:relative;overflow:hidden}
+.menu{position:absolute;top:0;right:0;bottom:0;width:80%;max-width:320px;background:#fff;padding:32px;box-sizing:border-box;display:flex;flex-direction:column}
+.overlay{position:absolute;inset:0;background:rgba(0,0,0,.2)}
+.close{display:flex;justify-content:flex-end;margin-bottom:40px}
+.close svg{width:18px;height:18px;stroke:#111;stroke-width:1.5;fill:none}
+.eyeb{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#9ca3af;margin:8px 0 8px}
+.lnk{display:block;padding:8px 0;font-size:14px;color:#374151;text-decoration:none}
+.lnk.lg{font-size:16px;font-weight:500}
+.rule{border-top:1px solid #f3f4f6;margin:12px 0}
+/* accordion head */
+.acc{display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:14px;color:#374151}
+.acc.open{color:#111}
+.acc svg{width:12px;height:12px;stroke:#6b7280;stroke-width:1.5;fill:none;transition:transform .2s}
+.acc.open svg{transform:rotate(180deg)}
+.sub{padding-left:14px}
+.sub .lnk{padding:6px 0;font-size:13px;color:#6b7280}
+.sub .lnk.all{color:#111;font-weight:500}
+/* B: always open, indented list */
+.b .sub{padding-left:14px;margin-bottom:6px}
+/* C: two columns under the heading */
+.c .cols{display:flex;gap:24px;margin:4px 0 8px}
+.c .cols > div{flex:1}
+.c .cols .hd{font-size:13px;font-weight:500;color:#111;padding:6px 0;display:block;text-decoration:none}
+.c .cols .lnk{padding:4px 0;font-size:13px;color:#6b7280}
+/* D: tabs */
+.d .tabs{display:flex;gap:18px;margin:4px 0 10px}
+.d .tabs span{font-size:13px;padding:6px 0;color:#9ca3af;border-bottom:1px solid transparent}
+.d .tabs span.on{color:#111;font-weight:600;border-bottom-color:#111}
+.d .lnk{padding:7px 0;font-size:14px}
+</style></head><body>
+<h1>Slide-in menu — category sub-dropdown under Women and Men</h1>
+<p class="note">Four ways to do it. Each phone shows the menu open; the first three show Women expanded and Men closed where that applies. Categories are the real Collection 01 groups: Women = Leggings · Sports Bras · Tops · Jackets; Men = T-Shirts · Shorts · Pants · Quarter Zips. Accessories, About, Stories, Technology stay as they are.</p>
+
+<div class="row">
+
+<div class="opt a"><h2>A<span>Accordion: tap Women to open, chevron turns</span></h2>
+<div class="phone"><div class="overlay"></div><div class="menu">
+<div class="close"><svg viewBox="0 0 18 18"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg></div>
+<p class="eyeb">Shop</p>
+<a class="lnk" href="#">All Products</a>
+<div class="acc open">Women<svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg></div>
+<div class="sub">
+<a class="lnk all" href="#">Shop all women</a>
+<a class="lnk" href="#">Leggings</a>
+<a class="lnk" href="#">Sports Bras</a>
+<a class="lnk" href="#">Tops</a>
+<a class="lnk" href="#">Jackets</a>
+</div>
+<div class="acc">Men<svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg></div>
+<a class="lnk" href="#">Accessories</a>
+<div class="rule"></div>
+<a class="lnk lg" href="#">About Us</a>
+<a class="lnk lg" href="#">Stories</a>
+<a class="lnk lg" href="#">Technology</a>
+</div></div></div>
+
+<div class="opt b"><h2>B<span>Always open: categories listed under each, no tapping</span></h2>
+<div class="phone"><div class="overlay"></div><div class="menu">
+<div class="close"><svg viewBox="0 0 18 18"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg></div>
+<p class="eyeb">Shop</p>
+<a class="lnk" href="#">All Products</a>
+<a class="lnk" href="#" style="color:#111;font-weight:500">Women</a>
+<div class="sub">
+<a class="lnk" href="#">Leggings</a>
+<a class="lnk" href="#">Sports Bras</a>
+<a class="lnk" href="#">Tops</a>
+<a class="lnk" href="#">Jackets</a>
+</div>
+<a class="lnk" href="#" style="color:#111;font-weight:500">Men</a>
+<div class="sub">
+<a class="lnk" href="#">T-Shirts</a>
+<a class="lnk" href="#">Shorts</a>
+<a class="lnk" href="#">Pants</a>
+<a class="lnk" href="#">Quarter Zips</a>
+</div>
+<a class="lnk" href="#">Accessories</a>
+<div class="rule"></div>
+<a class="lnk lg" href="#">About Us</a>
+<a class="lnk lg" href="#">Stories</a>
+</div></div></div>
+
+<div class="opt c"><h2>C<span>Two columns side by side under Shop</span></h2>
+<div class="phone"><div class="overlay"></div><div class="menu">
+<div class="close"><svg viewBox="0 0 18 18"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg></div>
+<p class="eyeb">Shop</p>
+<a class="lnk" href="#">All Products</a>
+<div class="cols">
+<div><a class="hd" href="#">Women</a><a class="lnk" href="#">Leggings</a><a class="lnk" href="#">Sports Bras</a><a class="lnk" href="#">Tops</a><a class="lnk" href="#">Jackets</a></div>
+<div><a class="hd" href="#">Men</a><a class="lnk" href="#">T-Shirts</a><a class="lnk" href="#">Shorts</a><a class="lnk" href="#">Pants</a><a class="lnk" href="#">Quarter Zips</a></div>
+</div>
+<a class="lnk" href="#">Accessories</a>
+<div class="rule"></div>
+<a class="lnk lg" href="#">About Us</a>
+<a class="lnk lg" href="#">Stories</a>
+<a class="lnk lg" href="#">Technology</a>
+</div></div></div>
+
+<div class="opt d"><h2>D<span>Women / Men as tabs, one category list that switches</span></h2>
+<div class="phone"><div class="overlay"></div><div class="menu">
+<div class="close"><svg viewBox="0 0 18 18"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg></div>
+<p class="eyeb">Shop</p>
+<div class="tabs"><span class="on">Women</span><span>Men</span><span>Accessories</span></div>
+<a class="lnk" href="#" style="color:#111;font-weight:500">All women</a>
+<a class="lnk" href="#">Leggings</a>
+<a class="lnk" href="#">Sports Bras</a>
+<a class="lnk" href="#">Tops</a>
+<a class="lnk" href="#">Jackets</a>
+<div class="rule"></div>
+<a class="lnk lg" href="#">About Us</a>
+<a class="lnk lg" href="#">Stories</a>
+<a class="lnk lg" href="#">Technology</a>
+</div></div></div>
+
+</div>
+</body></html>

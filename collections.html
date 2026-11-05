@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261016a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261105a">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -99,7 +99,7 @@
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
   </style>
-  <script src="js/mobile-fix.js?v=20261030a" defer></script>
+  <script src="js/mobile-fix.js?v=20261105a" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
@@ -143,8 +143,26 @@
   <div class="flex flex-col gap-1 flex-1 overflow-y-auto">
     <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Shop</p>
     <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
-    <a href="collections.html?gender=women" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Women</a>
-    <a href="collections.html?gender=men" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Men</a>
+    <div class="mgrp">
+      <a href="collections.html?gender=women" class="mgrp-head block py-2 text-sm text-gray-700 hover:text-black" aria-expanded="false">Women<i class="mgrp-chev" aria-hidden="true"></i></a>
+      <div class="mgrp-sub">
+        <a href="collections.html?gender=women" class="mlink all">Shop all women</a>
+        <a href="collections.html?gender=women&amp;cat=leggings" class="mlink">Leggings</a>
+        <a href="collections.html?gender=women&amp;cat=sports-bras" class="mlink">Sports Bras</a>
+        <a href="collections.html?gender=women&amp;cat=tops" class="mlink">Tops</a>
+        <a href="collections.html?gender=women&amp;cat=jackets" class="mlink">Jackets</a>
+      </div>
+    </div>
+    <div class="mgrp">
+      <a href="collections.html?gender=men" class="mgrp-head block py-2 text-sm text-gray-700 hover:text-black" aria-expanded="false">Men<i class="mgrp-chev" aria-hidden="true"></i></a>
+      <div class="mgrp-sub">
+        <a href="collections.html?gender=men" class="mlink all">Shop all men</a>
+        <a href="collections.html?gender=men&amp;cat=tshirts" class="mlink">T-Shirts</a>
+        <a href="collections.html?gender=men&amp;cat=shorts" class="mlink">Shorts</a>
+        <a href="collections.html?gender=men&amp;cat=pants" class="mlink">Pants</a>
+        <a href="collections.html?gender=men&amp;cat=quarter-zips" class="mlink">Quarter Zips</a>
+      </div>
+    </div>
     <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
     <div class="my-3 border-t border-gray-100"></div>
     <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About Us</a>
@@ -179,7 +197,7 @@
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-5" id="product-grid">
 
       <!-- T-Shirt W -->
-      <div class="prod-card fu" data-gender="women">
+      <div class="prod-card fu" data-gender="women" data-cat="tops">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/tshirt-w.jpg" alt="Women's T-Shirt" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <img src="images/tshirt-w-front-angle.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
@@ -198,7 +216,7 @@
       </div>
 
       <!-- T-Shirt M -->
-      <div class="prod-card fu d1" data-gender="men">
+      <div class="prod-card fu d1" data-gender="men" data-cat="tshirts">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/tshirt-m.jpg" alt="Men's T-Shirt" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <img src="images/tshirt-m-side.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
@@ -217,7 +235,7 @@
       </div>
 
       <!-- Quarter Zip M -->
-      <div class="prod-card fu d2" data-gender="men">
+      <div class="prod-card fu d2" data-gender="men" data-cat="quarter-zips">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img src="images/quarter-zip-m.jpg" alt="Men's Quarter Zip" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <img src="images/quarter-zip-m-front.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
@@ -236,7 +254,7 @@
       </div>
 
       <!-- Jacket W -->
-      <div class="prod-card fu d3" data-gender="women">
+      <div class="prod-card fu d3" data-gender="women" data-cat="jackets">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/jacket-w.jpg" alt="Women's Jacket" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <img src="images/jacket-w-front-angle.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
@@ -255,7 +273,7 @@
       </div>
 
       <!-- Performance Leggings W -->
-      <div class="prod-card fu" data-gender="women">
+      <div class="prod-card fu" data-gender="women" data-cat="leggings">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/running-leggings-w.jpg" alt="Women's Performance Leggings" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <img src="images/running-leggings-w-full-back.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
@@ -274,7 +292,7 @@
       </div>
 
       <!-- Flared Leggings W -->
-      <div class="prod-card fu d1" data-gender="women">
+      <div class="prod-card fu d1" data-gender="women" data-cat="leggings">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/flared-leggings-w.jpg" alt="Flared Leggings" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <img src="images/flared-leggings-w-back.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
@@ -293,7 +311,7 @@
       </div>
 
       <!-- Shorts M -->
-      <div class="prod-card fu d2" data-gender="men">
+      <div class="prod-card fu d2" data-gender="men" data-cat="shorts">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/shorts-m-crop.jpg" alt="Men's Shorts" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <img src="images/shorts-m.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
@@ -312,7 +330,7 @@
       </div>
 
       <!-- Training Pants M -->
-      <div class="prod-card fu d3" data-gender="men">
+      <div class="prod-card fu d3" data-gender="men" data-cat="pants">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/training-pants-m-crop.jpg" alt="Training Pants" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <img src="images/training-pants-m.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
@@ -331,7 +349,7 @@
       </div>
 
       <!-- High Impact Sports Bra -->
-      <div class="prod-card fu" data-gender="women">
+      <div class="prod-card fu" data-gender="women" data-cat="sports-bras">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/high-impact-bra-front.jpg" alt="High Impact Sports Bra" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <img src="images/high-impact-bra-back.jpg" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
@@ -350,7 +368,7 @@
       </div>
 
       <!-- Low Impact Sports Bra -->
-      <div class="prod-card fu d1" data-gender="women">
+      <div class="prod-card fu d1" data-gender="women" data-cat="sports-bras">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/low-impact-bra.jpg" alt="Low Impact Sports Bra" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">
           <img src="images/low-impact-bra-back.jpg" alt="" aria-hidden="true" class="card-hover-img" style="object-position:center 20%" loading="lazy" decoding="async">
@@ -686,13 +704,25 @@ document.querySelectorAll('.prod-card').forEach(function(card){
   var subDefault = sub ? sub.textContent : '';
   if(!cards.length) return;
 
+  var CATS = {leggings:'Leggings','sports-bras':'Sports Bras',tops:'Tops',jackets:'Jackets',tshirts:'T-Shirts',shorts:'Shorts',pants:'Pants','quarter-zips':'Quarter Zips'};
+  var cat = (new URLSearchParams(window.location.search).get('cat') || '').toLowerCase();
+  if(!CATS[cat]) cat = '';
+  var catLabel = document.createElement('p');
+  catLabel.id = 'cat-label';
+  catLabel.style.cssText = 'margin:10px 0 0;font-size:13px;color:#6b7280';
+  var pillRow = document.getElementById('gender-filter-pills');
+  if(pillRow && pillRow.parentNode) pillRow.parentNode.insertBefore(catLabel, pillRow.nextSibling);
+
   function apply(gender){
     if(VALID.indexOf(gender) === -1) gender = 'all';
+    if(gender !== 'women' && gender !== 'men') cat = '';
     cards.forEach(function(card){
       var cg = card.getAttribute('data-gender');
       // accessories = the unisex cards only; Women / Men show clothing only (Yumna, 5 Oct 2026)
       // accessories (unisex) appear under Women and Men as well as under Accessories (Yumna, 5 Oct 2026)
       var show = (gender === 'all') || (cg === gender) || (cg === 'unisex');
+      // ?cat= from the menu's category lists (5 Nov 2026): that category only, no accessories
+      if(cat && (gender === 'women' || gender === 'men')) show = (cg === gender) && (card.getAttribute('data-cat') === cat);
       card.style.display = show ? '' : 'none';
     });
     pills.forEach(function(p){
@@ -705,15 +735,18 @@ document.querySelectorAll('.prod-card').forEach(function(card){
     if(h1){ h1.classList.add('sr-only'); } // no visible page title on any view (Yumna, 16 Oct 2026): the tabs name the page
     var intro = document.getElementById('main'); if(intro){ intro.style.paddingBottom = '8px'; }
     if(sub){ sub.textContent = SUBS[gender] || subDefault; }
-    if(gender !== 'all') document.title = TITLES[gender] + ' | REVAÍ';
+    if(gender !== 'all') document.title = (cat ? CATS[cat] + ' · ' : '') + TITLES[gender] + ' | REVAÍ';
+    catLabel.style.display = cat ? '' : 'none';
+    if(cat) catLabel.innerHTML = '<span style="color:#111;font-weight:500">' + CATS[cat] + '</span> &nbsp;<a href="collections.html?gender=' + gender + '" style="color:#6b7280;text-decoration:underline;text-underline-offset:3px">Show all ' + TITLES[gender].toLowerCase() + '</a>';
     var url = new URL(window.location.href);
     if(gender === 'all') url.searchParams.delete('gender');
     else url.searchParams.set('gender', gender);
+    if(cat) url.searchParams.set('cat', cat); else url.searchParams.delete('cat');
     window.history.replaceState({}, '', url);
   }
 
   pills.forEach(function(p){
-    p.addEventListener('click', function(){ apply(p.dataset.gender); });
+    p.addEventListener('click', function(){ cat = ''; apply(p.dataset.gender); });
   });
 
   var initial = (new URLSearchParams(window.location.search).get('gender') || 'all').toLowerCase();

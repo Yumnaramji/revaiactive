@@ -545,3 +545,22 @@ body:not(.nav-over-hero) #nav { backdrop-filter: none !important; -webkit-backdr
 #nav > .max-w-6xl { max-width: calc(72rem + 3rem) !important; }
 /* On phones the menu button is a 44px tap target, which pushed the icon 8px in; pull it back. */
 @media (max-width: 767px) { #nav .nav-mob { margin-right: -16px !important; } }
+
+
+/* §13 Slide-in menu: Women / Men open their categories (5 Nov 2026, Yumna, option H1).
+   Desktop: hover (or keyboard focus) opens the list under the name. Touch: first tap opens it,
+   second tap goes to all of Women / Men (js/mobile-fix.js). Category links filter Shop All (?cat=). */
+.mgrp-head{display:flex!important;justify-content:space-between;align-items:center}
+.mgrp-chev{display:inline-block;width:6px;height:6px;border-right:1.5px solid #9ca3af;border-bottom:1.5px solid #9ca3af;transform:rotate(45deg);position:relative;top:-2px;margin-left:8px;transition:transform .2s}
+.mgrp-sub{max-height:0;overflow:hidden;transition:max-height .28s ease;padding-left:14px}
+.mgrp-sub a{display:block;padding:6px 0;font-size:13px;color:#6b7280;text-decoration:none}
+.mgrp-sub a:hover{color:#000}
+.mgrp-sub a.all{color:#111;font-weight:500}
+.mgrp.open .mgrp-sub,.mgrp:focus-within .mgrp-sub{max-height:320px}
+.mgrp.open .mgrp-head{color:#000;font-weight:500}
+.mgrp.open .mgrp-chev{transform:rotate(225deg);top:1px}
+@media (hover:hover) and (pointer:fine){
+  .mgrp:hover .mgrp-sub{max-height:320px}
+  .mgrp:hover .mgrp-head{color:#000;font-weight:500}
+  .mgrp:hover .mgrp-chev{transform:rotate(225deg);top:1px}
+}

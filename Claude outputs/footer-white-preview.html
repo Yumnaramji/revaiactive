@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>White footer preview</title>
+<style>
+  html,body{margin:0;height:100%;background:#fff}
+  iframe{display:block;width:100%;height:100%;border:0}
+</style></head><body>
+<iframe id="f" src="../faq.html"></iframe>
+<script>
+const CSS=`
+  footer{background:#fff!important;border-top:1px solid #e5e7eb!important;color:#0a0a0a!important}
+  footer img[src*="revai-icon"]{filter:none!important}
+  footer p,footer li a,footer .flex a{color:#4b5563!important}
+  footer h3{color:#0a0a0a!important}
+  footer a:hover{color:#000!important}
+  footer .border-t{border-color:#e5e7eb!important}
+  footer .border-t p,footer .border-t a{color:#6b7280!important}
+  .fu{opacity:1!important;transform:none!important}`;
+const f=document.getElementById('f');
+f.addEventListener('load',()=>{const d=f.contentDocument;const s=d.createElement('style');s.textContent=CSS;d.head.appendChild(s);
+  setTimeout(()=>f.contentWindow.scrollTo(0,d.documentElement.scrollHeight),300)});
+</script>
+</body></html>

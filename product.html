@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261016a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261105a">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -110,7 +110,7 @@
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
   </style>
-  <script src="js/mobile-fix.js?v=20261030a" defer></script>
+  <script src="js/mobile-fix.js?v=20261105a" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
@@ -163,8 +163,26 @@
   <div class="flex flex-col gap-1 flex-1">
     <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2 mt-2">Shop</p>
     <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
-    <a href="collections.html?gender=women" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Women</a>
-    <a href="collections.html?gender=men" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Men</a>
+    <div class="mgrp">
+      <a href="collections.html?gender=women" class="mgrp-head block py-2 text-sm text-gray-700 hover:text-black" aria-expanded="false">Women<i class="mgrp-chev" aria-hidden="true"></i></a>
+      <div class="mgrp-sub">
+        <a href="collections.html?gender=women" class="mlink all">Shop all women</a>
+        <a href="collections.html?gender=women&amp;cat=leggings" class="mlink">Leggings</a>
+        <a href="collections.html?gender=women&amp;cat=sports-bras" class="mlink">Sports Bras</a>
+        <a href="collections.html?gender=women&amp;cat=tops" class="mlink">Tops</a>
+        <a href="collections.html?gender=women&amp;cat=jackets" class="mlink">Jackets</a>
+      </div>
+    </div>
+    <div class="mgrp">
+      <a href="collections.html?gender=men" class="mgrp-head block py-2 text-sm text-gray-700 hover:text-black" aria-expanded="false">Men<i class="mgrp-chev" aria-hidden="true"></i></a>
+      <div class="mgrp-sub">
+        <a href="collections.html?gender=men" class="mlink all">Shop all men</a>
+        <a href="collections.html?gender=men&amp;cat=tshirts" class="mlink">T-Shirts</a>
+        <a href="collections.html?gender=men&amp;cat=shorts" class="mlink">Shorts</a>
+        <a href="collections.html?gender=men&amp;cat=pants" class="mlink">Pants</a>
+        <a href="collections.html?gender=men&amp;cat=quarter-zips" class="mlink">Quarter Zips</a>
+      </div>
+    </div>
     <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
     <div class="my-3 border-t border-gray-100"></div>
     <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About Us</a>

@@ -158,3 +158,20 @@
     update();
   }
 })();
+
+
+// Slide-in menu, Women / Men categories (5 Nov 2026). On touch screens there is no hover:
+// the first tap on Women / Men opens its list, a second tap goes to the whole range.
+(function () {
+  var touch = window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)');
+  document.addEventListener('click', function (e) {
+    var head = e.target.closest && e.target.closest('.mgrp-head');
+    if (!head || !touch || !touch.matches) return;
+    var grp = head.parentNode;
+    if (grp.classList.contains('open')) return;
+    e.preventDefault();
+    document.querySelectorAll('.mgrp.open').forEach(function (g) { g.classList.remove('open'); g.firstElementChild.setAttribute('aria-expanded', 'false'); });
+    grp.classList.add('open');
+    head.setAttribute('aria-expanded', 'true');
+  });
+})();
