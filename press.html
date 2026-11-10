@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261105a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261110b">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -59,7 +59,7 @@
     .asset-card{border:1px solid #ebebeb;border-radius:14px;overflow:hidden;transition:transform .2s ease,box-shadow .2s}
     .asset-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.07)}
   </style>
-  <script src="js/mobile-fix.js?v=20261105a" defer></script>
+  <script src="js/mobile-fix.js?v=20261110b" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
@@ -81,7 +81,6 @@
         </div>
       </div>
       <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About Us</a>
-      <a href="stories.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Stories</a>
       <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
     </div>
     <div class="nav-right hidden md:flex items-center gap-3">
@@ -129,7 +128,6 @@
     <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
     <div class="my-3 border-t border-gray-100"></div>
     <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About Us</a>
-    <a href="stories.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Stories</a>
     <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
   </div>
 </div>
@@ -341,7 +339,9 @@
                 <label class="block text-xs font-medium text-gray-600 mb-1.5" for="press-message">What are you working on?</label>
                 <textarea id="press-message" rows="4" placeholder="Tell us about your story or request..." class="w-full px-4 py-3 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-black transition-colors bg-white resize-none"></textarea>
               </div>
-              <a href="contact.html" class="btn-p w-full justify-center mt-2">Send Enquiry</a>
+              <button type="button" id="press-send" class="btn-p w-full justify-center mt-2">Email Enquiry</button>
+              <p class="text-xs text-gray-500 text-center">This opens your email app with your message filled in, addressed to info@revaiactive.com. Nothing is sent until you press send there.</p>
+              <p id="press-error" class="text-xs text-center hidden" style="color:#b91c1c" role="alert">Please add your name and a short message first.</p>
             </div>
           </div>
         </div>
@@ -410,9 +410,25 @@ const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersec
 document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 </script>
-<script src="search.js?v=20261030a"></script>
+<script>
+// Press enquiry (10 Nov 2026): "Send Enquiry" used to be a plain link to the Contact page, so whatever a
+// journalist had typed was thrown away. There is no form backend on the site, so it now writes the four
+// answers into an email to info@ (the press address) and opens their own email app.
+(function(){
+  var b=document.getElementById('press-send');if(!b)return;
+  function v(id){var el=document.getElementById(id);return el?el.value.trim():'';}
+  b.addEventListener('click',function(){
+    var err=document.getElementById('press-error');
+    if(!v('press-name')||!v('press-message')){err.classList.remove('hidden');document.getElementById(v('press-name')?'press-message':'press-name').focus();return;}
+    err.classList.add('hidden');
+    var body=['Name: '+v('press-name'),'Publication / outlet: '+(v('press-outlet')||'-'),'Email: '+(v('press-email')||'-'),'',v('press-message')].join('\n');
+    window.location.href='mailto:info@revaiactive.com?subject='+encodeURIComponent('Press enquiry: '+(v('press-outlet')||v('press-name')))+'&body='+encodeURIComponent(body);
+  });
+})();
+</script>
+<script src="search.js?v=20261110a"></script>
 <script src="shopify-config.js?v=20260926b"></script>
-<script src="woo-config.js?v=20261002d"></script>
-<script src="cart-drawer.js?v=20261030a"></script>
+<script src="woo-config.js?v=20261110a"></script>
+<script src="cart-drawer.js?v=20261110a"></script>
 </body>
 </html>

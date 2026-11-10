@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261105a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261110b">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -58,7 +58,7 @@
     .step-num{width:40px;height:40px;background:#000;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0}
     .stat-card{background:#000;color:#fff;border-radius:16px;padding:32px;text-align:center}
   </style>
-  <script src="js/mobile-fix.js?v=20261105a" defer></script>
+  <script src="js/mobile-fix.js?v=20261110b" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
@@ -79,7 +79,7 @@
         </div>
       </div>
       <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About Us</a>
-      <a href="stories.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Stories</a><a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
+      <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
     </div>
     <div class="nav-right hidden md:flex items-center gap-3">
       <button onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
@@ -125,7 +125,6 @@
     <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
     <div class="my-3 border-t border-gray-100"></div>
     <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About Us</a>
-    <a href="stories.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Stories</a>
     <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
   </div>
 </div>
@@ -148,7 +147,7 @@
     <div class="max-w-6xl mx-auto">
       <div class="fu mb-10">
         <h2 class="t-h2 mb-3">What's Covered</h2>
-        <p class="text-gray-500 max-w-xl">Any failure that affects the performance of your garment within 30 days of purchase is covered — no receipt needed, no lengthy claims process. The item must not have been washed to be eligible.</p>
+        <p class="text-gray-500 max-w-xl">Any failure that affects the performance of your garment within 30 days of purchase is covered — no receipt needed, just your order number, and no lengthy claims process. The item must not have been washed to be eligible.</p>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
         <div class="fu d1 card">
@@ -156,14 +155,14 @@
             <svg width="20" height="20" fill="none" stroke="#ef4444" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 21l9-18 9 18H3z"/><line x1="12" y1="10" x2="12" y2="14"/><circle cx="12" cy="17" r=".5" fill="#ef4444"/></svg>
           </div>
           <h3 class="font-semibold mb-2">Seam Failure</h3>
-          <p class="text-sm text-gray-600 leading-relaxed">Any seam that separates, frays, or fails during normal training within 30 days of purchase. This includes flatlock seams, bonded seams, and stress seams at the crotch and underarm.</p>
+          <p class="text-sm text-gray-600 leading-relaxed">Any seam that separates, frays, or fails during normal training within 30 days of purchase. This includes flatlock seams and the seams at the crotch and underarm.</p>
         </div>
         <div class="fu d2 card">
           <div class="w-10 h-10 bg-orange-50 rounded-xl flex items-center justify-center mb-4">
             <svg width="20" height="20" fill="none" stroke="#f97316" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4"/></svg>
           </div>
           <h3 class="font-semibold mb-2">Compression Degradation</h3>
-          <p class="text-sm text-gray-600 leading-relaxed">If your compression tights, shorts, or base layers lose noticeable elasticity and no longer provide the intended muscle support — even after correct washing and drying.</p>
+          <p class="text-sm text-gray-600 leading-relaxed">If your leggings, shorts or sports bra lose noticeable stretch or support in normal wear.</p>
         </div>
         <div class="fu d1 card">
           <div class="w-10 h-10 bg-yellow-50 rounded-xl flex items-center justify-center mb-4">
@@ -177,7 +176,7 @@
             <svg width="20" height="20" fill="none" stroke="#3b82f6" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M6 8H5a4 4 0 000 8h1"/><line x1="6" y1="12" x2="18" y2="12"/></svg>
           </div>
           <h3 class="font-semibold mb-2">Zipper Failure</h3>
-          <p class="text-sm text-gray-600 leading-relaxed">Any zipper that splits, jams, or becomes non-functional under normal use within 30 days of purchase. Covers all zipped pockets, half-zips, and full-zip jackets.</p>
+          <p class="text-sm text-gray-600 leading-relaxed">Any zipper that splits, jams, or becomes non-functional under normal use within 30 days of purchase. Covers all zipped pockets, the Quarter Zip and the Women's Jacket.</p>
         </div>
       </div>
     </div>
@@ -209,22 +208,8 @@
           <div class="flex items-start gap-3 bg-white border border-gray-100 rounded-xl px-5 py-4">
             <span class="text-gray-400 font-bold mt-0.5 flex-shrink-0">—</span>
             <div>
-              <p class="text-sm font-medium">Normal colour fade</p>
-              <p class="text-xs text-gray-500 mt-0.5">Gradual lightening of colours over many washes is a normal property of all dyed textiles and is not covered. Significant, rapid fading within 30 days of purchase is covered.</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3 bg-white border border-gray-100 rounded-xl px-5 py-4">
-            <span class="text-gray-400 font-bold mt-0.5 flex-shrink-0">—</span>
-            <div>
               <p class="text-sm font-medium">Washed items</p>
-              <p class="text-xs text-gray-500 mt-0.5">Items that have been washed are not eligible for the performance guarantee. To make a claim, the item must be unwashed. If you have already washed the item, it falls outside the guarantee terms.</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3 bg-white border border-gray-100 rounded-xl px-5 py-4">
-            <span class="text-gray-400 font-bold mt-0.5 flex-shrink-0">—</span>
-            <div>
-              <p class="text-sm font-medium">Care label non-compliance</p>
-              <p class="text-xs text-gray-500 mt-0.5">Damage resulting from tumble drying, hot washing, bleaching, or other care that contravenes our guidelines is not covered.</p>
+              <p class="text-xs text-gray-500 mt-0.5">Items that have been washed, tumble dried, bleached or ironed are not eligible. To make a claim, the item must be unwashed.</p>
             </div>
           </div>
           <div class="flex items-start gap-3 bg-white border border-gray-100 rounded-xl px-5 py-4">
@@ -244,7 +229,7 @@
     <div class="max-w-6xl mx-auto">
       <div class="fu mb-10">
         <h2 class="t-h2 mb-3">How to Claim</h2>
-        <p class="text-gray-500">Three steps. Most claims are resolved within 48 hours.</p>
+        <p class="text-gray-500">Three steps.</p>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
         <div class="fu d1 card flex flex-col gap-4">
@@ -258,7 +243,7 @@
           <div class="step-num">2</div>
           <div>
             <h3 class="font-semibold mb-2">Contact our team</h3>
-            <p class="text-sm text-gray-600 leading-relaxed">Email <strong>support@revaiactive.com</strong> with your order number, photos, and a brief description of when the issue occurred. You can also submit via the contact form on this site.</p>
+            <p class="text-sm text-gray-600 leading-relaxed">Email <strong>support@revaiactive.com</strong> with your order number, photos, and a brief description of when the issue occurred. You can also message us on WhatsApp, <a href="https://wa.me/254742822876" class="underline underline-offset-2">+254 742 822 876</a>.</p>
           </div>
         </div>
         <div class="fu d3 card flex flex-col gap-4">
@@ -272,32 +257,6 @@
     </div>
   </section>
 
-  <!-- Stats -->
-  <section class="py-16 md:py-20 px-6" style="background:#0a0a0a">
-    <div class="max-w-6xl mx-auto">
-      <div class="fu text-center mb-10">
-        <h2 class="t-h2 mb-3 text-white">The numbers speak for themselves</h2>
-        <p class="text-gray-400">Our guarantee isn't a marketing promise — it's a commitment backed by real data.</p>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="fu d1 stat-card">
-          <div class="text-5xl font-bold mb-2">94<span class="text-2xl">%</span></div>
-          <div class="text-sm font-medium text-gray-300 mb-1">Resolved within 48 hours</div>
-          <p class="text-xs text-gray-500">From claim submission to replacement dispatched.</p>
-        </div>
-        <div class="fu d2 stat-card">
-          <div class="text-5xl font-bold mb-2">99.2<span class="text-2xl">%</span></div>
-          <div class="text-sm font-medium text-gray-300 mb-1">Replacement rate</div>
-          <p class="text-xs text-gray-500">Of all valid guarantee claims result in a free replacement or refund.</p>
-        </div>
-        <div class="fu d3 stat-card">
-          <div class="text-5xl font-bold mb-2">200<span class="text-2xl">+</span></div>
-          <div class="text-sm font-medium text-gray-300 mb-1">Washes covered</div>
-          <p class="text-xs text-gray-500">Our fabrics are tested to maintain performance over 200+ wash cycles.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- FAQ -->
   <section class="py-16 md:py-20 px-6" style="background:var(--bg2)">
@@ -314,7 +273,7 @@
               <span class="faq-icon text-xl flex-shrink-0">+</span>
             </button>
             <div class="faq-body px-6">
-              <p class="text-sm text-gray-600 leading-relaxed pb-5">Yes. The 30-Day Performance Guarantee applies to all REVAÍ products regardless of the price paid, including sale items, bundle deals, and items purchased with a discount code. The item must not have been washed to be eligible.</p>
+              <p class="text-sm text-gray-600 leading-relaxed pb-5">Yes. The 30-Day Performance Guarantee applies to every REVAÍ product, whatever price you paid. The item must not have been washed to be eligible.</p>
             </div>
           </div>
 
@@ -324,7 +283,7 @@
               <span class="faq-icon text-xl flex-shrink-0">+</span>
             </button>
             <div class="faq-body px-6">
-              <p class="text-sm text-gray-600 leading-relaxed pb-5">In most cases, no. Clear photographs of the fault are sufficient for us to process a claim. In rare cases where the nature of the fault is unclear from photos, we may ask you to return the item — in which case we'll provide a prepaid return label.</p>
+              <p class="text-sm text-gray-600 leading-relaxed pb-5">In most cases, no. Clear photographs of the fault are sufficient for us to process a claim. In rare cases where the nature of the fault is unclear from photos, we may ask you to return the item — in which case we'll arrange collection at our cost.</p>
             </div>
           </div>
 
@@ -334,7 +293,7 @@
               <span class="faq-icon text-xl flex-shrink-0">+</span>
             </button>
             <div class="faq-body px-6">
-              <p class="text-sm text-gray-600 leading-relaxed pb-5">Yes. When submitting your claim, simply state your preference. We'll process a full refund to your original payment method instead of dispatching a replacement. Refunds are processed within 24 hours of claim approval.</p>
+              <p class="text-sm text-gray-600 leading-relaxed pb-5">Yes. When submitting your claim, simply state your preference. We'll process a full refund to your original payment method instead of dispatching a replacement. We start your refund within two business days of approval; M-Pesa or your bank decides when it arrives.</p>
             </div>
           </div>
 
@@ -344,7 +303,7 @@
               <span class="faq-icon text-xl flex-shrink-0">+</span>
             </button>
             <div class="faq-body px-6">
-              <p class="text-sm text-gray-600 leading-relaxed pb-5">If a replacement garment experiences the same failure, contact us again. Repeated failures suggest a manufacturing batch issue and we take these seriously. We'll replace again and escalate to our quality team, and we may offer a permanent upgrade to a higher product tier at no cost.</p>
+              <p class="text-sm text-gray-600 leading-relaxed pb-5">If a replacement garment experiences the same failure, contact us again. Repeated failures suggest a manufacturing batch issue and we take these seriously. We'll replace it again and look into the cause.</p>
             </div>
           </div>
 
@@ -423,9 +382,9 @@ document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 document.querySelectorAll('.faq-btn').forEach(btn=>{btn.addEventListener('click',()=>{const row=btn.parentElement,body=row.querySelector('.faq-body'),isOpen=row.classList.contains('open');document.querySelectorAll('.faq-row').forEach(r=>{r.classList.remove('open');r.querySelector('.faq-body').classList.remove('open');r.querySelector('.faq-btn').setAttribute('aria-expanded','false')});if(!isOpen){row.classList.add('open');body.classList.add('open');btn.setAttribute('aria-expanded','true')}})});
 </script>
-<script src="search.js?v=20261030a"></script>
+<script src="search.js?v=20261110a"></script>
 <script src="shopify-config.js?v=20260926b"></script>
-<script src="woo-config.js?v=20261002d"></script>
-<script src="cart-drawer.js?v=20261030a"></script>
+<script src="woo-config.js?v=20261110a"></script>
+<script src="cart-drawer.js?v=20261110a"></script>
 </body>
 </html>

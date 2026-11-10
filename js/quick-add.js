@@ -17,7 +17,7 @@
     'box-shadow:0 1px 4px rgba(0,0,0,.14);transition:transform .15s ease}',
     '.qa-btn:hover{transform:scale(1.06)}',
     '.qa-btn:focus-visible{outline:2px solid #0a0a0a;outline-offset:2px}',
-    '@media(max-width:767px){.qa-btn{right:8px;top:8px;width:30px;height:30px}}',
+    '@media(max-width:767px){.qa-btn{right:8px;top:8px;width:36px;height:36px}.qa-btn::after{content:"";position:absolute;inset:-4px}}', /* 10 Nov: 36px button, 44px tap area (was 30px) */
     '#qa-overlay{position:fixed;inset:0;z-index:120;background:rgba(0,0,0,.45);display:none;align-items:flex-end;justify-content:center}',
     '#qa-overlay.open{display:flex}',
     '#qa-panel{position:relative;width:100%;max-height:92vh;overflow-y:auto;background:#fff;color:#0a0a0a;padding:22px 20px 24px;',
@@ -36,6 +36,10 @@
     'font:500 13px Inter,-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;transition:border-color .15s,background .15s,color .15s}',
     '.qa-size:hover{border-color:#0a0a0a}',
     '.qa-size.sel{background:#0a0a0a;border-color:#0a0a0a;color:#fff}',
+    /* sold-out size and the "Out of stock" button (10 Nov 2026, js/stock.js) */
+    '.qa-size.out{color:#9ca3af;background:linear-gradient(to top right,transparent calc(50% - .5px),#d1d5db 50%,transparent calc(50% + .5px)) #fff}',
+    '.qa-size.out.sel{background:#f3f4f6;color:#4b5563;border-color:#6b7280}',
+    '.qa-add:disabled,.qa-add:disabled:hover{background:#e5e7eb;color:#4b5563;cursor:not-allowed}',
     '.qa-error{display:none;margin:10px 0 0;font-size:13px;color:#dc2626}',
     '.qa-add{display:block;width:100%;height:50px;margin-top:20px;border:0;border-radius:2px;background:#0a0a0a;color:#fff;',
     'font:600 14px Inter,-apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:.02em;cursor:pointer}',
@@ -129,14 +133,37 @@
         b.classList.add('sel'); b.setAttribute('aria-pressed', 'true');
         current.size = b.getAttribute('data-size');
         panel.querySelector('.qa-error').style.display = 'none';
+        syncStock();
       });
     });
     panel.querySelector('.qa-add').addEventListener('click', add);
+    syncStock();
+    // the shop's answer can arrive after the window opens
+    if (window.REVAI_STOCK && window.REVAI_STOCK.ready) {
+      var opened = current;
+      window.REVAI_STOCK.ready.then(function () { if (current === opened) syncStock(); });
+    }
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     panel.querySelector('#qa-close').focus();
   }
 
+  // Stock (10 Nov 2026): strike the sizes the shop has none of; while one of those is the chosen size,
+  // or every size is gone, the button reads "Out of stock" and cannot be pressed.
+  function syncStock() {
+    if (!current || !panel) return;
+    var S = window.REVAI_STOCK, id = current.p.id, addBtn = panel.querySelector('.qa-add');
+    var btns = panel.querySelectorAll('.qa-size'), allOut = btns.length > 0, selOut = false;
+    Array.prototype.forEach.call(btns, function (b) {
+      var out = !!(S && S.isOut && S.isOut(id, b.getAttribute('data-size')));
+      b.classList.toggle('out', out);
+      if (out) b.setAttribute('aria-label', b.textContent + ', out of stock'); else b.removeAttribute('aria-label');
+      if (!out) allOut = false;
+      if (out && b.classList.contains('sel')) selOut = true;
+    });
+    var off = allOut || selOut;
+    if (addBtn) { addBtn.disabled = off; addBtn.textContent = off ? 'Out of stock' : 'Add to Bag'; }
+  }
   function close() {
     if (!overlay) return;
     overlay.classList.remove('open');
@@ -148,6 +175,7 @@
   function add() {
     if (!current) return;
     if (!current.size) { panel.querySelector('.qa-error').style.display = 'block'; return; }
+    if (window.REVAI_STOCK && window.REVAI_STOCK.isOut && window.REVAI_STOCK.isOut(current.p.id, current.size)) return;
     var p = current.p, size = current.size;
     close();
     if (window.REVAI_CART && window.REVAI_CART.add) {

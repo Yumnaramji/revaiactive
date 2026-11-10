@@ -22,7 +22,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261105a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261110b">
 <style>
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
@@ -60,7 +60,7 @@
     body.nav-over-hero #nav .rv-lock img{filter:invert(1)}
     body.nav-over-hero #nav.scrolled .rv-lock img{filter:none}
   </style>
-  <script src="js/mobile-fix.js?v=20261105a" defer></script>
+  <script src="js/mobile-fix.js?v=20261110b" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
@@ -80,7 +80,6 @@
         </div>
       </div>
       <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About Us</a>
-      <a href="stories.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Stories</a>
       <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
     </div>
     <div class="nav-right hidden md:flex items-center gap-3">
@@ -124,7 +123,6 @@
     <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
     <div class="my-3 border-t border-gray-100"></div>
     <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About Us</a>
-    <a href="stories.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Stories</a>
     <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
   </div>
 </div>
@@ -279,7 +277,7 @@
 <h2 class="t-h2 mb-3">Submit Your Enquiry</h2>
 <p class="text-gray-500">No commitment. We'll come back to you with a detailed quote within 24 hours.</p>
 </div>
-<form class="fu d1 space-y-5 bg-white border border-gray-100 rounded-2xl p-8" id="team-form" novalidate="">
+<form class="fu d1 space-y-5 bg-white border border-gray-100 rounded-2xl p-8" id="team-form">
 <div class="grid sm:grid-cols-2 gap-5">
 <div>
 <label for="t-org">Organisation Name <span class="text-red-400">*</span></label>
@@ -297,7 +295,7 @@
 </div>
 <div>
 <label for="t-phone">Phone Number (optional)</label>
-<input class="field" id="t-phone" placeholder="+44 7700 000000" type="tel"/>
+<input class="field" id="t-phone" placeholder="+254 7XX XXX XXX" type="tel" autocomplete="tel"/>
 </div>
 </div>
 <div>
@@ -343,18 +341,16 @@
 <textarea class="field" id="t-notes" placeholder="Product preferences, specific colourways, mix of items, special requirements, delivery address…" rows="4" style="resize:vertical;min-height:100px"></textarea>
 </div>
 <button class="btn-p w-full justify-center" type="submit">
-            Send Enquiry
-            <svg fill="none" height="16" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="16"><line x1="22" x2="11" y1="2" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            Email Enquiry
+            <svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="16"><line x1="22" x2="11" y1="2" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
 </button>
-<p class="text-xs text-gray-400 text-center">We respond to all team enquiries within 24 hours during business days. Typically much faster.</p>
+<p class="text-xs text-gray-500 text-center">This opens your email app with your answers filled in, addressed to support@revaiactive.com. Nothing is sent until you press send there.</p>
+<div class="hidden text-sm text-gray-600 border-t border-gray-100 pt-5" id="team-next" role="status">
+<p class="font-semibold text-black mb-1">Your email should now be open, ready to send.</p>
+<p>If nothing opened, copy your enquiry and email it to <a class="underline underline-offset-2 text-black" href="mailto:support@revaiactive.com">support@revaiactive.com</a>.</p>
+<button class="btn-s mt-4" id="team-copy" type="button">Copy enquiry</button>
+</div>
 </form>
-<div class="hidden bg-white border border-green-200 rounded-2xl px-8 py-10 text-center" id="team-success">
-<div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
-<svg fill="none" height="22" stroke="#16a34a" stroke-width="2" viewbox="0 0 24 24" width="22"><polyline points="20 6 9 17 4 12"></polyline></svg>
-</div>
-<h3 class="font-semibold text-lg mb-2">Enquiry received.</h3>
-<p class="text-sm text-gray-500 max-w-xs mx-auto">Thanks for your team order enquiry. Your account manager will be in touch within 24 hours with a personalised quote.</p>
-</div>
 </div>
 </div>
 </section>
@@ -485,15 +481,32 @@ const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersec
 document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 document.querySelectorAll('.faq-btn').forEach(btn=>{btn.addEventListener('click',()=>{const row=btn.parentElement,body=row.querySelector('.faq-body'),isOpen=row.classList.contains('open');document.querySelectorAll('.faq-row').forEach(r=>{r.classList.remove('open');r.querySelector('.faq-body').classList.remove('open');r.querySelector('.faq-btn').setAttribute('aria-expanded','false')});if(!isOpen){row.classList.add('open');body.classList.add('open');btn.setAttribute('aria-expanded','true')}})});
-document.getElementById('team-form').addEventListener('submit',function(e){
-  e.preventDefault();
-  this.style.display='none';
-  document.getElementById('team-success').classList.remove('hidden');
-});
+// Team enquiry (10 Nov 2026): the form used to hide itself and say "Enquiry received" without sending anything.
+// There is no form backend on the site, so it now writes the answers into an email to support@ and opens the
+// shopper's own email app. The form stays on screen (nothing is lost), with a copy button if no app opens.
+(function(){
+  var form=document.getElementById('team-form');
+  function val(id){var el=document.getElementById(id);if(!el)return '';return el.tagName==='SELECT'?(el.selectedIndex>0||!el.options[0].disabled?el.options[el.selectedIndex].text:''):el.value.trim();}
+  function text(){
+    return ['Organisation: '+val('t-org'),'Contact name: '+val('t-contact'),'Email: '+val('t-email'),'Phone: '+(val('t-phone')||'-'),
+      'Organisation type: '+val('t-type'),'Estimated quantity: '+val('t-qty'),'Required by: '+val('t-date'),
+      'Custom printing: '+val('t-embroidery'),'','Notes:',val('t-notes')||'-'].join('\n');
+  }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var subject='Team order enquiry: '+val('t-org');
+    window.location.href='mailto:support@revaiactive.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(text());
+    document.getElementById('team-next').classList.remove('hidden');
+  });
+  document.getElementById('team-copy').addEventListener('click',function(){
+    var b=this,done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy enquiry';},2000);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text()).then(done,function(){});}
+  });
+})();
 </script>
-<script src="search.js?v=20261030a"></script>
+<script src="search.js?v=20261110a"></script>
 <script src="shopify-config.js?v=20260926b"></script>
-<script src="woo-config.js?v=20261002d"></script>
-<script src="cart-drawer.js?v=20261030a"></script>
+<script src="woo-config.js?v=20261110a"></script>
+<script src="cart-drawer.js?v=20261110a"></script>
 </body>
 </html>

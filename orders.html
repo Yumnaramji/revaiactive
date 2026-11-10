@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261105a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261110b">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -46,7 +46,7 @@
     #nav.scrolled{border-bottom:1px solid #e5e7eb}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
   </style>
-  <script src="js/mobile-fix.js?v=20261105a" defer></script>
+  <script src="js/mobile-fix.js?v=20261110b" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
@@ -67,7 +67,6 @@
         </div>
       </div>
       <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About Us</a>
-      <a href="stories.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Stories</a>
       <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
     </div>
     <div class="nav-right hidden md:flex items-center gap-3">
@@ -122,7 +121,6 @@
     <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
     <div class="my-3 border-t border-gray-100"></div>
     <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About Us</a>
-    <a href="stories.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Stories</a>
     <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
     <a href="profile.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">My Account</a>
   </div>
@@ -212,11 +210,11 @@
 </footer>
 
 <script src="js/main.js?v=20261002a"></script>
-<script src="search.js?v=20261030a"></script>
+<script src="search.js?v=20261110a"></script>
 <script src="shopify-config.js?v=20260926b"></script>
-<script src="woo-config.js?v=20261002d"></script>
+<script src="woo-config.js?v=20261110a"></script>
 <script src="js/woo-customer.js?v=20261002b"></script>
-<script src="cart-drawer.js?v=20261030a"></script>
+<script src="cart-drawer.js?v=20261110a"></script>
 <script>
   // Auth gate
   if(!REVAI_CUSTOMER.requireAuth('login.html')) { /* will redirect */ }

@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261105a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261110b">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -73,15 +73,14 @@
     #home-hero .hv{position:relative;aspect-ratio:2048/1152;background:linear-gradient(#0d0d0d,#0d0d0d);overflow:hidden} /* 29 Oct (Yumna): band takes the photo's own 16:9 shape so the whole picture shows on every screen (was a fixed 560px / 360px on phones) */
     /* Hero copy, bottom left (29 Oct 2026, Yumna: option C after trying A): small "Collection 01" eyebrow, light large title, white outline Shop now button, over a soft corner shade. */
     #home-hero .hero-shade{position:absolute;left:0;bottom:0;width:60%;height:55%;background:linear-gradient(to top right,rgba(0,0,0,.55),rgba(0,0,0,0) 60%);pointer-events:none}
-    #home-hero .hero-copy{position:absolute;left:56px;bottom:56px;z-index:2;color:#fff;text-align:left} /* 1 Nov: back to the LEFT with the woman-on-rocks shot (she sits right); 30 Oct pair shot had it right */
-    #home-hero .hero-eyeb{margin:0 0 14px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#fff;opacity:.85}
-    #home-hero .hero-mw{margin:0 0 14px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#fff;opacity:.85} /* 1 Nov (Yumna): WOMEN · MEN under the eyebrow, in the eyebrow's own style (option 2; was option D, 15px light); links to Shop All by gender */
+    #home-hero .hero-copy{position:absolute;left:clamp(24px,3.9vw,56px);bottom:clamp(24px,3.9vw,56px);z-index:2;color:#fff;text-align:left} /* 10 Nov: inset and type now scale with the photo (see .hero-title) */ /* 1 Nov: back to the LEFT with the woman-on-rocks shot (she sits right); 30 Oct pair shot had it right */
+    #home-hero .hero-eyeb{margin:0 0 clamp(8px,1vw,14px);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#fff;opacity:.85}
+    #home-hero .hero-mw{margin:0 0 clamp(8px,1vw,14px);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#fff;opacity:.85} /* 1 Nov (Yumna): WOMEN · MEN under the eyebrow, in the eyebrow's own style (option 2; was option D, 15px light); links to Shop All by gender */
     #home-hero .hero-mw a{color:#fff;text-decoration:none}
     #home-hero .hero-mw a:hover{text-decoration:underline;text-underline-offset:3px}
-        #home-hero .hero-title{margin:0 0 22px;font-size:clamp(28px,3.75vw,48px);font-weight:300;letter-spacing:-.02em;line-height:1.05;color:#fff}
-    #home-hero .hero-btn{display:inline-block;border:1px solid #fff;color:#fff;font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:13px 30px;text-decoration:none;transition:background .2s,color .2s}
+        #home-hero .hero-title{margin:0 0 clamp(12px,1.5vw,22px);font-size:clamp(22px,3.25vw,48px);font-weight:300;letter-spacing:-.02em;line-height:1.05;color:#fff}
+    #home-hero .hero-btn{display:inline-block;border:1px solid #fff;color:#fff;font-size:clamp(11px,.9vw,13px);font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:clamp(9px,.9vw,13px) clamp(18px,2.1vw,30px);text-decoration:none;transition:background .2s,color .2s}
     #home-hero .hero-btn:hover{background:#fff;color:#0a0a0a}
-    @media(max-width:767px){#home-hero .hero-copy{left:20px;bottom:20px}#home-hero .hero-mw{font-size:9px;margin-bottom:8px}#home-hero .hero-title{margin-bottom:12px}#home-hero .hero-eyeb{font-size:9px;margin-bottom:8px}#home-hero .hero-btn{font-size:11px;padding:9px 18px}#home-hero .hero-shade{width:85%;height:70%}}
     #home-hero .hv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%} /* hero photo (1 Nov: back to the 29 Oct woman-on-rocks shot; the 30 Oct pair shot was tried in between): pinned to the top so her head stays in on wide screens */
     #home-hero .hv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%} /* hero video (28 Oct 2026, Kive.ai campaign clip, 1280x720, 6 s): keeps faces in when the band crops it */
     #home-hero .home-hero-body{padding-bottom:0!important}
@@ -89,6 +88,25 @@
       #home-hero{height:auto;min-height:0}
       #home-hero .home-hero-body{padding-top:64px;padding-bottom:0}
       #home-hero .hv{height:auto}
+    }
+    /* 10 Nov 2026 (UI review, Yumna: "fix"). The headline and button sat on the model's legs and the gym bag on
+       phones and tablets, because the type kept its desktop size while the photo shrank.
+       768px and up: the words stay bottom-left on the photo but now scale with it (sizes above are in vw), so
+       the 1440px composition holds at every width and the title stops short of the bag.
+       Phones: the photo is a square crop (her and the bag, centred) and the words sit UNDER it on white, in
+       black, with a solid Shop now button. Nothing overlaps the photograph. Eyebrow 11px (was 9px).
+       This block must stay BELOW the .hv img / .hv video rules above, or their position:absolute wins. */
+    @media(min-width:768px) and (max-width:1023px){#home-hero .hero-title{font-size:max(21px,2.85vw)}} /* tablets: a touch smaller so "you" clears the bag with air to spare */
+    @media(max-width:767px){
+      #home-hero .hv{aspect-ratio:auto;background:none;overflow:visible}
+      #home-hero .hv img{position:static;display:block;width:100%;height:auto;aspect-ratio:1/1;object-position:50% 50%}
+      #home-hero .hero-shade{display:none}
+      #home-hero .hero-copy{position:static;color:#0a0a0a;padding:22px 24px 4px}
+      #home-hero .hero-eyeb{font-size:11px;margin-bottom:8px;color:#6b7280;opacity:1}
+      #home-hero .hero-mw{font-size:11px;margin-bottom:12px;color:#0a0a0a;opacity:1}
+      #home-hero .hero-mw a{color:#0a0a0a}
+      #home-hero .hero-title{font-size:30px;margin-bottom:18px;color:#0a0a0a}
+      #home-hero .hero-btn{font-size:12px;padding:13px 28px;background:#0a0a0a;border-color:#0a0a0a;color:#fff}
     }
     /* ===== HOMEPAGE v2 — film hero + shopfront (8 Aug 2026) ===== */
 
@@ -191,7 +209,7 @@
       animation:hpPlate .9s .2s ease-out both;z-index:0}
     @keyframes hpPlate{from{opacity:0}to{opacity:1}} /* opacity only (30 Oct 2026): the scale version kept a big composited layer alive and cost scroll frames */
     @media(prefers-reduced-motion:reduce){.hp-plate{animation:none;opacity:1}}
-    @media(max-width:767px){.hp-plate{right:0;top:424px;height:min(82vh,640px)}} /* right:0, never negative: the page has no overflow-x guard, so a negative right would add sideways scroll */
+    @media(max-width:767px){.hp-plate{right:0;top:calc(100vw + 387px);height:min(82vh,640px)}} /* 10 Nov: the phone hero is now a square photo plus the words under it, so the mark starts lower (was 424px) */ /* right:0, never negative: the page has no overflow-x guard, so a negative right would add sideways scroll */
     #home-hero,.hp-photo,.hp-who,#shop,footer{position:relative;z-index:1}
     /* The R hangs slightly off the right edge (27 Oct 2026, Yumna: "more to the right"); clip stops that adding sideways scroll. */
     html{overflow-x:clip}
@@ -248,6 +266,17 @@
     /* Three small photos in one row above the philosophy (27 Oct 2026, Yumna): man, woman, Flared Leggings.
        Same 4:5 shape on every screen size; the row is capped at 46rem so each photo stays small. The studio
        shot is square, so it is trimmed at the sides (object-position keeps her face, the shoe and the bottle). */
+    /* 10 Nov 2026 (Yumna approved option 10B). Phones: the five cards are ONE row that slides sideways, like the
+       worded photos below (44vw each, the third peeks in), instead of three columns with a hole in row two.
+       No quick-add button here on phones (tapping a card opens the product; quick add stays on Shop All).
+       Tablets (768-900px): all five in one row. */
+    @media(min-width:768px) and (max-width:900px){#shop .hp-grid{grid-template-columns:repeat(5,1fr);gap:10px}}
+    @media(max-width:767px){
+      #shop .hp-grid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;margin-left:-24px;margin-right:-24px;padding-left:24px;padding-right:24px}
+      #shop .hp-grid::-webkit-scrollbar{display:none}
+      #shop .hp-card{flex:0 0 44vw;min-width:0;scroll-snap-align:start}
+      #shop .hp-card .qa-btn{display:none}
+    }
     .hp-photo{padding:clamp(12px,1.6vw,24px) 24px clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:72rem;margin:0 auto;box-sizing:content-box}
     .hp-photo img{display:block;width:100%;height:100%;aspect-ratio:4/5;object-fit:cover}
     /* One small word on each photo (28 Oct 2026, Yumna chose option A of the draft): Train, Reset, Breathe, Empower, Lift.
@@ -281,7 +310,7 @@
       .hp-best .nm{margin-top:10px}
     }
   </style>
-  <script src="js/mobile-fix.js?v=20261105a" defer></script>
+  <script src="js/mobile-fix.js?v=20261110b" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
@@ -305,7 +334,6 @@
         </div>
       </div>
       <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About Us</a>
-      <a href="stories.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Stories</a>
       <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
     </div>
     <div class="nav-right hidden md:flex items-center gap-3">
@@ -356,7 +384,6 @@
     <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
     <div class="my-3 border-t border-gray-100"></div>
     <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About Us</a>
-    <a href="stories.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Stories</a>
     <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
   </div>
 </div>
@@ -515,11 +542,12 @@
   </div>
 </footer>
 
-<script src="search.js?v=20261030a"></script>
+<script src="search.js?v=20261110a"></script>
 <script src="shopify-config.js?v=20260926b"></script>
-<script src="woo-config.js?v=20261002d"></script>
-<script src="cart-drawer.js?v=20261030a"></script>
-<script src="js/quick-add.js?v=20261002b" defer></script>
+<script src="woo-config.js?v=20261110a"></script>
+<script src="js/stock.js?v=20261110a"></script>
+<script src="cart-drawer.js?v=20261110a"></script>
+<script src="js/quick-add.js?v=20261110b" defer></script>
 <script>
 // Simple add-to-bag with size selection and toast
 let cartItems=[]; try{ cartItems=JSON.parse(localStorage.getItem('revai_cart_v1')||'[]'); if(!Array.isArray(cartItems)) cartItems=[]; }catch(e){ cartItems=[]; } // a corrupt value must not take the page down

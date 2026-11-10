@@ -138,7 +138,7 @@
     drawer.innerHTML = `
       <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid #f3f4f6">
         <span style="font-size:16px;font-weight:700;color:#000;letter-spacing:-.01em">Your Bag</span>
-        <button id="revai-cart-close" style="background:none;border:none;cursor:pointer;padding:6px;border-radius:8px;color:#6b7280;display:flex;align-items:center" aria-label="Close cart">
+        <button id="revai-cart-close" style="background:none;border:none;cursor:pointer;padding:13px;margin:-7px;border-radius:8px;color:#6b7280;display:flex;align-items:center" aria-label="Close cart">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>
@@ -191,14 +191,14 @@
           <p style="font-size:12px;color:#6b7280;margin:0 0 8px">Size: ${String(item.size).replace(/^2XL/,'XXL')}</p>
           <div style="display:flex;align-items:center;gap:10px">
             <div style="display:flex;align-items:center;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden">
-              <button onclick="window.REVAI_CART.setQty(${idx},-1)" style="width:28px;height:28px;background:none;border:none;cursor:pointer;font-size:15px;color:#374151;display:flex;align-items:center;justify-content:center">−</button>
+              <button onclick="window.REVAI_CART.setQty(${idx},-1)" style="width:40px;height:40px;background:none;border:none;cursor:pointer;font-size:15px;color:#374151;display:flex;align-items:center;justify-content:center">−</button>
               <span style="width:28px;text-align:center;font-size:13px;font-weight:500">${item.qty || 1}</span>
-              <button onclick="window.REVAI_CART.setQty(${idx},1)" style="width:28px;height:28px;background:none;border:none;cursor:pointer;font-size:15px;color:#374151;display:flex;align-items:center;justify-content:center">+</button>
+              <button onclick="window.REVAI_CART.setQty(${idx},1)" style="width:40px;height:40px;background:none;border:none;cursor:pointer;font-size:15px;color:#374151;display:flex;align-items:center;justify-content:center">+</button>
             </div>
             <span style="font-size:13px;font-weight:400;color:#000">KES ${(item.price * (item.qty || 1)).toLocaleString()}</span>
           </div>
         </div>
-        <button onclick="window.REVAI_CART.remove(${idx})" style="background:none;border:none;cursor:pointer;color:#9ca3af;padding:2px;display:flex;align-items:center;flex-shrink:0" aria-label="Remove item">
+        <button onclick="window.REVAI_CART.remove(${idx})" style="background:none;border:none;cursor:pointer;color:#9ca3af;padding:13px;margin:-11px -11px -11px 0;display:flex;align-items:center;flex-shrink:0" aria-label="Remove item">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>`).join('');

@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<base href="/"><!-- 404.html is served at any missing address, at any depth: this keeps its links, styles and images working -->
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
   <meta charset="UTF-8">
+  <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="only light">
-  <title>Real People. Real Gear.</title>
+  <title>Page not found</title>
   <!-- Social share tags (Open Graph): what WhatsApp, Instagram and iMessage show when this link is pasted. Images live in images/share/, built by build-og.js. -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="REVAÍ">
-  <meta property="og:title" content="Real People. Real Gear. — REVAÍ">
-  <meta property="og:description" content="Find Your Revival.">
-  <meta property="og:url" content="https://revaiactive.com/stories.html">
-  <meta property="og:image" content="https://revaiactive.com/images/share/default.jpg">
-  <meta property="og:image:width" content="250">
-  <meta property="og:image:height" content="250">
-  <meta property="og:image:alt" content="REVAÍ">
-  <meta name="twitter:card" content="summary">
-  <meta name="description" content="Stories from the people who actually wear REVAÍ. Nurses, cyclists, dog walkers, beginners, and everyone in between.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261105a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261110b">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -35,35 +26,30 @@
     :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
     *{box-sizing:border-box}
     body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-    .t-hero{font-size:clamp(38px,6vw,68px);font-weight:700;letter-spacing:-0.025em;line-height:1.07}
     .t-h2{font-size:clamp(28px,4vw,46px);font-weight:600;letter-spacing:-0.015em;line-height:1.12}
-    .t-h3{font-size:clamp(17px,2vw,21px);font-weight:600;line-height:1.25}
     .fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
     .fu.in{opacity:1;transform:translateY(0)}
-    .d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}.d4{transition-delay:320ms}
+    .d1{transition-delay:80ms}.d2{transition-delay:160ms}
     #nav{background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .25s}
     #nav.scrolled{border-bottom:1px solid var(--border)}
     .btn-p{background:#000;color:#fff;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;text-decoration:none}
     .btn-p:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.22);background:#1a1a1a}
-    .btn-s{background:transparent;border:1px solid #000;color:#000;transition:background .2s ease,transform .2s ease;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;text-decoration:none}
-    .btn-s:hover{background:rgba(0,0,0,.04);transform:translateY(-1px)}
-    .card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:32px;transition:transform .25s ease,box-shadow .25s ease}
-    .card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.07)}
     #mmenu{transform:translateX(-100%);transition:transform .35s cubic-bezier(.16,1,.3,1)}
     #mmenu.open{transform:translateX(0)}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
     :focus-visible{outline:2px solid #000;outline-offset:3px}
-    .stars{color:#000;letter-spacing:1px;font-size:13px}
-    .avatar-circle{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#fff;flex-shrink:0}
-    .story-card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:28px;transition:transform .25s ease,box-shadow .25s ease;height:100%}
-    .story-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.07)}
+    .prose h2{font-size:18px;font-weight:600;margin-top:40px;margin-bottom:12px;color:#0a0a0a}
+    .prose h3{font-size:15px;font-weight:600;margin-top:28px;margin-bottom:8px;color:#0a0a0a}
+    .prose p{font-size:15px;line-height:1.75;color:#374151;margin-bottom:14px}
+    .prose ul{margin-bottom:14px;padding-left:20px}
+    .prose ul li{font-size:15px;line-height:1.75;color:#374151;margin-bottom:4px;list-style-type:disc}
+    .prose a{color:#000;text-decoration:underline}
+    .prose a:hover{color:#555}
   </style>
-  <script src="js/mobile-fix.js?v=20261105a" defer></script>
+  <script src="js/mobile-fix.js?v=20261110b" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
-
-<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded-lg text-sm">Skip to content</a>
 
 <nav id="nav" class="fixed top-0 inset-x-0 z-50 h-16" role="navigation" aria-label="Main">
   <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
@@ -80,7 +66,7 @@
         </div>
       </div>
       <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About Us</a>
-      <a href="stories.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Stories</a><a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
+      <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
     </div>
     <div class="nav-right hidden md:flex items-center gap-3">
       <button onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
@@ -95,7 +81,6 @@
     </button></div>
   </div>
 </nav>
-
 <div id="mmenu" class="fixed top-0 left-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col" style="transform:translateX(-100%);transition:transform .35s cubic-bezier(.16,1,.3,1)">
   <div class="flex justify-between items-center mb-10">
     <span class="rv-lock"><img src="images/revai-icon.png" alt="" aria-hidden="true" width="24" height="29"><span>REVAÍ</span></span>
@@ -127,200 +112,24 @@
     <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
     <div class="my-3 border-t border-gray-100"></div>
     <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About Us</a>
-    <a href="stories.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Stories</a>
     <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
   </div>
 </div>
 <div id="moverlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
 
 <main id="main">
-
-  <!-- Hero -->
-  <section class="pt-28 pb-14 px-6" style="background:#f8f9fa">
+  <section class="px-6" style="padding-top:calc(64px + clamp(56px,10vw,120px));padding-bottom:clamp(72px,12vw,140px)">
     <div class="max-w-6xl mx-auto">
-      <div class="max-w-3xl">
-        <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">Stories</p>
-        <h1 class="fu d1 t-hero mb-4">Real people.<br>Real gear.</h1>
-        <p class="fu d2 text-lg text-gray-500 leading-relaxed max-w-2xl">We collect feedback from everyone — professional athletes, personal trainers, gym regulars, weekend warriors, everyday active people of all shapes, sizes, and fitness levels. Real experiences from real people who actually wear REVAÍ.</p>
+      <p style="font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#6b7280;margin:0">Page not found</p>
+      <h1 style="font-size:clamp(28px,4vw,44px);font-weight:300;letter-spacing:-.02em;line-height:1.1;margin:14px 0 14px">This page has moved.</h1>
+      <p style="font-size:15px;color:#4b5563;line-height:1.6;max-width:30em;margin:0">The link may be old, or the address mistyped. Everything in Collection 01 is one tap away.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px">
+        <a href="collections.html" style="display:inline-flex;align-items:center;background:#0a0a0a;color:#fff;font-size:14px;font-weight:500;padding:13px 26px;text-decoration:none">Shop all</a>
+        <a href="index.html" style="display:inline-flex;align-items:center;border:1px solid #0a0a0a;color:#0a0a0a;font-size:14px;font-weight:500;padding:12px 26px;text-decoration:none">Back to home</a>
       </div>
+      <p style="font-size:14px;margin-top:26px;color:#4b5563"><a href="collections.html?gender=women" style="color:#0a0a0a;text-decoration:underline;text-underline-offset:3px">Women</a> &nbsp;·&nbsp; <a href="collections.html?gender=men" style="color:#0a0a0a;text-decoration:underline;text-underline-offset:3px">Men</a> &nbsp;·&nbsp; <a href="collections.html?gender=accessories" style="color:#0a0a0a;text-decoration:underline;text-underline-offset:3px">Accessories</a></p>
     </div>
   </section>
-
-  <!-- Featured Story -->
-  <section class="py-16 md:py-20 px-6" style="background:#f8f9fa">
-    <div class="max-w-6xl mx-auto">
-      <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-10">Featured story</p>
-      <div class="fu d1 rounded-3xl overflow-hidden border border-gray-100" style="background:#fff">
-        <div class="grid md:grid-cols-2">
-          <!-- Photo -->
-          <div style="min-height:480px;overflow:hidden;position:relative;">
-            <img src="images/story-portrait-laila.jpg" alt="Runner at first light, Nairobi — REVAÍ editorial" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;position:absolute;inset:0;">
-          </div>
-          <!-- Story text -->
-          <div class="p-10 md:p-14 flex flex-col justify-center">
-            <div class="stars mb-4" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote class="text-2xl font-semibold leading-snug tracking-tight mb-8" style="letter-spacing:-0.01em">The return doesn't announce itself. One evening belongs to you again, and you decide.</blockquote>
-            <div class="space-y-4 text-gray-600 text-sm leading-relaxed">
-              <p>For years the excuses were true. The shifts were long. The time was never yours. Exercise was something other people did — people with different schedules, different energy, a different kind of body. Then one evening opens up. Then another.</p>
-              <p>The first sessions are honest ones. Old cotton leggings. A T-shirt that soaks through by kilometre one. Seams that argue with every stride. Most returns end here — not because the will fails, but because the kit does. That is the gap we built REVAÍ to fill. Fabric that moves sweat off the skin. Flatlock seams that lie flat at kilometre one and kilometre five. A fit that holds you, then disappears.</p>
-              <p>Wearing something that moves with you instead of against you changes what running feels like. The first 5K arrives. The time doesn't matter. Speed was never the point. Three mornings a week, the road is yours — and you look forward to it. That is a revival. It doesn't need an audience. It needs kit that shows up when you do.</p>
-            </div>
-            <div class="flex items-center gap-4 mt-8 pt-8 border-t border-gray-100">
-              <div class="avatar-circle" style="background:#333">01</div>
-              <div>
-                <p class="font-semibold text-sm">The Return</p>
-                <p class="text-xs text-gray-400 mt-0.5">REVAÍ Editorial · Nairobi, Kenya · Running</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Training Image -->
-  <section class="px-6" style="background:#f8f9fa;padding-top:0;padding-bottom:0;">
-    <div class="max-w-6xl mx-auto">
-      <div style="border-radius:24px;overflow:hidden;aspect-ratio:21/9;">
-        <img src="images/story-training.jpg" alt="People training in REVAÍ gear" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-      </div>
-    </div>
-  </section>
-
-  <!-- Customer Story Grid -->
-  <section class="py-16 md:py-20 px-6" style="background:#fff">
-    <div class="max-w-6xl mx-auto">
-      <div class="flex items-end justify-between mb-14">
-        <div>
-          <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">From the community</p>
-          <h2 class="fu d1 t-h2">More stories<br>from people who move.</h2>
-        </div>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- Card 1 -->
-        <div class="fu story-card">
-          <div class="stars mb-3" aria-label="5 stars">★★★★★</div>
-          <p class="text-gray-700 text-sm leading-relaxed mb-6">The bar doesn't care how long you've been training. Neither should your kit. A waistband that stays put through every set of deadlifts leaves you one thing to think about. The lift.</p>
-          <div class="flex items-center gap-3 pt-5 border-t border-gray-100">
-            <div class="avatar-circle" style="background:#222;font-size:13px">01</div>
-            <div>
-              <p class="font-semibold text-sm">Under the Bar</p>
-              <p class="text-xs text-gray-400 mt-0.5">Strength Training · Nairobi</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="fu d1 story-card">
-          <div class="stars mb-3" aria-label="5 stars">★★★★★</div>
-          <p class="text-gray-700 text-sm leading-relaxed mb-6">Three minutes in pigeon pose is a long time to be aware of a waistband. Stillness is the hardest work there is. The best kit vanishes so you can do it.</p>
-          <div class="flex items-center gap-3 pt-5 border-t border-gray-100">
-            <div class="avatar-circle" style="background:#444;font-size:13px">02</div>
-            <div>
-              <p class="font-semibold text-sm">Holding Still</p>
-              <p class="text-xs text-gray-400 mt-0.5">Yoga · Nairobi</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="fu d2 story-card">
-          <div class="stars mb-3" aria-label="4 stars">★★★★★</div>
-          <p class="text-gray-700 text-sm leading-relaxed mb-6">Nairobi mornings start cool and finish warm. Rain some days, wind on others. The walk happens anyway. A jacket has to hold both ends of that hour without asking you to choose.</p>
-          <div class="flex items-center gap-3 pt-5 border-t border-gray-100">
-            <div class="avatar-circle" style="background:#555;font-size:13px">03</div>
-            <div>
-              <p class="font-semibold text-sm">First Light</p>
-              <p class="text-xs text-gray-400 mt-0.5">Morning Walks · Nairobi</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="fu story-card">
-          <div class="stars mb-3" aria-label="5 stars">★★★★★</div>
-          <p class="text-gray-700 text-sm leading-relaxed mb-6">Six kilometres to work. Six back. The distance never changes — how it feels can. When the kit carries its share, a commute stops being a chore and starts being the best hour of the day.</p>
-          <div class="flex items-center gap-3 pt-5 border-t border-gray-100">
-            <div class="avatar-circle" style="background:#1a1a1a;font-size:13px">04</div>
-            <div>
-              <p class="font-semibold text-sm">The Commute</p>
-              <p class="text-xs text-gray-400 mt-0.5">Running · Nairobi</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="fu d1 story-card">
-          <div class="stars mb-3" aria-label="5 stars">★★★★★</div>
-          <p class="text-gray-700 text-sm leading-relaxed mb-6">First session or five-hundredth. The kit doesn't ask. There is no pace you must earn before serious gear belongs to you. You showed up. That was the qualification.</p>
-          <div class="flex items-center gap-3 pt-5 border-t border-gray-100">
-            <div class="avatar-circle" style="background:#333;font-size:13px">05</div>
-            <div>
-              <p class="font-semibold text-sm">The First 5K</p>
-              <p class="text-xs text-gray-400 mt-0.5">Running · Nairobi</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 6 -->
-        <div class="fu d2 story-card">
-          <div class="stars mb-3" aria-label="5 stars">★★★★★</div>
-          <p class="text-gray-700 text-sm leading-relaxed mb-6">Forty minutes of intervals in Nairobi heat asks everything of a fabric. Sweat leaves. You stay. Sweat-wicking fabric handles the rest, so the session can follow you into the day.</p>
-          <div class="flex items-center gap-3 pt-5 border-t border-gray-100">
-            <div class="avatar-circle" style="background:#222;font-size:13px">06</div>
-            <div>
-              <p class="font-semibold text-sm">The Interval</p>
-              <p class="text-xs text-gray-400 mt-0.5">HIIT · Nairobi</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 7 -->
-        <div class="fu story-card">
-          <div class="stars mb-3" aria-label="5 stars">★★★★★</div>
-          <p class="text-gray-700 text-sm leading-relaxed mb-6">Some kit gets worn twice a week. Some gets worn every working day. Wash after wash, the fabric has one job — hold its shape, hold its colour, say nothing. That is the standard we cut to.</p>
-          <div class="flex items-center gap-3 pt-5 border-t border-gray-100">
-            <div class="avatar-circle" style="background:#444;font-size:13px">07</div>
-            <div>
-              <p class="font-semibold text-sm">Every Day</p>
-              <p class="text-xs text-gray-400 mt-0.5">Training · Nairobi</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 8 -->
-        <div class="fu d1 story-card">
-          <div class="stars mb-3" aria-label="5 stars">★★★★★</div>
-          <p class="text-gray-700 text-sm leading-relaxed mb-6">Three mornings a week in the pool. Then the walk home along the coast. The water doesn't ask your age, and neither does the kit waiting on the bench. Movement has no retirement date.</p>
-          <div class="flex items-center gap-3 pt-5 border-t border-gray-100">
-            <div class="avatar-circle" style="background:#555;font-size:13px">08</div>
-            <div>
-              <p class="font-semibold text-sm">Three Mornings</p>
-              <p class="text-xs text-gray-400 mt-0.5">Swimming · Mombasa</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 9 -->
-        <div class="fu d2 story-card">
-          <div class="stars mb-3" aria-label="5 stars">★★★★★</div>
-          <p class="text-gray-700 text-sm leading-relaxed mb-6">Four sessions a week will find every weak seam in a garment. So we build as if there are none to find. Day one hundred should look and move like day one. That's the brief.</p>
-          <div class="flex items-center gap-3 pt-5 border-t border-gray-100">
-            <div class="avatar-circle" style="background:#111;font-size:13px">09</div>
-            <div>
-              <p class="font-semibold text-sm">Day One Hundred</p>
-              <p class="text-xs text-gray-400 mt-0.5">Functional Training · Nairobi</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-
 </main>
 
 <footer style="background:#0a0a0a" class="px-6 pt-10 pb-5 border-t border-gray-800">
@@ -378,12 +187,11 @@ if(hbg)hbg.addEventListener('click',openM);if(mclose)mclose.addEventListener('cl
 document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM));
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
 </script>
-<script src="search.js?v=20261030a"></script>
+<script src="search.js?v=20261110a"></script>
 <script src="shopify-config.js?v=20260926b"></script>
-<script src="woo-config.js?v=20261002d"></script>
-<script src="cart-drawer.js?v=20261030a"></script>
+<script src="woo-config.js?v=20261110a"></script>
+<script src="cart-drawer.js?v=20261110a"></script>
 </body>
 </html>

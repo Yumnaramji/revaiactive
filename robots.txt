@@ -1,0 +1,13 @@
+# REVAI main site (10 Nov 2026). Everything may be crawled; the sitemap lists the pages meant to be found.
+User-agent: *
+Allow: /
+Disallow: /cart.html
+Disallow: /login.html
+Disallow: /signup.html
+Disallow: /forgot-password.html
+Disallow: /profile.html
+Disallow: /orders.html
+Disallow: /addresses.html
+Disallow: /wishlist.html
+
+Sitemap: https://revaiactive.com/sitemap.xml

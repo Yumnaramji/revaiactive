@@ -564,3 +564,35 @@ body:not(.nav-over-hero) #nav { backdrop-filter: none !important; -webkit-backdr
   .mgrp:hover .mgrp-head{color:#000;font-weight:500}
   .mgrp:hover .mgrp-chev{transform:rotate(225deg);top:1px}
 }
+
+/* 14. Slide-in menu hierarchy (10 Nov 2026, UI review).
+   The shop links are what the menu is for, so they are the larger, darker set
+   (16px medium, black). About Us and Technology step down to 14px grey. Before
+   this it was the other way round (shop 14px, About 16px). */
+#mmenu a.mlink.text-sm,
+#mmenu a.mgrp-head { font-size: 16px !important; font-weight: 500 !important; color: #0a0a0a !important; }
+#mmenu a.mlink.text-base { font-size: 14px !important; font-weight: 400 !important; color: #4b5563 !important; }
+#mmenu a.mlink.text-base:hover { color: #0a0a0a !important; }
+#mmenu .mgrp-sub a { font-size: 14px; }
+
+/* 15. Tap targets on phones (10 Nov 2026, Yumna approved option 12B).
+   Everything a finger presses responds over about 44px. Most of this is invisible
+   padding; the visible changes are the quick-add button (30 -> 36px, in
+   js/quick-add.js), the bag's quantity buttons (28/32 -> 40px, cart-drawer.js and
+   cart.html) and a taller footer list. */
+@media (max-width: 767px) {
+  #nav .nav-mob { gap: 0 !important; }
+  #nav .nav-mob > a:not([data-wish-nav]),
+  #nav .nav-mob > button { min-width: 44px; min-height: 44px; display: inline-flex !important; align-items: center; justify-content: center; }
+  #mmenu .mgrp-head { min-height: 44px; }
+  footer li a, footer ul a { display: inline-flex !important; align-items: center; min-height: 44px; padding: 0 !important; }
+  footer ul.space-y-3 > * + * { margin-top: 0 !important; }
+  footer .flex.gap-4 { gap: 0 !important; margin-left: -13px; }
+  footer .flex.gap-4 > a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  footer .flex.gap-6 > a { min-height: 44px; display: inline-flex; align-items: center; }
+  .pdp-crumb { min-height: 44px; }
+  .pdp-crumb a { display: inline-flex; align-items: center; min-height: 44px; }
+  .pdp-wrap.pt-7 { padding-top: 14px !important; padding-bottom: 6px !important; }
+  a[href="fit-guide.html"].text-xs, a[href="forgot-password.html"] { display: inline-block; padding: 14px 0; margin: -14px 0; }
+  #gender-filter-pills .filter-pill, button.pill { min-height: 44px; }
+}

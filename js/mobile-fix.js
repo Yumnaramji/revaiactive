@@ -175,3 +175,46 @@
     head.setAttribute('aria-expanded', 'true');
   });
 })();
+
+
+// Slide-in menu, keyboard and screen-reader behaviour (10 Nov 2026, UI review). One place for all pages,
+// whichever script opens the menu (each page's inline openM/closeM, or js/main.js):
+//  - Esc closes it (the bag and search already did)
+//  - opening moves focus to the close button; closing hands it back to the menu button
+//  - Tab stays inside the menu while it is open
+//  - while it is closed its links cannot be reached by Tab or a screen reader (they sit off-screen)
+(function () {
+  var m = document.getElementById('mmenu'), h = document.getElementById('hbg'), c = document.getElementById('mclose');
+  if (!m || !h || !c) return;
+  m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true'); m.setAttribute('aria-label', 'Menu');
+  // "Open" is read three ways because the pages differ: some add .open, some set aria-expanded on the button,
+  // and four (Shop All, Shipping & Returns, Sustainability, Gift Cards) only slide it in with an inline transform.
+  function isOpen() {
+    return m.classList.contains('open') || h.getAttribute('aria-expanded') === 'true' ||
+           /translateX\(0(px)?\)/.test(m.style.transform || '');
+  }
+  var wasOpen = isOpen();
+  function sync() {
+    var open = isOpen(), hadFocus = m.contains(document.activeElement);
+    if ('inert' in m) m.inert = !open;
+    if (open && !wasOpen) setTimeout(function () { if (isOpen()) c.focus(); }, 80);
+    if (!open && wasOpen && (hadFocus || document.activeElement === document.body)) h.focus();
+    wasOpen = open;
+  }
+  if (window.MutationObserver) {
+    new MutationObserver(sync).observe(m, { attributes: true, attributeFilter: ['class', 'style'] });
+    new MutationObserver(sync).observe(h, { attributes: true, attributeFilter: ['aria-expanded'] });
+  }
+  sync();
+  document.addEventListener('keydown', function (e) {
+    if (!isOpen()) return;
+    if (e.key === 'Escape') { c.click(); return; }
+    if (e.key !== 'Tab') return;
+    var f = Array.prototype.filter.call(m.querySelectorAll('a[href], button'), function (el) { return el.offsetParent !== null; });
+    if (!f.length) return;
+    var first = f[0], last = f[f.length - 1];
+    if (!m.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+    else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+})();

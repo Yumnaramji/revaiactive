@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261105a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261110b">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -50,7 +50,7 @@
     .cart-thumb{width:110px;height:138px;flex-shrink:0;border-radius:12px;overflow:hidden;background:#f3f4f6;display:block}
     .cart-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
     .qty-wrap{display:inline-flex;align-items:center;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden}
-    .qty-btn{width:32px;height:32px;background:none;border:none;cursor:pointer;font-size:15px;color:#374151;display:flex;align-items:center;justify-content:center}
+    .qty-btn{width:40px;height:40px;background:none;border:none;cursor:pointer;font-size:15px;color:#374151;display:flex;align-items:center;justify-content:center}
     .qty-btn:hover{background:#f9fafb}
     .qty-num{width:32px;text-align:center;font-size:13px;font-weight:500}
 
@@ -66,7 +66,7 @@
       .summary-sticky{position:sticky;top:88px}
     }
   </style>
-  <script src="js/mobile-fix.js?v=20261105a" defer></script>
+  <script src="js/mobile-fix.js?v=20261110b" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
@@ -87,7 +87,6 @@
         </div>
       </div>
       <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About Us</a>
-      <a href="stories.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Stories</a>
       <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
     </div>
     <div class="nav-right hidden md:flex items-center gap-3">
@@ -142,7 +141,6 @@
     <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
     <div class="my-3 border-t border-gray-100"></div>
     <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About Us</a>
-    <a href="stories.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Stories</a>
     <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
     <a href="profile.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">My Account</a>
   </div>
@@ -193,15 +191,15 @@
             <span id="cart-subtotal" class="text-sm font-normal text-black">KES 0</span>
           </div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-            <span class="text-sm text-gray-600">Shipping</span>
-            <span class="text-sm font-medium text-gray-800">Free</span>
+            <span class="text-sm text-gray-600">Delivery</span>
+            <span id="cart-shipping" class="text-sm font-medium text-gray-800">Calculated at checkout</span>
           </div>
           <div style="border-top:1px solid #e5e7eb;padding-top:16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center">
-            <span class="text-sm font-semibold text-black">Total</span>
+            <span id="cart-total-label" class="text-sm font-semibold text-black">Total</span>
             <span id="cart-total" class="text-lg font-normal text-black">KES 0</span>
           </div>
           <button id="cart-page-checkout" class="btn-p" style="width:100%;justify-content:center;padding:14px;font-size:14px">Checkout</button>
-          <p class="text-[11px] text-gray-400 mt-3 text-center">Taxes calculated at checkout. Secure payment via M-Pesa &amp; card.</p>
+          <p class="text-[11px] text-gray-400 mt-3 text-center">Free delivery on orders over KES 20,000. Taxes included.</p>
         </div>
       </aside>
     </div>
@@ -268,10 +266,10 @@
 </footer>
 
 <script src="js/main.js?v=20261002a"></script>
-<script src="search.js?v=20261030a"></script>
+<script src="search.js?v=20261110a"></script>
 <script src="shopify-config.js?v=20260926b"></script>
-<script src="woo-config.js?v=20261002d"></script>
-<script src="cart-drawer.js?v=20261030a"></script>
+<script src="woo-config.js?v=20261110a"></script>
+<script src="cart-drawer.js?v=20261110a"></script>
 <script>
 const STORAGE_KEY = 'revai_cart_v1';
 
@@ -335,6 +333,11 @@ function renderPage(){
   const subtotal = cart.reduce((s, i) => s + i.price * (i.qty || 1), 0);
   document.getElementById('cart-subtotal').textContent = 'KES ' + subtotal.toLocaleString();
   document.getElementById('cart-total').textContent    = 'KES ' + subtotal.toLocaleString();
+  // Delivery (10 Nov 2026): free from KES 20,000, as on Shipping & Returns and in the bag drawer. Below that the
+  // charge depends on the address and is added at checkout, so the figure here is an estimate, not the final total.
+  const freeDelivery = subtotal >= 20000;
+  document.getElementById('cart-shipping').textContent = freeDelivery ? 'Free' : 'Calculated at checkout';
+  document.getElementById('cart-total-label').textContent = freeDelivery ? 'Total' : 'Total before delivery';
 
   renderUpsells(cart);
 }

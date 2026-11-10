@@ -5,15 +5,15 @@
   'use strict';
 
   const PRODUCTS = [
-    {id:'running-leggings-w',  name:"Women's Performance Leggings",    cat:'Women',          price:'KES 5,500'},
-    {id:'flared-leggings-w',   name:"Women's Flared Leggings",      cat:'Women',          price:'KES 5,600'},
-    {id:'high-impact-bra',     name:"High-Impact Sports Bra",       cat:'Women',            price:'KES 4,950'},
-    {id:'low-impact-bra',      name:"Low-Impact Sports Bra",        cat:'Women',          price:'KES 4,450'},
-    {id:'jacket-w',            name:"Women's Performance Jacket",   cat:'Women',          price:'KES 7,200'},
-    {id:'tshirt-w',            name:"Women's Training T-Shirt",     cat:'Women',          price:'KES 4,200'},
-    {id:'tshirt-m',            name:"Men's Training T-Shirt",       cat:'Men',            price:'KES 4,200'},
-    {id:'quarter-zip-m',       name:"Men's Quarter-Zip",            cat:'Men',            price:'KES 5,600'},
-    {id:'shorts-m',            name:"Men's Training Shorts",        cat:'Men',            price:'KES 6,050'},
+    {id:'running-leggings-w',  name:"Performance Leggings",    cat:'Women',          price:'KES 5,500'},
+    {id:'flared-leggings-w',   name:"Flared Leggings",      cat:'Women',          price:'KES 5,600'},
+    {id:'high-impact-bra',     name:"High Impact Sports Bra",       cat:'Women',            price:'KES 4,950'},
+    {id:'low-impact-bra',      name:"Low Impact Sports Bra",        cat:'Women',          price:'KES 4,450'},
+    {id:'jacket-w',            name:"Women's Jacket",   cat:'Women',          price:'KES 7,200'},
+    {id:'tshirt-w',            name:"Women's T-Shirt",     cat:'Women',          price:'KES 4,200'},
+    {id:'tshirt-m',            name:"Men's T-Shirt",       cat:'Men',            price:'KES 4,200'},
+    {id:'quarter-zip-m',       name:"Men's Quarter Zip",            cat:'Men',            price:'KES 5,600'},
+    {id:'shorts-m',            name:"Men's Shorts",        cat:'Men',            price:'KES 6,050'},
     {id:'training-pants-m',  name:"Training Pants",       cat:'Men',            price:'KES 6,600'},
     {id:'ankle-socks',         name:"Ankle Socks",                  cat:'Accessories',      price:'KES 550'},
     {id:'lifestyle-cap',       name:"Lifestyle Cap",                cat:'Accessories',      price:'KES 3,000'},
@@ -60,6 +60,10 @@
           transition:opacity .15s;cursor:pointer;
         }
         .rs-row:last-child { border-bottom:none; }
+        /* 10 Nov 2026: hide the browser's own blue clear-X (there is already a Close button), and say "Close" where there is no Esc key */
+        #revai-search-input::-webkit-search-cancel-button { -webkit-appearance:none; appearance:none; display:none; }
+        .rs-esc-t { display:none; }
+        @media (hover:none), (pointer:coarse) { .rs-esc-k { display:none; } .rs-esc-t { display:inline; } }
         .rs-row:hover { opacity:.7; }
         .rs-row:hover .rs-arrow { transform:translateX(3px); }
         .rs-arrow { transition:transform .2s; flex-shrink:0; }
@@ -85,8 +89,8 @@
             style="display:flex;align-items:center;gap:6px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;padding:5px 10px;cursor:pointer;color:#6b7280;font-size:12px;font-family:inherit;white-space:nowrap;flex-shrink:0"
             onmouseenter="this.style.borderColor='#000';this.style.color='#000'"
             onmouseleave="this.style.borderColor='#e5e7eb';this.style.color='#6b7280'">
-            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-            Esc
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            <span class="rs-esc-k">Esc</span><span class="rs-esc-t">Close</span>
           </button>
         </div>
       </div>
@@ -96,14 +100,7 @@
         <div id="revai-search-results"></div>
         <div id="revai-search-default">
           <p style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:14px">Popular searches</p>
-          <div style="display:flex;flex-wrap:wrap;gap:8px">
-            ${['Leggings','Sports Bra','T-Shirt','Shorts','Accessories'].map(t=>
-              `<button style="border:1px solid #e5e7eb;border-radius:999px;padding:7px 18px;font-size:13px;font-weight:500;background:#fff;cursor:pointer;font-family:inherit;color:#374151;transition:all .15s"
-                onmouseenter="this.style.borderColor='#000';this.style.color='#000'"
-                onmouseleave="this.style.borderColor='#e5e7eb';this.style.color='#374151'"
-                onclick="document.getElementById('revai-search-input').value='${t}';window.REVAI_SEARCH._run()">${t}</button>`
-            ).join('')}
-          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">${chips()}</div>
         </div>
       </div>
     `;
@@ -116,6 +113,16 @@
       if(e.key==='Escape') close();
       if((e.key==='k'||e.key==='K') && (e.metaKey||e.ctrlKey)){ e.preventDefault(); open(); }
     });
+  }
+
+  /* The "Popular searches" buttons: shown before typing, and again when a search finds nothing (10 Nov 2026). */
+  function chips(){
+    return ['Leggings','Sports Bra','T-Shirt','Shorts','Accessories'].map(t=>
+      `<button type="button" style="border:1px solid #e5e7eb;border-radius:999px;padding:7px 18px;font-size:13px;font-weight:500;background:#fff;cursor:pointer;font-family:inherit;color:#374151;transition:all .15s"
+        onmouseenter="this.style.borderColor='#000';this.style.color='#000'"
+        onmouseleave="this.style.borderColor='#e5e7eb';this.style.color='#374151'"
+        onclick="document.getElementById('revai-search-input').value='${t}';window.REVAI_SEARCH._run()">${t}</button>`
+    ).join('');
   }
 
   /* ── Render results ─────────────────────────────────────────── */
@@ -144,9 +151,11 @@
 
     if(total === 0){
       results.innerHTML = `
-        <div style="padding:80px 0;text-align:center">
+        <div style="padding:56px 0;text-align:center">
           <p style="font-size:16px;font-weight:600;color:#0a0a0a;margin-bottom:6px">No results for "${escHtml(q)}"</p>
-          <p style="font-size:14px;color:#9ca3af">Try searching for something else</p>
+          <p style="font-size:14px;color:#6b7280;margin-bottom:22px">Check the spelling, or try one of these.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">${chips()}</div>
+          <p style="margin-top:26px"><a href="collections.html" style="font-size:14px;color:#0a0a0a;text-decoration:underline;text-underline-offset:3px">Shop all products</a></p>
         </div>`;
       return;
     }

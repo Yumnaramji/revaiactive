@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261105a">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261110b">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -99,7 +99,7 @@
     :focus-visible{outline:2px solid #000;outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
   </style>
-  <script src="js/mobile-fix.js?v=20261105a" defer></script>
+  <script src="js/mobile-fix.js?v=20261110b" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
@@ -122,7 +122,6 @@
         </div>
       </div>
       <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About Us</a>
-      <a href="stories.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Stories</a>
       <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
     </div>
     <div class="nav-right hidden md:flex items-center gap-3">
@@ -166,7 +165,6 @@
     <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
     <div class="my-3 border-t border-gray-100"></div>
     <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About Us</a>
-    <a href="stories.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Stories</a>
     <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
   </div>
 </div>
@@ -204,7 +202,7 @@
           <button class="add-btn" onclick="addToBag('tshirt-w','Women\'s T-Shirt',4200)">Add to Bag</button>
         </div>
         <div class="p-4">
-          <div class="pc-row"><p class="text-base font-semibold text-black">T-Shirt</p><p class="pc-colour">Black</p><p class="text-sm font-normal text-black">KES 4,200</p></div>
+          <div class="pc-row"><p class="text-base font-semibold text-black" data-full="Women&#39;s T-Shirt">T-Shirt</p><p class="pc-colour">Black</p><p class="text-sm font-normal text-black">KES 4,200</p></div>
           <div class="flex flex-wrap gap-1.5 mt-3">
             <button class="size-pill" data-pid="tshirt-w" data-size="S">S</button>
             <button class="size-pill" data-pid="tshirt-w" data-size="M">M</button>
@@ -223,7 +221,7 @@
           <button class="add-btn" onclick="addToBag('tshirt-m','Men\'s T-Shirt',4200)">Add to Bag</button>
         </div>
         <div class="p-4">
-          <div class="pc-row"><p class="text-base font-semibold text-black">T-Shirt</p><p class="pc-colour">Black</p><p class="text-sm font-normal text-black">KES 4,200</p></div>
+          <div class="pc-row"><p class="text-base font-semibold text-black" data-full="Men&#39;s T-Shirt">T-Shirt</p><p class="pc-colour">Black</p><p class="text-sm font-normal text-black">KES 4,200</p></div>
           <div class="flex flex-wrap gap-1.5 mt-3">
             <button class="size-pill" data-pid="tshirt-m" data-size="S">S</button>
             <button class="size-pill" data-pid="tshirt-m" data-size="M">M</button>
@@ -242,7 +240,7 @@
           <button class="add-btn" onclick="addToBag('quarter-zip-m','Men\'s Quarter Zip',5600)">Add to Bag</button>
         </div>
         <div class="p-4">
-          <div class="pc-row"><p class="text-base font-semibold text-black">Quarter Zip</p><p class="pc-colour">Black</p><p class="text-sm font-normal text-black">KES 5,600</p></div>
+          <div class="pc-row"><p class="text-base font-semibold text-black" data-full="Men&#39;s Quarter Zip">Quarter Zip</p><p class="pc-colour">Black</p><p class="text-sm font-normal text-black">KES 5,600</p></div>
           <div class="flex flex-wrap gap-1.5 mt-3">
             <button class="size-pill" data-pid="quarter-zip-m" data-size="S">S</button>
             <button class="size-pill" data-pid="quarter-zip-m" data-size="M">M</button>
@@ -261,7 +259,7 @@
           <button class="add-btn" onclick="addToBag('jacket-w','Women\'s Jacket',7200)">Add to Bag</button>
         </div>
         <div class="p-4">
-          <div class="pc-row"><p class="text-base font-semibold text-black">Jacket</p><p class="pc-colour">Black</p><p class="text-sm font-normal text-black">KES 7,200</p></div>
+          <div class="pc-row"><p class="text-base font-semibold text-black" data-full="Women&#39;s Jacket">Jacket</p><p class="pc-colour">Black</p><p class="text-sm font-normal text-black">KES 7,200</p></div>
           <div class="flex flex-wrap gap-1.5 mt-3">
             <button class="size-pill" data-pid="jacket-w" data-size="S">S</button>
             <button class="size-pill" data-pid="jacket-w" data-size="M">M</button>
@@ -318,7 +316,7 @@
           <button class="add-btn" onclick="addToBag('shorts-m','Men\'s Shorts',6050)">Add to Bag</button>
         </div>
         <div class="p-4">
-          <div class="pc-row"><p class="text-base font-semibold text-black">Shorts</p><p class="pc-colour">Black</p><p class="text-sm font-normal text-black">KES 6,050</p></div>
+          <div class="pc-row"><p class="text-base font-semibold text-black" data-full="Men&#39;s Shorts">Shorts</p><p class="pc-colour">Black</p><p class="text-sm font-normal text-black">KES 6,050</p></div>
           <div class="flex flex-wrap gap-1.5 mt-3">
             <button class="size-pill" data-pid="shorts-m" data-size="S">S</button>
             <button class="size-pill" data-pid="shorts-m" data-size="M">M</button>
@@ -515,11 +513,12 @@
   </div>
 </footer>
 
-<script src="search.js?v=20261030a"></script>
+<script src="search.js?v=20261110a"></script>
 <script src="shopify-config.js?v=20260926b"></script>
-<script src="woo-config.js?v=20261002d"></script>
-<script src="cart-drawer.js?v=20261030a"></script>
-<script src="js/quick-add.js?v=20261002b" defer></script>
+<script src="woo-config.js?v=20261110a"></script>
+<script src="js/stock.js?v=20261110a"></script>
+<script src="cart-drawer.js?v=20261110a"></script>
+<script src="js/quick-add.js?v=20261110b" defer></script>
 <script>
 const nav=document.getElementById('nav');
 
@@ -720,6 +719,12 @@ document.querySelectorAll('.prod-card').forEach(function(card){
       // ?cat= from the menu's category lists (5 Nov 2026): that category only, no accessories
       if(cat && (gender === 'women' || gender === 'men')) show = (cg === gender) && (card.getAttribute('data-cat') === cat);
       card.style.display = show ? '' : 'none';
+    });
+    // Names (10 Nov 2026): in the All view the women's and men's tees both read "T-Shirt", side by side at the same
+    // price. Cards with a data-full name show it there ("Women's T-Shirt"); Women / Men views keep the short name.
+    document.querySelectorAll('.pc-row p[data-full]').forEach(function(n){
+      if(!n.dataset.short) n.dataset.short = n.textContent;
+      n.textContent = (gender === 'all') ? n.dataset.full : n.dataset.short;
     });
     pills.forEach(function(p){
       var sel = p.dataset.gender === gender;
