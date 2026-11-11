@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="only light">
   <title>Product</title>
+  <meta name="description" content="REVAÍ activewear — high quality, honestly priced, designed to fit all bodies. S–XXL, true to size.">
   <!-- Social share tags (Open Graph): what WhatsApp, Instagram and iMessage show when this link is pasted. Images live in images/share/, built by build-og.js. -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="REVAÍ">
@@ -403,7 +404,13 @@ function loadProduct(){
   const setMeta=(prop,val)=>{const m=document.querySelector('meta[property="'+prop+'"]');if(m)m.setAttribute('content',val);};
   setMeta('og:title',p.name); // no price in previews (Yumna, 15 Sep 2026)
   setMeta('og:image',location.origin+'/images/share/'+id+'.jpg'); setMeta('og:image:alt',p.name+' by REVAÍ');
-  setMeta('og:description','Find the '+p.name+' at REVAÍ — high quality, honestly priced, designed to fit all bodies.');
+  setMeta('og:description',(function(){ // same line build-og.js writes into p/<slug>/ (22c, 11 Nov 2026)
+    const sents=String(p.desc||'').split(/(?<=[.!?])\s+/).filter(Boolean);
+    let line=p.name+' by REVAÍ.'+(sents[0]?' '+sents[0]:'');
+    if(sents[1]&&(line+' '+sents[1]).length<=120)line+=' '+sents[1];
+    const sz=p.sizes||[],tail=sz.includes('XXL')?'S–XXL, true to size.':sz.includes('S/M')?'Sizes S/M and L/XL.':'One size.';
+    const d=document.querySelector('meta[name="description"]');if(d)d.setAttribute('content',line+' '+tail);
+    return line+' '+tail;})());
   const slug=PRODUCT_SLUGS[id];
   if(slug){ setMeta('og:url',location.origin+'/p/'+slug+'/'); try{history.replaceState(history.state,'','/p/'+slug+'/'+location.hash);}catch(e){} }
   document.getElementById('breadcrumb-name').textContent=p.name;
