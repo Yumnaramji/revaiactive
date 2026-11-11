@@ -489,6 +489,11 @@
     </div>
   </section>
 
+  <script>/* Watermark starts 100px above the bottom of the Collection 01 strip (11 Nov 2026, Yumna). Measured, so it holds at every screen size; the CSS top values on .hp-plate are only the no-script fallback. */
+  (function(){var p=document.querySelector('.hp-plate'),sh=document.getElementById('shop');if(!p||!sh)return;
+  function place(){p.style.top=Math.round(sh.getBoundingClientRect().bottom+window.scrollY-100)+'px';}
+  place();addEventListener('resize',place);addEventListener('load',place);})();</script>
+
   <!-- First photo group (three), under the collection since 28 Oct 2026 -->
   <section class="hp-photo"><figure class="hp-tile fu"><img src="images/home-track.jpg" alt="Man in a black REVAÍ T-shirt and shorts standing on a running track" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Train</span><a class="hp-tile-link" href="collections.html?gender=men" aria-label="Shop men"></a></figure><figure class="hp-tile fu d1"><img class="studio" src="images/home-studio.jpg" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1000" height="1000" loading="lazy" decoding="async"><span class="hp-word">Reset</span><a class="hp-tile-link" href="collections.html?gender=women" aria-label="Shop women"></a></figure><figure class="hp-tile fu d2"><img src="images/home-flared-forest.jpg" alt="Woman in black REVAÍ Flared Leggings and a sports bra on a forest path, seen from behind" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Breathe</span><a class="hp-tile-link" href="collections.html?gender=women" aria-label="Shop women"></a></figure></section>
 
