@@ -129,6 +129,9 @@
     .hp-card{position:relative}
     .hp-ph{position:relative;overflow:hidden;background:#f4f4f4;aspect-ratio:3/4}
     .hp-ph img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+    /* Second photo on hover, same as Shop All (11 Nov 2026, Yumna). Touch screens never show it. */
+    .hp-ph .hp-hover{position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none}
+    @media(hover:hover){.hp-card:hover .hp-hover{opacity:1}}
     .hp-meta{padding-top:12px}
     .hp-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
     .hp-row p{margin:0}
@@ -438,6 +441,7 @@
         <div class="hp-card fu d1">
           <div class="hp-ph">
             <img src="images/cards/running-leggings-w.jpg" srcset="images/cards/running-leggings-w.jpg 540w, images/running-leggings-w.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="Performance Leggings" loading="lazy" decoding="async">
+            <img class="hp-hover" src="images/cards/running-leggings-w-full-back.jpg" srcset="images/cards/running-leggings-w-full-back.jpg 540w, images/running-leggings-w-full-back.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="" aria-hidden="true" loading="lazy" decoding="async">
             <button class="hp-add" onclick="addToBag('Performance Leggings', 5500, 'running-leggings-w')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -448,6 +452,7 @@
         <div class="hp-card fu d2">
           <div class="hp-ph">
             <img src="images/cards/quarter-zip-m.jpg" srcset="images/cards/quarter-zip-m.jpg 540w, images/quarter-zip-m.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="Men's Quarter Zip" loading="lazy" decoding="async">
+            <img class="hp-hover" src="images/cards/quarter-zip-m-front.jpg" srcset="images/cards/quarter-zip-m-front.jpg 540w, images/quarter-zip-m-front.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="" aria-hidden="true" loading="lazy" decoding="async">
             <button class="hp-add" onclick="addToBag('Men\'s Quarter Zip', 5600, 'quarter-zip-m')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -458,6 +463,7 @@
         <div class="hp-card fu d3">
           <div class="hp-ph">
             <img src="images/cards/high-impact-bra-side.jpg" srcset="images/cards/high-impact-bra-side.jpg 540w, images/high-impact-bra-side.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="High Impact Sports Bra" loading="lazy" decoding="async">
+            <img class="hp-hover" src="images/cards/high-impact-bra-back.jpg" srcset="images/cards/high-impact-bra-back.jpg 540w, images/high-impact-bra-back.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="" aria-hidden="true" loading="lazy" decoding="async">
             <button class="hp-add" onclick="addToBag('High Impact Sports Bra', 4950, 'high-impact-bra')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -468,6 +474,7 @@
         <div class="hp-card fu d3">
           <div class="hp-ph">
             <img src="images/cards/tshirt-m.jpg" srcset="images/cards/tshirt-m.jpg 540w, images/tshirt-m.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="Men's T-Shirt" loading="lazy" decoding="async">
+            <img class="hp-hover" src="images/cards/tshirt-m-side.jpg" srcset="images/cards/tshirt-m-side.jpg 540w, images/tshirt-m-side.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="" aria-hidden="true" loading="lazy" decoding="async">
             <button class="hp-add" onclick="addToBag('Men\'s T-Shirt', 4200, 'tshirt-m')">Add to Bag</button>
           </div>
           <div class="hp-meta">
@@ -478,6 +485,7 @@
         <div class="hp-card fu d4">
           <div class="hp-ph">
             <img src="images/cards/flared-leggings-w.jpg" srcset="images/cards/flared-leggings-w.jpg 540w, images/flared-leggings-w.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="Flared Leggings" loading="lazy" decoding="async">
+            <img class="hp-hover" src="images/cards/flared-leggings-w-back.jpg" srcset="images/cards/flared-leggings-w-back.jpg 540w, images/flared-leggings-w-back.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="" aria-hidden="true" loading="lazy" decoding="async">
             <button class="hp-add" onclick="addToBag('Flared Leggings', 5600, 'flared-leggings-w')">Add to Bag</button>
           </div>
           <div class="hp-meta">
