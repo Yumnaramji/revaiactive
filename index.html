@@ -72,8 +72,8 @@
        under it, and a dark colour here would turn the header black with black icons. */
     #home-hero .hv{position:relative;aspect-ratio:2048/1152;background:linear-gradient(#0d0d0d,#0d0d0d);overflow:hidden} /* 29 Oct (Yumna): band takes the photo's own 16:9 shape so the whole picture shows on every screen (was a fixed 560px / 360px on phones) */
     /* Hero copy, bottom left (29 Oct 2026, Yumna: option C after trying A): small "Collection 01" eyebrow, light large title, white outline Shop now button, over a soft corner shade. */
-    #home-hero .hero-shade{position:absolute;left:0;bottom:0;width:60%;height:55%;background:linear-gradient(to top right,rgba(0,0,0,.55),rgba(0,0,0,0) 60%);pointer-events:none}
-    #home-hero .hero-copy{position:absolute;left:clamp(24px,3.9vw,56px);bottom:clamp(24px,3.9vw,56px);z-index:2;color:#fff;text-align:left} /* 10 Nov: inset and type now scale with the photo (see .hero-title) */ /* 1 Nov: back to the LEFT with the woman-on-rocks shot (she sits right); 30 Oct pair shot had it right */
+    #home-hero .hero-shade{position:absolute;right:0;bottom:0;width:60%;height:55%;background:linear-gradient(to top left,rgba(0,0,0,.55),rgba(0,0,0,0) 60%);pointer-events:none}
+    #home-hero .hero-copy{position:absolute;right:clamp(24px,3.9vw,56px);bottom:clamp(24px,3.9vw,56px);z-index:2;color:#fff;text-align:right} /* 11 Nov (Yumna): copy on the RIGHT for the woman + gym bag rocks shot; the bag sits bottom-left where the copy used to be */ /* 10 Nov: inset and type now scale with the photo (see .hero-title) */ /* 1 Nov: back to the LEFT with the woman-on-rocks shot (she sits right); 30 Oct pair shot had it right */
     #home-hero .hero-eyeb{margin:0 0 clamp(8px,1vw,14px);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#fff;opacity:.85}
     #home-hero .hero-mw{margin:0 0 clamp(8px,1vw,14px);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#fff;opacity:.85} /* 1 Nov (Yumna): WOMEN · MEN under the eyebrow, in the eyebrow's own style (option 2; was option D, 15px light); links to Shop All by gender */
     #home-hero .hero-mw a{color:#fff;text-decoration:none}
@@ -101,7 +101,7 @@
       #home-hero .hv{aspect-ratio:auto;background:none;overflow:visible}
       #home-hero .hv img{position:static;display:block;width:100%;height:auto;aspect-ratio:1/1;object-position:50% 50%}
       #home-hero .hero-shade{display:none}
-      #home-hero .hero-copy{position:static;color:#0a0a0a;padding:22px 24px 4px}
+      #home-hero .hero-copy{position:static;color:#0a0a0a;padding:22px 24px 4px;text-align:left}
       #home-hero .hero-eyeb{font-size:11px;margin-bottom:8px;color:#6b7280;opacity:1}
       #home-hero .hero-mw{font-size:11px;margin-bottom:12px;color:#0a0a0a;opacity:1}
       #home-hero .hero-mw a{color:#0a0a0a}
