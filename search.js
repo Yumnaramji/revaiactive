@@ -7,7 +7,7 @@
   const PRODUCTS = [
     {id:'running-leggings-w',  name:"Performance Leggings",    cat:'Women',          price:'KES 5,500'},
     {id:'flared-leggings-w',   name:"Flared Leggings",      cat:'Women',          price:'KES 5,600'},
-    {id:'high-impact-bra',     name:"High Impact Sports Bra",       cat:'Women',            price:'KES 4,950'},
+    {id:'high-impact-bra',     name:"High Impact Sports Bra",       cat:'Women',            price:'KES 4,900'},
     {id:'low-impact-bra',      name:"Low Impact Sports Bra",        cat:'Women',          price:'KES 4,450'},
     {id:'jacket-w',            name:"Women's Jacket",   cat:'Women',          price:'KES 7,200'},
     {id:'tshirt-w',            name:"Women's T-Shirt",     cat:'Women',          price:'KES 4,200'},

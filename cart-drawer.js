@@ -13,7 +13,7 @@
   const CATALOG = {
     'running-leggings-w': { name: 'Performance Leggings',        gender: "Women's", price: 5500, sizes: ['S','M','L','XL','XXL'] },
     'flared-leggings-w':  { name: 'Flared Leggings',         gender: "Women's", price: 5600, sizes: ['S','M','L','XL','XXL'] },
-    'high-impact-bra':    { name: 'High Impact Sports Bra',  gender: "Women's", price: 4950, sizes: ['S','M','L','XL','XXL'] },
+    'high-impact-bra':    { name: 'High Impact Sports Bra',  gender: "Women's", price: 4900, sizes: ['S','M','L','XL','XXL'] },
     'low-impact-bra':     { name: 'Low Impact Sports Bra',   gender: "Women's", price: 4450, sizes: ['S','M','L','XL','XXL'] },
     'jacket-w':           { name: "Women's Jacket",          gender: "Women's", price: 7200, sizes: ['S','M','L','XL','XXL'] },
     'tshirt-w':           { name: "Women's T-Shirt",         gender: "Women's", price: 4200, sizes: ['S','M','L','XL','XXL'] },
