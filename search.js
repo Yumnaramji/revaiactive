@@ -5,7 +5,7 @@
   'use strict';
 
   const PRODUCTS = [
-    {id:'running-leggings-w',  name:"Performance Leggings",    cat:'Women',          price:'KES 5,500'},
+    {id:'running-leggings-w',  name:"Performance Leggings",    cat:'Women',          price:'KES 5,550'},
     {id:'flared-leggings-w',   name:"Flared Leggings",      cat:'Women',          price:'KES 5,600'},
     {id:'high-impact-bra',     name:"High Impact Sports Bra",       cat:'Women',            price:'KES 4,900'},
     {id:'low-impact-bra',      name:"Low Impact Sports Bra",        cat:'Women',          price:'KES 4,450'},
@@ -13,11 +13,11 @@
     {id:'tshirt-w',            name:"Women's T-Shirt",     cat:'Women',          price:'KES 4,200'},
     {id:'tshirt-m',            name:"Men's T-Shirt",       cat:'Men',            price:'KES 4,200'},
     {id:'quarter-zip-m',       name:"Men's Quarter Zip",            cat:'Men',            price:'KES 5,600'},
-    {id:'shorts-m',            name:"Men's Shorts",        cat:'Men',            price:'KES 6,050'},
+    {id:'shorts-m',            name:"Men's Shorts",        cat:'Men',            price:'KES 5,950'},
     {id:'training-pants-m',  name:"Training Pants",       cat:'Men',            price:'KES 6,600'},
     {id:'ankle-socks',         name:"Ankle Socks",                  cat:'Accessories',      price:'KES 550'},
-    {id:'lifestyle-cap',       name:"Lifestyle Cap",                cat:'Accessories',      price:'KES 3,000'},
-    {id:'gym-bag',             name:"Gym Bag",                      cat:'Accessories',      price:'KES 7,500'},
+    {id:'lifestyle-cap',       name:"Lifestyle Cap",                cat:'Accessories',      price:'KES 2,950'},
+    {id:'gym-bag',             name:"Gym Bag",                      cat:'Accessories',      price:'KES 7,550'},
   ];
 
   const PAGES = [
