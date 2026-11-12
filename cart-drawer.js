@@ -15,7 +15,7 @@
     'flared-leggings-w':  { name: 'Flared Leggings',         gender: "Women's", price: 5600, sizes: ['S','M','L','XL','XXL'] },
     'high-impact-bra':    { name: 'High Impact Sports Bra',  gender: "Women's", price: 4900, sizes: ['S','M','L','XL','XXL'] },
     'low-impact-bra':     { name: 'Low Impact Sports Bra',   gender: "Women's", price: 4450, sizes: ['S','M','L','XL','XXL'] },
-    'jacket-w':           { name: "Women's Jacket",          gender: "Women's", price: 7200, sizes: ['S','M','L','XL','XXL'] },
+    'jacket-w':           { name: "Women's Jacket",          gender: "Women's", price: 7450, sizes: ['S','M','L','XL','XXL'] },
     'tshirt-w':           { name: "Women's T-Shirt",         gender: "Women's", price: 4200, sizes: ['S','M','L','XL','XXL'] },
     'tshirt-m':           { name: "Men's T-Shirt",           gender: "Men's",   price: 4200, sizes: ['S','M','L','XL','XXL'] },
     'quarter-zip-m':      { name: "Men's Quarter Zip",       gender: "Men's",   price: 5600, sizes: ['S','M','L','XL','XXL'] },
