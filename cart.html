@@ -18,7 +18,7 @@
   <meta property="og:image:height" content="250">
   <meta property="og:image:alt" content="REVAÍ">
   <meta name="twitter:card" content="summary">
-  <meta name="description" content="Review your bag and check out. Free delivery on orders over KES 20,000, across Kenya.">
+  <meta name="description" content="Review your bag and check out. Delivery in Nairobi KES 200–400 depending on your area. Pickup is free.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
@@ -195,11 +195,11 @@
             <span id="cart-shipping" class="text-sm font-medium text-gray-800">Calculated at checkout</span>
           </div>
           <div style="border-top:1px solid #e5e7eb;padding-top:16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center">
-            <span id="cart-total-label" class="text-sm font-semibold text-black">Total</span>
+            <span id="cart-total-label" class="text-sm font-semibold text-black">Total before delivery</span>
             <span id="cart-total" class="text-lg font-normal text-black">KES 0</span>
           </div>
           <button id="cart-page-checkout" class="btn-p" style="width:100%;justify-content:center;padding:14px;font-size:14px">Checkout</button>
-          <p class="text-[11px] text-gray-400 mt-3 text-center">Free delivery on orders over KES 20,000. Taxes included.</p>
+          <p class="text-[11px] text-gray-400 mt-3 text-center">Delivery KES 200–400 depending on your area. Pickup is free. Taxes included.</p>
         </div>
       </aside>
     </div>
@@ -269,7 +269,7 @@
 <script src="search.js?v=20261112b"></script>
 <script src="shopify-config.js?v=20260926b"></script>
 <script src="woo-config.js?v=20261110a"></script>
-<script src="cart-drawer.js?v=20261112b"></script>
+<script src="cart-drawer.js?v=20261113a"></script>
 <script>
 const STORAGE_KEY = 'revai_cart_v1';
 
@@ -333,11 +333,10 @@ function renderPage(){
   const subtotal = cart.reduce((s, i) => s + i.price * (i.qty || 1), 0);
   document.getElementById('cart-subtotal').textContent = 'KES ' + subtotal.toLocaleString();
   document.getElementById('cart-total').textContent    = 'KES ' + subtotal.toLocaleString();
-  // Delivery (10 Nov 2026): free from KES 20,000, as on Shipping & Returns and in the bag drawer. Below that the
+  // Delivery (13 Nov 2026): every delivery has a fee (KES 200–400 by area); only pickup is free. The
   // charge depends on the address and is added at checkout, so the figure here is an estimate, not the final total.
-  const freeDelivery = subtotal >= 20000;
-  document.getElementById('cart-shipping').textContent = freeDelivery ? 'Free' : 'Calculated at checkout';
-  document.getElementById('cart-total-label').textContent = freeDelivery ? 'Total' : 'Total before delivery';
+  document.getElementById('cart-shipping').textContent = 'Calculated at checkout';
+  document.getElementById('cart-total-label').textContent = 'Total before delivery';
 
   renderUpsells(cart);
 }
