@@ -1,0 +1,36 @@
+name: Website to WooCommerce sync
+# Whenever product details or photos change on the website, make the shop match.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'product.html'
+      - 'woo-config.js'
+      - 'images/**'
+      - 'tools/woo-sync.mjs'
+      - '.github/workflows/woo-sync.yml'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Report only, change nothing'
+        type: boolean
+        default: true
+concurrency:
+  group: woo-sync
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Sync products to the shop
+        env:
+          WOO_URL: https://shop.revaiactive.com
+          WOO_KEY: ${{ secrets.WOO_KEY }}
+          WOO_SECRET: ${{ secrets.WOO_SECRET }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && (inputs.dry_run && '1' || '0') || '1' }}   # pushes report only until the first run has been reviewed
+        run: node tools/woo-sync.mjs
