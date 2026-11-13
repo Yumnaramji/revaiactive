@@ -32,5 +32,5 @@ jobs:
           WOO_URL: https://shop.revaiactive.com
           WOO_KEY: ${{ secrets.WOO_KEY }}
           WOO_SECRET: ${{ secrets.WOO_SECRET }}
-          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && (inputs.dry_run && '1' || '0') || '1' }}   # pushes report only until the first run has been reviewed
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '0' }}   # pushes are live; a manual run can still be report-only
         run: node tools/woo-sync.mjs
