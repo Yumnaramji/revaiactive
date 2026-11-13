@@ -18,7 +18,7 @@ window.REVAI_WOO = {
     "jacket-w": { product: 76, sizes: { "S":182, "M":183, "L":184, "XL":185, "XXL":186 } },
     "tshirt-w": { product: 66, sizes: { "S":177, "M":178, "L":179, "XL":180, "XXL":181 } },
     "low-impact-bra": { product: 55, sizes: { "S":56, "M":57, "L":58, "XL":59, "XXL":60 } },
-    "high-impact-bra": { product: 45, sizes: { "S":46, "M":47, "L":48, "XL":49, "XXL":50 } },
+    "high-impact-bra": { product: 45, sizes: { "S":194, "M":195, "L":196, "XL":197, "XXL":198 } },
     "flared-leggings-w": { product: 28, sizes: { "S":29, "M":30, "L":31, "XL":32, "XXL":33, "S (Tall)":34, "M (Tall)":35, "L (Tall)":36, "XL (Tall)":37, "XXL (Tall)":38 } },
     "running-leggings-w": { product: 20, sizes: { "S":21, "M":22, "L":23, "XL":24, "XXL":25 } }
   }

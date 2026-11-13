@@ -99,8 +99,13 @@ async function syncProduct(key, site, map) {
   // name + description
   const wantName = fullName(site);
   if (norm(cur.name) !== norm(wantName)) { update.name = wantName; changes.push(`name: "${norm(cur.name)}" -> "${wantName}"`); }
+  // the site owns the opening paragraph and the bullet list; anything the shop has after the list (the Care line) is kept
   const wantDesc = descriptionHtml(site);
-  if (norm(cur.description) !== norm(wantDesc)) { update.description = wantDesc; changes.push('description updated'); }
+  const curDesc = cur.description || '';
+  const cut = curDesc.indexOf('</ul>');
+  const curHead = cut < 0 ? curDesc : curDesc.slice(0, cut + 5);
+  const curTail = cut < 0 ? '' : curDesc.slice(cut + 5);
+  if (norm(curHead) !== norm(wantDesc)) { update.description = wantDesc + curTail; changes.push('description updated' + (curTail.trim() ? ' (Care line kept)' : '')); }
 
   // price
   const want = Number(site.priceVal);
