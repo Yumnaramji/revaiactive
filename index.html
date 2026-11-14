@@ -74,7 +74,7 @@
     <p class="where">Nairobi</p>
     <form class="su" id="su" novalidate>
       <p class="lead">Get early access</p>
-      <div class="form-row"><label class="sr" for="em">Email address</label><input id="em" type="email" name="email" placeholder="Email address" autocomplete="email" required></div>
+      <div class="form-row"><label class="sr" for="em">Email address</label><input id="em" type="email" name="email" placeholder="Email address" autocomplete="email" required><button class="go" type="submit" aria-label="Get early access">→</button></div>
       <div class="form-row"><label class="sr" for="wa">WhatsApp number with country code (optional)</label><input id="wa" type="tel" name="whatsapp" placeholder="WhatsApp, with country code (optional)" autocomplete="tel" inputmode="tel"><button class="go" type="submit" aria-label="Get early access">→</button></div>
       <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="msg" role="alert"></p><p class="thanks" tabindex="-1">You're on the list.</p>
     </form>
@@ -85,7 +85,7 @@
   var PREVIEW = false;
   var URL = 'https://shop.revaiactive.com/wp-json/revai/v1/launch-list';
   var f = document.getElementById('su'); if(!f) return;
-  var msg = f.querySelector('.msg'), btn = f.querySelector('button[type=submit]'), em = f.querySelector('input[type=email]'), wa = f.querySelector('input[type=tel]');
+  var msg = f.querySelector('.msg'), btns = f.querySelectorAll('button[type=submit]'), em = f.querySelector('input[type=email]'), wa = f.querySelector('input[type=tel]');
   f.addEventListener('submit', function(e){
     e.preventDefault(); msg.textContent=''; msg.className='msg';
     var v = (em.value||'').trim();
@@ -96,9 +96,9 @@
       if(/^00\d/.test(w)) w = '+' + w.slice(2);
       if(!/^\+[1-9]\d{7,14}$/.test(w)){ msg.textContent = /^\+/.test(w) ? 'Please check the WhatsApp number, or leave it blank.' : 'Add the country code, e.g. +254 712 345 678'; msg.className='msg err'; wa.focus(); return; }
     }
-    btn.disabled = true; var old = btn.innerHTML; btn.setAttribute('aria-busy','true');
+    var busy = function(on){ for(var i=0;i<btns.length;i++){ btns[i].disabled=on; on ? btns[i].setAttribute('aria-busy','true') : btns[i].removeAttribute('aria-busy'); } }; busy(true);
     var done = function(){ f.classList.add('done'); f.querySelector('.thanks').focus(); };
-    var fail = function(t){ btn.disabled=false; btn.removeAttribute('aria-busy'); msg.textContent=t||'Something went wrong. Please try again.'; msg.className='msg err'; };
+    var fail = function(t){ busy(false); msg.textContent=t||'Something went wrong. Please try again.'; msg.className='msg err'; };
     if(PREVIEW){ setTimeout(done, 700); return; }
     var body = new URLSearchParams({email:v, whatsapp:w, website:f.website.value, source:'holding'});
     fetch(URL,{method:'POST',body:body}).then(function(r){ return r.json().then(function(j){ return {ok:r.ok,j:j}; }); })
