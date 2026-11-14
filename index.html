@@ -62,7 +62,10 @@
   .su button.go:hover,.form-row:focus-within button.go{color:#fff}
   .thanks{text-transform:none;letter-spacing:.01em;font-size:14px;font-weight:300;color:#d4d4d4;padding:12px 0;margin-right:0}
   .form-row+.form-row{margin-top:6px}
-  .lead{font-size:14px;font-weight:300;color:#d4d4d4;letter-spacing:.01em;margin-bottom:6px}</style>
+  .lead{font-size:14px;font-weight:300;color:#d4d4d4;letter-spacing:.01em;margin-bottom:6px}
+  /* 16px on phones: iOS zooms the page in when a focused field has smaller text */
+  @media(hover:none),(max-width:767px){.su .form-row input{font-size:16px}}
+</style>
 </head>
 <body>
   <main class="wrap">
@@ -85,8 +88,27 @@
   var URL = 'https://shop.revaiactive.com/wp-json/revai/v1/launch-list';
   var f = document.getElementById('su'); if(!f) return;
   var msg = f.querySelector('.msg'), btns = f.querySelectorAll('button[type=submit]'), em = document.getElementById('em');
+  // Step 2 (optional): once they are on the list, the same line asks for a first name.
+  var saved = null, lead = f.querySelector('.lead');
+  var lock = function(on){ for(var i=0;i<btns.length;i++){ btns[i].disabled=on; on ? btns[i].setAttribute('aria-busy','true') : btns[i].removeAttribute('aria-busy'); } };
+  var finish = function(){ f.classList.add('done'); f.querySelector('.thanks').focus(); };
+  var askName = function(v, w){
+    saved = {v:v, w:w}; lock(false);
+    lead.textContent = "You're on the list.";
+    em.value = ''; em.placeholder = 'Add your first name';
+    em.setAttribute('inputmode','text'); em.setAttribute('autocomplete','given-name'); em.setAttribute('autocapitalize','words'); em.setAttribute('maxlength','80');
+    f.querySelector('label[for=em]').textContent = 'Your first name (optional)';
+    btns[0].setAttribute('aria-label','Save name'); em.focus();
+  };
   f.addEventListener('submit', function(e){
     e.preventDefault(); msg.textContent=''; msg.className='msg';
+    if(saved){
+      var nm = (em.value||'').trim().slice(0,80);
+      if(!nm || PREVIEW){ finish(); return; }
+      lock(true);
+      fetch(URL,{method:'POST',body:new URLSearchParams({email:saved.v, whatsapp:saved.w, name:nm, website:f.website.value, source:'holding'})}).then(finish, finish);
+      return;
+    }
     // One field: an email address, or a WhatsApp number with its country code (+254 712 345 678; 00254.. is read as +254..)
     var raw = (em.value||'').trim(), v = '', w = '';
     var bad = function(t){ msg.textContent=t; msg.className='msg err'; em.focus(); };
@@ -104,10 +126,10 @@
     var busy = function(on){ for(var i=0;i<btns.length;i++){ btns[i].disabled=on; on ? btns[i].setAttribute('aria-busy','true') : btns[i].removeAttribute('aria-busy'); } }; busy(true);
     var done = function(){ f.classList.add('done'); f.querySelector('.thanks').focus(); };
     var fail = function(t){ busy(false); msg.textContent=t||'Something went wrong. Please try again.'; msg.className='msg err'; };
-    if(PREVIEW){ setTimeout(done, 700); return; }
+    if(PREVIEW){ setTimeout(function(){ askName(v, w); }, 700); return; }
     var body = new URLSearchParams({email:v, whatsapp:w, website:f.website.value, source:'holding'});
     fetch(URL,{method:'POST',body:body}).then(function(r){ return r.json().then(function(j){ return {ok:r.ok,j:j}; }); })
-      .then(function(x){ x.ok ? done() : fail(x.j && x.j.message); }).catch(function(){ fail(); });
+      .then(function(x){ x.ok ? askName(v, w) : fail(x.j && x.j.message); }).catch(function(){ fail(); });
   });
   var open = document.getElementById('su-open');
   if(open) open.addEventListener('click', function(){ document.body.classList.add('su-on'); open.setAttribute('aria-expanded','true'); setTimeout(function(){ em.focus(); }, 50); });
