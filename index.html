@@ -75,7 +75,7 @@
     <form class="su" id="su" novalidate>
       <p class="lead">Get early access</p>
       <div class="form-row"><label class="sr" for="em">Email address</label><input id="em" type="email" name="email" placeholder="Email address" autocomplete="email" required></div>
-      <div class="form-row"><label class="sr" for="wa">WhatsApp number (optional)</label><input id="wa" type="tel" name="whatsapp" placeholder="WhatsApp number (optional)" autocomplete="tel" inputmode="tel"><button class="go" type="submit" aria-label="Get early access">→</button></div>
+      <div class="form-row"><label class="sr" for="wa">WhatsApp number with country code (optional)</label><input id="wa" type="tel" name="whatsapp" placeholder="WhatsApp, with country code (optional)" autocomplete="tel" inputmode="tel"><button class="go" type="submit" aria-label="Get early access">→</button></div>
       <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="msg" role="alert"></p><p class="thanks" tabindex="-1">You're on the list.</p>
     </form>
     <div class="ig"><a href="https://www.instagram.com/revaiactive/">@revaiactive</a></div>
@@ -90,12 +90,11 @@
     e.preventDefault(); msg.textContent=''; msg.className='msg';
     var v = (em.value||'').trim();
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){ msg.textContent='Please enter a valid email address.'; msg.className='msg err'; em.focus(); return; }
-    // WhatsApp number is optional. Kenyan numbers typed as 07.. / 01.. / 254.. are sent as +254..
+    // WhatsApp number is optional, any country, but must carry its country code: +254 712 345 678 (00254.. is read as +254..)
     var w = (wa.value||'').replace(/[\s().-]/g,'');
     if(w){
-      if(/^0[17]\d{8}$/.test(w)) w = '+254' + w.slice(1);
-      else if(/^254\d{9}$/.test(w)) w = '+' + w;
-      if(!/^\+?\d{9,15}$/.test(w)){ msg.textContent='Please check the WhatsApp number, or leave it blank.'; msg.className='msg err'; wa.focus(); return; }
+      if(/^00\d/.test(w)) w = '+' + w.slice(2);
+      if(!/^\+[1-9]\d{7,14}$/.test(w)){ msg.textContent = /^\+/.test(w) ? 'Please check the WhatsApp number, or leave it blank.' : 'Add the country code, e.g. +254 712 345 678'; msg.className='msg err'; wa.focus(); return; }
     }
     btn.disabled = true; var old = btn.innerHTML; btn.setAttribute('aria-busy','true');
     var done = function(){ f.classList.add('done'); f.querySelector('.thanks').focus(); };
