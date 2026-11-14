@@ -114,6 +114,26 @@
 <script>
 (function(){
   var PREVIEW = false;
+  var BUILD = '20261114g';
+  // Browsers (phones especially) reopen a saved copy of this page. Ask the server for the current one, bypassing every cache;
+  // if it is a newer build, reload once. Skipped while someone is part-way through the form.
+  var busyForm = function(){ var a = document.getElementById('su'); return !a || a.classList.contains('step2') || a.classList.contains('done') || !!(document.getElementById('em') || {}).value; };
+  var fresh = function(){
+    if(PREVIEW || location.protocol === 'file:' || !window.fetch) return;
+    try{
+      fetch(location.pathname + '?_=' + Date.now(), {cache:'no-store'}).then(function(r){ return r.ok ? r.text() : ''; }).then(function(t){
+        var m = t.match(/var BUILD = '([^']+)'/), key = 'revai_build_try';
+        if(!m || m[1] === BUILD || busyForm()) return;
+        var tried = ''; try{ tried = sessionStorage.getItem(key) || ''; }catch(e){}
+        if(tried === m[1]) return;                       // never loop
+        try{ sessionStorage.setItem(key, m[1]); }catch(e){ return; }
+        location.reload();
+      }).catch(function(){});
+    }catch(e){}
+  };
+  fresh();
+  window.addEventListener('pageshow', function(e){ if(e.persisted) fresh(); });
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) fresh(); });
   var URL = 'https://shop.revaiactive.com/wp-json/revai/v1/launch-list';
   var f = document.getElementById('su'); if(!f) return;
   var msg = f.querySelector('.msg'), btns = f.querySelectorAll('button[type=submit]'), em = document.getElementById('em');
@@ -154,14 +174,11 @@
         if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(o)){ bad2('Please enter a valid email address.'); return; }
         v2 = o;
       }
-      if(PREVIEW){ finish(); return; }
-      lock(true);
-      // wait for the first save to land, so the two requests can't make two rows
-      (pending || Promise.resolve()).then(function(){ return fetch(URL,{method:'POST',body:new URLSearchParams({email:v2, whatsapp:w2,
+      var body2 = new URLSearchParams({email:v2, whatsapp:w2,
         name:(f.first_name.value||'').trim().slice(0,40), last_name:(f.last_name.value||'').trim().slice(0,40),
-        website:f.website.value, source:'holding'})}); })
-        .then(function(r){ if(r.ok){ finish(); } else { return r.json().then(function(j){ lock(false); msg.textContent=(j && j.message)||'Something went wrong. Please try again.'; msg.className='msg err'; }); } })
-        .catch(function(){ lock(false); msg.textContent='Something went wrong. Please try again.'; msg.className='msg err'; });
+        website:f.website.value, source:'holding'});
+      finish();   // the shop can take seconds to answer; nothing here needs its reply
+      if(!PREVIEW){ (pending || Promise.resolve()).then(function(){ return fetch(URL,{method:'POST',body:body2,keepalive:true}); }).catch(function(){}); }
       return;
     }
     // One field: an email address, or a WhatsApp number with its country code (+254 712 345 678; 00254.. is read as +254..)
