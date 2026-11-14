@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>REVAÍ</title>
+<meta name="description" content="REVAÍ. Website and Instagram.">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="only dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="REVAÍ">
+<meta property="og:title" content="REVAÍ">
+<meta property="og:description" content="Find Your Revival.">
+<meta property="og:url" content="https://revaiactive.com/links/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:#050505;color:#fff;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{position:relative;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;text-align:center;overflow:hidden}
+  .glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 55%,rgba(255,255,255,.07),transparent 70%);pointer-events:none}
+  .mark{position:absolute;right:-8vmin;top:50%;transform:translateY(-50%);height:118vmin;width:auto;opacity:.05;pointer-events:none;filter:invert(1)}
+  .lock{position:relative;display:flex;align-items:center;gap:14px}
+  .lock img{height:40px;width:auto;filter:invert(1)}
+  .lock span{font-size:26px;font-weight:600;letter-spacing:.32em;margin-right:-.32em}
+  .line{width:1px;height:56px;background:linear-gradient(#fff0,#ffffff55,#fff0);margin:38px 0 34px}
+  .links{position:relative;width:100%;max-width:340px;display:grid;gap:30px}
+  .links a{display:flex;flex-direction:column;align-items:center;gap:12px;padding:6px 0;color:#e5e5e5;text-decoration:none;-webkit-tap-highlight-color:transparent}
+  .links .k{font-size:11px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#6b7280;margin-right:-.3em}
+  .links .v{display:inline-flex;align-items:center;gap:9px;font-size:15px;letter-spacing:.06em;border-bottom:1px solid #333;padding-bottom:6px;transition:color .2s,border-color .2s}
+  .links a:hover .v,.links a:active .v{color:#fff;border-color:#888}
+  .links .v svg{width:16px;height:16px;flex:none}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  @media(max-width:480px){.lock img{height:32px}.lock span{font-size:21px}.mark{right:-30vmin;height:140vmin}}
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="glow"></div>
+    <img class="mark" src="/revai-icon.png" alt="" aria-hidden="true" onerror="this.onerror=null;this.src='/images/revai-icon.png'">
+    <h1 class="sr">REVAÍ</h1>
+    <div class="lock"><img src="/revai-icon.png" alt="" onerror="this.onerror=null;this.src='/images/revai-icon.png'"><span aria-hidden="true">REVAÍ</span></div>
+    <div class="line"></div>
+    <nav class="links" aria-label="REVAÍ links">
+      <a href="/" aria-label="REVAÍ website, revaiactive.com"><span class="k">Website</span><span class="v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.500c2.400 2.300 3.600 5.100 3.600 8.500s-1.200 6.200-3.600 8.500c-2.400-2.300-3.600-5.100-3.600-8.500s1.200-6.200 3.600-8.500z"/></svg>revaiactive.com</span></a>
+      <a href="https://www.instagram.com/revaiactive/" aria-label="REVAÍ on Instagram, @revaiactive"><span class="k">Instagram</span><span class="v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.6"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>@revaiactive</span></a>
+    </nav>
+  </main>
+</body>
+</html>
