@@ -130,14 +130,22 @@
     f.querySelector('label[for=ot]').textContent = v ? 'WhatsApp number with country code (optional)' : 'Email address (optional)';
     more.hidden = false; f.classList.add('step2');
   };
-  var readWa = function(raw){ var w = raw.replace(/[\s().-]/g,''); if(/^00\d/.test(w)) w = '+' + w.slice(2); return w; };
+  // 0712 345 678, 712 345 678 and 254712345678 are read as +254712345678; any other country needs its + code
+  var readWa = function(raw){
+    var w = raw.replace(/[\s().-]/g,'');
+    if(/^00\d/.test(w)) w = '+' + w.slice(2);
+    else if(/^0[17]\d{8}$/.test(w)) w = '+254' + w.slice(1);
+    else if(/^[17]\d{8}$/.test(w)) w = '+254' + w;
+    else if(/^254[17]\d{8}$/.test(w)) w = '+' + w;
+    return w;
+  };
   // Enter / the keyboard's Go key does the same as the arrow
   em.addEventListener('keydown', function(e){ if((e.key === 'Enter' || e.keyCode === 13) && !e.isComposing){ e.preventDefault(); if(!saved && !btns[0].disabled) btns[0].click(); } });
   f.addEventListener('submit', function(e){
     e.preventDefault(); msg.textContent=''; msg.className='msg';
     if(saved){
       var o = (ot.value||'').trim(), v2 = saved.v, w2 = saved.w;
-      var bad2 = function(t){ msg.textContent=t; msg.className='msg err'; ot.focus(); };
+      var bad2 = function(t){ msg.textContent=t; msg.className='msg err'; ot.focus(); try{ msg.scrollIntoView({block:'center'}); }catch(err){} };
       if(o && saved.v){
         w2 = readWa(o);
         if(!/^\+/.test(w2)){ bad2('Add the country code, e.g. +254 712 345 678'); return; }
@@ -158,14 +166,13 @@
     }
     // One field: an email address, or a WhatsApp number with its country code (+254 712 345 678; 00254.. is read as +254..)
     var raw = (em.value||'').trim(), v = '', w = '';
-    var bad = function(t){ msg.textContent=t; msg.className='msg err'; em.focus(); };
+    var bad = function(t){ msg.textContent=t; msg.className='msg err'; em.focus(); try{ msg.scrollIntoView({block:'center'}); }catch(err){} };
     if(!raw){ bad('Please enter your email or WhatsApp number.'); return; }
     if(raw.indexOf('@') > -1){
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(raw)){ bad('Please enter a valid email address.'); return; }
       v = raw;
     } else {
-      w = raw.replace(/[\s().-]/g,'');
-      if(/^00\d/.test(w)) w = '+' + w.slice(2);
+      w = readWa(raw);
       if(!/^\+?\d+$/.test(w)){ bad('Please enter your email or WhatsApp number.'); return; }
       if(!/^\+/.test(w)){ bad('Add the country code, e.g. +254 712 345 678'); return; }
       if(!/^\+[1-9]\d{7,14}$/.test(w)){ bad('Please check the WhatsApp number.'); return; }
