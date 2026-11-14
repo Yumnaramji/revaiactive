@@ -72,6 +72,8 @@
   .names{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px}
   .names .form-row{margin-top:0}
   .names .form-row input{width:100%}
+  /* "(optional)" has to fit two fields side by side on a phone; placeholder size does not trigger the iOS zoom */
+  .names .form-row input::placeholder{font-size:13px;letter-spacing:0}
   .su button.submit{display:block;width:100%;margin-top:32px;padding:13px 16px;background:none;border:1px solid #ffffff66;border-radius:2px;color:#fff;font-size:14px;letter-spacing:.04em;transition:background .2s,color .2s,border-color .2s}
   .su button.submit:hover{background:#fff;color:#000;border-color:#fff}
   .done .more{display:none}
@@ -102,8 +104,8 @@
       <div class="more" hidden>
         <div class="form-row"><label class="sr" for="ot">WhatsApp number (optional)</label><input id="ot" type="text" name="other" placeholder="WhatsApp (optional)" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next"></div>
         <div class="names">
-          <div class="form-row"><label class="sr" for="fn">First name</label><input id="fn" type="text" name="first_name" placeholder="First name" autocomplete="given-name" autocapitalize="words" maxlength="40" enterkeyhint="next"></div>
-          <div class="form-row"><label class="sr" for="ln">Last name</label><input id="ln" type="text" name="last_name" placeholder="Last name" autocomplete="family-name" autocapitalize="words" maxlength="40" enterkeyhint="done"></div>
+          <div class="form-row"><label class="sr" for="fn">First name (optional)</label><input id="fn" type="text" name="first_name" placeholder="First name (optional)" autocomplete="given-name" autocapitalize="words" maxlength="40" enterkeyhint="next"></div>
+          <div class="form-row"><label class="sr" for="ln">Last name (optional)</label><input id="ln" type="text" name="last_name" placeholder="Last name (optional)" autocomplete="family-name" autocapitalize="words" maxlength="40" enterkeyhint="done"></div>
         </div>
         <button class="submit" type="submit">Submit</button>
       </div>
@@ -114,7 +116,7 @@
 <script>
 (function(){
   var PREVIEW = false;
-  var BUILD = '20261114g';
+  var BUILD = '20261114h';
   // Browsers (phones especially) reopen a saved copy of this page. Ask the server for the current one, bypassing every cache;
   // if it is a newer build, reload once. Skipped while someone is part-way through the form.
   var busyForm = function(){ var a = document.getElementById('su'); return !a || a.classList.contains('step2') || a.classList.contains('done') || !!(document.getElementById('em') || {}).value; };
