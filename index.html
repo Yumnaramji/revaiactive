@@ -51,10 +51,7 @@
   @media(prefers-reduced-motion:reduce){.lock,.line,.soon,.where,.ig,.su{animation:none;opacity:1}}
   @media(max-width:480px){.lock img{height:32px}.lock span{font-size:21px}.mark{right:-30vmin;height:140vmin}}
 
-  .su{max-width:440px;margin-top:40px}
-  .form-row .sep{flex:none;width:1px;height:16px;background:#ffffff33;margin:0 4px}
-  .su .form-row #em{flex:1 1 0}.su .form-row #wa{flex:1.15 1 0}
-  @media(max-width:480px){.su .form-row input{font-size:13px;padding-left:6px}.su button.go{padding-left:8px}}
+  .su{max-width:340px;margin-top:40px}
   .form-row{position:relative;display:flex;align-items:center}
   .form-row::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,#fff0,#ffffff40 18%,#ffffff40 82%,#fff0);transition:background .3s}
   .form-row:focus-within::after{background:linear-gradient(90deg,#fff0,#ffffff99 18%,#ffffff99 82%,#fff0)}
@@ -77,7 +74,7 @@
     <p class="where">Nairobi</p>
     <form class="su" id="su" novalidate>
       <p class="lead">Get early access</p>
-      <div class="form-row"><label class="sr" for="em">Email address</label><input id="em" type="email" name="email" placeholder="Email address" autocomplete="email" required><span class="sep" aria-hidden="true"></span><label class="sr" for="wa">WhatsApp number with country code (optional)</label><input id="wa" type="tel" name="whatsapp" placeholder="WhatsApp (optional)" autocomplete="tel" inputmode="tel"><button class="go" type="submit" aria-label="Get early access">→</button></div>
+      <div class="form-row"><label class="sr" for="em">Email or WhatsApp number</label><input id="em" type="text" name="contact" placeholder="Email or WhatsApp" autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" required><button class="go" type="submit" aria-label="Get early access">→</button></div>
       <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="msg" role="alert"></p><p class="thanks" tabindex="-1">You're on the list.</p>
     </form>
     <div class="ig"><a href="https://www.instagram.com/revaiactive/">@revaiactive</a></div>
@@ -87,16 +84,22 @@
   var PREVIEW = false;
   var URL = 'https://shop.revaiactive.com/wp-json/revai/v1/launch-list';
   var f = document.getElementById('su'); if(!f) return;
-  var msg = f.querySelector('.msg'), btns = f.querySelectorAll('button[type=submit]'), em = f.querySelector('input[type=email]'), wa = f.querySelector('input[type=tel]');
+  var msg = f.querySelector('.msg'), btns = f.querySelectorAll('button[type=submit]'), em = document.getElementById('em');
   f.addEventListener('submit', function(e){
     e.preventDefault(); msg.textContent=''; msg.className='msg';
-    var v = (em.value||'').trim();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){ msg.textContent='Please enter a valid email address.'; msg.className='msg err'; em.focus(); return; }
-    // WhatsApp number is optional, any country, but must carry its country code: +254 712 345 678 (00254.. is read as +254..)
-    var w = (wa.value||'').replace(/[\s().-]/g,'');
-    if(w){
+    // One field: an email address, or a WhatsApp number with its country code (+254 712 345 678; 00254.. is read as +254..)
+    var raw = (em.value||'').trim(), v = '', w = '';
+    var bad = function(t){ msg.textContent=t; msg.className='msg err'; em.focus(); };
+    if(!raw){ bad('Please enter your email or WhatsApp number.'); return; }
+    if(raw.indexOf('@') > -1){
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(raw)){ bad('Please enter a valid email address.'); return; }
+      v = raw;
+    } else {
+      w = raw.replace(/[\s().-]/g,'');
       if(/^00\d/.test(w)) w = '+' + w.slice(2);
-      if(!/^\+[1-9]\d{7,14}$/.test(w)){ msg.textContent = /^\+/.test(w) ? 'Please check the WhatsApp number, or leave it blank.' : 'Add the country code, e.g. +254 712 345 678'; msg.className='msg err'; wa.focus(); return; }
+      if(!/^\+?\d+$/.test(w)){ bad('Please enter your email or WhatsApp number.'); return; }
+      if(!/^\+/.test(w)){ bad('Add the country code, e.g. +254 712 345 678'); return; }
+      if(!/^\+[1-9]\d{7,14}$/.test(w)){ bad('Please check the WhatsApp number.'); return; }
     }
     var busy = function(on){ for(var i=0;i<btns.length;i++){ btns[i].disabled=on; on ? btns[i].setAttribute('aria-busy','true') : btns[i].removeAttribute('aria-busy'); } }; busy(true);
     var done = function(){ f.classList.add('done'); f.querySelector('.thanks').focus(); };
