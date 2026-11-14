@@ -51,7 +51,7 @@
   @media(prefers-reduced-motion:reduce){.lock,.line,.soon,.where,.ig,.su{animation:none;opacity:1}}
   @media(max-width:480px){.lock img{height:32px}.lock span{font-size:21px}.mark{right:-30vmin;height:140vmin}}
 
-  .su{max-width:340px;margin-top:40px}
+  .su{max-width:340px;margin-top:64px}
   .form-row{position:relative;display:flex;align-items:center}
   .form-row::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,#fff0,#ffffff40 18%,#ffffff40 82%,#fff0);transition:background .3s}
   .form-row:focus-within::after{background:linear-gradient(90deg,#fff0,#ffffff99 18%,#ffffff99 82%,#fff0)}
@@ -62,7 +62,7 @@
   .su button.go:hover,.form-row:focus-within button.go{color:#fff}
   .thanks{text-transform:none;letter-spacing:.01em;font-size:14px;font-weight:300;color:#d4d4d4;padding:12px 0;margin-right:0}
   .form-row+.form-row{margin-top:6px}
-  .lead{font-size:14px;font-weight:300;color:#d4d4d4;letter-spacing:.01em;margin-bottom:6px}
+  .lead{font-size:16px;font-weight:300;color:#d4d4d4;letter-spacing:.01em;margin-bottom:8px}
   /* 16px on phones: iOS zooms the page in when a focused field has smaller text */
   @media(hover:none),(max-width:767px){.su .form-row input{font-size:16px}}
   /* details step */
@@ -116,7 +116,7 @@
 <script>
 (function(){
   var PREVIEW = false;
-  var BUILD = '20261114h';
+  var BUILD = '20261114i';
   // Browsers (phones especially) reopen a saved copy of this page. Ask the server for the current one, bypassing every cache;
   // if it is a newer build, reload once. Skipped while someone is part-way through the form.
   var busyForm = function(){ var a = document.getElementById('su'); return !a || a.classList.contains('step2') || a.classList.contains('done') || !!(document.getElementById('em') || {}).value; };
