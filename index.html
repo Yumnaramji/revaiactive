@@ -56,8 +56,8 @@
   .form-row::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,#fff0,#ffffff40 18%,#ffffff40 82%,#fff0);transition:background .3s}
   .form-row:focus-within::after{background:linear-gradient(90deg,#fff0,#ffffff99 18%,#ffffff99 82%,#fff0)}
   .su .form-row input{flex:1;min-width:0;text-align:left;border:0;padding:12px 0 12px 8px;font-size:14px;letter-spacing:.01em;color:#e5e5e5;caret-color:#fff}
-  .su .form-row input::placeholder{color:#8a8a93;font-weight:300;transition:color .3s}
-  .su .form-row input:focus::placeholder{color:#3f3f46}
+  .su .form-row input::placeholder{color:#b9b9c2;font-weight:400;opacity:1;transition:color .3s}
+  .su .form-row input:focus::placeholder{color:#a1a1ab}
   .su button.go{background:none;border:0;color:#a3a3a3;font-size:16px;font-weight:300;letter-spacing:0;padding:12px 8px 12px 16px;white-space:nowrap;transition:color .2s}
   .su button.go:hover,.form-row:focus-within button.go{color:#fff}
   .thanks{text-transform:none;letter-spacing:.01em;font-size:14px;font-weight:300;color:#d4d4d4;padding:12px 0;margin-right:0}
@@ -77,7 +77,7 @@
     <p class="where">Nairobi</p>
     <form class="su" id="su" novalidate>
       <p class="lead">Get early access</p>
-      <div class="form-row"><label class="sr" for="em">Email or WhatsApp number</label><input id="em" type="text" name="contact" placeholder="Email or WhatsApp" autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" required><button class="go" type="submit" aria-label="Get early access">→</button></div>
+      <div class="form-row"><label class="sr" for="em">Email or WhatsApp number</label><input id="em" type="text" name="contact" placeholder="Email or WhatsApp" autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" required><button class="go" type="submit" aria-label="Get early access">→</button></div>
       <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="msg" role="alert"></p><p class="thanks" tabindex="-1">You're on the list.</p>
     </form>
     <div class="ig"><a href="https://www.instagram.com/revaiactive/">@revaiactive</a></div>
@@ -95,11 +95,13 @@
   var askName = function(v, w){
     saved = {v:v, w:w}; lock(false);
     lead.textContent = "You're on the list.";
-    em.value = ''; em.placeholder = 'Add your first name';
+    em.value = ''; em.placeholder = 'Add your first name (optional)'; em.setAttribute('enterkeyhint','done');
     em.setAttribute('inputmode','text'); em.setAttribute('autocomplete','given-name'); em.setAttribute('autocapitalize','words'); em.setAttribute('maxlength','80');
     f.querySelector('label[for=em]').textContent = 'Your first name (optional)';
     btns[0].setAttribute('aria-label','Save name'); em.focus();
   };
+  // Enter / the keyboard's Go key does the same as the arrow
+  em.addEventListener('keydown', function(e){ if((e.key === 'Enter' || e.keyCode === 13) && !e.isComposing){ e.preventDefault(); if(!btns[0].disabled) btns[0].click(); } });
   f.addEventListener('submit', function(e){
     e.preventDefault(); msg.textContent=''; msg.className='msg';
     if(saved){
