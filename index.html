@@ -65,6 +65,17 @@
   .lead{font-size:14px;font-weight:300;color:#d4d4d4;letter-spacing:.01em;margin-bottom:6px}
   /* 16px on phones: iOS zooms the page in when a focused field has smaller text */
   @media(hover:none),(max-width:767px){.su .form-row input{font-size:16px}}
+  /* details step */
+  .su.step2 > .form-row button.go{display:none}
+  .more .form-row{margin-top:6px}
+  .more{margin-top:0}
+  .names{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px}
+  .names .form-row{margin-top:0}
+  .names .form-row input{width:100%}
+  .su button.submit{display:block;width:100%;margin-top:32px;padding:13px 16px;background:none;border:1px solid #ffffff66;border-radius:2px;color:#fff;font-size:14px;letter-spacing:.04em;transition:background .2s,color .2s,border-color .2s}
+  .su button.submit:hover{background:#fff;color:#000;border-color:#fff}
+  .done .more{display:none}
+  .su.step2 .more{animation:in .6s cubic-bezier(.16,1,.3,1) both}
 </style>
 </head>
 <body>
@@ -78,6 +89,14 @@
     <form class="su" id="su" novalidate>
       <p class="lead">Get early access</p>
       <div class="form-row"><label class="sr" for="em">Email or WhatsApp number</label><input id="em" type="text" name="contact" placeholder="Email or WhatsApp" autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" required><button class="go" type="submit" aria-label="Get early access">→</button></div>
+      <div class="more" hidden>
+        <div class="form-row"><label class="sr" for="ot">WhatsApp number (optional)</label><input id="ot" type="text" name="other" placeholder="WhatsApp (optional)" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next"></div>
+        <div class="names">
+          <div class="form-row"><label class="sr" for="fn">First name</label><input id="fn" type="text" name="first_name" placeholder="First name" autocomplete="given-name" autocapitalize="words" maxlength="40" enterkeyhint="next"></div>
+          <div class="form-row"><label class="sr" for="ln">Last name</label><input id="ln" type="text" name="last_name" placeholder="Last name" autocomplete="family-name" autocapitalize="words" maxlength="40" enterkeyhint="done"></div>
+        </div>
+        <button class="submit" type="submit">Submit</button>
+      </div>
       <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="msg" role="alert"></p><p class="thanks" tabindex="-1">You're on the list.</p>
     </form>
     <div class="ig"><a href="https://www.instagram.com/revaiactive/">@revaiactive</a></div>
@@ -88,27 +107,42 @@
   var URL = 'https://shop.revaiactive.com/wp-json/revai/v1/launch-list';
   var f = document.getElementById('su'); if(!f) return;
   var msg = f.querySelector('.msg'), btns = f.querySelectorAll('button[type=submit]'), em = document.getElementById('em');
-  // Step 2 (optional): once they are on the list, the same line asks for a first name.
+  // Step 2 (all optional): the typed email / number stays on the first line; the other one, first and last name, then Submit.
   var saved = null, lead = f.querySelector('.lead');
   var lock = function(on){ for(var i=0;i<btns.length;i++){ btns[i].disabled=on; on ? btns[i].setAttribute('aria-busy','true') : btns[i].removeAttribute('aria-busy'); } };
   var finish = function(){ f.classList.add('done'); f.querySelector('.thanks').focus(); };
-  var askName = function(v, w){
+  var more = f.querySelector('.more'), ot = document.getElementById('ot');
+  var next = function(v, w){
     saved = {v:v, w:w}; lock(false);
-    lead.textContent = "You're on the list.";
-    em.value = ''; em.placeholder = 'Add your first name (optional)'; em.setAttribute('enterkeyhint','done');
-    em.setAttribute('inputmode','text'); em.setAttribute('autocomplete','given-name'); em.setAttribute('autocapitalize','words'); em.setAttribute('maxlength','80');
-    f.querySelector('label[for=em]').textContent = 'Your first name (optional)';
-    btns[0].setAttribute('aria-label','Save name'); em.focus();
+    em.readOnly = true; em.blur();
+    ot.placeholder = v ? 'WhatsApp (optional)' : 'Email (optional)';
+    ot.setAttribute('inputmode', v ? 'tel' : 'email'); ot.setAttribute('autocomplete', v ? 'tel' : 'email');
+    f.querySelector('label[for=ot]').textContent = v ? 'WhatsApp number with country code (optional)' : 'Email address (optional)';
+    more.hidden = false; f.classList.add('step2');
   };
+  var readWa = function(raw){ var w = raw.replace(/[\s().-]/g,''); if(/^00\d/.test(w)) w = '+' + w.slice(2); return w; };
   // Enter / the keyboard's Go key does the same as the arrow
-  em.addEventListener('keydown', function(e){ if((e.key === 'Enter' || e.keyCode === 13) && !e.isComposing){ e.preventDefault(); if(!btns[0].disabled) btns[0].click(); } });
+  em.addEventListener('keydown', function(e){ if((e.key === 'Enter' || e.keyCode === 13) && !e.isComposing){ e.preventDefault(); if(!saved && !btns[0].disabled) btns[0].click(); } });
   f.addEventListener('submit', function(e){
     e.preventDefault(); msg.textContent=''; msg.className='msg';
     if(saved){
-      var nm = (em.value||'').trim().slice(0,80);
-      if(!nm || PREVIEW){ finish(); return; }
+      var o = (ot.value||'').trim(), v2 = saved.v, w2 = saved.w;
+      var bad2 = function(t){ msg.textContent=t; msg.className='msg err'; ot.focus(); };
+      if(o && saved.v){
+        w2 = readWa(o);
+        if(!/^\+/.test(w2)){ bad2('Add the country code, e.g. +254 712 345 678'); return; }
+        if(!/^\+[1-9]\d{7,14}$/.test(w2)){ bad2('Please check the WhatsApp number.'); return; }
+      } else if(o){
+        if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(o)){ bad2('Please enter a valid email address.'); return; }
+        v2 = o;
+      }
+      if(PREVIEW){ finish(); return; }
       lock(true);
-      fetch(URL,{method:'POST',body:new URLSearchParams({email:saved.v, whatsapp:saved.w, name:nm, website:f.website.value, source:'holding'})}).then(finish, finish);
+      fetch(URL,{method:'POST',body:new URLSearchParams({email:v2, whatsapp:w2,
+        name:(f.first_name.value||'').trim().slice(0,40), last_name:(f.last_name.value||'').trim().slice(0,40),
+        website:f.website.value, source:'holding'})})
+        .then(function(r){ if(r.ok){ finish(); } else { return r.json().then(function(j){ lock(false); msg.textContent=(j && j.message)||'Something went wrong. Please try again.'; msg.className='msg err'; }); } })
+        .catch(function(){ lock(false); msg.textContent='Something went wrong. Please try again.'; msg.className='msg err'; });
       return;
     }
     // One field: an email address, or a WhatsApp number with its country code (+254 712 345 678; 00254.. is read as +254..)
@@ -128,10 +162,10 @@
     var busy = function(on){ for(var i=0;i<btns.length;i++){ btns[i].disabled=on; on ? btns[i].setAttribute('aria-busy','true') : btns[i].removeAttribute('aria-busy'); } }; busy(true);
     var done = function(){ f.classList.add('done'); f.querySelector('.thanks').focus(); };
     var fail = function(t){ busy(false); msg.textContent=t||'Something went wrong. Please try again.'; msg.className='msg err'; };
-    if(PREVIEW){ setTimeout(function(){ askName(v, w); }, 700); return; }
+    if(PREVIEW){ setTimeout(function(){ next(v, w); }, 700); return; }
     var body = new URLSearchParams({email:v, whatsapp:w, website:f.website.value, source:'holding'});
     fetch(URL,{method:'POST',body:body}).then(function(r){ return r.json().then(function(j){ return {ok:r.ok,j:j}; }); })
-      .then(function(x){ x.ok ? askName(v, w) : fail(x.j && x.j.message); }).catch(function(){ fail(); });
+      .then(function(x){ x.ok ? next(v, w) : fail(x.j && x.j.message); }).catch(function(){ fail(); });
   });
   var open = document.getElementById('su-open');
   if(open) open.addEventListener('click', function(){ document.body.classList.add('su-on'); open.setAttribute('aria-expanded','true'); setTimeout(function(){ em.focus(); }, 50); });
