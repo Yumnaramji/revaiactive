@@ -76,6 +76,11 @@
   .su button.submit:hover{background:#fff;color:#000;border-color:#fff}
   .done .more{display:none}
   .su.step2 .more{animation:in .6s cubic-bezier(.16,1,.3,1) both}
+  /* no highlight boxes: focus ring on the thank-you line, tap flash, browser autofill tint */
+  .thanks:focus,.thanks:focus-visible{outline:none}
+  .su input,.su button{-webkit-tap-highlight-color:transparent}
+  .su .form-row input:-webkit-autofill,.su .form-row input:-webkit-autofill:hover,.su .form-row input:-webkit-autofill:focus{-webkit-text-fill-color:#e5e5e5;caret-color:#fff;transition:background-color 99999s ease-in-out 0s,color 99999s ease-in-out 0s}
+  .su .form-row input:autofill{background:transparent!important}
 </style>
 </head>
 <body>
@@ -108,7 +113,7 @@
   var f = document.getElementById('su'); if(!f) return;
   var msg = f.querySelector('.msg'), btns = f.querySelectorAll('button[type=submit]'), em = document.getElementById('em');
   // Step 2 (all optional): the typed email / number stays on the first line; the other one, first and last name, then Submit.
-  var saved = null, lead = f.querySelector('.lead');
+  var pending = null, saved = null, lead = f.querySelector('.lead');
   var lock = function(on){ for(var i=0;i<btns.length;i++){ btns[i].disabled=on; on ? btns[i].setAttribute('aria-busy','true') : btns[i].removeAttribute('aria-busy'); } };
   var finish = function(){ f.classList.add('done'); f.querySelector('.thanks').focus(); };
   var more = f.querySelector('.more'), ot = document.getElementById('ot');
@@ -138,9 +143,10 @@
       }
       if(PREVIEW){ finish(); return; }
       lock(true);
-      fetch(URL,{method:'POST',body:new URLSearchParams({email:v2, whatsapp:w2,
+      // wait for the first save to land, so the two requests can't make two rows
+      (pending || Promise.resolve()).then(function(){ return fetch(URL,{method:'POST',body:new URLSearchParams({email:v2, whatsapp:w2,
         name:(f.first_name.value||'').trim().slice(0,40), last_name:(f.last_name.value||'').trim().slice(0,40),
-        website:f.website.value, source:'holding'})})
+        website:f.website.value, source:'holding'})}); })
         .then(function(r){ if(r.ok){ finish(); } else { return r.json().then(function(j){ lock(false); msg.textContent=(j && j.message)||'Something went wrong. Please try again.'; msg.className='msg err'; }); } })
         .catch(function(){ lock(false); msg.textContent='Something went wrong. Please try again.'; msg.className='msg err'; });
       return;
@@ -159,13 +165,9 @@
       if(!/^\+/.test(w)){ bad('Add the country code, e.g. +254 712 345 678'); return; }
       if(!/^\+[1-9]\d{7,14}$/.test(w)){ bad('Please check the WhatsApp number.'); return; }
     }
-    var busy = function(on){ for(var i=0;i<btns.length;i++){ btns[i].disabled=on; on ? btns[i].setAttribute('aria-busy','true') : btns[i].removeAttribute('aria-busy'); } }; busy(true);
-    var done = function(){ f.classList.add('done'); f.querySelector('.thanks').focus(); };
-    var fail = function(t){ busy(false); msg.textContent=t||'Something went wrong. Please try again.'; msg.className='msg err'; };
-    if(PREVIEW){ setTimeout(function(){ next(v, w); }, 700); return; }
-    var body = new URLSearchParams({email:v, whatsapp:w, website:f.website.value, source:'holding'});
-    fetch(URL,{method:'POST',body:body}).then(function(r){ return r.json().then(function(j){ return {ok:r.ok,j:j}; }); })
-      .then(function(x){ x.ok ? next(v, w) : fail(x.j && x.j.message); }).catch(function(){ fail(); });
+    // Show the details step at once; the sign-up itself is saved in the background (the Submit sends the contact again, so nothing is lost if this request is slow or fails).
+    next(v, w);
+    if(!PREVIEW){ try{ pending = fetch(URL,{method:'POST',body:new URLSearchParams({email:v, whatsapp:w, website:f.website.value, source:'holding'}),keepalive:true}).catch(function(){}); }catch(err){} }
   });
   var open = document.getElementById('su-open');
   if(open) open.addEventListener('click', function(){ document.body.classList.add('su-on'); open.setAttribute('aria-expanded','true'); setTimeout(function(){ em.focus(); }, 50); });
