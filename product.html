@@ -257,7 +257,7 @@
 
       <p id="prod-gender" class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3"></p>
       <h1 id="prod-name" class="fu d1 mb-2" style="font-size:clamp(26px,3vw,36px);font-weight:700;letter-spacing:-.025em;line-height:1.1"></h1>
-      <p id="prod-price" class="fu d1 mb-8 text-lg font-normal" style="letter-spacing:-.01em"></p>
+      <p id="prod-price" class="fu d1 mb-8 text-lg font-normal" style="letter-spacing:-.01em"><span data-nosnippet id="prod-price-val"></span></p><!-- data-nosnippet: search engines are asked not to quote the price (Yumna, 16 Nov 2026) -->
 
       <!-- Colour -->
       <div class="fu d2 mb-7">
@@ -366,7 +366,7 @@
 <script src="shopify-config.js?v=20260926b"></script>
 <script src="woo-config.js?v=20261110a"></script>
 <script src="js/stock.js?v=20261110a"></script>
-<script src="cart-drawer.js?v=20261112b"></script>
+<script src="cart-drawer.js?v=20261113b"></script>
 <script src="js/woo-customer.js?v=20261002b"></script>
 <script src="js/care-icons.js?v=20260913a"></script>
 <script>
@@ -391,7 +391,7 @@ function readJSON(key){try{const v=JSON.parse(localStorage.getItem(key)||'[]');r
 // Clean share URLs: /p/<slug>/ is a static page carrying this product's own preview tags (built by build-og.js)
 const PRODUCT_SLUGS={"running-leggings-w":"performance-leggings","flared-leggings-w":"flared-leggings","high-impact-bra":"high-impact-sports-bra","low-impact-bra":"low-impact-sports-bra","tshirt-w":"womens-t-shirt","jacket-w":"womens-jacket","tshirt-m":"mens-t-shirt","quarter-zip-m":"mens-quarter-zip","shorts-m":"mens-shorts","training-pants-m":"mens-training-pants","ankle-socks":"ankle-socks","lifestyle-cap":"lifestyle-cap","gym-bag":"gym-bag"};
 function loadProduct(){
-  const id=new URLSearchParams(window.location.search).get('id');
+  const id=window.REVAI_PID||new URLSearchParams(window.location.search).get('id'); // REVAI_PID is baked into the static /p/<slug>/ pages by build-og.js
   const p=PRODUCTS[id];
   if(!p){
     document.title='Product Not Found';
@@ -413,7 +413,7 @@ function loadProduct(){
     const d=document.querySelector('meta[name="description"]');if(d)d.setAttribute('content',line+' '+tail);
     return line+' '+tail;})());
   const slug=PRODUCT_SLUGS[id];
-  if(slug){ setMeta('og:url',location.origin+'/p/'+slug+'/'); try{history.replaceState(history.state,'','/p/'+slug+'/'+location.hash);}catch(e){} }
+  if(slug){ setMeta('og:url',location.origin+'/p/'+slug+'/'); (function(){var c=document.querySelector('link[rel="canonical"]');if(!c){c=document.createElement('link');c.rel='canonical';document.head.appendChild(c);}c.href='https://revaiactive.com/p/'+slug+'/';})(); try{history.replaceState(history.state,'','/p/'+slug+'/'+location.hash);}catch(e){} }
   document.getElementById('breadcrumb-name').textContent=p.name;
   // Breadcrumb follows the menu (5 Nov 2026, Yumna): Home / Women / Leggings / Performance Leggings, so a shopper can step back to the range or the category.
   (function(){const CRUMB={'running-leggings-w':['women','Women','leggings','Leggings'],'flared-leggings-w':['women','Women','leggings','Leggings'],'high-impact-bra':['women','Women','sports-bras','Sports Bras'],'low-impact-bra':['women','Women','sports-bras','Sports Bras'],'tshirt-w':['women','Women','tops','Tops'],'jacket-w':['women','Women','jackets','Jackets'],'tshirt-m':['men','Men','tshirts','T-Shirts'],'quarter-zip-m':['men','Men','quarter-zips','Quarter Zips'],'shorts-m':['men','Men','shorts','Shorts'],'training-pants-m':['men','Men','pants','Pants'],'ankle-socks':['accessories','Accessories'],'lifestyle-cap':['accessories','Accessories'],'gym-bag':['accessories','Accessories']};
@@ -422,7 +422,7 @@ function loadProduct(){
     if(c[2])h+=' <a href="collections.html?gender='+c[0]+'&cat='+c[2]+'" class="hover:text-black transition-colors">'+c[3]+'</a><span> /</span>';
     t.innerHTML=h;})();
   document.getElementById('prod-name').textContent=p.name;
-  document.getElementById('prod-price').textContent=p.price;
+  (document.getElementById('prod-price-val')||document.getElementById('prod-price')).textContent=p.price;
   document.getElementById('prod-gender').textContent=p.gender==='Unisex'?'':p.gender;
   // Colour swatch — defaults to Black, overridden when product specifies colour
   if(p.colour){
@@ -477,7 +477,7 @@ function loadProduct(){
   }
   setMain(imgs[0]);
   // Details
-  p.details.forEach(d=>{const li=document.createElement('li');li.textContent=d;document.getElementById('prod-details').appendChild(li);});
+  document.getElementById('prod-details').innerHTML=''; p.details.forEach(d=>{const li=document.createElement('li');li.textContent=d;document.getElementById('prod-details').appendChild(li);});
   // Care instructions — a care string (accessories, from their care labels) replaces the garment default; care:false hides the row.
   // careIcons lists the symbols printed on that product's label (keys in js/care-icons.js); garments use the shared garment label.
   if(p.care===false){const cr=document.getElementById('care-row');if(cr)cr.style.display='none';}
@@ -633,7 +633,7 @@ function loadProduct(){
     others.forEach(([k,rp])=>{
       const a=document.createElement('a');
       a.href='product.html?id='+k; a.className='rel-card';
-      a.innerHTML=`<div class="rel-img"><img src="${rp.image}" alt="${rp.name}" onerror="this.style.display='none'"></div><div class="pc-row"><p class="text-sm font-semibold">${rp.name}</p><p class="text-sm font-normal">${rp.price}</p></div>`;
+      a.innerHTML=`<div class="rel-img"><img src="${rp.image}" alt="${rp.name}" onerror="this.style.display='none'"></div><div class="pc-row"><p class="text-sm font-semibold">${rp.name}</p><p class="text-sm font-normal"><span data-nosnippet>${rp.price}</span></p></div>`;
       grid.appendChild(a);
     });
   }

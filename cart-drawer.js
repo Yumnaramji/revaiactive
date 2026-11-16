@@ -211,6 +211,7 @@
       <p style="font-size:12px;color:#9ca3af;margin:0 0 14px">Delivery KES 200–400 depending on your area. Pickup is free. Taxes included.</p>
       <button id="revai-checkout-btn" onclick="window.REVAI_CART.checkout()" style="width:100%;padding:14px;background:#000;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;letter-spacing:.02em;margin-bottom:10px">Checkout</button>
       <button onclick="window.REVAI_CART.closeDrawer()" style="width:100%;padding:12px;background:transparent;color:#374151;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer">Continue Shopping</button>
+      <a href="cart.html" style="display:block;text-align:center;margin-top:12px;font-size:13px;font-weight:500;color:#0a0a0a;text-decoration:underline;text-underline-offset:3px">View full bag</a>
     `;
 
     renderUpsells(cart);
