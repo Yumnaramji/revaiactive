@@ -103,11 +103,8 @@
       <p class="lead">Get early access</p>
       <div class="form-row"><label class="sr" for="em">Email or WhatsApp number</label><input id="em" type="text" name="contact" placeholder="Email or WhatsApp" autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" required><button class="go" type="submit" aria-label="Get early access">→</button></div>
       <div class="more" hidden>
-        <div class="form-row"><label class="sr" for="ot">WhatsApp number (optional)</label><input id="ot" type="text" name="other" placeholder="WhatsApp (optional)" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next"></div>
-        <div class="names">
-          <div class="form-row"><label class="sr" for="fn">First name (optional)</label><input id="fn" type="text" name="first_name" placeholder="First name (optional)" autocomplete="given-name" autocapitalize="words" maxlength="40" enterkeyhint="next"></div>
-          <div class="form-row"><label class="sr" for="ln">Last name (optional)</label><input id="ln" type="text" name="last_name" placeholder="Last name (optional)" autocomplete="family-name" autocapitalize="words" maxlength="40" enterkeyhint="done"></div>
-        </div>
+        <div class="form-row"><label class="sr" for="un">Username</label><input id="un" type="text" name="username" placeholder="Username" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" maxlength="40" enterkeyhint="next"></div>
+        <div class="form-row"><label class="sr" for="ot">WhatsApp number (optional)</label><input id="ot" type="text" name="other" placeholder="WhatsApp (optional)" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done"></div>
         <button class="submit" type="submit">Submit</button>
       </div>
       <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="msg" role="alert"></p><p class="thanks" tabindex="-1">You're on the list.</p>
@@ -117,7 +114,7 @@
 <script>
 (function(){
   var PREVIEW = false;
-  var BUILD = '20261114k';
+  var BUILD = '20261116c';
   // Browsers (phones especially) reopen a saved copy of this page. Ask the server for the current one, bypassing every cache;
   // if it is a newer build, reload once. Skipped while someone is part-way through the form.
   var busyForm = function(){ var a = document.getElementById('su'); return !a || a.classList.contains('step2') || a.classList.contains('done') || !!(document.getElementById('em') || {}).value; };
@@ -140,7 +137,7 @@
   var URL = 'https://shop.revaiactive.com/wp-json/revai/v1/launch-list';
   var f = document.getElementById('su'); if(!f) return;
   var msg = f.querySelector('.msg'), btns = f.querySelectorAll('button[type=submit]'), em = document.getElementById('em');
-  // Step 2 (all optional): the typed email / number stays on the first line; the other one, first and last name, then Submit.
+  // Step 2 (all optional): the typed email / number stays on the first line; the other one, a username, then Submit.
   var pending = null, saved = null, lead = f.querySelector('.lead');
   var lock = function(on){ for(var i=0;i<btns.length;i++){ btns[i].disabled=on; on ? btns[i].setAttribute('aria-busy','true') : btns[i].removeAttribute('aria-busy'); } };
   var finish = function(){ f.classList.add('done'); f.querySelector('.thanks').focus(); };
@@ -170,8 +167,9 @@
         if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(o)){ bad2('Please enter a valid email address.'); return; }
         v2 = o;
       }
+      var un = (f.username.value||'').trim().slice(0,40);
       var body2 = new URLSearchParams({email:v2, whatsapp:w2,
-        name:(f.first_name.value||'').trim().slice(0,40), last_name:(f.last_name.value||'').trim().slice(0,40),
+        name:un,
         website:f.website.value, source:'holding'});
       finish();   // the shop can take seconds to answer; nothing here needs its reply
       if(!PREVIEW){ (pending || Promise.resolve()).then(function(){ return fetch(URL,{method:'POST',body:body2,keepalive:true}); }).catch(function(){}); }
