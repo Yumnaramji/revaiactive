@@ -1,308 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="only light">
+<title>REVAÍ — Preparing for launch</title>
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="color-scheme" content="only light">
-  <title>Our Story</title>
-  <!-- Social share tags (Open Graph): what WhatsApp, Instagram and iMessage show when this link is pasted. Images live in images/share/, built by build-og.js. -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="REVAÍ">
-  <meta property="og:title" content="Our Story — REVAÍ">
-  <meta property="og:description" content="Find Your Revival.">
-  <meta property="og:url" content="https://revaiactive.com/about.html">
-  <meta property="og:image" content="https://revaiactive.com/images/share/default.jpg">
-  <meta property="og:image:width" content="250">
-  <meta property="og:image:height" content="250">
-  <meta property="og:image:alt" content="REVAÍ">
-  <meta name="twitter:card" content="summary">
-  <meta name="description" content="REVAÍ was built to make high quality, performance-based activewear accessible to everyone. True-to-size fit, technical construction, honest prices.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261110b">
-  <style>
-    /* --- Brand lockup in nav: mark + wordmark --- */
-    .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
-    .rv-lock img{height:26px;width:auto;display:block;transition:filter .25s ease}
-    .rv-lock span{font-size:17px;font-weight:600;letter-spacing:.22em;margin-right:-.22em;line-height:1;white-space:nowrap}
-    @media(max-width:480px){.rv-lock{gap:8px}.rv-lock img{height:23px}.rv-lock span{font-size:15px}}
-    body.nav-over-hero #nav .rv-lock img{filter:invert(1)}
-    body.nav-over-hero #nav.scrolled .rv-lock img{filter:none}
-
-    :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
-    *{box-sizing:border-box}
-    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-    .fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-    .fu.in{opacity:1;transform:translateY(0)}
-    .d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}.d4{transition-delay:320ms}.d5{transition-delay:400ms}
-    .btn-p{background:#000;color:#fff;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;text-decoration:none}
-    .btn-p:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.22);background:#1a1a1a}
-    .btn-s{background:transparent;border:1px solid #000;color:#000;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;transition:background .2s,transform .2s;text-decoration:none}
-    .btn-s:hover{background:rgba(0,0,0,.04);transform:translateY(-1px)}
-    .card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:32px;transition:transform .25s,box-shadow .25s}
-    .card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.07)}
-    .t-hero{font-size:clamp(38px,6vw,72px);font-weight:700;letter-spacing:-0.025em;line-height:1.07}
-    .t-h2{font-size:clamp(30px,4vw,48px);font-weight:600;letter-spacing:-0.015em;line-height:1.12}
-    .t-h3{font-size:clamp(18px,2vw,22px);font-weight:600;line-height:1.25}
-    #nav.scrolled{border-bottom:1px solid #e5e7eb}
-    :focus-visible{outline:2px solid #000;outline-offset:3px}
-    @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
-
-    /* ACTIVITY TILES — copied verbatim from index.html's "Shop by activity"
-       doors so the two sections read as one system. If the homepage tiles are
-       restyled, change them here too. */
-    .hp-doors{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-    .hp-door{position:relative;overflow:hidden;display:block}
-    .hp-door img{aspect-ratio:1/1;object-fit:cover;width:100%;display:block;transition:transform .45s}
-    .hp-door:hover img{transform:scale(1.04)}
-    .hp-door span{position:absolute;left:16px;bottom:14px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.14em;z-index:2}
-    .hp-door:after{content:"";position:absolute;inset:auto 0 0;height:60%;background:linear-gradient(0deg,rgba(0,0,0,.72),transparent)}
-    @media(max-width:900px){.hp-doors{grid-template-columns:repeat(2,1fr)}}
-
-    /* The REVAÍ Philosophy, moved here from the homepage 27 Oct 2026 (Yumna). */
-    /* Philosophy (14 Oct 2026, option 5): site font, small title, narrow column, rule sign-off */
-    /* Philosophy (16 Oct 2026, Yumna): full content width, label centred, small title, three columns on desktop
-       with the sign-off under the last one; stacks on phones. */
-    .hp-who{padding:clamp(16px,2vw,28px) max(24px,calc((100% - 72rem)/2)) clamp(64px,8vw,104px);text-align:left}
-    .hp-who .eyeb{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#9a9a9a;text-align:center}
-    .hp-who h2{margin-top:36px;font-size:19px;font-weight:400;letter-spacing:-.01em;line-height:1.2;color:#0a0a0a}
-    .hp-who .col{margin-top:10px}
-    .hp-who p{font-size:14px;line-height:1.75;color:#6b6b6b}
-    .hp-who p+p,.hp-who .last{margin-top:10px}
-    .hp-who .sign{display:inline-flex;align-items:center;gap:14px;margin-top:20px;font-size:13px;color:#5a5a5a}
-    .hp-who .sign .ln{display:block;width:24px;height:1px;background:currentColor;flex:none}
-    @media(min-width:861px){
-      .hp-who{padding-top:clamp(18px,2.4vw,34px)}
-      .hp-who .col{margin-top:14px;display:grid;grid-template-columns:1fr 1.3fr 1fr;column-gap:clamp(28px,4vw,64px)}
-      .hp-who p{font-size:15px}
-      .hp-who p+p,.hp-who .last{margin-top:0}
-    }
-    /* Value cards on phones (10 Nov 2026): stacked, all three start at the page margin with a line between them.
-     The desktop column padding and right-hand divider were carrying over, so 02 and 03 sat 32px further in than 01. */
-  @media(max-width:767px){.val-card{padding:28px 0!important;border-right:0!important;border-bottom:1px solid #e5e7eb}.val-card:last-child{border-bottom:0}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:#050505;color:#fff;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{position:relative;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px 110px;text-align:center;overflow:hidden}
+  .glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 55%,rgba(255,255,255,.07),transparent 70%);pointer-events:none}
+  .mark{position:absolute;right:-8vmin;top:50%;transform:translateY(-50%);height:118vmin;width:auto;opacity:.05;pointer-events:none;filter:invert(1)}
+  .lock{display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) .2s forwards}
+  .lock img{height:40px;width:auto;filter:invert(1)}
+  .lock span{font-size:26px;font-weight:600;letter-spacing:.32em;margin-right:-.32em}
+  .line{width:1px;height:56px;background:linear-gradient(#fff0,#ffffff55,#fff0);margin:38px 0 34px;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) .6s forwards}
+  .soon{font-size:12px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:#d4d4d4;margin-right:-.36em;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) .9s forwards}
+  .where{margin-top:14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#6b7280;margin-right:-.24em;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) 1.1s forwards}
+  .go{margin-top:56px;display:flex;gap:28px;justify-content:center;flex-wrap:wrap;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) 1.25s forwards}
+  .go a{font-size:14px;font-weight:300;color:#d4d4d4;text-decoration:none;border-bottom:1px solid #ffffff40;padding:6px 0;transition:color .2s,border-color .2s}
+  .go a:hover{color:#fff;border-color:#ffffffaa}
+  .ig{position:absolute;bottom:34px;left:0;right:0;display:flex;gap:10px 24px;justify-content:center;flex-wrap:wrap;padding:0 16px;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) 1.4s forwards}
+  .ig a{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#a3a3a3;text-decoration:none;border-bottom:1px solid #333;padding-bottom:4px;transition:color .2s,border-color .2s}
+  .ig a:hover{color:#fff;border-color:#888}
+  @keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.lock,.line,.soon,.where,.go,.ig{animation:none;opacity:1}}
+  @media(max-width:480px){.lock img{height:32px}.lock span{font-size:21px}.mark{right:-30vmin;height:140vmin}}
 </style>
-  <script src="js/mobile-fix.js?v=20261110b" defer></script>
-  <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
-
-<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded-lg text-sm">Skip to content</a>
-
-<!-- NAV -->
-<nav id="nav" class="fixed top-0 inset-x-0 z-50 h-16" role="navigation" aria-label="Main" style="background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .25s">
-  <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
-    <a href="index.html" class="rv-lock text-black" aria-label="REVAÍ — home"><img src="images/revai-icon.png" alt="" aria-hidden="true" width="26" height="31"><span>REVAÍ</span></a>
-    <div class="nav-links hidden md:flex items-center gap-8">
-      <div class="relative" id="shop-dropdown-wrap">
-        <button id="shop-dropdown-btn" class="text-sm font-medium text-gray-500 hover:text-black transition-colors flex items-center gap-1">Shop<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></button>
-        <div id="shop-dropdown-menu" class="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 transition-all duration-200 z-50" style="opacity:0;pointer-events:none">
-          <a href="collections.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">All Products</a>
-          <a href="collections.html?gender=women" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Women</a>
-          <a href="collections.html?gender=men" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Men</a>
-          <a href="collections.html?gender=accessories" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Accessories</a>
-        
-        </div>
-      </div>
-      <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About Us</a>
-      <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
-    </div>
-    <div class="nav-right hidden md:flex items-center gap-3">
-      <button onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
-      <a href="wishlist.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Wishlist" data-wish-nav style="display:none"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></a><a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
-      <button id="nav-cart-btn" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open cart" onclick="if(window.REVAI_CART) window.REVAI_CART.openDrawer()">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-        <span id="cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span>
-      </button>
-    </div>
-    <div class="nav-mob md:hidden flex items-center gap-1"><button type="button" onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search" data-nav-search><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button><a href="wishlist.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Wishlist" data-wish-nav style="display:none"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></a><a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a><button id="m-cart-btn" aria-label="Open cart" onclick="if(window.REVAI_CART) window.REVAI_CART.openDrawer()" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span id="m-cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span></button><button id="hbg" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open menu" aria-expanded="false">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="14" x2="17" y2="14"/></svg>
-    </button></div>
+<main class="wrap">
+  <div class="glow" aria-hidden="true"></div>
+  <img class="mark" src="/images/revai-mark.svg" alt="" aria-hidden="true">
+  <a class="lock" href="/" aria-label="REVAÍ home"><img src="/images/revai-icon.png" alt=""><span>REVAÍ</span></a>
+  <div class="line" aria-hidden="true"></div>
+  <h1 class="soon">Preparing for launch</h1>
+  <p class="where">Nairobi</p>
+  <nav class="go" aria-label="Shop">
+    <a href="/collections.html">Shop the collection</a>
+    <a href="/">Home</a>
+  </nav>
+  <div class="ig">
+    <a href="https://www.instagram.com/revaiactive" target="_blank" rel="noopener">@revaiactive</a>
+    <a href="https://wa.me/254742822876" target="_blank" rel="noopener">WhatsApp +254 742 822 876</a>
   </div>
-</nav>
-
-<!-- MOBILE MENU -->
-<div id="mmenu" class="fixed top-0 left-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col" style="transform:translateX(-100%);transition:transform .35s cubic-bezier(.16,1,.3,1)">
-  <div class="flex justify-between items-center mb-10">
-    <span class="rv-lock"><img src="images/revai-icon.png" alt="" aria-hidden="true" width="24" height="29"><span>REVAÍ</span></span>
-    <button id="mclose" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Close menu">
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg>
-    </button>
-  </div>
-  <div class="flex flex-col gap-1 flex-1">
-    <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2 mt-2">Shop</p>
-    <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
-    <div class="mgrp">
-      <a href="collections.html?gender=women" class="mgrp-head block py-2 text-sm text-gray-700 hover:text-black" aria-expanded="false">Women<i class="mgrp-chev" aria-hidden="true"></i></a>
-      <div class="mgrp-sub">
-        <a href="collections.html?gender=women" class="mlink all">Shop all women</a>
-        <a href="collections.html?gender=women&amp;cat=leggings" class="mlink">Leggings</a>
-        <a href="collections.html?gender=women&amp;cat=sports-bras" class="mlink">Sports Bras</a>
-        <a href="collections.html?gender=women&amp;cat=tops" class="mlink">Tops</a>
-        <a href="collections.html?gender=women&amp;cat=jackets" class="mlink">Jackets</a>
-      </div>
-    </div>
-    <div class="mgrp">
-      <a href="collections.html?gender=men" class="mgrp-head block py-2 text-sm text-gray-700 hover:text-black" aria-expanded="false">Men<i class="mgrp-chev" aria-hidden="true"></i></a>
-      <div class="mgrp-sub">
-        <a href="collections.html?gender=men" class="mlink all">Shop all men</a>
-        <a href="collections.html?gender=men&amp;cat=tshirts" class="mlink">T-Shirts</a>
-        <a href="collections.html?gender=men&amp;cat=shorts" class="mlink">Shorts</a>
-        <a href="collections.html?gender=men&amp;cat=pants" class="mlink">Pants</a>
-        <a href="collections.html?gender=men&amp;cat=quarter-zips" class="mlink">Quarter Zips</a>
-      </div>
-    </div>
-    <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
-    <div class="my-3 border-t border-gray-100"></div>
-    <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About Us</a>
-    <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
-  </div>
-</div>
-<div id="moverlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
-
-<main id="main">
-
-  <!-- Page heading: the visible hero was removed, so the h1 is screen-reader only -->
-  <h1 class="sr-only">Our Story</h1>
-
-  <!-- STORY — eyebrow + pull quote across the top, then image left / body copy right,
-       vertically centred so the copy sits beside the image (5 Oct 2026). -->
-  <section class="px-6 pt-28 pb-16 md:pt-32 md:pb-20">
-    <div class="max-w-6xl mx-auto">
-      <div class="fu" style="max-width:760px;margin-bottom:48px">
-        <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-8">Founded 2026</p>
-        <blockquote style="font-size:clamp(26px,3.5vw,42px);font-weight:700;letter-spacing:-.025em;line-height:1.15;color:#0a0a0a">
-          "Kit for that moment. And every session after it."
-        </blockquote>
-      </div>
-      <div class="grid md:grid-cols-2 gap-10 lg:gap-20 items-center">
-        <!-- Left: brand image — same images/story-logo.jpg as the homepage "Our story" block -->
-        <div class="fu d1" style="aspect-ratio:1/1;overflow:hidden;background:#0a0a0a;max-width:480px">
-          <img src="images/story-logo.jpg" alt="REVAÍ" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
-        </div>
-        <!-- Right: body copy -->
-        <div>
-          <p class="fu text-sm text-gray-600 leading-relaxed mb-7">REVAÍ started from a desire to find activewear that was high quality, honestly priced and could carry you through every movement, no matter what that looked like. Not just for one sport, one body type or one fitness level, but for all of it.</p>
-          <p class="fu d1 text-sm text-gray-600 leading-relaxed mb-7">Movement means something different for everyone. REVAÍ is founded on that reality — providing kit that performs wherever you take it, fits across a full size range and gives you quality that lasts.</p>
-          <p class="fu d2 text-sm text-gray-600 leading-relaxed">We're based in Nairobi, Kenya, we launched in 2026, and we're building something we're proud of. Every piece is uniquely designed and constructed to perform, fit honestly and carry you through every movement — defined by you.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VALUES — numbered list, editorial style -->
-  <section style="background:#fff" class="px-6 py-12 md:py-14">
-    <div class="max-w-6xl mx-auto">
-
-      <div class="fu d1 grid md:grid-cols-3 gap-px" style="border-top:1px solid #e5e7eb">
-
-        <div class="val-card" style="border-right:1px solid #e5e7eb;padding:32px 32px 32px 0">
-          <p style="font-size:11px;font-weight:700;color:#b5b5b5;letter-spacing:.1em;margin-bottom:20px">01</p>
-          <h3 style="font-size:18px;font-weight:700;color:#0a0a0a;letter-spacing:-.02em;margin-bottom:12px">Engineered with Intent</h3>
-          <p style="font-size:13px;color:#6b6b6b;line-height:1.7">Compression-mapped construction, squat-proof fabrics, moisture-wicking knits. Every design is our own — created by REVAÍ, unique to REVAÍ, and tested and refined before it reaches you.</p>
-        </div>
-
-        <div class="val-card" style="border-right:1px solid #e5e7eb;padding:32px 32px">
-          <p style="font-size:11px;font-weight:700;color:#b5b5b5;letter-spacing:.1em;margin-bottom:20px">02</p>
-          <h3 style="font-size:18px;font-weight:700;color:#0a0a0a;letter-spacing:-.02em;margin-bottom:12px">Every Body. Every Level.</h3>
-          <p style="font-size:13px;color:#6b6b6b;line-height:1.7">S through XXL. 5K to a marathon, 5am or 9pm. We work with professional athletes, personal trainers, gym regulars and everyday movers of every shape.</p>
-        </div>
-
-        <div class="val-card" style="padding:32px 0 32px 32px">
-          <p style="font-size:11px;font-weight:700;color:#b5b5b5;letter-spacing:.1em;margin-bottom:20px">03</p>
-          <h3 style="font-size:18px;font-weight:700;color:#0a0a0a;letter-spacing:-.02em;margin-bottom:12px">Quality That Holds</h3>
-          <p style="font-size:13px;color:#6b6b6b;line-height:1.7">Every seam, every stitch, every fabric is carefully chosen. Our garments are tested against international performance benchmarks, so the hundredth wear performs like the first.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- THE REVAÍ PHILOSOPHY (moved from the homepage 27 Oct 2026) (14 Oct 2026) — new copy in the 7 Oct "Who we are" design; old copy in git history -->
-  <section class="hp-who">
-    <div class="eyeb fu">The REVAÍ Philosophy</div>
-    <h2 class="fu d1">A Return To You</h2>
-    <div class="col">
-      <p class="fu d2">The early run. The last rep. The quiet stretch. Movement is more than what we do. It’s how we come back to ourselves.</p>
-      <p class="fu d2">Born in Nairobi, REVAÍ is a premium performance activewear brand. Built for the way we move — from Karura trails to the studio, from your first session to your next breakthrough.</p>
-      <div class="last">
-        <p class="fu d2">No one shape. No one way to move.</p>
-        <div class="sign fu d3"><span class="ln" aria-hidden="true"></span>Just you, finding your revival.</div>
-      </div>
-    </div>
-  </section>
-
 </main>
-
-<!-- FOOTER -->
-<footer style="background:#0a0a0a" class="px-6 pt-10 pb-5 border-t border-gray-800">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid md:grid-cols-4 gap-10 mb-6">
-      <div>
-        <a href="index.html" style="display:inline-block;margin-bottom:16px"><img src="images/revai-icon.png" alt="REVAÍ" style="height:44px;width:auto;display:block;margin-left:-2px;filter:invert(1)"></a>
-        <p class="text-gray-400 text-sm leading-relaxed mb-6">Activewear built for people who move — whatever that looks like for you.</p>
-        <div class="flex gap-4">
-          <a href="https://www.instagram.com/revaiactive" target="_blank" rel="noopener" aria-label="Instagram" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></a><a href="mailto:support@revaiactive.com" aria-label="Email REVAÍ" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4.5" width="20" height="15" rx="2.5"/><path d="m3 7 8.13 5.42a1.6 1.6 0 0 0 1.74 0L21 7"/></svg></a>
-        </div>
-      </div>
-      <div>
-        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Shop</h3>
-        <ul class="space-y-3"><li><a href="collections.html" class="text-sm text-gray-400 hover:text-white transition-colors">All Products</a></li><li><a href="collections.html?gender=women" class="text-sm text-gray-400 hover:text-white transition-colors">Women</a></li><li><a href="collections.html?gender=men" class="text-sm text-gray-400 hover:text-white transition-colors">Men</a></li><li><a href="collections.html?gender=accessories" class="text-sm text-gray-400 hover:text-white transition-colors">Accessories</a></li></ul>
-      </div>
-      <div>
-        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Company</h3>
-        <ul class="space-y-3">
-          <li><a href="about.html" class="text-sm text-gray-400 hover:text-white transition-colors">About Us</a></li>
-          <li><a href="sustainability.html" class="text-sm text-gray-400 hover:text-white transition-colors">Sustainability</a></li>
-          <li><a href="team-orders.html" class="text-sm text-gray-400 hover:text-white transition-colors">Team Orders</a></li>
-          <li><a href="press.html" class="text-sm text-gray-400 hover:text-white transition-colors">Press</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Support</h3>
-        <ul class="space-y-3">
-          <li><a href="shipping-returns.html" class="text-sm text-gray-400 hover:text-white transition-colors">Shipping &amp; Returns</a></li>
-          <li><a href="care-instructions.html" class="text-sm text-gray-400 hover:text-white transition-colors">Care Instructions</a></li>
-          <li><a href="faq.html" class="text-sm text-gray-400 hover:text-white transition-colors">FAQ</a></li>
-          <li><a href="contact.html" class="text-sm text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="flex flex-col md:flex-row justify-between items-center gap-4" style="padding-top:16px">
-      <p class="text-xs text-gray-600">© 2026 REVAÍ. All rights reserved.</p>
-      <div class="flex gap-6">
-        <a href="privacy.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Privacy Policy</a>
-        <a href="terms.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Terms of Service</a>
-        <a href="accessibility.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Accessibility</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script>
-// Nav scroll
-const nav=document.getElementById('nav');
-
-(function(){var btn=document.getElementById('shop-dropdown-btn');var menu=document.getElementById('shop-dropdown-menu');var wrap=document.getElementById('shop-dropdown-wrap');if(!btn||!menu)return;btn.addEventListener('click',function(){var open=menu.style.opacity==='1';menu.style.opacity=open?'0':'1';menu.style.pointerEvents=open?'none':'auto';});document.addEventListener('click',function(e){if(wrap&&!wrap.contains(e.target)){menu.style.opacity='0';menu.style.pointerEvents='none';}});})();
-// Mobile menu
-const hbg=document.getElementById('hbg'),mmenu=document.getElementById('mmenu'),moverlay=document.getElementById('moverlay'),mclose=document.getElementById('mclose');
-function openM(){mmenu.style.transform='translateX(0)';moverlay.classList.remove('hidden');hbg.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
-function closeM(){mmenu.style.transform='translateX(-100%)';moverlay.classList.add('hidden');hbg.setAttribute('aria-expanded','false');document.body.style.overflow='';}
-if(hbg)hbg.addEventListener('click',openM);
-if(mclose)mclose.addEventListener('click',closeM);
-if(moverlay)moverlay.addEventListener('click',closeM);
-document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM));
-// Scroll reveal
-const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
-if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
-</script>
-<script src="search.js?v=20261112b"></script>
-<script src="shopify-config.js?v=20260926b"></script>
-<script src="woo-config.js?v=20261110a"></script>
-<script src="cart-drawer.js?v=20261113b"></script>
 </body>
 </html>
