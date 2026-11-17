@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="css/mobile-fix.css?v=20261110b">
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261117a">
   <style>
     /* --- Brand lockup in nav: mark + wordmark --- */
     .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -76,8 +76,6 @@
         
         </div>
       </div>
-      <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About Us</a>
-      <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
     </div>
     <div class="nav-right hidden md:flex items-center gap-3">
       <button onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
@@ -122,8 +120,6 @@
     </div>
     <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
     <div class="my-3 border-t border-gray-100"></div>
-    <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About Us</a>
-    <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
   </div>
 </div>
 <div id="moverlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
@@ -134,7 +130,7 @@
     <div class="max-w-3xl mx-auto">
       <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Legal</p>
       <h1 class="fu d1 t-hero font-bold tracking-tight mb-3" style="line-height:1.07">Privacy Policy</h1>
-      <p class="fu d2 text-sm text-gray-500">Last updated: January 2026</p>
+      <p class="fu d2 text-sm text-gray-500">Last updated: November 2026</p>
     </div>
   </section>
 
@@ -156,7 +152,7 @@
         <li>Shipping and billing address when you place an order</li>
         <li>Payment information (processed securely by our payment provider — we do not store card numbers)</li>
         <li>Phone number, if provided at checkout for delivery updates</li>
-        <li>Communications you send us via email, contact form, or support chat</li>
+        <li>Communications you send us by email or WhatsApp</li>
         <li>Team order application details</li>
       </ul>
 
@@ -172,7 +168,7 @@
 
       <p>We use your personal data for the following purposes:</p>
       <ul>
-        <li><strong>Order fulfilment:</strong> Processing your purchase, arranging delivery, handling returns, and providing order updates.</li>
+        <li><strong>Order fulfilment:</strong> Processing your purchase, arranging delivery or pickup, and providing order updates.</li>
         <li><strong>Customer support:</strong> Responding to your enquiries, resolving disputes, and handling damaged or faulty item claims.</li>
         <li><strong>Account management:</strong> Maintaining your account, order history, and preferences.</li>
         <li><strong>Marketing:</strong> Sending promotional emails and personalised product recommendations, where you have opted in. You can unsubscribe at any time via the link in any email.</li>
@@ -184,18 +180,16 @@
 
       <h2>3. Cookies</h2>
 
-      <p>We use cookies and similar tracking technologies to operate the website and improve your experience. Cookies fall into three categories:</p>
+      <p>We only use the cookies and browser storage the website needs to work:</p>
       <ul>
         <li><strong>Strictly necessary cookies:</strong> Required for the website to function — including your shopping cart, login session, and security features. These cannot be disabled.</li>
-        <li><strong>Analytics cookies:</strong> Used to understand how visitors interact with our site. We use anonymised data only. You may opt out via our cookie settings.</li>
-        <li><strong>Marketing cookies:</strong> Used to deliver relevant advertisements on third-party platforms. Only activated with your consent.</li>
       </ul>
 
-      <p>You can manage your cookie preferences at any time by clicking "Cookie Settings" in the footer. Your browser settings can also be used to block or delete cookies, though this may affect website functionality.</p>
+      <p>We do not use analytics or advertising cookies. You can block or delete cookies in your browser settings, though parts of the site, such as your bag and sign-in, may then stop working.</p>
 
       <h2>4. Third Parties</h2>
 
-      <p>We share your data with trusted third parties only where necessary to deliver our services. These include our payment processor (Stripe), delivery carriers, customer support software, and analytics providers. All third parties are contractually required to handle your data in accordance with applicable data protection law and our instructions.</p>
+      <p>We share your data with trusted third parties only where necessary to deliver our services. These include our payment providers, our shop and email providers, and the people who deliver your order. All third parties are contractually required to handle your data in accordance with applicable data protection law and our instructions.</p>
 
       <p>We do not sell your personal data to third parties. We do not share your data with advertisers on an individual basis. We may share aggregated, anonymised data for research or reporting purposes.</p>
 
@@ -230,7 +224,7 @@
 
 <footer style="background:#0a0a0a" class="px-6 pt-10 pb-5 border-t border-gray-800">
   <div class="max-w-6xl mx-auto">
-    <div class="grid md:grid-cols-4 gap-10 mb-6">
+    <div class="grid md:grid-cols-3 gap-10 mb-6">
       <div>
         <a href="index.html" style="display:inline-block;margin-bottom:16px"><img src="images/revai-icon.png" alt="REVAÍ" style="height:44px;width:auto;display:block;margin-left:-2px;filter:invert(1)"></a>
         <p class="text-gray-400 text-sm leading-relaxed mb-6">Activewear built for people who move — whatever that looks like for you.</p>
@@ -241,15 +235,6 @@
       <div>
         <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Shop</h3>
         <ul class="space-y-3"><li><a href="collections.html" class="text-sm text-gray-400 hover:text-white transition-colors">All Products</a></li><li><a href="collections.html?gender=women" class="text-sm text-gray-400 hover:text-white transition-colors">Women</a></li><li><a href="collections.html?gender=men" class="text-sm text-gray-400 hover:text-white transition-colors">Men</a></li><li><a href="collections.html?gender=accessories" class="text-sm text-gray-400 hover:text-white transition-colors">Accessories</a></li></ul>
-      </div>
-      <div>
-        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Company</h3>
-        <ul class="space-y-3">
-          <li><a href="about.html" class="text-sm text-gray-400 hover:text-white transition-colors">About Us</a></li>
-          <li><a href="sustainability.html" class="text-sm text-gray-400 hover:text-white transition-colors">Sustainability</a></li>
-          <li><a href="team-orders.html" class="text-sm text-gray-400 hover:text-white transition-colors">Team Orders</a></li>
-          <li><a href="press.html" class="text-sm text-gray-400 hover:text-white transition-colors">Press</a></li>
-        </ul>
       </div>
       <div>
         <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Support</h3>
@@ -266,7 +251,6 @@
       <div class="flex gap-6">
         <a href="privacy.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Privacy Policy</a>
         <a href="terms.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Terms of Service</a>
-        <a href="accessibility.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Accessibility</a>
       </div>
     </div>
   </div>

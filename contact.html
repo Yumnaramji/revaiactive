@@ -1,57 +1,284 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex">
-<meta name="color-scheme" content="only light">
-<title>REVAÍ — Preparing for launch</title>
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{background:#050505;color:#fff;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  .wrap{position:relative;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px 110px;text-align:center;overflow:hidden}
-  .glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 55%,rgba(255,255,255,.07),transparent 70%);pointer-events:none}
-  .mark{position:absolute;right:-8vmin;top:50%;transform:translateY(-50%);height:118vmin;width:auto;opacity:.05;pointer-events:none;filter:invert(1)}
-  .lock{display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) .2s forwards}
-  .lock img{height:40px;width:auto;filter:invert(1)}
-  .lock span{font-size:26px;font-weight:600;letter-spacing:.32em;margin-right:-.32em}
-  .line{width:1px;height:56px;background:linear-gradient(#fff0,#ffffff55,#fff0);margin:38px 0 34px;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) .6s forwards}
-  .soon{font-size:12px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:#d4d4d4;margin-right:-.36em;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) .9s forwards}
-  .where{margin-top:14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#6b7280;margin-right:-.24em;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) 1.1s forwards}
-  .go{margin-top:56px;display:flex;gap:28px;justify-content:center;flex-wrap:wrap;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) 1.25s forwards}
-  .go a{font-size:14px;font-weight:300;color:#d4d4d4;text-decoration:none;border-bottom:1px solid #ffffff40;padding:6px 0;transition:color .2s,border-color .2s}
-  .go a:hover{color:#fff;border-color:#ffffffaa}
-  .ig{position:absolute;bottom:34px;left:0;right:0;display:flex;gap:10px 24px;justify-content:center;flex-wrap:wrap;padding:0 16px;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) 1.4s forwards}
-  .ig a{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#a3a3a3;text-decoration:none;border-bottom:1px solid #333;padding-bottom:4px;transition:color .2s,border-color .2s}
-  .ig a:hover{color:#fff;border-color:#888}
-  @keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  @media(prefers-reduced-motion:reduce){.lock,.line,.soon,.where,.go,.ig{animation:none;opacity:1}}
-  @media(max-width:480px){.lock img{height:32px}.lock span{font-size:21px}.mark{right:-30vmin;height:140vmin}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="only light">
+  <title>Contact Us</title>
+  <meta name="description" content="Contact REVAÍ in Nairobi. Email support@revaiactive.com or message us on WhatsApp, Monday to Friday, 9am to 6pm EAT.">
+  <!-- Social share tags (Open Graph): what WhatsApp, Instagram and iMessage show when this link is pasted. Images live in images/share/, built by build-og.js. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="REVAÍ">
+  <meta property="og:title" content="Contact Us — REVAÍ">
+  <meta property="og:description" content="Find Your Revival.">
+  <meta property="og:url" content="https://revaiactive.com/contact.html">
+  <meta property="og:image" content="https://revaiactive.com/images/share/default.jpg">
+  <meta property="og:image:width" content="250">
+  <meta property="og:image:height" content="250">
+  <meta property="og:image:alt" content="REVAÍ">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261117a">
+  <style>
+    /* --- Brand lockup in nav: mark + wordmark --- */
+    .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+    .rv-lock img{height:26px;width:auto;display:block;transition:filter .25s ease}
+    .rv-lock span{font-size:17px;font-weight:600;letter-spacing:.22em;margin-right:-.22em;line-height:1;white-space:nowrap}
+    @media(max-width:480px){.rv-lock{gap:8px}.rv-lock img{height:23px}.rv-lock span{font-size:15px}}
+    body.nav-over-hero #nav .rv-lock img{filter:invert(1)}
+    body.nav-over-hero #nav.scrolled .rv-lock img{filter:none}
+
+    :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
+    *{box-sizing:border-box}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    .t-h2{font-size:clamp(28px,4vw,46px);font-weight:600;letter-spacing:-0.015em;line-height:1.12}
+    .t-h3{font-size:clamp(17px,2vw,21px);font-weight:600;line-height:1.25}
+    .fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+    .fu.in{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}
+    #nav{background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .25s}
+    #nav.scrolled{border-bottom:1px solid var(--border)}
+    .btn-p{background:#000;color:#fff;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;text-decoration:none}
+    .btn-p:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.22);background:#1a1a1a}
+    .btn-s{background:transparent;border:1px solid #000;color:#000;transition:background .2s ease,transform .2s ease;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;text-decoration:none}
+    .btn-s:hover{background:rgba(0,0,0,.04);transform:translateY(-1px)}
+    .card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:32px;transition:transform .25s ease,box-shadow .25s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.07)}
+    #mmenu{transform:translateX(-100%);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+    #mmenu.open{transform:translateX(0)}
+    @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
+    :focus-visible{outline:2px solid #000;outline-offset:3px}
+    .map-placeholder{background:var(--bg2);border:1px solid var(--border);border-radius:16px;height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+  </style>
+  <script src="js/mobile-fix.js?v=20261110b" defer></script>
+  <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
-<main class="wrap">
-  <div class="glow" aria-hidden="true"></div>
-  <img class="mark" src="/images/revai-mark.svg" alt="" aria-hidden="true">
-  <a class="lock" href="/" aria-label="REVAÍ home"><img src="/images/revai-icon.png" alt=""><span>REVAÍ</span></a>
-  <div class="line" aria-hidden="true"></div>
-  <h1 class="soon">Preparing for launch</h1>
-  <p class="where">Nairobi</p>
-  <nav class="go" aria-label="Shop">
-    <a href="/collections.html">Shop the collection</a>
-    <a href="/">Home</a>
-  </nav>
-  <div class="ig">
-    <a href="https://www.instagram.com/revaiactive" target="_blank" rel="noopener">@revaiactive</a>
-    <a href="https://wa.me/254742822876" target="_blank" rel="noopener">WhatsApp +254 742 822 876</a>
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded-lg text-sm">Skip to content</a>
+<nav id="nav" class="fixed top-0 inset-x-0 z-50 h-16" role="navigation" aria-label="Main">
+  <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+    <a href="index.html" class="rv-lock text-black" aria-label="REVAÍ — home"><img src="images/revai-icon.png" alt="" aria-hidden="true" width="26" height="31"><span>REVAÍ</span></a>
+    <div class="nav-links hidden md:flex items-center gap-8">
+      <div class="relative" id="shop-dropdown-wrap">
+        <button id="shop-dropdown-btn" class="text-sm font-medium text-gray-500 hover:text-black transition-colors flex items-center gap-1">Shop<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div id="shop-dropdown-menu" class="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 transition-all duration-200 z-50" style="opacity:0;pointer-events:none">
+          <a href="collections.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">All Products</a>
+          <a href="collections.html?gender=women" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Women</a>
+          <a href="collections.html?gender=men" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Men</a>
+          <a href="collections.html?gender=accessories" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Accessories</a>
+        
+        </div>
+      </div>
+    </div>
+    <div class="nav-right hidden md:flex items-center gap-3">
+      <button onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+      <a href="wishlist.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Wishlist" data-wish-nav style="display:none"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></a><a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+      <button id="nav-cart-btn" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open cart" onclick="if(window.REVAI_CART)window.REVAI_CART.openDrawer()">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span id="cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span>
+      </button>
+    </div>
+    <div class="nav-mob md:hidden flex items-center gap-1"><button type="button" onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search" data-nav-search><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button><a href="wishlist.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Wishlist" data-wish-nav style="display:none"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></a><a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a><button id="m-cart-btn" aria-label="Open cart" onclick="if(window.REVAI_CART) window.REVAI_CART.openDrawer()" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span id="m-cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span></button><button id="hbg" class="p-2 rounded-lg hover:bg-gray-100" aria-label="Open menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="14" x2="17" y2="14"/></svg>
+    </button></div>
   </div>
+</nav>
+<div id="mmenu" class="fixed top-0 left-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col" style="transform:translateX(-100%);transition:transform .35s cubic-bezier(.16,1,.3,1)">
+  <div class="flex justify-between items-center mb-10">
+    <span class="rv-lock"><img src="images/revai-icon.png" alt="" aria-hidden="true" width="24" height="29"><span>REVAÍ</span></span>
+    <button id="mclose" class="p-2 rounded-lg hover:bg-gray-100" aria-label="Close menu"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg></button>
+  </div>
+  <div class="flex flex-col gap-1 flex-1">
+    <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2 mt-2">Shop</p>
+    <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
+    <div class="mgrp">
+      <a href="collections.html?gender=women" class="mgrp-head block py-2 text-sm text-gray-700 hover:text-black" aria-expanded="false">Women<i class="mgrp-chev" aria-hidden="true"></i></a>
+      <div class="mgrp-sub">
+        <a href="collections.html?gender=women" class="mlink all">Shop all women</a>
+        <a href="collections.html?gender=women&amp;cat=leggings" class="mlink">Leggings</a>
+        <a href="collections.html?gender=women&amp;cat=sports-bras" class="mlink">Sports Bras</a>
+        <a href="collections.html?gender=women&amp;cat=tops" class="mlink">Tops</a>
+        <a href="collections.html?gender=women&amp;cat=jackets" class="mlink">Jackets</a>
+      </div>
+    </div>
+    <div class="mgrp">
+      <a href="collections.html?gender=men" class="mgrp-head block py-2 text-sm text-gray-700 hover:text-black" aria-expanded="false">Men<i class="mgrp-chev" aria-hidden="true"></i></a>
+      <div class="mgrp-sub">
+        <a href="collections.html?gender=men" class="mlink all">Shop all men</a>
+        <a href="collections.html?gender=men&amp;cat=tshirts" class="mlink">T-Shirts</a>
+        <a href="collections.html?gender=men&amp;cat=shorts" class="mlink">Shorts</a>
+        <a href="collections.html?gender=men&amp;cat=pants" class="mlink">Pants</a>
+        <a href="collections.html?gender=men&amp;cat=quarter-zips" class="mlink">Quarter Zips</a>
+      </div>
+    </div>
+    <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
+    <div class="my-3 border-t border-gray-100"></div>
+  </div>
+</div>
+<div id="moverlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
+
+<main id="main">
+  <!-- Hero -->
+  <section class="pt-28 pb-14 px-6" style="background:var(--bg2)">
+    <div class="max-w-6xl mx-auto">
+      <div class="max-w-2xl">
+        <p class="fu text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Contact</p>
+        <h1 class="fu d1 t-hero font-bold tracking-tight mb-5" style="line-height:1.07">Get in Touch</h1>
+        <p class="fu d2 text-lg text-gray-500 leading-relaxed">We're here to help. Whether it's a question about your order, sizing advice, or a press enquiry — reach out and a real person will get back to you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Cards -->
+  <section class="py-16 md:py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-6 mb-16">
+        <div class="fu d1 card">
+          <div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center mb-5">
+            <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <h3 class="font-semibold mb-1">Customer Support</h3>
+          <p class="text-xs text-gray-400 mb-3">Orders, sizing, and product questions</p>
+          <a href="mailto:support@revaiactive.com" class="text-sm font-medium text-black hover:underline block mb-1">support@revaiactive.com</a>
+          <a href="https://wa.me/254742822876?text=Hi%20REVA%C3%8D%2C%20I%20have%20a%20question%20about%20" target="_blank" rel="noopener" class="text-sm font-medium text-black hover:underline block mb-1">WhatsApp +254 742 822 876</a>
+          <div class="flex items-center gap-2 mt-3">
+            <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+            <span class="text-xs text-gray-500">Typically responds within <strong>24 hours</strong></span>
+          </div>
+          <p class="text-xs text-gray-400 mt-2">Mon–Fri, 9am–6pm EAT (Kenya Time)</p>
+        </div>
+        <div class="fu d2 card">
+          <div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center mb-5">
+            <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3 class="font-semibold mb-1">Team Orders</h3>
+          <p class="text-xs text-gray-400 mb-3">Bulk orders, custom embroidery, and volume pricing</p>
+          <a href="mailto:support@revaiactive.com" class="text-sm font-medium text-black hover:underline block mb-1">support@revaiactive.com</a>
+          <div class="flex items-center gap-2 mt-3">
+            <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+            <span class="text-xs text-gray-500">Typically responds <strong>same day</strong></span>
+          </div>
+          <p class="text-xs text-gray-400 mt-2">Mon–Fri, 9am–6pm EAT (Kenya Time)</p>
+        </div>
+        <div class="fu d3 card">
+          <div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center mb-5">
+            <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h3 class="font-semibold mb-1">Press Enquiries</h3>
+          <p class="text-xs text-gray-400 mb-3">Media requests, product loans, and brand collaborations</p>
+          <a href="mailto:info@revaiactive.com" class="text-sm font-medium text-black hover:underline block mb-1">info@revaiactive.com</a>
+          <div class="flex items-center gap-2 mt-3">
+            <span class="w-2 h-2 bg-yellow-400 rounded-full"></span>
+            <span class="text-xs text-gray-500">Typically responds within <strong>48 hours</strong></span>
+          </div>
+          <p class="text-xs text-gray-400 mt-2">Mon–Fri, 9am–6pm EAT (Kenya Time)</p>
+        </div>
+      </div>
+
+      <!-- Map + Info -->
+      <div class="max-w-2xl">
+        <div class="fu">
+          <h2 class="t-h3 mb-2">Find us</h2>
+          <p class="text-sm text-gray-500 mb-6">REVAÍ is headquartered in Nairobi, Kenya.</p>
+          <div class="map-placeholder mb-6">
+            <svg width="32" height="32" fill="none" stroke="#9ca3af" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <p class="text-sm text-gray-400 font-medium">Nairobi, Kenya</p>
+            <p class="text-xs text-gray-400">Headquarters · Est. 2026</p>
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium">Headquarters</p>
+                <p class="text-xs text-gray-500">Nairobi, Kenya</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium">Shipping</p>
+                <p class="text-xs text-gray-500">Delivery KES 200–400 depending on your area; we'll call you before it arrives. Pickup is free.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium">Support Hours</p>
+                <p class="text-xs text-gray-500">Monday to Friday, 9am – 6pm EAT (Kenya Time, UTC+3)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
 </main>
+
+<footer style="background:#0a0a0a" class="px-6 pt-10 pb-5 border-t border-gray-800">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-10 mb-6">
+      <div>
+        <a href="index.html" style="display:inline-block;margin-bottom:16px"><img src="images/revai-icon.png" alt="REVAÍ" style="height:44px;width:auto;display:block;margin-left:-2px;filter:invert(1)"></a>
+        <p class="text-gray-400 text-sm leading-relaxed mb-6">Activewear built for people who move — whatever that looks like for you.</p>
+        <div class="flex gap-4">
+          <a href="https://www.instagram.com/revaiactive" target="_blank" rel="noopener" aria-label="Instagram" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></a><a href="mailto:support@revaiactive.com" aria-label="Email REVAÍ" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4.5" width="20" height="15" rx="2.5"/><path d="m3 7 8.13 5.42a1.6 1.6 0 0 0 1.74 0L21 7"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Shop</h3>
+        <ul class="space-y-3"><li><a href="collections.html" class="text-sm text-gray-400 hover:text-white transition-colors">All Products</a></li><li><a href="collections.html?gender=women" class="text-sm text-gray-400 hover:text-white transition-colors">Women</a></li><li><a href="collections.html?gender=men" class="text-sm text-gray-400 hover:text-white transition-colors">Men</a></li><li><a href="collections.html?gender=accessories" class="text-sm text-gray-400 hover:text-white transition-colors">Accessories</a></li></ul>
+      </div>
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Support</h3>
+        <ul class="space-y-3">
+          <li><a href="shipping-returns.html" class="text-sm text-gray-400 hover:text-white transition-colors">Shipping &amp; Returns</a></li>
+          <li><a href="care-instructions.html" class="text-sm text-gray-400 hover:text-white transition-colors">Care Instructions</a></li>
+          <li><a href="faq.html" class="text-sm text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+          <li><a href="contact.html" class="text-sm text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4" style="padding-top:16px">
+      <p class="text-xs text-gray-600">© 2026 REVAÍ. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="privacy.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Privacy Policy</a>
+        <a href="terms.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+
+(function(){var btn=document.getElementById('shop-dropdown-btn');var menu=document.getElementById('shop-dropdown-menu');var wrap=document.getElementById('shop-dropdown-wrap');if(!btn||!menu)return;btn.addEventListener('click',function(){var open=menu.style.opacity==='1';menu.style.opacity=open?'0':'1';menu.style.pointerEvents=open?'none':'auto';});document.addEventListener('click',function(e){if(wrap&&!wrap.contains(e.target)){menu.style.opacity='0';menu.style.pointerEvents='none';}});})();
+const hbg=document.getElementById('hbg'),mmenu=document.getElementById('mmenu'),moverlay=document.getElementById('moverlay'),mclose=document.getElementById('mclose');
+function openM(){mmenu.style.transform='translateX(0)';mmenu.classList.add('open');moverlay.classList.remove('hidden');hbg.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'}
+function closeM(){mmenu.style.transform='translateX(-100%)';mmenu.classList.remove('open');moverlay.classList.add('hidden');hbg.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+if(hbg)hbg.addEventListener('click',openM);if(mclose)mclose.addEventListener('click',closeM);if(moverlay)moverlay.addEventListener('click',closeM);
+document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM));
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
+
+</script>
+<script src="search.js?v=20261112b"></script>
+<script src="shopify-config.js?v=20260926b"></script>
+<script src="woo-config.js?v=20261110a"></script>
+<script src="cart-drawer.js?v=20261113b"></script>
 </body>
 </html>

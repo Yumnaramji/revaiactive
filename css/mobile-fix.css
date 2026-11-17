@@ -519,6 +519,13 @@ section .mb-14 { margin-bottom: 36px; }
   }
   footer .grid.md\:grid-cols-4 > :first-child { grid-column: 1 / -1; }
   footer .grid.md\:grid-cols-4 a { overflow-wrap: anywhere; }
+  /* pre-order site: two link columns (Shop, Support) side by side */
+  footer .grid.md\:grid-cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    column-gap: 16px !important;
+    row-gap: 32px !important;
+  }
+  footer .grid.md\:grid-cols-3 > :first-child { grid-column: 1 / -1; }
 }
 
 /* 7. SITE HEADER (7 Oct 2026, Yumna, revised the same day; search moved out of the menu 27 Oct): logo LEFT; search, account, bag, then the

@@ -25,12 +25,8 @@
     {label:'Women',              url:'collections.html?gender=women'},
     {label:'Men',                url:'collections.html?gender=men'},
     {label:'Accessories',        url:'collections.html?gender=accessories'},
-    {label:'Technology',         url:'technology.html'},
-    {label:'About',              url:'about.html'},
-    {label:'Sustainability',     url:'sustainability.html'},
     {label:'Fit Guide',          url:'fit-guide.html'},
     {label:'Shipping & Returns', url:'shipping-returns.html'},
-    {label:'Team Orders',        url:'team-orders.html'},
   ];
 
   /* ── Build overlay DOM ──────────────────────────────────────── */
