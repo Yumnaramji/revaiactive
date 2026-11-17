@@ -51,7 +51,12 @@
     .field input::placeholder{color:#d1d5db}
     .benefit-item{display:flex;align-items:center;gap:12px;padding:14px 18px;background:#f8f9fa;border-radius:12px}
     .benefit-item .benefit-dot{width:8px;height:8px;border-radius:50%;background:#000;flex-shrink:0}
-    .pw-hint{font-size:12px;color:#9ca3af;margin-top:4px}
+    .pw-hint{font-size:12px;color:#b91c1c;margin-top:4px}
+    .pw-hint[hidden]{display:none}
+    .pw-wrap{position:relative}
+    .pw-wrap input{padding-right:64px}
+    .pw-toggle{position:absolute;right:6px;top:50%;transform:translateY(-50%);min-height:36px;padding:0 10px;border:0;background:none;font:inherit;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#6b7280;cursor:pointer;border-radius:8px}
+    .pw-toggle:hover,.pw-toggle:focus-visible{color:#0a0a0a}
   </style>
   <script src="js/mobile-fix.js?v=20261110b" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
@@ -171,12 +176,18 @@
       </div>
       <div class="field">
         <label for="inp-pw">Password</label>
-        <input id="inp-pw" type="password" placeholder="••••••••" autocomplete="new-password" required minlength="8">
-        <span class="pw-hint">At least 8 characters.</span>
+        <div class="pw-wrap">
+          <input id="inp-pw" type="password" placeholder="••••••••" autocomplete="new-password" required minlength="8" aria-describedby="pw-hint">
+          <button type="button" class="pw-toggle" data-for="inp-pw" aria-controls="inp-pw" aria-label="Show password">Show</button>
+        </div>
+        <span class="pw-hint" id="pw-hint" role="alert" hidden>At least 8 characters.</span>
       </div>
       <div class="field">
         <label for="inp-pw2">Confirm Password</label>
-        <input id="inp-pw2" type="password" placeholder="••••••••" autocomplete="new-password" required>
+        <div class="pw-wrap">
+          <input id="inp-pw2" type="password" placeholder="••••••••" autocomplete="new-password" required>
+          <button type="button" class="pw-toggle" data-for="inp-pw2" aria-controls="inp-pw2" aria-label="Show password">Show</button>
+        </div>
       </div>
 
       <label style="display:flex;gap:10px;align-items:flex-start;margin-top:4px;cursor:pointer">
@@ -244,6 +255,23 @@
 <script>
   REVAI_CUSTOMER.redirectIfAuthed('profile.html');
 
+  // Show / Hide password, and the "At least 8 characters" line only while the password is too short.
+  document.querySelectorAll('.pw-toggle').forEach(function(b){
+    b.addEventListener('click', function(){
+      var inp = document.getElementById(b.dataset.for), show = inp.type === 'password';
+      inp.type = show ? 'text' : 'password';
+      b.textContent = show ? 'Hide' : 'Show';
+      b.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    });
+  });
+  (function(){
+    var pwIn = document.getElementById('inp-pw'), hint = document.getElementById('pw-hint'), touched = false;
+    var check = function(){ hint.hidden = !(touched && pwIn.value.length > 0 && pwIn.value.length < 8); };
+    pwIn.addEventListener('blur', function(){ touched = true; check(); });
+    pwIn.addEventListener('input', function(){ if(pwIn.value.length >= 8) touched = true; check(); });
+    pwIn.addEventListener('invalid', function(){ touched = true; hint.hidden = false; });
+  })();
+
   document.getElementById('signup-form').addEventListener('submit', async function(e){
     e.preventDefault();
     const btn = document.getElementById('signup-submit');
@@ -258,6 +286,7 @@
       return;
     }
     if(pw.length < 8){
+      document.getElementById('pw-hint').hidden = false;
       err.textContent = 'Password must be at least 8 characters.';
       err.style.display = '';
       return;
