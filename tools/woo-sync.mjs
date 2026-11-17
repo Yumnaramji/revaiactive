@@ -119,8 +119,9 @@ async function syncProduct(key, site, map) {
     return true;
   };
   const variationUpdates = [];
+  let vars = [];
   if (cur.type === 'variable') {
-    const vars = await woo('GET', `products/${id}/variations?per_page=100&context=edit`);
+    vars = await woo('GET', `products/${id}/variations?per_page=100&context=edit`);
     for (const v of vars) {
       if (Number(v.regular_price) !== want && priceOk(v.regular_price)) variationUpdates.push({ id: v.id, regular_price: String(want) });
     }
@@ -141,6 +142,11 @@ async function syncProduct(key, site, map) {
   const toUpload = wantImgs.filter((w) => !byTag.has(w.tag));
   if (!sameOrder) changes.push(`photos: ${have.length} -> ${wantImgs.length} (${toUpload.length} new upload(s), cover ${path.basename(wantImgs[0].file)})`);
 
+  // size photos: checkout, the bag and order emails show each size's own photo, so every size gets the cover
+  const sizePhotoWrong = (coverId) => vars.filter((v) => !coverId || !v.image || v.image.id !== coverId);
+  const sizePhotosToFix = sizePhotoWrong(byTag.get(wantImgs[0].tag)).length;
+  if (sizePhotosToFix) changes.push(`size photos -> cover on ${sizePhotosToFix} size(s)`);
+
   if (!changes.length) { say(`= ${site.name}: already matches`); return; }
   say(`${DRY ? '~' : '+'} ${site.name} (shop #${id}): ${changes.join('; ')}`);
   if (DRY) return;
@@ -158,6 +164,13 @@ async function syncProduct(key, site, map) {
     update.images = wantImgs.map((w) => ({ id: byTag.get(w.tag) }));
   }
   if (Object.keys(update).length) await woo('PUT', `products/${id}`, update);
+  const coverId = byTag.get(wantImgs[0].tag);
+  if (vars.length && coverId) {
+    for (const v of sizePhotoWrong(coverId)) {
+      const u = variationUpdates.find((x) => x.id === v.id);
+      if (u) u.image = { id: coverId }; else variationUpdates.push({ id: v.id, image: { id: coverId } });
+    }
+  }
   if (variationUpdates.length) await woo('POST', `products/${id}/variations/batch`, { update: variationUpdates });
 }
 
