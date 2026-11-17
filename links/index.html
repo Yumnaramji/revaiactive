@@ -50,5 +50,28 @@
       <a href="https://www.instagram.com/revaiactive/" aria-label="REVAÍ on Instagram, @revaiactive"><span class="k">Instagram</span><span class="v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.6"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>@revaiactive</span></a>
     </nav>
   </main>
+<script>
+(function(){
+  var BUILD = '20261117a';
+  // Phones (and Instagram / WhatsApp browsers) reopen a saved copy of this page. Ask the site for the current one,
+  // refreshing the stored copy; if it is a newer build, reload once. Bump BUILD on every change to this page.
+  var fresh = function(){
+    if(location.protocol === 'file:' || !window.fetch) return;
+    try{
+      fetch(location.pathname, {cache:'reload'}).then(function(r){ return r.ok ? r.text() : ''; }).then(function(t){
+        var m = t.match(/var BUILD = '([^']+)'/), key = 'revai_links_build_try';
+        if(!m || m[1] === BUILD) return;
+        var tried = ''; try{ tried = sessionStorage.getItem(key) || ''; }catch(e){}
+        if(tried === m[1]) return;
+        try{ sessionStorage.setItem(key, m[1]); }catch(e){ return; }
+        location.reload();
+      }).catch(function(){});
+    }catch(e){}
+  };
+  fresh();
+  window.addEventListener('pageshow', function(e){ if(e.persisted) fresh(); });
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) fresh(); });
+})();
+</script>
 </body>
 </html>
