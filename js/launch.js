@@ -11,8 +11,9 @@
     launchLabel: 'Friday 27 November',
     popup: true,               // welcome pop-up on / off
     bar: true,                 // countdown bar on / off
-    shopUrl: '/signup.html',      // 18 Nov (Yumna): the pop-up button now leads to sign-up, not the shop
-    ctaText: 'New here? Create an account',
+    shopUrl: '/collections.html',
+    ctaText: 'Shop now',
+    signupUrl: '/signup.html',   // small "New here? Create an account" line under the button (Yumna, 18 Nov)
     cta: 'link',                // 'box' outlined button · 'link' underlined words + arrow · 'circle' words + arrow in a ring · 'rule' words between two fine lines
     delayMs: 2500,             // pop-up waits this long after the page loads
     snoozeDays: 3,             // closed with X: don't show again for this many days
@@ -181,6 +182,7 @@
       '</div>' +
       '<div class="fab" style="background-image:url(&quot;' + CONFIG.img + 'popup-fabric.jpg&quot;)">' +
         '<a class="btn cta-' + CONFIG.cta + '" data-go href="' + CONFIG.shopUrl + '">' + CTA + '</a>' +
+        '<p class="acct">New here? <a href="' + CONFIG.signupUrl + '">Create an account</a></p>' +
         '<p class="base" aria-hidden="true"><span>Premium performance activewear</span><span>Men · Women</span></p>' +
       '</div>';
 
