@@ -110,6 +110,13 @@
       #home-hero .hero-title{font-size:30px;margin-bottom:18px;color:#0a0a0a}
       #home-hero .hero-btn{font-size:12px;padding:13px 28px;background:#0a0a0a;border-color:#0a0a0a;color:#fff}
     }
+    /* 18 Nov 2026 (Yumna): new hero = low-angle pair shot on a light grey studio backdrop (#e2e3e6, Higgsfield re-render with natural skin) (woman left, man right). Copy stays bottom-right in white over the shade
+       (Yumna: "put it back where it was"); from 768px the band is capped at the photo height so both heads always show. Phones: 4:3 crop (both faces in; the square cut through both of them), words under it as before. */
+    @media(min-width:768px){
+      #home-hero .hero-shade{background:radial-gradient(ellipse at 100% 100%,rgba(0,0,0,.5),rgba(0,0,0,0) 65%)} /* round fade, so no box edge shows on the light wall */
+      #home-hero .hv{height:calc((100vh - 64px)*.9);max-height:min(1152px,56.25vw)} /* 18 Nov (Yumna: "too big"): band is 90% of the screen under the header, and the photo itself is zoomed out to 85% on an extended backdrop so the models sit smaller; */ /* never taller than the photo itself, so portrait tablets do not crop his face */
+    }
+    @media(max-width:767px){#home-hero .hv img{aspect-ratio:4/3}}
     /* ===== HOMEPAGE v2 — film hero + shopfront (8 Aug 2026) ===== */
 
     /* Five smaller cards (27 Oct 2026, Yumna: "try 5"), photos on pure white (images/white/, keyed from the studio shots;
