@@ -181,8 +181,7 @@
         '<ol class="steps" aria-label="How pre-orders work">' + steps + '</ol>' +
       '</div>' +
       '<div class="fab" style="background-image:url(&quot;' + CONFIG.img + 'popup-fabric.jpg&quot;)">' +
-        '<a class="btn cta-' + CONFIG.cta + '" data-go href="' + CONFIG.shopUrl + '">' + CTA + '</a>' +
-        '<p class="acct">New here? <a href="' + CONFIG.signupUrl + '">Create an account</a></p>' +
+        '<p class="acct" style="margin-top:0">New here? <a data-go href="' + CONFIG.signupUrl + '">Create an account</a></p>' +
         '<p class="base" aria-hidden="true"><span>Premium performance activewear</span><span>Men · Women</span></p>' +
       '</div>';
 
