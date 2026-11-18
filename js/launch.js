@@ -11,8 +11,8 @@
     launchLabel: 'Friday 27 November',
     popup: true,               // welcome pop-up on / off
     bar: true,                 // countdown bar on / off
-    shopUrl: '/collections.html',
-    ctaText: 'Shop now',
+    shopUrl: '/signup.html',      // 18 Nov (Yumna): the pop-up button now leads to sign-up, not the shop
+    ctaText: 'New here? Create an account',
     cta: 'link',                // 'box' outlined button · 'link' underlined words + arrow · 'circle' words + arrow in a ring · 'rule' words between two fine lines
     delayMs: 2500,             // pop-up waits this long after the page loads
     snoozeDays: 3,             // closed with X: don't show again for this many days
