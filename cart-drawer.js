@@ -208,7 +208,7 @@
         <span style="font-size:14px;color:#6b7280">Subtotal</span>
         <span style="font-size:16px;font-weight:400;color:#000">KES ${total.toLocaleString()}</span>
       </div>
-      <p style="font-size:12px;color:#9ca3af;margin:0 0 14px">Delivery KES 200–400 depending on your area. Pickup is free. Taxes included.</p>
+      <p style="font-size:12px;color:#9ca3af;margin:0 0 14px">Delivery KES 200–400 depending on your area. Pickup is free. Taxes included</p>
       <button id="revai-checkout-btn" onclick="window.REVAI_CART.checkout()" style="width:100%;padding:14px;background:#000;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;letter-spacing:.02em;margin-bottom:10px">Checkout</button>
       <button onclick="window.REVAI_CART.closeDrawer()" style="width:100%;padding:12px;background:transparent;color:#374151;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer">Continue Shopping</button>
       <a href="cart.html" style="display:block;text-align:center;margin-top:12px;font-size:13px;font-weight:500;color:#0a0a0a;text-decoration:underline;text-underline-offset:3px">View full bag</a>
@@ -227,7 +227,7 @@
     el.innerHTML = `
       <div style="padding:16px 24px 4px">
         <p style="font-size:11px;font-weight:700;color:#9ca3af;margin:0 0 2px;letter-spacing:.12em;text-transform:uppercase">Complete the look</p>
-        <p style="font-size:12px;color:#9ca3af;margin:0">Hand-picked to pair with your bag.</p>
+        <p style="font-size:12px;color:#9ca3af;margin:0">Hand-picked to pair with your bag</p>
       </div>
       <div style="display:flex;gap:10px;overflow-x:auto;padding:12px 24px 18px;scrollbar-width:none">
         ${recs.map(function (p) {
@@ -416,7 +416,7 @@
       if ((window.REVAI_CHECKOUT || 'woo') === 'woo' && window.REVAI_WOO) {
         const bag = wooBag();
         if (bag.unmapped || bag.items.length === 0) {
-          showNotice('One of the items in your bag is not available online yet. Please remove it and try again.');
+          showNotice('One of the items in your bag is not available online yet. Please remove it and try again');
           return;
         }
         // The shop server is slow to answer, so say so instead of leaving the button looking stuck.
@@ -445,7 +445,7 @@
       const CFG   = window.REVAI_SHOPIFY || {};
       const TOKEN = CFG.storefrontToken || '';
       const GQL   = CFG.endpoint || '';
-      if (!TOKEN || !GQL) { showNotice('Online checkout coming soon. To order, contact us directly.'); return; }
+      if (!TOKEN || !GQL) { showNotice('Online checkout coming soon. To order, contact us directly'); return; }
 
       try {
         const variants = CFG.variants || {};
@@ -460,7 +460,7 @@
           }
         });
         if (unmapped || cartLines.length === 0) {
-          showNotice('Online checkout coming soon. To order, contact us directly.');
+          showNotice('Online checkout coming soon. To order, contact us directly');
           return;
         }
         const cartRes = await fetch(GQL, {
@@ -475,10 +475,10 @@
         const result = cartData.data && cartData.data.cartCreate;
         const checkoutUrl = result && result.cart && result.cart.checkoutUrl;
         if (checkoutUrl) { window.location.href = checkoutUrl; }
-        else { console.error('Shopify cart errors:', cartData); showNotice('Could not create checkout. Please try again.'); }
+        else { console.error('Shopify cart errors:', cartData); showNotice('Could not create checkout. Please try again'); }
       } catch (e) {
         console.error('Checkout error:', e);
-        showNotice('Something went wrong. Please try again.');
+        showNotice('Something went wrong. Please try again');
       }
     },
 

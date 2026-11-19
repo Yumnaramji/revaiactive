@@ -149,7 +149,7 @@
       results.innerHTML = `
         <div style="padding:56px 0;text-align:center">
           <p style="font-size:16px;font-weight:600;color:#0a0a0a;margin-bottom:6px">No results for "${escHtml(q)}"</p>
-          <p style="font-size:14px;color:#6b7280;margin-bottom:22px">Check the spelling, or try one of these.</p>
+          <p style="font-size:14px;color:#6b7280;margin-bottom:22px">Check the spelling, or try one of these</p>
           <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">${chips()}</div>
           <p style="margin-top:26px"><a href="collections.html" style="font-size:14px;color:#0a0a0a;text-decoration:underline;text-underline-offset:3px">Shop all products</a></p>
         </div>`;
