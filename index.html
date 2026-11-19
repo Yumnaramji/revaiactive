@@ -1,199 +1,653 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>REVAÍ — Coming soon</title>
-<meta name="description" content="REVAÍ. Premium activewear, designed to fit all bodies. Coming soon to Nairobi. Find Your Revival.">
-<link rel="canonical" href="https://revaiactive.com/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="REVAÍ">
-<meta property="og:title" content="REVAÍ — Coming soon">
-<meta property="og:description" content="Find Your Revival.">
-<meta property="og:url" content="https://revaiactive.com/">
-<meta property="og:image" content="https://revaiactive.com/share.jpg">
-<meta name="twitter:card" content="summary">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
-<link rel="apple-touch-icon" href="/favicon-192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{background:#050505;color:#fff;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  .wrap{position:relative;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px 96px;text-align:center;overflow:hidden}
-  .glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 55%,rgba(255,255,255,.07),transparent 70%);pointer-events:none}
-  .mark{position:absolute;right:-8vmin;top:50%;transform:translateY(-50%);height:118vmin;width:auto;opacity:.05;pointer-events:none;filter:invert(1)}
-  .lock{display:flex;align-items:center;gap:14px;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) .2s forwards}
-  .lock img{height:40px;width:auto;filter:invert(1)}
-  .lock span{font-size:26px;font-weight:600;letter-spacing:.32em;margin-right:-.32em}
-  .line{width:1px;height:56px;background:linear-gradient(#fff0,#ffffff55,#fff0);margin:38px 0 34px;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) .6s forwards}
-  .soon{font-size:12px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:#d4d4d4;margin-right:-.36em;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) .9s forwards}
-  .where{margin-top:14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#6b7280;margin-right:-.24em;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) 1.1s forwards}
-  .ig{position:absolute;bottom:34px;left:0;right:0;text-align:center;opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) 1.4s forwards}
-  .ig a{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#a3a3a3;text-decoration:none;border-bottom:1px solid #333;padding-bottom:4px;transition:color .2s,border-color .2s}
-  .ig a:hover{color:#fff;border-color:#888}
-  .su{opacity:0;animation:in 1.4s cubic-bezier(.16,1,.3,1) 1.25s forwards;width:100%;position:relative;z-index:1}
-  .su .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-  .su .form-row input{font:inherit;color:#fff;background:transparent;outline:none;-webkit-appearance:none;appearance:none;border-radius:0}
-  .su input::placeholder{color:#6b7280}
-  .su button{font:inherit;cursor:pointer;-webkit-appearance:none;appearance:none}
-  .note{margin-top:14px;font-size:11px;color:#6b7280;letter-spacing:.02em}
-  .msg{margin-top:14px;font-size:12px;min-height:16px;color:#a3a3a3}
-  .msg.err{color:#f87171}
-  .done .form-row,.done .note,.done .lead{display:none}
-  .thanks{display:none;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#d4d4d4;margin-right:-.24em}
-  .done .thanks{display:block}
-  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  @keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  @media(prefers-reduced-motion:reduce){.lock,.line,.soon,.where,.ig,.su{animation:none;opacity:1}}
-  @media(max-width:480px){.lock img{height:32px}.lock span{font-size:21px}.mark{right:-30vmin;height:140vmin}}
+<link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="only light">
+  <title>REVAÍ — Find Your Revival</title>
+  <!-- Social share tags (Open Graph): what WhatsApp, Instagram and iMessage show when this link is pasted. Images live in images/share/, built by build-og.js. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="REVAÍ">
+  <meta property="og:title" content="REVAÍ — Find Your Revival">
+  <meta property="og:description" content="Find Your Revival.">
+  <meta property="og:url" content="https://revaiactive.com/">
+  <meta property="og:image" content="https://revaiactive.com/images/share/home.jpg">
+  <meta property="og:image:width" content="250">
+  <meta property="og:image:height" content="250">
+  <meta property="og:image:alt" content="REVAÍ — Find Your Revival">
+  <meta name="twitter:card" content="summary">
+  <meta name="description" content="REVAÍ is activewear built for everyone — high quality, affordable, designed to fit all bodies. Find Your Revival. Shop online across Kenya.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261117a">
+  <style>
+    /* --- Brand lockup in nav: mark + wordmark --- */
+    .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+    .rv-lock img{height:26px;width:auto;display:block;transition:filter .25s ease}
+    .rv-lock span{font-size:17px;font-weight:600;letter-spacing:.22em;margin-right:-.22em;line-height:1;white-space:nowrap}
+    @media(max-width:480px){.rv-lock{gap:8px}.rv-lock img{height:23px}.rv-lock span{font-size:15px}}
+    body.nav-over-hero #nav .rv-lock img{filter:invert(1)}
+    body.nav-over-hero #nav.scrolled .rv-lock img{filter:none}
 
-  .su{max-width:340px;margin-top:64px}
-  .form-row{position:relative;display:flex;align-items:center}
-  .form-row::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,#fff0,#ffffff40 18%,#ffffff40 82%,#fff0);transition:background .3s}
-  .form-row:focus-within::after{background:linear-gradient(90deg,#fff0,#ffffff99 18%,#ffffff99 82%,#fff0)}
-  .su .form-row input{flex:1;min-width:0;text-align:left;border:0;padding:12px 0 12px 8px;font-size:14px;letter-spacing:.01em;color:#e5e5e5;caret-color:#fff}
-  .su .form-row input::placeholder{color:#b9b9c2;font-weight:400;opacity:1;transition:color .3s}
-  .su .form-row input:focus::placeholder{color:#a1a1ab}
-  .su button.go{background:none;border:0;color:#a3a3a3;font-size:16px;font-weight:300;letter-spacing:0;padding:12px 8px 12px 16px;white-space:nowrap;transition:color .2s}
-  .su button.go:hover,.form-row:focus-within button.go{color:#fff}
-  .thanks{text-transform:none;letter-spacing:.01em;font-size:14px;font-weight:300;color:#d4d4d4;padding:12px 0;margin-right:0}
-  .form-row+.form-row{margin-top:6px}
-  .lead{font-size:16px;font-weight:300;color:#d4d4d4;letter-spacing:.01em;margin-bottom:8px}
-  /* 16px on phones: iOS zooms the page in when a focused field has smaller text */
-  @media(hover:none),(max-width:767px){.su .form-row input{font-size:16px}}
-  /* details step */
-  .su.step2 > .form-row button.go{display:none}
-  .more .form-row{margin-top:6px}
-  .more{margin-top:0}
-  .names{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px}
-  .names .form-row{margin-top:0}
-  .names .form-row input{width:100%}
-  /* "(optional)" has to fit two fields side by side on a phone; placeholder size does not trigger the iOS zoom */
-  .names .form-row input::placeholder{font-size:13px;letter-spacing:0}
-  .su button.submit{display:block;width:100%;margin-top:32px;padding:13px 16px;background:none;border:1px solid #ffffff66;border-radius:2px;color:#fff;font-size:14px;letter-spacing:.04em;transition:background .2s,color .2s,border-color .2s}
-  .su button.submit:hover{background:#fff;color:#000;border-color:#fff}
-  .done .more{display:none}
-  .su.step2 .more{animation:in .6s cubic-bezier(.16,1,.3,1) both}
-  /* no highlight boxes: focus ring on the thank-you line, tap flash, browser autofill tint */
-  .thanks:focus,.thanks:focus-visible{outline:none}
-  .su input,.su button{-webkit-tap-highlight-color:transparent}
-  .su .form-row input:-webkit-autofill,.su .form-row input:-webkit-autofill:hover,.su .form-row input:-webkit-autofill:focus{-webkit-text-fill-color:#e5e5e5;caret-color:#fff;transition:background-color 99999s ease-in-out 0s,color 99999s ease-in-out 0s}
-  .su .form-row input:autofill{background:transparent!important}
-  /* bottom line: Instagram with its icon (WhatsApp number removed 18 Nov 2026, Yumna) */
-  .ig{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;padding:0 16px}
-  .ig a{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
-  .ig a svg{width:15px;height:15px;flex:none}
-  .ig a.tel{letter-spacing:.1em}
-</style>
+    :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
+    *{box-sizing:border-box}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    .fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+    .fu.in{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}.d4{transition-delay:320ms}.d5{transition-delay:400ms}
+    .btn-p{background:#000;color:#fff;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;text-decoration:none}
+    .btn-p:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.22);background:#1a1a1a}
+    .btn-s{background:transparent;border:1px solid #000;color:#000;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;transition:background .2s,transform .2s;text-decoration:none}
+    .btn-s:hover{background:rgba(0,0,0,.04);transform:translateY(-1px)}
+    .card{background:#fff;border:1px solid #f0f0f0;border-radius:16px;padding:32px;transition:transform .25s,box-shadow .25s}
+    .card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.07)}
+    .t-hero{font-size:clamp(38px,6vw,72px);font-weight:700;letter-spacing:-0.025em;line-height:1.07}
+    .t-h2{font-size:clamp(30px,4vw,48px);font-weight:600;letter-spacing:-0.015em;line-height:1.12}
+    .t-h3{font-size:clamp(18px,2vw,22px);font-weight:600;line-height:1.25}
+    #nav.scrolled{border-bottom:1px solid #e5e7eb}
+    .ha{animation:hf .8s cubic-bezier(.16,1,.3,1) forwards;opacity:0}
+    .ha.d1{animation-delay:.15s}.ha.d2{animation-delay:.3s}.ha.d3{animation-delay:.45s}
+    @keyframes hf{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    :focus-visible{outline:2px solid #000;outline-offset:3px}
+    @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}.ha{animation:none!important;opacity:1!important}}
+    /* FILM HERO HEIGHT — this hero predates .chero and runs taller than the
+       collection pages, but it takes the same quarter cut on mobile
+       (8 Aug 2026): 78vh/540px desktop, 58.5vh/405px mobile. Set here rather
+       than inline so the media query can reach it.
+       Mobile also swaps the fixed height for min-height so long copy pushes
+       the hero taller instead of overflowing it (the house rule everywhere
+       else on the site), and pt-40 (160px) drops to 4.5rem — 160px of top
+       padding on a 405px box clips the eyebrow off the top on a 667px-tall
+       phone. 72px keeps the copy clear of the fixed 64px nav at the 405px
+       floor without ever binding before min-height does. */
+    /* Shorter (27 Oct 2026, Yumna: writing higher, photos up with it). Was 46vh / 360px; phones max(37vh,295px). */
+    /* No visible hero text since 27 Oct 2026, so the band is only as tall as the header (64px): the photos start
+       just under it, with the watermark behind them. Was 32vh / 260px; phones max(26vh,215px). */
+    #home-hero{height:auto;min-height:0;display:block!important}
+    /* Hero video space (28 Oct 2026): full width under the header, 560px tall (phones 360px). The dark fill is a
+       background-IMAGE on purpose: js/mobile-fix.js tints the header from the first background-COLOR it finds
+       under it, and a dark colour here would turn the header black with black icons. */
+    #home-hero .hv{position:relative;aspect-ratio:2048/1152;background:linear-gradient(#0d0d0d,#0d0d0d);overflow:hidden} /* 29 Oct (Yumna): band takes the photo's own 16:9 shape so the whole picture shows on every screen (was a fixed 560px / 360px on phones) */
+    /* Hero copy, bottom left (29 Oct 2026, Yumna: option C after trying A): small "Collection 01" eyebrow, light large title, white outline Shop now button, over a soft corner shade. */
+    #home-hero .hero-shade{position:absolute;right:0;bottom:0;width:60%;height:55%;background:linear-gradient(to top left,rgba(0,0,0,.55),rgba(0,0,0,0) 60%);pointer-events:none}
+    #home-hero .hero-copy{position:absolute;right:clamp(24px,3.9vw,56px);bottom:clamp(24px,3.9vw,56px);z-index:2;color:#fff;text-align:right} /* 11 Nov (Yumna): copy on the RIGHT for the woman + gym bag rocks shot; the bag sits bottom-left where the copy used to be */ /* 10 Nov: inset and type now scale with the photo (see .hero-title) */ /* 1 Nov: back to the LEFT with the woman-on-rocks shot (she sits right); 30 Oct pair shot had it right */
+    #home-hero .hero-eyeb{margin:0 0 clamp(8px,1vw,14px);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#fff;opacity:.85}
+    #home-hero .hero-mw{margin:0 0 clamp(8px,1vw,14px);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#fff;opacity:.85} /* 1 Nov (Yumna): WOMEN · MEN under the eyebrow, in the eyebrow's own style (option 2; was option D, 15px light); links to Shop All by gender */
+    #home-hero .hero-mw a{color:#fff;text-decoration:none}
+    #home-hero .hero-mw a:hover{text-decoration:underline;text-underline-offset:3px}
+        #home-hero .hero-title{margin:0 0 clamp(12px,1.5vw,22px);font-size:calc(clamp(22px,3.25vw,48px) - .5px);font-weight:300;letter-spacing:-.02em;line-height:1.05;color:#fff}
+    #home-hero .hero-btn{display:inline-block;border:1px solid #fff;color:#fff;font-size:clamp(11px,.9vw,13px);font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:clamp(9px,.9vw,13px) clamp(18px,2.1vw,30px);text-decoration:none;transition:background .2s,color .2s}
+    #home-hero .hero-btn:hover{background:#fff;color:#0a0a0a}
+    #home-hero .hv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%}
+    @media(min-width:768px){#home-hero .hv{aspect-ratio:auto;height:calc(100vh - 64px);max-height:1152px;min-height:420px}} /* 11 Nov (Yumna "much better"): band never taller than the screen under the 64px header, so the headline and Shop now show without scrolling on 1366x768 / 1536x864 laptops; photo stays pinned to the top (head never cut), the bottom strip of rock crops on short screens */ /* hero photo (1 Nov: back to the 29 Oct woman-on-rocks shot; the 30 Oct pair shot was tried in between): pinned to the top so her head stays in on wide screens */
+    #home-hero .hv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%} /* hero video (28 Oct 2026, Kive.ai campaign clip, 1280x720, 6 s): keeps faces in when the band crops it */
+    #home-hero .home-hero-body{padding-bottom:0!important}
+    @media(max-width:767px){
+      #home-hero{height:auto;min-height:0}
+      #home-hero .home-hero-body{padding-top:64px;padding-bottom:0}
+      #home-hero .hv{height:auto}
+    }
+    /* 10 Nov 2026 (UI review, Yumna: "fix"). The headline and button sat on the model's legs and the gym bag on
+       phones and tablets, because the type kept its desktop size while the photo shrank.
+       768px and up: the words stay bottom-left on the photo but now scale with it (sizes above are in vw), so
+       the 1440px composition holds at every width and the title stops short of the bag.
+       Phones: the photo is a square crop (her and the bag, centred) and the words sit UNDER it on white, in
+       black, with a solid Shop now button. Nothing overlaps the photograph. Eyebrow 11px (was 9px).
+       This block must stay BELOW the .hv img / .hv video rules above, or their position:absolute wins. */
+    @media(min-width:768px) and (max-width:1023px){#home-hero .hero-title{font-size:calc(max(21px,2.85vw) - .5px)}} /* tablets: a touch smaller so "you" clears the bag with air to spare */
+    @media(max-width:767px){
+      #home-hero .hv{aspect-ratio:auto;background:none;overflow:visible}
+      #home-hero .hv img{position:static;display:block;width:100%;height:auto;aspect-ratio:1/1;object-position:50% 50%}
+      #home-hero .hero-shade{display:none}
+      #home-hero .hero-copy{position:static;color:#0a0a0a;padding:22px 24px 4px;text-align:left}
+      #home-hero .hero-eyeb{font-size:11px;margin-bottom:8px;color:#6b7280;opacity:1}
+      #home-hero .hero-mw{font-size:11px;margin-bottom:12px;color:#0a0a0a;opacity:1}
+      #home-hero .hero-mw a{color:#0a0a0a}
+      #home-hero .hero-title{font-size:29.5px;margin-bottom:18px;color:#0a0a0a}
+      #home-hero .hero-btn{font-size:12px;padding:13px 28px;background:#0a0a0a;border-color:#0a0a0a;color:#fff}
+    }
+    /* ===== HOMEPAGE v2 — film hero + shopfront (8 Aug 2026) ===== */
+
+    /* Five smaller cards (27 Oct 2026, Yumna: "try 5"), photos on pure white (images/white/, keyed from the studio shots;
+       the product pages keep the grey). */
+    .hp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    /* Coming-soon placeholders (27 Oct 2026, Yumna: new product images on the way): the Running collection's
+       coming-soon card (CSS from _parked/collection-running.html): grey gradient, black R circle, dark blurred veil,
+       white "Coming Soon" pill. The white-background photos stay in images/white/ (unused). Quick-add is hidden on
+       these cards until the photos are back. */
+    #shop .hp-ph{background:#f4f4f4} /* 29 Oct 2026 (Yumna): product photos back in place of the Coming Soon placeholders, on their original grey studio backgrounds (images/, not images/white/) */
+    /* Wider side margins on the collection strip (27 Oct 2026, Yumna): 72rem -> 60rem, so the five cards are slightly smaller (~219px -> ~180px). */
+    #shop > .max-w-6xl{max-width:66rem} /* 28 Oct 2026, Yumna: cards slightly bigger, less margin (60rem -> 66rem, ~180px -> ~200px cards) */
+    .hp-soon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .hp-soon .placeholder{width:64px;height:64px;background:#0a0a0a;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:24px}
+    .hp-soon .cs-overlay{position:absolute;inset:0;background:rgba(10,10,10,.55);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+    .hp-soon .cs-pill{background:#fff;color:#0a0a0a;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:999px;white-space:nowrap}
+    @media(max-width:767px){.hp-soon .placeholder{width:44px;height:44px;font-size:17px}.hp-soon .cs-pill{font-size:9px;padding:5px 10px}}
+    .hp-card{position:relative}
+    .hp-ph{position:relative;overflow:hidden;background:#f4f4f4;aspect-ratio:3/4}
+    .hp-ph img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+    /* Second photo on hover, same as Shop All (11 Nov 2026, Yumna). Touch screens never show it. */
+    .hp-ph .hp-hover{position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none}
+    @media(hover:hover){.hp-card:hover .hp-hover{opacity:1}}
+    .hp-meta{padding-top:12px}
+    .hp-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+    .hp-row p{margin:0}
+    .hp-name{font-size:15px;font-weight:600;color:#0a0a0a}
+    .hp-price{font-size:15px;font-weight:400;color:#0a0a0a;white-space:nowrap}
+    .hp-sizes{margin-top:6px;display:flex;flex-wrap:wrap}
+    /* Cards are photo, name, colour, price - on every screen size (Yumna, 2 Oct 2026: phones first, then
+       the same on desktop). No size row and no Add to Bag bar; tapping or clicking the photo or the name
+       opens the product page, where colour and size are chosen. */
+    .hp-sizes,.hp-add{display:none!important}
+    /* Card text (from a Gymshark reference): name, then price (colour line hidden 15 Oct 2026, Yumna; kept in the markup because quick-add reads it), stacked under the photo;
+       colour and price in grey. One step larger from 768px up. */
+    .hp-card .hp-row{display:block}
+    .hp-row .hp-name{font-size:14px;font-weight:500;line-height:1.3}
+    .hp-row .hp-colour{display:none;margin-top:8px;font-size:13px;line-height:1.3;color:#6b7280}
+    .hp-row .hp-price{margin-top:6px;font-size:13px;font-weight:400;color:#6b7280}
+    @media(min-width:768px){
+      .hp-row .hp-name{font-size:15px}
+      .hp-row .hp-colour,.hp-row .hp-price{font-size:14px}
+    }
+    /* neutralise the Tailwind state classes the size-pill JS toggles */
+    .hp-card .size-pill{background:none!important;border:0!important;border-radius:0!important;
+      padding:2px 0!important;font-size:11px!important;font-weight:500;letter-spacing:.1em;
+      color:#8a8a8a!important;position:relative;cursor:pointer;transition:color .15s}
+    .hp-card .size-pill + .size-pill{margin-left:14px}
+    .hp-card .size-pill + .size-pill::before{content:"\00b7";position:absolute;left:-9px;color:#c9c9c9}
+    .hp-card .size-pill:hover{color:#0a0a0a!important}
+    .hp-card .size-pill.selected{color:#0a0a0a!important;text-decoration:underline;text-underline-offset:3px}
+    .hp-add{position:absolute;left:0;right:0;bottom:0;z-index:3;width:100%;height:44px;border:0;border-radius:0;
+      background:rgba(255,255,255,.97);color:#0a0a0a;font-size:13px;font-weight:600;cursor:pointer;
+      transform:translateY(100%);transition:transform .25s ease}
+    @media(hover:hover){.hp-card:hover .hp-add{transform:none}}
+    .hp-add:focus-visible{transform:none;outline:2px solid #0a0a0a;outline-offset:-2px}
+    @media(hover:none){.hp-add{transform:none;background:rgba(255,255,255,.95);height:40px;font-size:12px}}
+
+    .hp-svc{background:#f6f6f6;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb}
+    .hp-svc .hp-in{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;padding:34px 0}
+    .hp-svc b{display:block;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;color:#0a0a0a}
+    .hp-svc p{font-size:14px;color:#5a5a5a;max-width:32ch}
+
+    .hp-gap{background:#0a0a0a;color:#fff}
+    .hp-gap .hp-in{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;padding:clamp(56px,7vw,96px) 0;align-items:center}
+    .hp-gap h2{font-size:clamp(1.6rem,1.1rem + 1.9vw,2.6rem);font-weight:700;letter-spacing:-.025em;line-height:1.12;max-width:15ch;color:#fff}
+    .hp-gap .mech{margin-top:16px;font-size:15px;color:#b9b9b9;max-width:44ch}
+    .hp-gap .fine{margin-top:10px;font-size:13px;color:#8a8a8a;max-width:46ch}
+    .hp-bars{display:grid;gap:22px}
+    .hp-bar .lb{font-size:13px;color:#b9b9b9;margin-bottom:8px;display:block}
+    .hp-bar .tr{height:6px;background:#242424;position:relative}
+    .hp-bar .tr b{position:absolute;inset:0 auto 0 0;display:block;background:#5a5a5a}
+    .hp-bar.us .lb{color:#fff}
+    .hp-bar.us .tr b{background:#fff;width:32%}
+    .hp-bar .amt{display:block;margin-top:8px;font-size:13px;color:#b9b9b9}
+    .hp-bar.us .amt{color:#fff;font-weight:700}
+
+    .hp-doors{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .hp-door{position:relative;overflow:hidden;display:block}
+    .hp-door img{aspect-ratio:1/1;object-fit:cover;width:100%;display:block;transition:transform .45s}
+    .hp-door:hover img{transform:scale(1.04)}
+    .hp-door span{position:absolute;left:16px;bottom:14px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.14em;z-index:2}
+    .hp-door:after{content:"";position:absolute;inset:auto 0 0;height:60%;background:linear-gradient(0deg,rgba(0,0,0,.72),transparent)}
+
+
+    .hp-sticky{position:fixed;left:0;right:0;bottom:0;z-index:70;background:#0a0a0a;color:#fff;height:56px;
+      display:none;align-items:center;justify-content:center;font-size:14px;font-weight:600;letter-spacing:.06em;
+      padding-bottom:env(safe-area-inset-bottom)}
+
+    /* hero: monogram backplate */
+    /* Monogram behind the hero copy. Opacity lives on the element, NOT only on
+       the animation — if the animation is ever blocked (reduced motion, a
+       stalled paint), the mark must still be visible rather than stuck at 0. */
+    /* White hero (27 Oct 2026, Yumna, trial): the black R at 7% reads as a light grey watermark. The black
+       version (bg #000, invert(1), opacity .2, dark gradient, white type, body.nav-over-hero) is in git history. */
+    /* Same day: watermark smaller (142% -> 92% of the hero height, fully inside it) and darker (.07 -> .13). */
+    /* Watermark on the PAGE, not just the hero (27 Oct 2026, Yumna): starts under the header and runs down
+       behind the photos and the philosophy. It sits at z-index 0; the hero, photo row, philosophy and footer
+       are lifted to z-index 1 so the R is always behind them (the photos are opaque, so it never tints them). */
+    /* Watermark is a pre-rendered PNG with the 13% grey baked in (30 Oct 2026, Safari scroll jank): Safari re-rasterises a big SVG <img> under an opacity on every scroll. Rebuild from images/revai-mark.svg if the mark changes. */
+    .hp-plate{position:absolute;right:-3%;top:624px;height:min(118vh,1150px);width:auto;pointer-events:none;
+      animation:hpPlate .9s .2s ease-out both;z-index:0}
+    @keyframes hpPlate{from{opacity:0}to{opacity:1}} /* opacity only (30 Oct 2026): the scale version kept a big composited layer alive and cost scroll frames */
+    @media(prefers-reduced-motion:reduce){.hp-plate{animation:none;opacity:1}}
+    @media(max-width:767px){.hp-plate{right:0;top:calc(100vw + 387px);height:min(82vh,640px)}} /* 10 Nov: the phone hero is now a square photo plus the words under it, so the mark starts lower (was 424px) */ /* right:0, never negative: the page has no overflow-x guard, so a negative right would add sideways scroll */
+    #home-hero,.hp-photo,.hp-who,#shop,footer{position:relative;z-index:1}
+    /* The R hangs slightly off the right edge (27 Oct 2026, Yumna: "more to the right"); clip stops that adding sideways scroll. */
+    html{overflow-x:clip}
+    #home-hero{background:transparent!important}
+    /* Hero writing smaller than the site-wide .t-hero (27 Oct 2026, Yumna). */
+    #home-hero h1.t-hero{font-size:clamp(22px,2.6vw,30px)!important}
+    #home-hero .home-hero-body p{font-size:11px}
+
+
+    /* --- OUR STORY --- */
+    .hp-story .top{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(28px,4.5vw,64px);align-items:center}
+    .hp-story .im{aspect-ratio:1/1;overflow:hidden;background:#f4f4f4}
+    .hp-story .im img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
+    .hp-story .eyeb{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#9a9a9a;margin-bottom:14px}
+    .hp-story h2{font-size:clamp(1.7rem,1.2rem + 1.6vw,2.5rem);font-weight:600;letter-spacing:-.03em;line-height:1.12;margin-bottom:18px}
+    .hp-story p{font-size:15px;line-height:1.72;color:#5a5a5a;max-width:48ch}
+    .hp-story .pillars{margin-top:14px}
+    .hp-story .more{margin-top:26px;display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#0a0a0a;text-decoration:none;border-bottom:1px solid #d8d8d8;padding-bottom:3px}
+    .hp-story .more:hover{border-color:#0a0a0a}
+    @media(max-width:860px){
+      .hp-story .top{grid-template-columns:1fr;gap:26px}
+      .hp-story .im{aspect-ratio:4/3}
+      .hp-story .im img{object-position:50% 50%}
+    }
+
+    @media(max-width:900px){
+      .hp-grid{grid-template-columns:repeat(3,1fr);gap:10px}
+      .hp-svc .hp-in{grid-template-columns:1fr;gap:22px}
+      .hp-gap .hp-in{grid-template-columns:1fr;gap:34px}
+      .hp-doors{grid-template-columns:repeat(2,1fr)}
+      /* .hp-sticky bar removed 5 Oct 2026 — the hero now sends people to Women or Men directly */
+      .hp-row{display:block}
+      .hp-row p+p{margin-top:3px}
+      .hp-sizes{gap:3px 9px}
+      .hp-card .size-pill + .size-pill{margin-left:0}
+      .hp-card .size-pill + .size-pill::before{display:none}
+    }
+
+    /* HERO: Women / Men split (5 Oct 2026) parked 7 Oct 2026 at Yumna's request; the monogram-over-black
+       hero is back. Split CSS + markup are in git (commit 4e41471, index.html). */
+    /* ===== BEST SELLERS + WHO WE ARE (7 Oct 2026, from Yumna's two reference screenshots) =====
+       Both bands sit on the same warm off-white so they read as one quiet run down to the footer.
+       Best sellers: four 3:4 product photos, all four on one straight line (7 Oct: stagger dropped); name only, no price.
+       Who we are: centred, light-weight display type, one sentence, one link. */
+    .hp-best{background:#f9f9f7}
+    .hp-best{padding:clamp(40px,5vw,72px) 24px clamp(24px,3vw,48px)}
+    .hp-best .eyeb{text-align:right;font-size:12px;letter-spacing:.32em;margin-right:-.32em;text-transform:uppercase;color:#8f8f8f;margin-bottom:clamp(28px,3.4vw,48px)}
+    .hp-best .row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;align-items:start}
+    .hp-best a{display:block;text-decoration:none;color:inherit}
+    .hp-best .ph{aspect-ratio:3/4;overflow:hidden;background:#c9c9cb}
+    .hp-best .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+    .hp-best a:hover .ph img{transform:scale(1.025)}
+    .hp-best .nm{margin-top:16px;font-size:clamp(15px,1.25vw,18px);font-weight:400;color:#4a4a4a;letter-spacing:.005em}
+    /* Three small photos in one row above the philosophy (27 Oct 2026, Yumna): man, woman, Flared Leggings.
+       Same 4:5 shape on every screen size; the row is capped at 46rem so each photo stays small. The studio
+       shot is square, so it is trimmed at the sides (object-position keeps her face, the shoe and the bottle). */
+    /* 10 Nov 2026 (Yumna approved option 10B). Phones: the five cards are ONE row that slides sideways, like the
+       worded photos below (44vw each, the third peeks in), instead of three columns with a hole in row two.
+       No quick-add button here on phones (tapping a card opens the product; quick add stays on Shop All).
+       Tablets (768-900px): all five in one row. */
+    @media(min-width:768px) and (max-width:900px){#shop .hp-grid{grid-template-columns:repeat(5,1fr);gap:10px}}
+    @media(max-width:767px){
+      #shop .hp-grid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;margin-left:-24px;margin-right:-24px;padding-left:24px;padding-right:24px}
+      #shop .hp-grid::-webkit-scrollbar{display:none}
+      #shop .hp-card{flex:0 0 44vw;min-width:0;scroll-snap-align:start}
+      #shop .hp-card .qa-btn{display:none}
+    }
+    .hp-photo{padding:clamp(12px,1.6vw,24px) 24px clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:72rem;margin:0 auto;box-sizing:content-box}
+    .hp-photo img{display:block;width:100%;height:100%;aspect-ratio:4/5;object-fit:cover}
+    /* One small word on each photo (28 Oct 2026, Yumna chose option A of the draft): Train, Reset, Breathe, Empower, Lift.
+       White, spaced capitals, bottom left, on a soft shade so it always reads (like Gymshark's activity tiles). */
+    .hp-tile{position:relative;margin:0;overflow:hidden;min-width:0}
+    .hp-tile::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;background:linear-gradient(to top,rgba(0,0,0,.45),transparent);pointer-events:none}
+    .hp-word{position:absolute;left:18px;bottom:16px;z-index:1;color:#fff;font-size:13px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;line-height:1}
+    .hp-photo img.studio{object-position:40% 50%}
+    /* Five photos split around the philosophy (27 Oct 2026, Yumna: one line was too packed): three above, two
+       below, every photo the size it was in the original row of three. The lower pair is 2/3 of the width,
+       centred. Same on phones, just smaller. (The braids gym-bra shot was compared and dropped.) */
+    .hp-photo.pair{grid-template-columns:repeat(2,1fr);max-width:calc((72rem - 36px) * 2 / 3 + 18px)}
+    /* Phones: cards are two across, so the photos become a sideways swipe strip at 74vw each (bigger than a card). */
+    @media(max-width:767px){
+      .hp-photo,.hp-photo.pair{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;padding-left:16px;padding-right:16px;max-width:none}
+      .hp-photo::-webkit-scrollbar{display:none}
+      .hp-photo .hp-tile{flex:0 0 44vw;width:44vw;scroll-snap-align:start} /* small sliding photos on phones (28 Oct 2026, Yumna) */
+      .hp-photo img{height:auto}
+      .hp-word{left:10px;bottom:10px;font-size:10px;letter-spacing:.24em}
+    }
+    /* Order (27 Oct 2026, Yumna): hero, 3 photos, Collection 01 strip, 3 photos (2 for now), philosophy. */
+    /* Photos open Shop Women / Shop Men by who is in them (29 Oct 2026, Yumna); "Shop All" link under them, same style as "Shop Collection". */
+    .hp-tile-link{position:absolute;inset:0;z-index:2}
+    .hp-tile{cursor:pointer}
+    .hp-shopall{position:relative;z-index:1;text-align:center;margin:-56px 0 0;padding:0 24px clamp(64px,8vw,104px)}
+    @media(max-width:767px){.hp-shopall{margin-top:-40px}}
+    .hp-photo.pair{padding-top:clamp(40px,5vw,64px);padding-bottom:clamp(64px,8vw,104px)} /* last section before the footer since the philosophy moved to About (27 Oct 2026) */
+    @media(max-width:767px){
+      .hp-best{padding-left:16px;padding-right:16px}
+      .hp-best .row{grid-template-columns:repeat(2,1fr);gap:14px;row-gap:28px}
+      .hp-best .nm{margin-top:10px}
+    }
+  </style>
+  <script src="js/mobile-fix.js?v=20261110b" defer></script>
+  <script src="/js/launch.js?v=20261119l" defer></script>
+  <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
-  <main class="wrap">
-    <div class="glow"></div>
-    <img class="mark" src="/revai-icon.png" alt="" aria-hidden="true">
-    <div class="lock"><img src="/revai-icon.png" alt=""><span>REVAÍ</span></div>
-    <div class="line" aria-hidden="true"></div>
-    <p class="soon">Coming soon</p>
-    <p class="where">Nairobi</p>
-    <form class="su" id="su" novalidate>
-      <p class="lead">Get early access</p>
-      <div class="form-row"><label class="sr" for="em">Email or WhatsApp number</label><input id="em" type="text" name="contact" placeholder="Email or WhatsApp" autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" required><button class="go" type="submit" aria-label="Get early access">→</button></div>
-      <div class="more" hidden>
-        <div class="form-row"><label class="sr" for="un">Username</label><input id="un" type="text" name="username" placeholder="Username" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" maxlength="40" enterkeyhint="next"></div>
-        <div class="form-row"><label class="sr" for="ot">WhatsApp number (optional)</label><input id="ot" type="text" name="other" placeholder="WhatsApp (optional)" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done"></div>
-        <button class="submit" type="submit">Submit</button>
+<img class="hp-plate" src="images/revai-mark-watermark.png" alt="" aria-hidden="true" width="1938" height="2300">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded-lg text-sm">Skip to content</a>
+
+<!-- NAV -->
+<nav id="nav" class="fixed top-0 inset-x-0 z-50 h-16" role="navigation" aria-label="Main" style="background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .25s">
+  <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+    <a href="index.html" class="rv-lock text-black" aria-label="REVAÍ — home"><img src="images/revai-icon.png" alt="" aria-hidden="true" width="26" height="31"><span>REVAÍ</span></a>
+    <div class="nav-links hidden md:flex items-center gap-8">
+      <div class="relative" id="shop-dropdown-wrap">
+        <button id="shop-dropdown-btn" class="text-sm font-medium text-gray-500 hover:text-black transition-colors flex items-center gap-1">Shop<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div id="shop-dropdown-menu" class="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 transition-all duration-200 z-50" style="opacity:0;pointer-events:none">
+          <a href="collections.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">All Products</a>
+          <a href="collections.html?gender=women" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Women</a>
+          <a href="collections.html?gender=men" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Men</a>
+          <a href="collections.html?gender=accessories" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Accessories</a>
+        
+        </div>
       </div>
-      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="msg" role="alert"></p><p class="thanks" tabindex="-1">You're on the list.</p>
-    </form>
-    <div class="ig"><a href="https://www.instagram.com/revaiactive/" aria-label="REVAÍ on Instagram, @revaiactive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.6"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg><span>@revaiactive</span></a></div>
-  </main>
+      <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About Us</a>
+      <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
+    </div>
+    <div class="nav-right hidden md:flex items-center gap-3">
+      <button onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+      <a href="wishlist.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Wishlist" data-wish-nav style="display:none"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></a><a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+      <button id="nav-cart-btn" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open cart" onclick="if(window.REVAI_CART) window.REVAI_CART.openDrawer()">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span id="cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span>
+      </button>
+    </div>
+    <div class="nav-mob md:hidden flex items-center gap-1"><button type="button" onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search" data-nav-search><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button><a href="wishlist.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Wishlist" data-wish-nav style="display:none"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></a><a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a><button id="m-cart-btn" aria-label="Open cart" onclick="if(window.REVAI_CART) window.REVAI_CART.openDrawer()" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span id="m-cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span></button><button id="hbg" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="14" x2="17" y2="14"/></svg>
+    </button></div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mmenu" class="fixed top-0 left-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col" style="transform:translateX(-100%);transition:transform .35s cubic-bezier(.16,1,.3,1)">
+  <div class="flex justify-between items-center mb-10">
+    <span class="rv-lock"><img src="images/revai-icon.png" alt="" aria-hidden="true" width="24" height="29"><span>REVAÍ</span></span>
+    <button id="mclose" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Close menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg>
+    </button>
+  </div>
+  <div class="flex flex-col gap-1 flex-1">
+    <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2 mt-2">Shop</p>
+    <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
+    <div class="mgrp">
+      <a href="collections.html?gender=women" class="mgrp-head block py-2 text-sm text-gray-700 hover:text-black" aria-expanded="false">Women<i class="mgrp-chev" aria-hidden="true"></i></a>
+      <div class="mgrp-sub">
+        <a href="collections.html?gender=women" class="mlink all">Shop all women</a>
+        <a href="collections.html?gender=women&amp;cat=leggings" class="mlink">Leggings</a>
+        <a href="collections.html?gender=women&amp;cat=sports-bras" class="mlink">Sports Bras</a>
+        <a href="collections.html?gender=women&amp;cat=tops" class="mlink">Tops</a>
+        <a href="collections.html?gender=women&amp;cat=jackets" class="mlink">Jackets</a>
+      </div>
+    </div>
+    <div class="mgrp">
+      <a href="collections.html?gender=men" class="mgrp-head block py-2 text-sm text-gray-700 hover:text-black" aria-expanded="false">Men<i class="mgrp-chev" aria-hidden="true"></i></a>
+      <div class="mgrp-sub">
+        <a href="collections.html?gender=men" class="mlink all">Shop all men</a>
+        <a href="collections.html?gender=men&amp;cat=tshirts" class="mlink">T-Shirts</a>
+        <a href="collections.html?gender=men&amp;cat=shorts" class="mlink">Shorts</a>
+        <a href="collections.html?gender=men&amp;cat=pants" class="mlink">Pants</a>
+        <a href="collections.html?gender=men&amp;cat=quarter-zips" class="mlink">Quarter Zips</a>
+      </div>
+    </div>
+    <div class="mgrp">
+      <a href="collections.html?gender=accessories" class="mgrp-head block py-2 text-sm text-gray-700 hover:text-black" aria-expanded="false">Accessories<i class="mgrp-chev" aria-hidden="true"></i></a>
+      <div class="mgrp-sub">
+        <a href="collections.html?gender=accessories" class="mlink all">Shop all accessories</a>
+        <a href="collections.html?gender=accessories&amp;cat=socks" class="mlink">Socks</a>
+        <a href="collections.html?gender=accessories&amp;cat=caps" class="mlink">Caps</a>
+        <a href="collections.html?gender=accessories&amp;cat=bags" class="mlink">Bags</a>
+      </div>
+    </div>
+    <div class="my-3 border-t border-gray-100"></div>
+    <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About Us</a>
+    <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
+  </div>
+</div>
+<div id="moverlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
+
+<main id="main">
+
+  <!-- HERO — full-bleed film, type carved over it. Height lives on #home-hero
+       in the <style> block above, not inline — see the note there. -->
+  <section id="home-hero" class="relative flex items-center" style="background:#fff;overflow:hidden">
+    <!-- Hero film removed 9 Aug 2026 at Yumna's request — the hero is the
+         monogram over solid black until new footage exists. To restore, drop
+         this back in as the first child of #home-hero and give it a poster:
+         <video autoplay muted loop playsinline preload="none"
+                poster="images/homepage-hero-poster.jpg"
+                style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.72">
+           <source src="images/homepage-hero.mp4" type="video/mp4">
+         </video>
+         Note: the old homepage-hero.mp4 carries a burned-in KlingAI watermark
+         and should not go back up as-is. -->
+    <div class="home-hero-body relative max-w-6xl mx-auto w-full px-6 text-center" style="padding-top:64px;z-index:3;text-align:center">
+      <h1 class="sr-only">REVAÍ</h1><!-- Hero logo tried 27 Oct and removed; the logo is back in the header (Yumna) -->
+    </div>
+    <!-- HERO VIDEO SPACE (28 Oct 2026, Yumna). Placeholder until the video arrives. To add it, put this inside .hv:
+         <video autoplay muted loop playsinline preload="metadata" poster="images/hero-video-poster.jpg">
+           <source src="images/hero-video-mobile.mp4" type="video/mp4" media="(max-width:767px)">
+           <source src="images/hero-video.mp4" type="video/mp4">
+         </video>
+         Specs given to Yumna: desktop 1920x1080 (subject in the middle 1920x820), phone 1080x1350, MP4 H.264,
+         no sound, 8-15 s loop, under 8MB / 4MB, plus a poster JPG of each. -->
+    <div class="hv">
+      <img src="images/hero-photo.jpg" alt="" fetchpriority="high" decoding="async"><div class="hero-shade"></div><div class="hero-copy"><p class="hero-eyeb">Collection 01</p><p class="hero-mw"><a href="collections.html?gender=women">Women</a> · <a href="collections.html?gender=men">Men</a></p><p class="hero-title">A Return To You</p><a class="hero-btn" href="collections.html">Shop now</a></div><!-- Hero photo (28 Oct 2026, Yumna) in place of the video. To bring the video back, swap this line for:
+           <video autoplay muted loop playsinline preload="auto" poster="images/hero-video-poster.jpg"><source src="images/hero-video.mp4" type="video/mp4"></video> -->
+      
+    </div>
+  </section>
+
+  <!-- COLLECTION 01 product rail removed 5 Oct 2026 (Yumna): the hero sends people straight to Women or Men. Markup is in git history. -->
+
+
+
+  <!-- COLLECTION 01 strip: straight under the hero video since 28 Oct 2026 (Yumna); the photos follow it. -->
+  <!-- COLLECTION 01 -->
+  <section class="py-16 md:py-20 px-6" id="shop">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="sr-only">Collection 01</h2>
+      <div class="fu d1 flex items-end gap-4 mb-6" style="justify-content:flex-end">
+        <a href="collections.html" class="text-sm font-medium" style="border-bottom:1px solid currentColor;padding-bottom:2px">Shop Collection &rarr;</a>
+      </div>
+      <div class="hp-grid">
+        <div class="hp-card fu d1">
+          <div class="hp-ph">
+            <img src="images/cards/jacket-w.jpg" srcset="images/cards/jacket-w.jpg 540w, images/jacket-w.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="Women's Jacket" loading="lazy" decoding="async">
+            <img class="hp-hover" src="images/cards/jacket-w-three-quarter-2.jpg" srcset="images/cards/jacket-w-three-quarter-2.jpg 540w, images/jacket-w-three-quarter-2.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <button class="hp-add" onclick="addToBag('Women\'s Jacket', 7450, 'jacket-w')">Add to Bag</button>
+          </div>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">Women's Jacket</p><p class="hp-colour">Black</p><p class="hp-price"><span data-nosnippet>KES 7,450</span></p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="jacket-w" data-size="S">S</button><button class="size-pill" data-product="jacket-w" data-size="M">M</button><button class="size-pill" data-product="jacket-w" data-size="L">L</button><button class="size-pill" data-product="jacket-w" data-size="XL">XL</button><button class="size-pill" data-product="jacket-w" data-size="XXL">XXL</button></div>
+          </div>
+        </div>
+        <div class="hp-card fu d2">
+          <div class="hp-ph">
+            <img src="images/cards/tshirt-m.jpg" srcset="images/cards/tshirt-m.jpg 540w, images/tshirt-m.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="Men's T-Shirt" loading="lazy" decoding="async">
+            <img class="hp-hover" src="images/cards/tshirt-m-side.jpg" srcset="images/cards/tshirt-m-side.jpg 540w, images/tshirt-m-side.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <button class="hp-add" onclick="addToBag('Men\'s T-Shirt', 4200, 'tshirt-m')">Add to Bag</button>
+          </div>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">Men's T-Shirt</p><p class="hp-colour">Black</p><p class="hp-price"><span data-nosnippet>KES 4,200</span></p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="tshirt-m" data-size="S">S</button><button class="size-pill" data-product="tshirt-m" data-size="M">M</button><button class="size-pill" data-product="tshirt-m" data-size="L">L</button><button class="size-pill" data-product="tshirt-m" data-size="XL">XL</button><button class="size-pill" data-product="tshirt-m" data-size="XXL">XXL</button></div>
+          </div>
+        </div>
+        <div class="hp-card fu d3">
+          <div class="hp-ph">
+            <img src="images/cards/high-impact-bra-side.jpg" srcset="images/cards/high-impact-bra-side.jpg 540w, images/high-impact-bra-side.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="High Impact Sports Bra" loading="lazy" decoding="async">
+            <img class="hp-hover" src="images/cards/high-impact-bra-back.jpg" srcset="images/cards/high-impact-bra-back.jpg 540w, images/high-impact-bra-back.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <button class="hp-add" onclick="addToBag('High Impact Sports Bra', 4900, 'high-impact-bra')">Add to Bag</button>
+          </div>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">High Impact Sports Bra</p><p class="hp-colour">Black</p><p class="hp-price"><span data-nosnippet>KES 4,900</span></p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="high-impact-bra" data-size="S">S</button><button class="size-pill" data-product="high-impact-bra" data-size="M">M</button><button class="size-pill" data-product="high-impact-bra" data-size="L">L</button><button class="size-pill" data-product="high-impact-bra" data-size="XL">XL</button><button class="size-pill" data-product="high-impact-bra" data-size="XXL">XXL</button></div>
+          </div>
+        </div>
+        <div class="hp-card fu d3">
+          <div class="hp-ph">
+            <img src="images/cards/training-pants-m-crop.jpg" srcset="images/cards/training-pants-m-crop.jpg 540w, images/training-pants-m-crop.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="Men's Training Pants" loading="lazy" decoding="async">
+            <img class="hp-hover" src="images/cards/training-pants-m.jpg" srcset="images/cards/training-pants-m.jpg 540w, images/training-pants-m.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <button class="hp-add" onclick="addToBag('Men\'s Training Pants', 6600, 'training-pants-m')">Add to Bag</button>
+          </div>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">Men's Training Pants</p><p class="hp-colour">Black</p><p class="hp-price"><span data-nosnippet>KES 6,600</span></p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="training-pants-m" data-size="S">S</button><button class="size-pill" data-product="training-pants-m" data-size="M">M</button><button class="size-pill" data-product="training-pants-m" data-size="L">L</button><button class="size-pill" data-product="training-pants-m" data-size="XL">XL</button><button class="size-pill" data-product="training-pants-m" data-size="XXL">XXL</button></div>
+          </div>
+        </div>
+        <div class="hp-card fu d4">
+          <div class="hp-ph">
+            <img src="images/cards/flared-leggings-w.jpg" srcset="images/cards/flared-leggings-w.jpg 540w, images/flared-leggings-w.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="Flared Leggings" loading="lazy" decoding="async">
+            <img class="hp-hover" src="images/cards/flared-leggings-w-back.jpg" srcset="images/cards/flared-leggings-w-back.jpg 540w, images/flared-leggings-w-back.jpg 1086w" sizes="(max-width:767px) 45vw, 220px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <button class="hp-add" onclick="addToBag('Flared Leggings', 5600, 'flared-leggings-w')">Add to Bag</button>
+          </div>
+          <div class="hp-meta">
+            <div class="hp-row"><p class="hp-name">Flared Leggings</p><p class="hp-colour">Black</p><p class="hp-price"><span data-nosnippet>KES 5,600</span></p></div>
+            <div class="hp-sizes"><button class="size-pill" data-product="flared-leggings-w" data-size="S">S</button><button class="size-pill" data-product="flared-leggings-w" data-size="M">M</button><button class="size-pill" data-product="flared-leggings-w" data-size="L">L</button><button class="size-pill" data-product="flared-leggings-w" data-size="XL">XL</button><button class="size-pill" data-product="flared-leggings-w" data-size="XXL">XXL</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>/* Watermark starts 100px above the bottom of the Collection 01 strip (11 Nov 2026, Yumna). Measured, so it holds at every screen size; the CSS top values on .hp-plate are only the no-script fallback. */
+  (function(){var p=document.querySelector('.hp-plate'),sh=document.getElementById('shop');if(!p||!sh)return;
+  function place(){p.style.top=Math.round(sh.getBoundingClientRect().bottom+window.scrollY-100)+'px';}
+  place();addEventListener('resize',place);addEventListener('load',place);})();</script>
+
+  <!-- First photo group (three), under the collection since 28 Oct 2026 -->
+  <section class="hp-photo"><figure class="hp-tile fu"><img src="images/home-track-600.jpg" srcset="images/home-track-600.jpg 600w, images/home-track.jpg 1000w" sizes="(max-width:767px) 44vw, 372px" alt="Man in a black REVAÍ T-shirt and shorts standing on a running track" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Train</span><a class="hp-tile-link" href="collections.html?gender=men" aria-label="Shop men"></a></figure><figure class="hp-tile fu d1"><img class="studio" src="images/home-studio-600.jpg" srcset="images/home-studio-600.jpg 600w, images/home-studio.jpg 1000w" sizes="(max-width:767px) 44vw, 372px" alt="Woman in a black REVAÍ sports bra and leggings sitting on a studio floor" width="1000" height="1000" loading="lazy" decoding="async"><span class="hp-word">Reset</span><a class="hp-tile-link" href="collections.html?gender=women" aria-label="Shop women"></a></figure><figure class="hp-tile fu d2"><img src="images/home-flared-forest-600.jpg" srcset="images/home-flared-forest-600.jpg 600w, images/home-flared-forest.jpg 1000w" sizes="(max-width:767px) 44vw, 372px" alt="Woman in black REVAÍ Flared Leggings and a sports bra on a forest path, seen from behind" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Breathe</span><a class="hp-tile-link" href="collections.html?gender=women" aria-label="Shop women"></a></figure></section>
+
+
+
+  <!-- Second photo group, between the collection strip and the philosophy (27 Oct 2026). Two photos until a third arrives. -->
+  <section class="hp-photo pair"><figure class="hp-tile fu"><img src="images/home-gym-bra-600.jpg" srcset="images/home-gym-bra-600.jpg 600w, images/home-gym-bra.jpg 1000w" sizes="(max-width:767px) 44vw, 560px" alt="Woman in a black REVAÍ sports bra with crossover straps, seen from behind in a gym" width="1000" height="1241" loading="lazy" decoding="async"><span class="hp-word">Empower</span><a class="hp-tile-link" href="collections.html?gender=women" aria-label="Shop women"></a></figure><figure class="hp-tile fu d1"><img src="images/home-gym-bench-600.jpg" srcset="images/home-gym-bench-600.jpg 600w, images/home-gym-bench.jpg 1000w" sizes="(max-width:767px) 44vw, 560px" alt="Man in a black REVAÍ T-shirt and shorts sitting on a bench in front of a squat rack" width="1000" height="1255" loading="lazy" decoding="async"><span class="hp-word">Lift</span><a class="hp-tile-link" href="collections.html?gender=men" aria-label="Shop men"></a></figure></section>
+  <div class="hp-shopall"><a href="collections.html" class="text-sm font-medium" style="border-bottom:1px solid currentColor;padding-bottom:2px">Shop All &rarr;</a></div>
+
+<!-- FOOTER -->
+<footer style="background:#0a0a0a" class="px-6 pt-10 pb-5 border-t border-gray-800">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-6">
+      <div>
+        <a href="index.html" style="display:inline-block;margin-bottom:16px"><img src="images/revai-icon.png" alt="REVAÍ" style="height:44px;width:auto;display:block;margin-left:-2px;filter:invert(1)"></a>
+        <p class="text-gray-400 text-sm leading-relaxed mb-6">Bend it, stretch it, live in it.<br>It was made to move the way you do</p>
+        <div class="flex gap-4">
+          <a href="https://www.instagram.com/revaiactive" target="_blank" rel="noopener" aria-label="Instagram" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></a><a href="mailto:support@revaiactive.com" aria-label="Email REVAÍ" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4.5" width="20" height="15" rx="2.5"/><path d="m3 7 8.13 5.42a1.6 1.6 0 0 0 1.74 0L21 7"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Shop</h3>
+        <ul class="space-y-3"><li><a href="collections.html" class="text-sm text-gray-400 hover:text-white transition-colors">All Products</a></li><li><a href="collections.html?gender=women" class="text-sm text-gray-400 hover:text-white transition-colors">Women</a></li><li><a href="collections.html?gender=men" class="text-sm text-gray-400 hover:text-white transition-colors">Men</a></li><li><a href="collections.html?gender=accessories" class="text-sm text-gray-400 hover:text-white transition-colors">Accessories</a></li></ul>
+      </div>
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Company</h3>
+        <ul class="space-y-3">
+          <li><a href="about.html" class="text-sm text-gray-400 hover:text-white transition-colors">About Us</a></li>
+          <li><a href="sustainability.html" class="text-sm text-gray-400 hover:text-white transition-colors">Sustainability</a></li>
+          <li><a href="team-orders.html" class="text-sm text-gray-400 hover:text-white transition-colors">Team Orders</a></li>
+          <li><a href="press.html" class="text-sm text-gray-400 hover:text-white transition-colors">Press</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Support</h3>
+        <ul class="space-y-3">
+          <li><a href="shipping-returns.html" class="text-sm text-gray-400 hover:text-white transition-colors">Shipping &amp; Returns</a></li>
+          <li><a href="care-instructions.html" class="text-sm text-gray-400 hover:text-white transition-colors">Care Instructions</a></li>
+          <li><a href="faq.html" class="text-sm text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+          <li><a href="contact.html" class="text-sm text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4" style="padding-top:16px">
+      <p class="text-xs text-gray-600">© 2026 REVAI Limited. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="privacy.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Privacy Policy</a>
+        <a href="terms.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Terms of Service</a>
+        <a href="accessibility.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="search.js?v=20261119a"></script>
+<script src="shopify-config.js?v=20260926b"></script>
+<script src="woo-config.js?v=20261110a"></script>
+<script src="js/stock.js?v=20261110a"></script>
+<script src="cart-drawer.js?v=20261119b"></script>
+<script src="js/quick-add.js?v=20261110b" defer></script>
 <script>
+// Simple add-to-bag with size selection and toast
+let cartItems=[]; try{ cartItems=JSON.parse(localStorage.getItem('revai_cart_v1')||'[]'); if(!Array.isArray(cartItems)) cartItems=[]; }catch(e){ cartItems=[]; } // a corrupt value must not take the page down
+function addToBag(name, price, id) {
+  // The cards have no size row and no Add to Bag bar any more; if this is ever called, open the product page.
+  if(!document.querySelector('.size-pill.selected[data-product="'+id+'"]')){window.location.href='product.html?id='+id;return;}
+  const sizeEls = document.querySelectorAll('.size-pill.selected[data-product="'+id+'"]');
+  const size = sizeEls.length ? sizeEls[0].dataset.size : null;
+  if(!size){showToast('Please select a size'); return;}
+  if(window.REVAI_CART){ window.REVAI_CART.add({id,name,price,size}); return; }
+  // fallback
+  const key=id+'|'+size, existing=cartItems.find(i=>i.key===key);
+  if(existing) existing.qty++; else cartItems.push({id,name,price,size,key,qty:1});
+  localStorage.setItem('revai_cart_v1',JSON.stringify(cartItems));
+  showToast('Added to bag \u2713');
+}
+function showToast(msg){
+  let t=document.getElementById('page-toast');
+  if(!t){t=document.createElement('div');t.id='page-toast';t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#0a0a0a;color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:500;z-index:200;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;white-space:nowrap;';document.body.appendChild(t);}
+  t.textContent=msg; t.style.opacity='1'; t.style.transform='translateX(-50%) translateY(0)';
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(20px)';},2200);
+}
+// Size pill selection
+document.addEventListener('click',function(e){
+  if(e.target.classList.contains('size-pill')){
+    const pid=e.target.dataset.product;
+    document.querySelectorAll('.size-pill[data-product="'+pid+'"]').forEach(p=>{
+      p.classList.remove('selected','bg-black','text-white','border-black');
+      p.classList.add('border-gray-200','text-gray-700');
+    });
+    e.target.classList.add('selected','bg-black','text-white','border-black');
+    e.target.classList.remove('border-gray-200','text-gray-700');
+  }
+});
+// Nav scroll
+const nav=document.getElementById('nav');
+
+(function(){var btn=document.getElementById('shop-dropdown-btn');var menu=document.getElementById('shop-dropdown-menu');var wrap=document.getElementById('shop-dropdown-wrap');if(!btn||!menu)return;btn.addEventListener('click',function(){var open=menu.style.opacity==='1';menu.style.opacity=open?'0':'1';menu.style.pointerEvents=open?'none':'auto';});document.addEventListener('click',function(e){if(wrap&&!wrap.contains(e.target)){menu.style.opacity='0';menu.style.pointerEvents='none';}});})();
+// Mobile menu
+const hbg=document.getElementById('hbg'),mmenu=document.getElementById('mmenu'),moverlay=document.getElementById('moverlay'),mclose=document.getElementById('mclose');
+function openM(){mmenu.style.transform='translateX(0)';moverlay.classList.remove('hidden');hbg.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
+function closeM(){mmenu.style.transform='translateX(-100%)';moverlay.classList.add('hidden');hbg.setAttribute('aria-expanded','false');document.body.style.overflow='';}
+if(hbg)hbg.addEventListener('click',openM);
+if(mclose)mclose.addEventListener('click',closeM);
+if(moverlay)moverlay.addEventListener('click',closeM);
+document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeM));
+// Scroll reveal
+const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});});
+if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.fu').forEach(el=>el.classList.add('in'));
+// Make featured product cards link to their product pages.
+// The product id comes from the size pills' data-product (falls back to the
+// Add-to-Bag handler's id argument) — NOT the image filename, which can differ
+// (e.g. running-leggings-w-full-front.jpg -> product id running-leggings-w).
 (function(){
-  var PREVIEW = false;
-  var BUILD = '20261118a';
-  // Browsers (phones especially) reopen a saved copy of this page. Ask the server for the current one, bypassing every cache;
-  // if it is a newer build, reload once. Skipped while someone is part-way through the form.
-  var busyForm = function(){ var a = document.getElementById('su'); return !a || a.classList.contains('step2') || a.classList.contains('done') || !!(document.getElementById('em') || {}).value; };
-  var fresh = function(){
-    if(PREVIEW || location.protocol === 'file:' || !window.fetch) return;
-    try{
-      fetch(location.pathname + '?_=' + Date.now(), {cache:'no-store'}).then(function(r){ return r.ok ? r.text() : ''; }).then(function(t){
-        var m = t.match(/var BUILD = '([^']+)'/), key = 'revai_build_try';
-        if(!m || m[1] === BUILD || busyForm()) return;
-        var tried = ''; try{ tried = sessionStorage.getItem(key) || ''; }catch(e){}
-        if(tried === m[1]) return;                       // never loop
-        try{ sessionStorage.setItem(key, m[1]); }catch(e){ return; }
-        location.reload();
-      }).catch(function(){});
-    }catch(e){}
-  };
-  fresh();
-  window.addEventListener('pageshow', function(e){ if(e.persisted) fresh(); });
-  document.addEventListener('visibilitychange', function(){ if(!document.hidden) fresh(); });
-  var URL = 'https://shop.revaiactive.com/wp-json/revai/v1/launch-list';
-  var f = document.getElementById('su'); if(!f) return;
-  var msg = f.querySelector('.msg'), btns = f.querySelectorAll('button[type=submit]'), em = document.getElementById('em');
-  // Step 2 (all optional): the typed email / number stays on the first line; the other one, a username, then Submit.
-  var pending = null, saved = null, lead = f.querySelector('.lead');
-  var lock = function(on){ for(var i=0;i<btns.length;i++){ btns[i].disabled=on; on ? btns[i].setAttribute('aria-busy','true') : btns[i].removeAttribute('aria-busy'); } };
-  var finish = function(){ f.classList.add('done'); f.querySelector('.thanks').focus(); };
-  var more = f.querySelector('.more'), ot = document.getElementById('ot');
-  var next = function(v, w){
-    saved = {v:v, w:w}; lock(false);
-    em.readOnly = true; em.blur();
-    ot.placeholder = v ? 'WhatsApp (optional)' : 'Email (optional)';
-    ot.setAttribute('inputmode', v ? 'tel' : 'email'); ot.setAttribute('autocomplete', v ? 'tel' : 'email');
-    f.querySelector('label[for=ot]').textContent = v ? 'WhatsApp number with country code (optional)' : 'Email address (optional)';
-    more.hidden = false; f.classList.add('step2');
-  };
-  // A WhatsApp number must carry its country code (+254 712 345 678; 00254… is read as +254…). A number typed without one (0712 345 678) is refused (Yumna, 14 Nov).
-  var readWa = function(raw){ var w = raw.replace(/[\s().-]/g,''); if(/^00\d/.test(w)) w = '+' + w.slice(2); return w; };
-  // Enter / the keyboard's Go key does the same as the arrow
-  em.addEventListener('keydown', function(e){ if((e.key === 'Enter' || e.keyCode === 13) && !e.isComposing){ e.preventDefault(); if(!saved && !btns[0].disabled) btns[0].click(); } });
-  f.addEventListener('submit', function(e){
-    e.preventDefault(); msg.textContent=''; msg.className='msg';
-    if(saved){
-      var o = (ot.value||'').trim(), v2 = saved.v, w2 = saved.w;
-      var bad2 = function(t){ msg.textContent=t; msg.className='msg err'; ot.focus(); try{ msg.scrollIntoView({block:'center'}); }catch(err){} };
-      if(o && saved.v){
-        w2 = readWa(o);
-        if(!/^\+/.test(w2)){ bad2('Add the country code, e.g. +254 712 345 678'); return; }
-        if(!/^\+[1-9]\d{7,14}$/.test(w2)){ bad2('Please check the WhatsApp number.'); return; }
-      } else if(o){
-        if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(o)){ bad2('Please enter a valid email address.'); return; }
-        v2 = o;
-      }
-      var un = (f.username.value||'').trim().slice(0,40);
-      var body2 = new URLSearchParams({email:v2, whatsapp:w2,
-        name:un,
-        website:f.website.value, source:'holding'});
-      finish();   // the shop can take seconds to answer; nothing here needs its reply
-      if(!PREVIEW){ (pending || Promise.resolve()).then(function(){ return fetch(URL,{method:'POST',body:body2,keepalive:true}); }).catch(function(){}); }
-      return;
+  var grid=document.querySelector('#shop .hp-grid');
+  if(!grid)return;
+  Array.prototype.forEach.call(grid.querySelectorAll('.hp-card'),function(card){
+    var pid=null;
+    var pill=card.querySelector('.size-pill[data-product]');
+    if(pill)pid=pill.getAttribute('data-product');
+    if(!pid){
+      var add=card.querySelector('.hp-add[onclick]');
+      var m=add&&add.getAttribute('onclick').match(/,\s*'([^']+)'\s*\)\s*$/);
+      if(m)pid=m[1];
     }
-    // One field: an email address, or a WhatsApp number with its country code (+254 712 345 678; 00254.. is read as +254..)
-    var raw = (em.value||'').trim(), v = '', w = '';
-    var bad = function(t){ msg.textContent=t; msg.className='msg err'; em.focus(); try{ msg.scrollIntoView({block:'center'}); }catch(err){} };
-    if(!raw){ bad('Please enter your email or WhatsApp number.'); return; }
-    if(raw.indexOf('@') > -1){
-      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(raw)){ bad('Please enter a valid email address.'); return; }
-      v = raw;
-    } else {
-      w = readWa(raw);
-      if(!/^\+?\d+$/.test(w)){ bad('Please enter your email or WhatsApp number.'); return; }
-      if(!/^\+/.test(w)){ bad('Add the country code, e.g. +254 712 345 678'); return; }
-      if(!/^\+[1-9]\d{7,14}$/.test(w)){ bad('Please check the WhatsApp number.'); return; }
-    }
-    // Show the details step at once; the sign-up itself is saved in the background (the Submit sends the contact again, so nothing is lost if this request is slow or fails).
-    next(v, w);
-    if(!PREVIEW){ try{ pending = fetch(URL,{method:'POST',body:new URLSearchParams({email:v, whatsapp:w, website:f.website.value, source:'holding'}),keepalive:true}).catch(function(){}); }catch(err){} }
+    if(!pid)return;
+    var url='product.html?id='+pid;
+    card.style.cursor='pointer';
+    card.addEventListener('click',function(e){
+      if(e.target.closest('.size-pill')||e.target.closest('.hp-add'))return;
+      window.location.href=url;
+    });
   });
-  var open = document.getElementById('su-open');
-  if(open) open.addEventListener('click', function(){ document.body.classList.add('su-on'); open.setAttribute('aria-expanded','true'); setTimeout(function(){ em.focus(); }, 50); });
 })();
 </script>
 </body>

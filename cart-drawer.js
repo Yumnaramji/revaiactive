@@ -1,0 +1,547 @@
+/**
+ * REVAÍ Cart Drawer  (v3 — WooCommerce checkout via shop.revaiactive.com, curated upsells)
+ * Provides window.REVAI_CART with add(), remove(), openDrawer(), closeDrawer()
+ * Provides window.REVAI_CATALOG with CATALOG, getUpsells(), resetUpsellCache()
+ * Persists to localStorage key 'revai_cart_v1'
+ */
+(function () {
+  const STORAGE_KEY = 'revai_cart_v1';
+  console.log('[REVAI] cart-drawer.js v3 loaded — WooCommerce checkout');
+
+  // ── Catalog (minimal — only what upsell cards need) ──────────────────────────
+  // Mirrors PRODUCTS in product.html. Keep in sync if product names/prices change.
+  const CATALOG = {
+    'running-leggings-w': { name: 'Performance Leggings',        gender: "Women's", price: 5550, sizes: ['S','M','L','XL','XXL'] },
+    'flared-leggings-w':  { name: 'Flared Leggings',         gender: "Women's", price: 5600, sizes: ['S','M','L','XL','XXL'] },
+    'high-impact-bra':    { name: 'High Impact Sports Bra',  gender: "Women's", price: 4900, sizes: ['S','M','L','XL','XXL'] },
+    'low-impact-bra':     { name: 'Low Impact Sports Bra',   gender: "Women's", price: 4450, sizes: ['S','M','L','XL','XXL'] },
+    'jacket-w':           { name: "Women's Jacket",          gender: "Women's", price: 7450, sizes: ['S','M','L','XL','XXL'] },
+    'tshirt-w':           { name: "Women's T-Shirt",         gender: "Women's", price: 4200, sizes: ['S','M','L','XL','XXL'] },
+    'tshirt-m':           { name: "Men's T-Shirt",           gender: "Men's",   price: 4200, sizes: ['S','M','L','XL','XXL'] },
+    'quarter-zip-m':      { name: "Men's Quarter Zip",       gender: "Men's",   price: 5600, sizes: ['S','M','L','XL','XXL'] },
+    'shorts-m':           { name: "Men's Shorts",            gender: "Men's",   price: 5950, sizes: ['S','M','L','XL','XXL'] },
+    'training-pants-m':   { name: "Training Pants",    gender: "Men's",   price: 6600, sizes: ['S','M','L','XL','XXL'] },
+    'ankle-socks':      { name: 'Ankle Socks',             gender: 'Unisex',  price: 550,  sizes: ['S/M','L/XL'] },
+    'lifestyle-cap':      { name: 'Lifestyle Cap',           gender: 'Unisex',  price: 2950, sizes: ['One Size'] },
+    'gym-bag':            { name: 'Gym Bag',                 gender: 'Unisex',  price: 7550, sizes: ['One Size'] }
+  };
+
+  // Curated complement POOLS — each cart item draws from a pool of 5-6 candidates.
+  const UPSELLS_MAP = {
+    'running-leggings-w': ['high-impact-bra', 'ankle-socks','gym-bag',     'tshirt-w',     'lifestyle-cap','jacket-w'],
+    'flared-leggings-w':  ['low-impact-bra',  'tshirt-w',    'lifestyle-cap','ankle-socks','jacket-w',     'gym-bag'],
+    'high-impact-bra':    ['running-leggings-w','ankle-socks','jacket-w', 'tshirt-w',     'lifestyle-cap','gym-bag'],
+    'low-impact-bra':     ['flared-leggings-w','tshirt-w',   'ankle-socks','lifestyle-cap','jacket-w',     'gym-bag'],
+    'jacket-w':           ['running-leggings-w','high-impact-bra','lifestyle-cap','tshirt-w','gym-bag',    'ankle-socks'],
+    'tshirt-w':           ['flared-leggings-w','low-impact-bra','lifestyle-cap','ankle-socks','gym-bag',  'jacket-w'],
+    'tshirt-m':           ['shorts-m',        'ankle-socks','gym-bag',     'training-pants-m','lifestyle-cap','quarter-zip-m'],
+    'quarter-zip-m':      ['training-pants-m','tshirt-m',    'lifestyle-cap','gym-bag',     'shorts-m',     'ankle-socks'],
+    'shorts-m':           ['tshirt-m',        'ankle-socks','gym-bag',    'lifestyle-cap','training-pants-m','quarter-zip-m'],
+    'training-pants-m':   ['quarter-zip-m',   'tshirt-m',    'gym-bag',     'lifestyle-cap','shorts-m',     'ankle-socks'],
+    'ankle-socks':      ['gym-bag',         'lifestyle-cap','shorts-m',   'tshirt-m',     'tshirt-w',     'jacket-w'],
+    'lifestyle-cap':      ['gym-bag',         'ankle-socks','tshirt-w',   'tshirt-m',     'jacket-w',     'shorts-m'],
+    'gym-bag':            ['lifestyle-cap',   'ankle-socks','tshirt-w',   'tshirt-m',     'jacket-w',     'shorts-m']
+  };
+
+  const FALLBACK_UPSELLS = ['lifestyle-cap', 'gym-bag', 'ankle-socks', 'tshirt-w', 'tshirt-m', 'shorts-m'];
+
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  let _upsellCache = null;
+  let _upsellCacheKey = null;
+  function resetUpsellCache() { _upsellCache = null; _upsellCacheKey = null; }
+
+  function getUpsells(cartItems, max) {
+    max = max || 3;
+    const cartIds = (cartItems || []).map(function (i) { return i.id; });
+    const cacheKey = cartIds.slice().sort().join('|') + '#' + max;
+    if (_upsellCacheKey === cacheKey && _upsellCache) return _upsellCache;
+
+    const inCart = new Set(cartIds);
+    const picks = [];
+    const seen = new Set();
+
+    function tryAdd(id) {
+      if (picks.length >= max) return;
+      if (!CATALOG[id]) return;
+      if (inCart.has(id) || seen.has(id)) return;
+      seen.add(id);
+      picks.push(Object.assign({ id: id }, CATALOG[id]));
+    }
+
+    const lists = (cartItems || []).map(function (i) { return shuffle(UPSELLS_MAP[i.id] || []); });
+    const order = shuffle(lists.map(function (_, i) { return i; }));
+    let added = true;
+    while (added && picks.length < max) {
+      added = false;
+      for (let k = 0; k < order.length; k++) {
+        const i = order[k];
+        if (lists[i].length) { tryAdd(lists[i].shift()); added = true; }
+        if (picks.length >= max) break;
+      }
+    }
+    const fb = shuffle(FALLBACK_UPSELLS);
+    for (let i = 0; i < fb.length && picks.length < max; i++) {
+      tryAdd(fb[i]);
+    }
+
+    _upsellCache = picks;
+    _upsellCacheKey = cacheKey;
+    return picks;
+  }
+
+  // ── Persistence ──────────────────────────────────────────────────────────────
+  function load() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+    catch { return []; }
+  }
+  function save(cart) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+  }
+
+  // ── Badge ─────────────────────────────────────────────────────────────────────
+  function updateBadge() {
+    const cart = load();
+    const total = cart.reduce((s, i) => s + (i.qty || 1), 0);
+    document.querySelectorAll('#cart-badge, #m-cart-badge').forEach(el => {
+      el.textContent = total;
+      el.classList.toggle('hidden', total === 0);
+      el.style.display = total === 0 ? 'none' : 'flex';
+    });
+  }
+
+  // ── Drawer HTML ───────────────────────────────────────────────────────────────
+  function buildDrawer() {
+    if (document.getElementById('revai-cart-drawer')) return;
+
+    const overlay = document.createElement('div');
+    overlay.id = 'revai-cart-overlay';
+    overlay.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:9998;backdrop-filter:blur(2px)';
+    overlay.addEventListener('click', closeDrawer);
+
+    const drawer = document.createElement('div');
+    drawer.id = 'revai-cart-drawer';
+    drawer.style.cssText = [
+      'position:fixed;top:0;right:0;bottom:0;width:100%;max-width:420px',
+      'background:#fff;z-index:9999;display:flex;flex-direction:column',
+      'transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1)',
+      'box-shadow:-4px 0 40px rgba(0,0,0,.12)'
+    ].join(';');
+
+    drawer.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid #f3f4f6">
+        <span style="font-size:16px;font-weight:700;color:#000;letter-spacing:-.01em">Your Bag</span>
+        <button id="revai-cart-close" style="background:none;border:none;cursor:pointer;padding:13px;margin:-7px;border-radius:8px;color:#6b7280;display:flex;align-items:center" aria-label="Close cart">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div id="revai-cart-scroll" style="flex:1;overflow-y:auto;min-height:0">
+        <div id="revai-cart-items" style="padding:0 24px"></div>
+        <div id="revai-cart-upsells" style="border-top:1px solid #f3f4f6"></div>
+      </div>
+      <div id="revai-cart-footer" style="padding:20px 24px;border-top:1px solid #f3f4f6;flex-shrink:0"></div>
+    `;
+
+    document.body.appendChild(overlay);
+    document.body.appendChild(drawer);
+
+    document.getElementById('revai-cart-close').addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+  }
+
+  // ── Render items ──────────────────────────────────────────────────────────────
+  function renderDrawer() {
+    const cart = load();
+    const itemsEl = document.getElementById('revai-cart-items');
+    const footerEl = document.getElementById('revai-cart-footer');
+    if (!itemsEl || !footerEl) return;
+
+    if (cart.length === 0) {
+      itemsEl.innerHTML = `
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:60px 0;gap:16px">
+          <svg width="40" height="40" fill="none" stroke="#d1d5db" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <p style="font-size:15px;font-weight:600;color:#374151;margin:0">Your bag is empty</p>
+          <p style="font-size:13px;color:#9ca3af;margin:0">Add something to get started</p>
+          <button onclick="window.REVAI_CART.closeDrawer()" style="margin-top:8px;padding:10px 24px;background:#000;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.02em">Continue Shopping</button>
+        </div>`;
+      footerEl.innerHTML = '';
+      const upsellEl0 = document.getElementById('revai-cart-upsells');
+      if (upsellEl0) { upsellEl0.innerHTML = ''; upsellEl0.style.borderTop = 'none'; }
+      return;
+    }
+
+    const total = cart.reduce((s, i) => s + i.price * (i.qty || 1), 0);
+
+    itemsEl.innerHTML = cart.map((item, idx) => `
+      <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid #f3f4f6;align-items:flex-start">
+        <a href="product.html?id=${item.id}" style="width:80px;height:96px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#f3f4f6;display:block;text-decoration:none">
+          <img src="${item.image || 'images/' + item.id + '.jpg'}" alt="${item.name}"
+            style="width:100%;height:100%;object-fit:cover;object-position:top;display:block"
+            onerror="this.style.display='none';this.parentElement.style.background='#e5e7eb'">
+        </a>
+        <div style="flex:1;min-width:0">
+          <p style="font-size:14px;font-weight:600;color:#000;margin:0 0 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${item.name}</p>
+          <p style="font-size:12px;color:#6b7280;margin:0 0 8px">Size: ${String(item.size).replace(/^2XL/,'XXL')}</p>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="display:flex;align-items:center;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden">
+              <button onclick="window.REVAI_CART.setQty(${idx},-1)" style="width:40px;height:40px;background:none;border:none;cursor:pointer;font-size:15px;color:#374151;display:flex;align-items:center;justify-content:center">−</button>
+              <span style="width:28px;text-align:center;font-size:13px;font-weight:500">${item.qty || 1}</span>
+              <button onclick="window.REVAI_CART.setQty(${idx},1)" style="width:40px;height:40px;background:none;border:none;cursor:pointer;font-size:15px;color:#374151;display:flex;align-items:center;justify-content:center">+</button>
+            </div>
+            <span style="font-size:13px;font-weight:400;color:#000">KES ${(item.price * (item.qty || 1)).toLocaleString()}</span>
+          </div>
+        </div>
+        <button onclick="window.REVAI_CART.remove(${idx})" style="background:none;border:none;cursor:pointer;color:#9ca3af;padding:13px;margin:-11px -11px -11px 0;display:flex;align-items:center;flex-shrink:0" aria-label="Remove item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>`).join('');
+
+    footerEl.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <span style="font-size:14px;color:#6b7280">Subtotal</span>
+        <span style="font-size:16px;font-weight:400;color:#000">KES ${total.toLocaleString()}</span>
+      </div>
+      <p style="font-size:12px;color:#9ca3af;margin:0 0 14px">Delivery KES 200–400 depending on your area. Pickup is free. Taxes included</p>
+      <button id="revai-checkout-btn" onclick="window.REVAI_CART.checkout()" style="width:100%;padding:14px;background:#000;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;letter-spacing:.02em;margin-bottom:10px">Checkout</button>
+      <button onclick="window.REVAI_CART.closeDrawer()" style="width:100%;padding:12px;background:transparent;color:#374151;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer">Continue Shopping</button>
+      <a href="cart.html" style="display:block;text-align:center;margin-top:12px;font-size:13px;font-weight:500;color:#0a0a0a;text-decoration:underline;text-underline-offset:3px">View full bag</a>
+    `;
+
+    renderUpsells(cart);
+  }
+
+  // ── Upsell strip in drawer ────────────────────────────────────────────────────
+  function renderUpsells(cart) {
+    const el = document.getElementById('revai-cart-upsells');
+    if (!el) return;
+    const recs = getUpsells(cart, 3);
+    if (!recs.length) { el.innerHTML = ''; el.style.borderTop = 'none'; return; }
+    el.style.borderTop = '1px solid #f3f4f6';
+    el.innerHTML = `
+      <div style="padding:16px 24px 4px">
+        <p style="font-size:11px;font-weight:700;color:#9ca3af;margin:0 0 2px;letter-spacing:.12em;text-transform:uppercase">Complete the look</p>
+        <p style="font-size:12px;color:#9ca3af;margin:0">Hand-picked to pair with your bag</p>
+      </div>
+      <div style="display:flex;gap:10px;overflow-x:auto;padding:12px 24px 18px;scrollbar-width:none">
+        ${recs.map(function (p) {
+          const isOneSize = p.sizes && p.sizes.length === 1;
+          const directAdd = isOneSize;
+          const btnLabel = directAdd ? 'Add' : 'View';
+          const onClick = directAdd
+            ? `window.REVAI_CART.addUpsell('${p.id}')`
+            : `window.location.href='product.html?id=${p.id}'`;
+          return `
+            <div style="flex:0 0 138px;display:flex;flex-direction:column;border:1px solid #f3f4f6;border-radius:10px;overflow:hidden;background:#fff">
+              <a href="product.html?id=${p.id}" style="display:block;aspect-ratio:3/4;background:#f3f4f6;text-decoration:none">
+                <img src="images/${p.id}.jpg" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block"
+                  onerror="this.style.display='none';this.parentElement.style.background='#e5e7eb'">
+              </a>
+              <div style="padding:10px 10px 12px">
+                <p style="font-size:11px;color:#9ca3af;margin:0 0 1px">${p.gender}</p>
+                <p style="font-size:12px;font-weight:600;color:#000;margin:0 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</p>
+                <p style="font-size:12px;font-weight:400;color:#000;margin:0 0 8px">KES ${p.price.toLocaleString()}</p>
+                <button onclick="${onClick}" style="width:100%;padding:7px 8px;background:#000;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;letter-spacing:.02em">${btnLabel}</button>
+              </div>
+            </div>`;
+        }).join('')}
+      </div>
+    `;
+  }
+
+  // ── Open / Close ──────────────────────────────────────────────────────────────
+  // ── Checkout head start ──────────────────────────────────────────────────────
+  // The shop answers slowly (about 1-2 s per request), and checkout used to need two
+  // requests in a row after the tap: /?revai-cart=… to rebuild the bag, then /checkout/.
+  // While the bag is open the first one is now sent in the background, and the shop's
+  // own cart is read back to confirm it holds exactly this bag. Only then does the
+  // Checkout tap go straight to /checkout/. Anything else (not confirmed, still
+  // running, changed bag, request failed) falls back to the full two-step link.
+  const READY_KEY = 'revai_shop_cart_ready_v1';
+  const READY_MS = 5 * 60 * 1000;
+  let prepChain = Promise.resolve();
+  let prepBusy = 0;
+  let prepTimer = null;
+  let prepWanted = null;
+  let prepBlocked = false;
+
+  function wooBag() {
+    if ((window.REVAI_CHECKOUT || 'woo') !== 'woo' || !window.REVAI_WOO) return null;
+    const WOO = window.REVAI_WOO;
+    const cart = load();
+    const qty = {};
+    let unmapped = false;
+    cart.forEach(function(item) {
+      const p = WOO.variations[item.id];
+      const size = String(item.size).replace(/^2XL/, 'XXL');
+      const vid = p && p.sizes && p.sizes[size];
+      if (vid) { qty[vid] = (qty[vid] || 0) + (item.qty || 1); } else { unmapped = true; }
+    });
+    const items = Object.keys(qty).map(function(v) { return { v: Number(v), q: qty[v] }; });
+    const payload = btoa(JSON.stringify({ items: items }))
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    const tok = (window.REVAI_CUSTOMER && window.REVAI_CUSTOMER.getToken && window.REVAI_CUSTOMER.getToken()) || null;
+    const q = '?revai-cart=' + payload + (tok ? '&revai-token=' + encodeURIComponent(tok.accessToken) : '');
+    return {
+      base: WOO.base, items: items, unmapped: unmapped,
+      url: WOO.base + '/' + q,              // background build (the shop answers with a short redirect)
+      go: WOO.base + '/checkout/' + q,      // the tap: the shop rebuilds the bag and shows checkout in ONE page load
+      sig: payload + (tok ? '|in' : '|guest'),
+      want: items.map(function(i) { return i.v + 'x' + i.q; }).sort().join(',')
+    };
+  }
+  function shopReady(sig) {
+    try {
+      const r = JSON.parse(localStorage.getItem(READY_KEY) || 'null');
+      return !!(r && r.sig === sig && Date.now() - r.t < READY_MS);
+    } catch (e) { return false; }
+  }
+  function clearShopReady() { try { localStorage.removeItem(READY_KEY); } catch (e) {} }
+
+  async function buildShopCart(bag) {
+    if (prepWanted !== bag.sig || shopReady(bag.sig)) return;   // superseded, or already done
+    clearShopReady();
+    // The answer is a redirect the browser won't let this page read, so the request
+    // "fails" here even though the shop has rebuilt the bag. The read-back below decides.
+    try { await fetch(bag.url, { credentials: 'include', redirect: 'manual' }); } catch (e) {}
+    let res;
+    try { res = await fetch(bag.base + '/wp-json/wc/store/v1/cart', { credentials: 'include', headers: { 'Accept': 'application/json' } }); }
+    catch (e) { prepBlocked = true; return; }   // the shop can't be read from this address (a preview copy): stop trying on this page
+    if (!res.ok) return;
+    const data = await res.json();
+    const got = (data.items || []).map(function(i) { return i.id + 'x' + i.quantity; }).sort().join(',');
+    if (got === bag.want) localStorage.setItem(READY_KEY, JSON.stringify({ sig: bag.sig, t: Date.now() }));
+  }
+  // One build at a time, so an older bag can never land on the shop after a newer one.
+  function prepareCheckout(delay) {
+    clearTimeout(prepTimer);
+    prepTimer = setTimeout(function() {
+      prepTimer = null;
+      const bag = wooBag();
+      if (prepBlocked || !bag || bag.unmapped || !bag.items.length) return;
+      prepWanted = bag.sig;
+      if (shopReady(bag.sig)) return;
+      prepBusy++;
+      prepChain = prepChain
+        .then(function() { return buildShopCart(bag); })
+        .catch(function() {})
+        .then(function() { prepBusy--; });
+    }, delay === undefined ? 500 : delay);
+  }
+
+  function openDrawer() {
+    resetUpsellCache();
+    buildDrawer();
+    renderDrawer();
+    prepareCheckout(0);
+    const drawer = document.getElementById('revai-cart-drawer');
+    const overlay = document.getElementById('revai-cart-overlay');
+    overlay.style.display = 'block';
+    requestAnimationFrame(() => { drawer.style.transform = 'translateX(0)'; });
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    const drawer = document.getElementById('revai-cart-drawer');
+    const overlay = document.getElementById('revai-cart-overlay');
+    if (!drawer) return;
+    drawer.style.transform = 'translateX(100%)';
+    setTimeout(() => { overlay.style.display = 'none'; }, 350);
+    document.body.style.overflow = '';
+  }
+
+  // ── Public API ────────────────────────────────────────────────────────────────
+  window.REVAI_CART = {
+    openDrawer,
+    closeDrawer,
+
+    add({ id, name, price, size, image }) {
+      const cart = load();
+      const key = id + '|' + size;
+      const existing = cart.find(i => i.key === key);
+      if (existing) {
+        existing.qty = (existing.qty || 1) + 1;
+      } else {
+        cart.push({ id, name, price, size, key, qty: 1, image: image || 'images/' + id + '.jpg' });
+      }
+      save(cart);
+      updateBadge();
+      openDrawer();
+    },
+
+    remove(idx) {
+      const cart = load();
+      cart.splice(idx, 1);
+      save(cart);
+      updateBadge();
+      renderDrawer();
+      prepareCheckout();
+    },
+
+    setQty(idx, delta) {
+      const cart = load();
+      if (!cart[idx]) return;
+      cart[idx].qty = Math.max(1, (cart[idx].qty || 1) + delta);
+      save(cart);
+      updateBadge();
+      renderDrawer();
+      prepareCheckout();
+    },
+
+    prepareCheckout,
+
+    checkout: async function() {
+      const cart = load();
+      if (cart.length === 0) return;
+
+      // Works from both the drawer and the cart page
+      const btn = document.getElementById('revai-checkout-btn') || document.getElementById('cart-page-checkout');
+      const resetBtn = function() { if (btn) { btn.textContent = 'Checkout'; btn.disabled = false; } };
+      if (btn) { btn.textContent = 'Loading…'; btn.disabled = true; }
+
+      function showNotice(text) {
+        resetBtn();
+        var notice = document.getElementById('revai-checkout-notice');
+        if (!notice) {
+          notice = document.createElement('p');
+          notice.id = 'revai-checkout-notice';
+          notice.style.cssText = 'font-size:12px;color:#6b7280;text-align:center;margin-top:8px';
+          if (btn) btn.parentNode.insertBefore(notice, btn.nextSibling);
+        }
+        notice.textContent = text;
+      }
+
+      // ── WooCommerce checkout (shop.revaiactive.com) — see woo-config.js ──
+      if ((window.REVAI_CHECKOUT || 'woo') === 'woo' && window.REVAI_WOO) {
+        const bag = wooBag();
+        if (bag.unmapped || bag.items.length === 0) {
+          showNotice('One of the items in your bag is not available online yet. Please remove it and try again');
+          return;
+        }
+        // The shop server is slow to answer, so say so instead of leaving the button looking stuck.
+        if (btn) { btn.textContent = 'Opening checkout…'; btn.disabled = true; }
+        // Never wait here: leave the page at once. If the background build has confirmed
+        // this bag on the shop, open checkout as it is; otherwise the link carries the bag
+        // and the shop rebuilds it while it draws checkout (one page load either way).
+        // The mark is used once, so a later tap (back button, second order) always re-checks.
+        const direct = shopReady(bag.sig);
+        clearShopReady();
+        window.location.href = direct ? bag.base + '/checkout/' : bag.go;
+        return;
+      }
+
+      // ── Legacy Shopify checkout (kept as a fallback; set REVAI_CHECKOUT = 'shopify') ──
+      const CFG   = window.REVAI_SHOPIFY || {};
+      const TOKEN = CFG.storefrontToken || '';
+      const GQL   = CFG.endpoint || '';
+      if (!TOKEN || !GQL) { showNotice('Online checkout coming soon. To order, contact us directly'); return; }
+
+      try {
+        const variants = CFG.variants || {};
+        const cartLines = [];
+        let unmapped = false;
+        cart.forEach(function(item) {
+          const vid = (variants[item.id] || {})[item.size] || (variants[item.id] || {})[String(item.size).replace(/^2XL/, 'XXL')];
+          if (vid && vid.indexOf('gid://') === 0) {
+            cartLines.push({ merchandiseId: vid, quantity: item.qty || 1 });
+          } else {
+            unmapped = true;
+          }
+        });
+        if (unmapped || cartLines.length === 0) {
+          showNotice('Online checkout coming soon. To order, contact us directly');
+          return;
+        }
+        const cartRes = await fetch(GQL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-Shopify-Storefront-Access-Token': TOKEN },
+          body: JSON.stringify({
+            query: 'mutation cartCreate($input: CartInput!) { cartCreate(input: $input) { cart { checkoutUrl } userErrors { field message } } }',
+            variables: { input: { lines: cartLines } }
+          })
+        });
+        const cartData = await cartRes.json();
+        const result = cartData.data && cartData.data.cartCreate;
+        const checkoutUrl = result && result.cart && result.cart.checkoutUrl;
+        if (checkoutUrl) { window.location.href = checkoutUrl; }
+        else { console.error('Shopify cart errors:', cartData); showNotice('Could not create checkout. Please try again'); }
+      } catch (e) {
+        console.error('Checkout error:', e);
+        showNotice('Something went wrong. Please try again');
+      }
+    },
+
+    clear() {
+      save([]);
+      updateBadge();
+      renderDrawer();
+    },
+
+    addUpsell(id) {
+      const p = CATALOG[id];
+      if (!p) return;
+      const defaultSize = (p.sizes && p.sizes.length === 1)
+        ? p.sizes[0]
+        : (p.sizes && p.sizes.indexOf('M') !== -1 ? 'M' : (p.sizes ? p.sizes[0] : 'M'));
+      this.add({
+        id: id,
+        name: p.name,
+        price: p.price,
+        size: defaultSize,
+        image: 'images/' + id + '.jpg'
+      });
+    }
+  };
+
+  window.REVAI_CATALOG = {
+    CATALOG: CATALOG,
+    UPSELLS_MAP: UPSELLS_MAP,
+    getUpsells: getUpsells,
+    resetUpsellCache: resetUpsellCache
+  };
+
+  document.addEventListener('DOMContentLoaded', updateBadge);
+  updateBadge();
+
+  // Coming back from the checkout with the back button restores this page as it was
+  // left: put the Checkout button back and get the head start ready again.
+  window.addEventListener('pageshow', function(e) {
+    if (!e.persisted) return;
+    const btn = document.getElementById('revai-checkout-btn') || document.getElementById('cart-page-checkout');
+    if (btn) { btn.textContent = 'Checkout'; btn.disabled = false; }
+    updateBadge();
+    const overlay = document.getElementById('revai-cart-overlay');
+    if ((overlay && overlay.style.display === 'block') || document.getElementById('cart-page-checkout')) prepareCheckout(0);
+  });
+  // The bag page has its own Checkout button and no drawer to open first.
+  if (document.getElementById('cart-page-checkout')) prepareCheckout(0);
+
+  // ── Keep the shop awake ──────────────────────────────────────────────────────
+  // The shop server goes to sleep after about a minute with no visitors, and the first
+  // request after that takes 6 s or more. So: wake it shortly after any page opens, and
+  // while this tab is in view with something in the bag, get the bag ready on the shop
+  // and nudge the server every 50 s. The nudge is a plain request whose answer is ignored.
+  function wakeShop() {
+    if ((window.REVAI_CHECKOUT || 'woo') !== 'woo' || !window.REVAI_WOO) return;
+    try { fetch(window.REVAI_WOO.base + '/?revai-ping=1', { mode: 'no-cors', credentials: 'include', cache: 'no-store' }).catch(function() {}); } catch (e) {}
+  }
+  function keepShopReady() {
+    if (document.visibilityState !== 'visible') return;
+    const bag = wooBag();
+    if (!bag || !bag.items.length) return;
+    if (prepBlocked || bag.unmapped || shopReady(bag.sig)) { wakeShop(); return; }
+    prepareCheckout(0);
+  }
+  setTimeout(function() {
+    const bag = wooBag();
+    if (bag && bag.items.length && !bag.unmapped) prepareCheckout(0); else wakeShop();
+  }, 1200);
+  setInterval(keepShopReady, 50000);
+  document.addEventListener('visibilitychange', keepShopReady);
+})();

@@ -1,0 +1,605 @@
+/* REVAÍ — Mobile Fixes
+   Loaded site-wide on every page. Targets real-world mobile issues:
+   iOS sticky :hover, 300ms tap delay, small tap targets, and
+   input zoom-on-focus. Safe on desktop — gated by media queries.
+   ------------------------------------------------------------ */
+
+/* 1. Kill sticky :hover on touch devices
+   Pointer-less devices (phones / tablets) trigger :hover on first
+   tap and require a second tap to actually click the link. Scope
+   hover styling to devices that truly have a hover-capable pointer. */
+@media (hover: none), (pointer: coarse) {
+  .btn-p:hover,
+  .btn-s:hover,
+  .card:hover,
+  .prod-card:hover,
+  .related-card:hover,
+  .add-btn:hover,
+  .size-pill:hover,
+  .filter-pill:hover,
+  .size-btn:hover,
+  .filter-tab:hover,
+  .logo-i:hover,
+  .qty-btn:hover,
+  .account-card:hover,
+  nav a:hover,
+  footer a:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
+  /* Restore the solid backgrounds so buttons still look correct on tap */
+  .btn-p:hover { background: #000 !important; }
+  .btn-s:hover { background: transparent !important; }
+  .add-btn:hover { background: #000 !important; }
+
+  /* Disable card lift/shadow on touch so the content underneath is tappable */
+  .card:hover,
+  .prod-card:hover,
+  .related-card:hover {
+    border-color: #f0f0f0 !important;
+  }
+}
+
+/* 2. Remove 300ms tap delay & double-tap zoom on interactive elements */
+a,
+button,
+[role="button"],
+.size-pill,
+.filter-pill,
+.size-btn,
+.filter-tab,
+.mlink,
+.btn-p,
+.btn-s,
+.add-btn,
+.faq-btn,
+.qty-btn {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.08);
+}
+
+/* 3. Minimum tap target sizes (Apple HIG recommends 44x44px) */
+@media (max-width: 767px) {
+  .mlink {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    min-height: 44px;
+    display: flex !important;
+    align-items: center;
+  }
+  .size-pill {
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+    min-height: 36px;
+    min-width: 36px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .filter-pill,
+  .filter-tab {
+    padding: 10px 18px !important;
+    min-height: 40px;
+  }
+  .faq-btn {
+    min-height: 48px;
+  }
+  /* Nav icon buttons — hamburger, close, cart */
+  #hbg,
+  #mclose,
+  #nav-cart-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  /* Footer links — space them out so fingers don't mis-hit */
+  footer li a,
+  footer ul a {
+    display: inline-block;
+    padding: 4px 0;
+  }
+}
+
+/* 4. Prevent iOS text-resize and zoom-on-input-focus quirks */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (max-width: 767px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  input[type="search"],
+  input[type="number"],
+  input[type="url"],
+  input[type="date"],
+  select,
+  textarea,
+  .form-input {
+    font-size: 16px !important;
+  }
+}
+
+/* 5. Ensure fixed/offscreen menus don't intercept touches while closed.
+   Adds visibility:hidden via inline transform-style (mobile menus use
+   inline style="transform:translateX(100%)" when closed on this site). */
+#mmenu[style*="translateX(-100%)"] {
+  pointer-events: none;
+}
+#moverlay.hidden {
+  pointer-events: none;
+}
+
+/* 6. Give anchor tags an explicit tap feedback so users know it's working */
+@media (hover: none), (pointer: coarse) {
+  a:active,
+  button:active,
+  .btn-p:active,
+  .btn-s:active,
+  .add-btn:active {
+    opacity: 0.8;
+    transition: opacity 0.1s ease;
+  }
+}
+
+/* 7. Void Edge design tightening — site-wide (loaded after page styles)
+   Monumental display type, tighter radii, flattened hovers. The photography
+   and typography carry the page; the chrome stays quiet. */
+.t-hero {
+  font-size: clamp(28px, 3vw, 40px) !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.1 !important;
+}
+/* Subtitle directly under a hero heading steps down with it */
+.t-hero + p {
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+}
+.t-h2 {
+  font-size: clamp(26px, 3.2vw, 38px) !important;
+}
+.card,
+.press-card,
+.asset-card {
+  border-radius: 8px !important;
+}
+/* Product cards are square — the photograph is the card (Concept C,
+   8 Aug 2026). This rule used to sweep .prod-card and .related-card into the
+   8px group above with !important, which silently beat the pages' own
+   border-radius:0 and left every product grid rounded. Keep them here, and
+   keep the !important, or that override comes back. .cs-card and
+   "#products .grid > div" are the Coming Soon tiles and the gym grid, which
+   have to sit on the same edge as real product. */
+.prod-card,
+.related-card,
+.cs-card,
+#products .grid > div {
+  border-radius: 0 !important;
+}
+.card:hover,
+.press-card:hover,
+.asset-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-color: #d1d5db !important;
+}
+.prod-card:hover,
+.related-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-color: #0a0a0a !important;
+}
+
+/* Quieter product cards on desktop: image, name, price. Size pills and
+   add-to-bag reveal on hover/focus. Always visible on touch devices. */
+@media (hover: hover) and (pointer: fine) {
+  .prod-card .size-pill,
+  .prod-card .add-btn {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .prod-card:hover .size-pill,
+  .prod-card:hover .add-btn,
+  .prod-card:focus-within .size-pill,
+  .prod-card:focus-within .add-btn {
+    opacity: 1;
+  }
+}
+
+/* 8. Collection page photo heroes (added 5 Aug 2026)
+   Still image hero replacing the old autoplay video band. Type sits
+   left over the quiet side of the frame; the scrim darkens that side
+   only so the photograph stays visible. On narrow screens the frame
+   crops toward the subject and the scrim goes full-width, because a
+   left/right split doesn't survive a 375px viewport. */
+/* The 58vh band is wider than the 16:9 source, so cover crops
+   vertically. Anchor near the top rather than centre: the crop then
+   comes off the floor and bench at the bottom instead of taking the
+   subject's head off. Anchored hard to the top (0%) so nothing is ever
+   lost from her head, at any window size. */
+/* Hero height is one number per breakpoint for the whole site:
+   58vh on desktop, 43.5vh on mobile (a quarter shorter — 8 Aug 2026).
+   Set here, not per page. about.html and index.html mirror these values in
+   their own <style> blocks because their heroes predate .chero.
+   If either number changes, change it in all three places. */
+.chero {
+  position: relative;
+  overflow: hidden;
+  min-height: 58vh;
+  display: flex;
+  align-items: center;
+  background: #0a0a0a;
+}
+.chero-img {
+  position: absolute;
+  inset: 0;
+  background-position: 72% top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.chero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(10, 10, 10, 0.92) 0%,
+    rgba(10, 10, 10, 0.72) 30%,
+    rgba(10, 10, 10, 0.22) 58%,
+    rgba(10, 10, 10, 0) 78%
+  );
+}
+.chero-body {
+  position: relative;
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+.chero-copy {
+  max-width: 34rem;
+}
+
+@media (max-width: 767px) {
+  /* A quarter shorter than desktop's 58vh, trimmed off the bottom of the band.
+     The vertical padding has to come down with it or the copy block becomes
+     the tallest thing in the box and min-height never binds — the pages set
+     pt-28 pb-16 (112/64px) in markup, which alone is 176px of a 353px hero.
+     80/32 keeps the same 48px net downward shift that clears the fixed nav,
+     and leaves ~118px of room for the tallest hero copy on the site
+     (new-arrivals, 235px). Selector is section.chero, not .chero, so it
+     outranks Tailwind's .pt-28/.pb-16 regardless of stylesheet order. */
+  section.chero {
+    min-height: 43.5vh;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+  }
+  .chero-img {
+    background-position: 78% 22%;
+  }
+  .chero-scrim {
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 10, 10, 0.82) 0%,
+      rgba(10, 10, 10, 0.72) 55%,
+      rgba(10, 10, 10, 0.88) 100%
+    );
+  }
+  .chero-copy {
+    max-width: none;
+  }
+}
+
+/* 9. Transparent nav over a photo hero (added 5 Aug 2026)
+   On .nav-over-hero the hero already starts at y=0 behind the fixed nav,
+   so an opaque white bar was covering the top 64px of the photograph.
+   Going transparent hands those 64px back and lets the image run to the
+   top of the viewport. The bar reverts to the normal frosted white once
+   the user scrolls past the hero - see the threshold in js/main.js. */
+body.nav-over-hero #nav {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom-color: transparent !important;
+}
+/* Guarantees legibility for the wordmark and links even if a future
+   hero image is bright at the top. */
+body.nav-over-hero #nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.55) 0%,
+    rgba(10, 10, 10, 0) 100%
+  );
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+body.nav-over-hero #nav > * {
+  position: relative;
+}
+body.nav-over-hero #nav a,
+body.nav-over-hero #nav button {
+  color: #fff;
+}
+body.nav-over-hero #nav .text-black,
+body.nav-over-hero #nav .text-gray-500 {
+  color: #fff !important;
+}
+body.nav-over-hero #nav .text-gray-500 {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+body.nav-over-hero #nav .hover\:bg-gray-100:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+}
+body.nav-over-hero #nav #cart-badge,
+body.nav-over-hero #nav #m-cart-badge {
+  background: #fff !important;
+  color: #0a0a0a !important;
+}
+/* The dropdown panel keeps its own white background, so its links must
+   stay dark - they are inside #nav and would otherwise inherit white. */
+body.nav-over-hero #shop-dropdown-menu a {
+  color: #374151 !important;
+}
+body.nav-over-hero #shop-dropdown-menu a:hover,
+body.nav-over-hero #shop-dropdown-menu a:first-child {
+  color: #0a0a0a !important;
+}
+
+/* Past the hero: back to the standard frosted white bar. */
+body.nav-over-hero #nav.scrolled {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+body.nav-over-hero #nav.scrolled::before {
+  opacity: 0;
+}
+body.nav-over-hero #nav.scrolled .text-black {
+  color: #0a0a0a !important;
+}
+body.nav-over-hero #nav.scrolled .text-gray-500 {
+  color: #6b7280 !important;
+}
+body.nav-over-hero #nav.scrolled a,
+body.nav-over-hero #nav.scrolled button {
+  color: #0a0a0a;
+}
+body.nav-over-hero #nav.scrolled .hover\:bg-gray-100:hover {
+  background: #f3f4f6 !important;
+}
+body.nav-over-hero #nav.scrolled #cart-badge,
+body.nav-over-hero #nav.scrolled #m-cart-badge {
+  background: #0a0a0a !important;
+  color: #fff !important;
+}
+
+/* 10. Auto-hiding nav (added 5 Aug 2026)
+   The bar slides away when the user scrolls down and comes straight
+   back on any upward scroll, so the page - especially a photo hero -
+   is never permanently covered. Scroll-up rather than hover, so it
+   works identically on touch, where there is nothing to hover.
+   !important because the nav carries an inline transition declaration
+   that would otherwise win. */
+#nav {
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.25s ease, border-color 0.25s ease !important;
+  will-change: transform;
+}
+#nav.nav-hidden {
+  transform: translateY(-100%);
+}
+/* Never hide it while the mobile menu is open. */
+body.menu-open #nav.nav-hidden {
+  transform: none;
+}
+/* Anything sticky that is offset to sit under the bar has to close that gap
+   when the bar leaves, or it floats in a band of white. Three pages do this:
+   product.html's gallery (64px), cart.html's order summary (88px = bar + a
+   24px gutter, so it keeps the gutter), and faq.html's category filter
+   (Tailwind top-16). Selectors are specific enough to beat both the pages'
+   own rules and the Tailwind utility. */
+body.nav-collapsed .img-side {
+  top: 0;
+}
+body.nav-collapsed .summary-sticky {
+  top: 24px;
+}
+body.nav-collapsed .sticky.top-16 {
+  top: 0;
+}
+
+/* 11. Fewer boxes, tighter rhythm — site-wide (2 Oct 2026, Yumna)
+   She had the boxed All / Women / Men filter on Shop All stripped of its borders and
+   the gap under it shortened, then asked for the same pass across the site.
+   - Hairline boxes drawn round content are gone: info cards, callouts, table frames,
+     story and press cards, the bag page's suggestion cards. The border is made
+     transparent rather than removed, so nothing shifts by a pixel.
+   - FAQ rows are a plain list with one line between questions.
+   - The FAQ topic filter is text tabs, as on Shop All.
+   - Kept on purpose, because there the border IS the control: form fields, outline
+     buttons (.btn-s), the size and Save buttons on the product page, the gift-card
+     amounts, and the account pages' cards.
+   - Sections had 64px (phone) / 80px (desktop) above and below, so two neighbours left
+     128-160px of white. Now 36 / 48px. Page intros sit 32px under the bar, not 48px. */
+.card,
+.press-card,
+.asset-card,
+.story-card,
+.upsell-card,
+.map-placeholder,
+.card:hover,
+.press-card:hover,
+.asset-card:hover,
+.story-card:hover,
+.upsell-card:hover,
+section div.border[class*="rounded"],
+section form.border[class*="rounded"] {
+  border-color: transparent !important;
+}
+/* FAQ: a list, not a stack of boxes */
+section .faq-row {
+  border: 0 !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+section .faq-row .faq-btn,
+section .faq-row .faq-body {
+  padding-left: 0;
+  padding-right: 0;
+}
+/* FAQ topic filter: text tabs (the chosen one black and underlined) */
+button.pill {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+  padding: 6px 0 !important;
+  margin-right: 14px;
+  color: #6b7280 !important;
+}
+button.pill:hover {
+  color: #0a0a0a !important;
+}
+button.pill.active {
+  color: #0a0a0a !important;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 7px;
+  text-decoration-thickness: 1.5px;
+}
+/* Section rhythm. .shop-grid (Shop All) sets its own, smaller top gap. */
+body section.py-16 {
+  padding-bottom: 36px;
+}
+body section.py-16:not(.shop-grid) {
+  padding-top: 36px;
+}
+body section.pt-28.pb-14,
+body section.pt-28.pb-16:not(.chero) {
+  padding-top: 96px;
+  padding-bottom: 28px;
+}
+/* about.html reuses the intro spacing on a section halfway down the page, where there is
+   no bar to clear: treat that one like any other section. */
+body section.pt-28.pb-16:not(.chero) {
+  padding-bottom: 40px;
+}
+body section.pt-28.pb-16 ~ section.pt-28.pb-16:not(.chero) {
+  padding-top: 36px;
+  padding-bottom: 36px;
+}
+section .mb-16 { margin-bottom: 40px; }
+section .mb-14 { margin-bottom: 36px; }
+#upsell-section.mt-20 { margin-top: 48px; }
+@media (min-width: 768px) {
+  body section.py-16 {
+    padding-bottom: 48px;
+  }
+  body section.pt-28.pb-16 ~ section.pt-28.pb-16:not(.chero) {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  body section.py-16:not(.shop-grid) {
+    padding-top: 48px;
+  }
+}
+
+/* §12 Footer on phones (Yumna, 5 Oct 2026): brand block full width on top,
+   then the three link columns side by side instead of stacked. */
+@media (max-width: 767px) {
+  footer .grid.md\:grid-cols-4 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    column-gap: 16px !important;
+    row-gap: 32px !important;
+  }
+  footer .grid.md\:grid-cols-4 > :first-child { grid-column: 1 / -1; }
+  footer .grid.md\:grid-cols-4 a { overflow-wrap: anywhere; }
+  /* pre-order site: two link columns (Shop, Support) side by side */
+  footer .grid.md\:grid-cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    column-gap: 16px !important;
+    row-gap: 32px !important;
+  }
+  footer .grid.md\:grid-cols-3 > :first-child { grid-column: 1 / -1; }
+}
+
+/* 7. SITE HEADER (7 Oct 2026, Yumna, revised the same day; search moved out of the menu 27 Oct): logo LEFT; search, account, bag, then the
+   menu button on the RIGHT, on every screen size. The four headings (Shop, About, Stories, Technology)
+   live in the slide-in menu, which opens from the RIGHT next to its button. Pages opt in via
+   the .nav-links / .nav-right / .nav-mob classes on the nav's three groups.
+   The pages' inline style and main.js still write translateX(-100%) for "closed"; the rule below
+   turns that into an off-screen-right position, so no page markup had to change. */
+#nav .nav-links, #nav .nav-right { display: none !important; }
+#nav .nav-mob { display: flex !important; margin-left: auto; margin-right: -8px; }
+#nav .nav-mob [data-wish-nav] { display: none !important; }
+#mmenu { right: 0 !important; left: auto !important; }
+#mmenu[style*="translateX(-100%)"] { transform: translateX(100%) !important; box-shadow: none; }
+/* Slide-in menu: no logo at the top, just the close button on the right (7 Oct 2026, Yumna). */
+#mmenu > div:first-child { justify-content: flex-end; }
+#mmenu > div:first-child > :not(#mclose) { display: none !important; }
+/* The header's colour is set by js/mobile-fix.js to match what is behind it; drop the frosted blur
+   so the colour reads flat. */
+body:not(.nav-over-hero) #nav { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+
+/* §14 Header lines up with the page (re-applied 16 Oct 2026, Yumna). Page content sits in max-w-6xl (72rem)
+   inside a px-6 section, but the header put its px-6 INSIDE its max-w-6xl, so the logo and icons sat 24px in
+   from the content edges. Widening the header box by the padding puts them on the same edges. */
+#nav > .max-w-6xl { max-width: calc(72rem + 3rem) !important; }
+/* On phones the menu button is a 44px tap target, which pushed the icon 8px in; pull it back. */
+@media (max-width: 767px) { #nav .nav-mob { margin-right: -16px !important; } }
+
+
+/* §13 Slide-in menu: Women / Men open their categories (5 Nov 2026, Yumna, option H1).
+   Desktop: hover (or keyboard focus) opens the list under the name. Touch: first tap opens it,
+   second tap goes to all of Women / Men (js/mobile-fix.js). Category links filter Shop All (?cat=). */
+.mgrp-head{display:flex!important;justify-content:space-between;align-items:center}
+.mgrp-chev{display:inline-block;width:6px;height:6px;border-right:1.5px solid #9ca3af;border-bottom:1.5px solid #9ca3af;transform:rotate(45deg);position:relative;top:-2px;margin-left:8px;transition:transform .2s}
+.mgrp-sub{max-height:0;overflow:hidden;transition:max-height .28s ease;padding-left:14px}
+.mgrp-sub a{display:block;padding:6px 0;font-size:13px;color:#6b7280;text-decoration:none}
+.mgrp-sub a:hover{color:#000}
+.mgrp-sub a.all{color:#111;font-weight:500}
+.mgrp.open .mgrp-sub,.mgrp:focus-within .mgrp-sub{max-height:320px}
+.mgrp.open .mgrp-head{color:#000;font-weight:500}
+.mgrp.open .mgrp-chev{transform:rotate(225deg);top:1px}
+@media (hover:hover) and (pointer:fine){
+  .mgrp:hover .mgrp-sub{max-height:320px}
+  .mgrp:hover .mgrp-head{color:#000;font-weight:500}
+  .mgrp:hover .mgrp-chev{transform:rotate(225deg);top:1px}
+}
+
+/* 14. Slide-in menu hierarchy (10 Nov 2026, UI review).
+   The shop links are what the menu is for, so they are the larger, darker set
+   (16px medium, black). About Us and Technology step down to 14px grey. Before
+   this it was the other way round (shop 14px, About 16px). */
+#mmenu a.mlink.text-sm,
+#mmenu a.mgrp-head { font-size: 16px !important; font-weight: 500 !important; color: #0a0a0a !important; }
+#mmenu a.mlink.text-base { font-size: 14px !important; font-weight: 400 !important; color: #4b5563 !important; }
+#mmenu a.mlink.text-base:hover { color: #0a0a0a !important; }
+#mmenu .mgrp-sub a { font-size: 14px; }
+
+/* 15. Tap targets on phones (10 Nov 2026, Yumna approved option 12B).
+   Everything a finger presses responds over about 44px. Most of this is invisible
+   padding; the visible changes are the quick-add button (30 -> 36px, in
+   js/quick-add.js), the bag's quantity buttons (28/32 -> 40px, cart-drawer.js and
+   cart.html) and a taller footer list. */
+@media (max-width: 767px) {
+  #nav .nav-mob { gap: 0 !important; }
+  #nav .nav-mob > a:not([data-wish-nav]),
+  #nav .nav-mob > button { min-width: 44px; min-height: 44px; display: inline-flex !important; align-items: center; justify-content: center; }
+  #mmenu .mgrp-head { min-height: 44px; }
+  footer li a, footer ul a { display: inline-flex !important; align-items: center; min-height: 44px; padding: 0 !important; }
+  footer ul.space-y-3 > * + * { margin-top: 0 !important; }
+  footer .flex.gap-4 { gap: 0 !important; margin-left: -13px; }
+  footer .flex.gap-4 > a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  footer .flex.gap-6 > a { min-height: 44px; display: inline-flex; align-items: center; }
+  .pdp-crumb { min-height: 44px; }
+  .pdp-crumb a { display: inline-flex; align-items: center; min-height: 44px; }
+  .pdp-wrap.pt-7 { padding-top: 14px !important; padding-bottom: 6px !important; }
+  a[href="fit-guide.html"].text-xs, a[href="forgot-password.html"] { display: inline-block; padding: 14px 0; margin: -14px 0; }
+  #gender-filter-pills .filter-pill, button.pill { min-height: 44px; }
+}

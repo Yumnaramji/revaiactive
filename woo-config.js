@@ -1,0 +1,52 @@
+// REVAÍ — WooCommerce shop configuration (shop.revaiactive.com)
+// Generated 2026-10-01 from the live WooCommerce catalogue. Variation IDs map each
+// site product + size to the WooCommerce variation that holds its SKU, price and stock.
+// Switch REVAI_CHECKOUT to 'shopify' to fall back to the old Shopify checkout.
+window.REVAI_CHECKOUT = 'woo';
+window.REVAI_WOO = {
+  base: 'https://shop.revaiactive.com',
+  // Accounts stay on revaiactive.com (login.html, orders.html, ...) via js/woo-customer.js -> /wp-json/revai/v1/customer
+  api: 'https://shop.revaiactive.com/wp-json/revai/v1/customer',
+  variations: {
+    "gym-bag": { product: 129, sizes: { "One Size":130 } },
+    "lifestyle-cap": { product: 126, sizes: { "One Size":127 } },
+    "ankle-socks": { product: 120, sizes: { "S/M":121, "L/XL":122 } },
+    "training-pants-m": { product: 113, sizes: { "S":114, "M":115, "L":116, "XL":117, "XXL":118 } },
+    "shorts-m": { product: 104, sizes: { "S":105, "M":106, "L":107, "XL":108, "XXL":109 } },
+    "quarter-zip-m": { product: 95, sizes: { "S":96, "M":97, "L":98, "XL":99, "XXL":100 } },
+    "tshirt-m": { product: 85, sizes: { "S":187, "M":188, "L":189, "XL":190, "XXL":191 } },
+    "jacket-w": { product: 76, sizes: { "S":182, "M":183, "L":184, "XL":185, "XXL":186 } },
+    "tshirt-w": { product: 66, sizes: { "S":177, "M":178, "L":179, "XL":180, "XXL":181 } },
+    "low-impact-bra": { product: 55, sizes: { "S":56, "M":57, "L":58, "XL":59, "XXL":60 } },
+    "high-impact-bra": { product: 45, sizes: { "S":194, "M":195, "L":196, "XL":197, "XXL":198 } },
+    "flared-leggings-w": { product: 28, sizes: { "S":29, "M":30, "L":31, "XL":32, "XXL":33, "S (Tall)":34, "M (Tall)":35, "L (Tall)":36, "XL (Tall)":37, "XXL (Tall)":38 } },
+    "running-leggings-w": { product: 20, sizes: { "S":21, "M":22, "L":23, "XL":24, "XXL":25 } }
+  }
+};
+
+// Wishlist is an account feature (Yumna, final rule 2 Oct 2026). The heart next to the bag in
+// the header is hidden in the page markup (data-wish-nav, display:none) and only shown here
+// once the customer is signed in. Guests never see it. The only heart a guest sees is the
+// Save button on a product page, which opens the sign-in / create-account prompt there
+// (#save-auth in product.html). There is no "Wishlist" line in the phone menu.
+// The account icon sits next to the bag on phone and desktop. For a guest it opens login.html
+// directly: profile.html would only bounce them there after a second page load.
+(function () {
+  function signedIn() {
+    try {
+      var t = JSON.parse(localStorage.getItem("revai_customer_token_v1") || "null");
+      return !!(t && t.accessToken && (!t.expiresAt || new Date(t.expiresAt) > new Date()));
+    } catch (e) { return false; }
+  }
+  function apply() {
+    var i, els;
+    if (!signedIn()) {
+      els = document.querySelectorAll('a[href="profile.html"]');
+      for (i = 0; i < els.length; i++) { els[i].setAttribute("href", "login.html"); }
+      return;
+    }
+    els = document.querySelectorAll("a[data-wish-nav]");
+    for (i = 0; i < els.length; i++) { els[i].style.display = ""; }
+  }
+  if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", apply); } else { apply(); }
+})();

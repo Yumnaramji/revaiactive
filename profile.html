@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="only light">
+  <link rel="preconnect" href="https://shop.revaiactive.com" crossorigin>
+  <title>My Account</title>
+  <!-- Social share tags (Open Graph): what WhatsApp, Instagram and iMessage show when this link is pasted. Images live in images/share/, built by build-og.js. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="REVAÍ">
+  <meta property="og:title" content="My Account — REVAÍ">
+  <meta property="og:description" content="Find Your Revival.">
+  <meta property="og:url" content="https://revaiactive.com/profile.html">
+  <meta property="og:image" content="https://revaiactive.com/images/share/default.jpg">
+  <meta property="og:image:width" content="250">
+  <meta property="og:image:height" content="250">
+  <meta property="og:image:alt" content="REVAÍ">
+  <meta name="twitter:card" content="summary">
+  <meta name="description" content="Manage your REVAÍ account — orders, saved items, and account details.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="css/mobile-fix.css?v=20261117a">
+  <style>
+    /* --- Brand lockup in nav: mark + wordmark --- */
+    .rv-lock{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+    .rv-lock img{height:26px;width:auto;display:block;transition:filter .25s ease}
+    .rv-lock span{font-size:17px;font-weight:600;letter-spacing:.22em;margin-right:-.22em;line-height:1;white-space:nowrap}
+    @media(max-width:480px){.rv-lock{gap:8px}.rv-lock img{height:23px}.rv-lock span{font-size:15px}}
+    body.nav-over-hero #nav .rv-lock img{filter:invert(1)}
+    body.nav-over-hero #nav.scrolled .rv-lock img{filter:none}
+
+    :root{--accent:#000;--bg:#fff;--bg2:#f8f9fa;--text:#0a0a0a;--muted:#6b7280;--border:#e5e7eb}
+    *{box-sizing:border-box}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    .fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+    .fu.in{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}.d4{transition-delay:320ms}
+    .btn-p{background:#000;color:#fff;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;text-decoration:none;border:none}
+    .btn-p:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.22);background:#1a1a1a}
+    .btn-p:disabled{opacity:.55;cursor:wait;transform:none;box-shadow:none}
+    .btn-s{background:transparent;border:1px solid #000;color:#000;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border-radius:9px;padding:11px 24px;cursor:pointer;transition:background .2s,transform .2s;text-decoration:none}
+    .btn-s:hover{background:rgba(0,0,0,.04);transform:translateY(-1px)}
+    #nav.scrolled{border-bottom:1px solid #e5e7eb}
+    :focus-visible{outline:2px solid #000;outline-offset:3px}
+
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field label{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#6b7280}
+    .field input,.field select{width:100%;box-sizing:border-box;border:1.5px solid #e5e7eb;border-radius:10px;padding:12px 14px;font-size:14px;font-family:inherit;color:#0a0a0a;outline:none;transition:border-color .2s;background:#fff}
+    .field input:focus,.field select:focus{border-color:#000}
+    .field input::placeholder{color:#d1d5db}
+
+    .account-card{display:flex;align-items:center;gap:16px;padding:20px 24px;border:1.5px solid #f3f4f6;border-radius:14px;text-decoration:none;color:inherit;transition:border-color .2s,box-shadow .2s,transform .15s}
+    .account-card:hover{border-color:#000;box-shadow:0 4px 16px rgba(0,0,0,.06);transform:translateY(-1px)}
+    .account-card .card-icon{width:48px;height:48px;border-radius:14px;background:#f8f9fa;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s}
+    .account-card:hover .card-icon{background:#000}
+    .account-card:hover .card-icon svg{stroke:#fff}
+    .account-card .card-icon svg{transition:stroke .2s}
+    .account-card .card-arrow{margin-left:auto;color:#d1d5db;transition:color .2s,transform .2s}
+    .account-card:hover .card-arrow{color:#000;transform:translateX(3px)}
+
+    .benefit-item{display:flex;align-items:center;gap:12px;padding:14px 18px;background:#f8f9fa;border-radius:12px}
+    .benefit-item .benefit-dot{width:8px;height:8px;border-radius:50%;background:#000;flex-shrink:0}
+  </style>
+  <script src="js/mobile-fix.js?v=20261110b" defer></script>
+  <script src="/js/launch.js?v=20261119l" defer></script>
+  <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" class="fixed top-0 inset-x-0 z-50 h-16" role="navigation" aria-label="Main" style="background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .25s">
+  <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+    <a href="index.html" class="rv-lock text-black" aria-label="REVAÍ — home"><img src="images/revai-icon.png" alt="" aria-hidden="true" width="26" height="31"><span>REVAÍ</span></a>
+    <div class="nav-links hidden md:flex items-center gap-8">
+      <div class="relative" id="shop-dropdown-wrap">
+        <button id="shop-dropdown-btn" class="text-sm font-medium text-gray-500 hover:text-black transition-colors flex items-center gap-1">Shop<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div id="shop-dropdown-menu" class="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 transition-all duration-200 z-50" style="opacity:0;pointer-events:none">
+          <a href="collections.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">All Products</a>
+          <a href="collections.html?gender=women" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Women</a>
+          <a href="collections.html?gender=men" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Men</a>
+          <a href="collections.html?gender=accessories" class="block px-4 py-2.5 text-sm text-gray-700 hover:text-black hover:bg-gray-50">Accessories</a>
+        
+        </div>
+      </div>
+      <a href="about.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">About Us</a>
+      <a href="technology.html" class="text-sm font-medium text-gray-500 hover:text-black transition-colors">Technology</a>
+    </div>
+    <div class="nav-right hidden md:flex items-center gap-3">
+      <button onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </button>
+      <a href="wishlist.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Wishlist" data-wish-nav style="display:none"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></a>
+      <a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account" style="background:rgba(0,0,0,.05)">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </a>
+      <button id="nav-cart-btn" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open cart" onclick="if(window.REVAI_CART) window.REVAI_CART.openDrawer()">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span id="cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span>
+      </button>
+    </div>
+    <div class="nav-mob md:hidden flex items-center gap-1"><button type="button" onclick="if(window.REVAI_SEARCH)window.REVAI_SEARCH.open()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Search" data-nav-search><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button><a href="wishlist.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Wishlist" data-wish-nav style="display:none"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></a><a href="profile.html" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="My account"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a><button id="m-cart-btn" aria-label="Open cart" onclick="if(window.REVAI_CART) window.REVAI_CART.openDrawer()" class="relative p-2 rounded-lg hover:bg-gray-100 transition-colors"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span id="m-cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold min-w-[1rem] h-4 rounded-full items-center justify-center hidden">0</span></button><button id="hbg" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="14" x2="17" y2="14"/></svg>
+    </button></div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mmenu" class="fixed top-0 left-0 bottom-0 w-4/5 max-w-xs bg-white z-50 shadow-2xl px-8 py-8 flex flex-col" style="transform:translateX(-100%);transition:transform .35s cubic-bezier(.16,1,.3,1)">
+  <div class="flex justify-between items-center mb-10">
+    <span class="rv-lock"><img src="images/revai-icon.png" alt="" aria-hidden="true" width="24" height="29"><span>REVAÍ</span></span>
+    <button id="mclose" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Close menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg>
+    </button>
+  </div>
+  <div class="flex flex-col gap-1 flex-1">
+    <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2 mt-2">Shop</p>
+    <a href="collections.html" class="mlink block py-2 text-sm text-gray-700 hover:text-black">All Products</a>
+    <div class="mgrp">
+      <a href="collections.html?gender=women" class="mgrp-head block py-2 text-sm text-gray-700 hover:text-black" aria-expanded="false">Women<i class="mgrp-chev" aria-hidden="true"></i></a>
+      <div class="mgrp-sub">
+        <a href="collections.html?gender=women" class="mlink all">Shop all women</a>
+        <a href="collections.html?gender=women&amp;cat=leggings" class="mlink">Leggings</a>
+        <a href="collections.html?gender=women&amp;cat=sports-bras" class="mlink">Sports Bras</a>
+        <a href="collections.html?gender=women&amp;cat=tops" class="mlink">Tops</a>
+        <a href="collections.html?gender=women&amp;cat=jackets" class="mlink">Jackets</a>
+      </div>
+    </div>
+    <div class="mgrp">
+      <a href="collections.html?gender=men" class="mgrp-head block py-2 text-sm text-gray-700 hover:text-black" aria-expanded="false">Men<i class="mgrp-chev" aria-hidden="true"></i></a>
+      <div class="mgrp-sub">
+        <a href="collections.html?gender=men" class="mlink all">Shop all men</a>
+        <a href="collections.html?gender=men&amp;cat=tshirts" class="mlink">T-Shirts</a>
+        <a href="collections.html?gender=men&amp;cat=shorts" class="mlink">Shorts</a>
+        <a href="collections.html?gender=men&amp;cat=pants" class="mlink">Pants</a>
+        <a href="collections.html?gender=men&amp;cat=quarter-zips" class="mlink">Quarter Zips</a>
+      </div>
+    </div>
+    <div class="mgrp">
+      <a href="collections.html?gender=accessories" class="mgrp-head block py-2 text-sm text-gray-700 hover:text-black" aria-expanded="false">Accessories<i class="mgrp-chev" aria-hidden="true"></i></a>
+      <div class="mgrp-sub">
+        <a href="collections.html?gender=accessories" class="mlink all">Shop all accessories</a>
+        <a href="collections.html?gender=accessories&amp;cat=socks" class="mlink">Socks</a>
+        <a href="collections.html?gender=accessories&amp;cat=caps" class="mlink">Caps</a>
+        <a href="collections.html?gender=accessories&amp;cat=bags" class="mlink">Bags</a>
+      </div>
+    </div>
+    <div class="my-3 border-t border-gray-100"></div>
+    <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About Us</a>
+    <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
+    <a href="profile.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">My Account</a>
+  </div>
+</div>
+<div id="moverlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
+
+<main id="main" style="padding-top:64px;min-height:100vh">
+
+  <!-- Loading state — shown until customer data is fetched -->
+  <div id="view-loading" style="display:flex;align-items:center;justify-content:center;min-height:60vh;color:#9ca3af;font-size:14px">Loading your account…</div>
+
+  <!-- ── SIGNED IN ───────────────────────────────────────────── -->
+  <div id="view-account" style="display:none">
+
+    <!-- Account header -->
+    <div style="background:#0a0a0a;padding:52px 0 44px">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="flex items-end justify-between flex-wrap gap-4">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest mb-3" style="color:rgba(255,255,255,.4)">My Account</p>
+            <h1 class="text-3xl font-bold text-white tracking-tight" id="welcome-name">Welcome back</h1>
+            <p class="text-sm mt-1" id="welcome-email" style="color:rgba(255,255,255,.5)"></p>
+          </div>
+          <button onclick="handleSignOut()" class="btn-s text-sm px-4 py-2.5" style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.7)" onmouseenter="this.style.background='rgba(255,255,255,.08)'" onmouseleave="this.style.background='transparent'">Sign Out</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account content -->
+    <div class="max-w-6xl mx-auto px-6 py-12">
+
+      <!-- Quick nav cards -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:48px">
+        <a href="orders.html" class="account-card">
+          <div class="card-icon">
+            <svg width="22" height="22" fill="none" stroke="#6b7280" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          </div>
+          <div>
+            <p class="text-sm font-semibold">Orders</p>
+            <p class="text-xs text-gray-400 mt-0.5" id="orders-count-text">Track your order history</p>
+          </div>
+          <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+
+        <a href="addresses.html" class="account-card">
+          <div class="card-icon">
+            <svg width="22" height="22" fill="none" stroke="#6b7280" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <p class="text-sm font-semibold">Addresses</p>
+            <p class="text-xs text-gray-400 mt-0.5" id="addr-count-text">Manage shipping addresses</p>
+          </div>
+          <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+
+        <a href="wishlist.html" class="account-card">
+          <div class="card-icon">
+            <svg width="22" height="22" fill="none" stroke="#6b7280" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <div>
+            <p class="text-sm font-semibold">Wishlist</p>
+            <p class="text-xs text-gray-400 mt-0.5" id="saved-count-text">Your saved items</p>
+          </div>
+          <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+
+        <a href="#settings-section" class="account-card" onclick="event.preventDefault();document.getElementById('settings-section').scrollIntoView({behavior:'smooth'})">
+          <div class="card-icon">
+            <svg width="22" height="22" fill="none" stroke="#6b7280" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          </div>
+          <div>
+            <p class="text-sm font-semibold">Settings</p>
+            <p class="text-xs text-gray-400 mt-0.5">Personal info and contact details</p>
+          </div>
+          <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+      </div>
+
+      <!-- Member benefits -->
+      <div style="margin-bottom:48px;padding:28px 32px;background:#f8f9fa;border-radius:16px">
+        <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">Member Benefits</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+          <div style="display:flex;align-items:center;gap:14px">
+            <div style="width:40px;height:40px;border-radius:10px;background:#000;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="18" height="18" fill="none" stroke="#fff" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold">Exclusive Drops</p>
+              <p class="text-xs text-gray-400">Members-only releases</p>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <div style="width:40px;height:40px;border-radius:10px;background:#000;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="18" height="18" fill="none" stroke="#fff" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold">Early Access</p>
+              <p class="text-xs text-gray-400">Shop collections first</p>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <div style="width:40px;height:40px;border-radius:10px;background:#000;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="18" height="18" fill="none" stroke="#fff" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold">Faster Checkout</p>
+              <p class="text-xs text-gray-400">Saved addresses &amp; details</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings section -->
+      <div id="settings-section">
+        <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-6">Account Settings</p>
+
+        <div style="max-width:560px">
+          <h2 class="text-lg font-semibold mb-8">Personal Information</h2>
+          <form id="details-form" style="display:flex;flex-direction:column;gap:20px">
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px">
+              <div class="field">
+                <label for="d-fname">First Name</label>
+                <input id="d-fname" type="text" placeholder="Alex">
+              </div>
+              <div class="field">
+                <label for="d-lname">Last Name</label>
+                <input id="d-lname" type="text" placeholder="Johnson">
+              </div>
+            </div>
+            <div class="field">
+              <label for="d-email">Email Address</label>
+              <input id="d-email" type="email" placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label for="d-phone">Phone (optional)</label>
+              <input id="d-phone" type="tel" placeholder="+254 700 000000">
+            </div>
+
+            <p id="details-error" style="display:none;font-size:13px;color:#dc2626;padding:10px 14px;background:#fef2f2;border-radius:8px"></p>
+            <p id="details-saved-msg" style="display:none;font-size:13px;color:#16a34a;padding:10px 14px;background:#f0fdf4;border-radius:8px"></p>
+
+            <div class="flex gap-3 mt-2">
+              <button type="submit" class="btn-p" id="save-btn">Save Changes</button>
+              <a href="addresses.html" class="btn-s">Manage Addresses →</a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer style="background:#0a0a0a" class="px-6 pt-10 pb-5 border-t border-gray-800">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-6">
+      <div>
+        <a href="index.html" style="display:inline-block;margin-bottom:16px"><img src="images/revai-icon.png" alt="REVAÍ" style="height:44px;width:auto;display:block;margin-left:-2px;filter:invert(1)"></a>
+        <p class="text-gray-400 text-sm leading-relaxed mb-6">Bend it, stretch it, live in it.<br>It was made to move the way you do</p>
+        <div class="flex gap-4">
+          <a href="https://www.instagram.com/revaiactive" target="_blank" rel="noopener" aria-label="Instagram" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></a><a href="mailto:support@revaiactive.com" aria-label="Email REVAÍ" class="text-gray-500 hover:text-white transition-colors"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4.5" width="20" height="15" rx="2.5"/><path d="m3 7 8.13 5.42a1.6 1.6 0 0 0 1.74 0L21 7"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Shop</h3>
+        <ul class="space-y-3"><li><a href="collections.html" class="text-sm text-gray-400 hover:text-white transition-colors">All Products</a></li><li><a href="collections.html?gender=women" class="text-sm text-gray-400 hover:text-white transition-colors">Women</a></li><li><a href="collections.html?gender=men" class="text-sm text-gray-400 hover:text-white transition-colors">Men</a></li><li><a href="collections.html?gender=accessories" class="text-sm text-gray-400 hover:text-white transition-colors">Accessories</a></li></ul>
+      </div>
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Company</h3>
+        <ul class="space-y-3">
+          <li><a href="about.html" class="text-sm text-gray-400 hover:text-white transition-colors">About Us</a></li>
+          <li><a href="sustainability.html" class="text-sm text-gray-400 hover:text-white transition-colors">Sustainability</a></li>
+          <li><a href="team-orders.html" class="text-sm text-gray-400 hover:text-white transition-colors">Team Orders</a></li>
+          <li><a href="press.html" class="text-sm text-gray-400 hover:text-white transition-colors">Press</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Support</h3>
+        <ul class="space-y-3">
+          <li><a href="shipping-returns.html" class="text-sm text-gray-400 hover:text-white transition-colors">Shipping &amp; Returns</a></li>
+          <li><a href="care-instructions.html" class="text-sm text-gray-400 hover:text-white transition-colors">Care Instructions</a></li>
+          <li><a href="faq.html" class="text-sm text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+          <li><a href="contact.html" class="text-sm text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4" style="padding-top:16px">
+      <p class="text-xs text-gray-600">© 2026 REVAI Limited. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="privacy.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Privacy Policy</a>
+        <a href="terms.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Terms of Service</a>
+        <a href="accessibility.html" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js?v=20261002a"></script>
+<script src="search.js?v=20261119a"></script>
+<script src="shopify-config.js?v=20260926b"></script>
+<script src="woo-config.js?v=20261110a"></script>
+<script src="js/woo-customer.js?v=20261119a"></script>
+<script src="cart-drawer.js?v=20261119b"></script>
+<script>
+  const SAVED_KEY = 'revai_saved_v1';   // wishlist is still localStorage for now
+
+  // Auth gate
+  if(!REVAI_CUSTOMER.requireAuth('login.html')) { /* will redirect */ }
+
+  // The settings form is only filled from the server while the customer hasn't typed in it.
+  let formTouched = false;
+  document.getElementById('details-form').addEventListener('input', function(){ formTouched = true; });
+
+  function render(customer){
+      // Header
+      const display = customer.firstName || (customer.email ? customer.email.split('@')[0] : 'there');
+      document.getElementById('welcome-name').textContent = 'Welcome back, ' + display + '.';
+      document.getElementById('welcome-email').textContent = customer.email || '';
+
+      // Cards meta
+      const orderCount = customer.orders ? customer.orders.edges.length : 0;
+      document.getElementById('orders-count-text').textContent = orderCount
+        ? orderCount + ' order' + (orderCount !== 1 ? 's' : '')
+        : 'Track your order history';
+
+      const addrCount = customer.addresses ? customer.addresses.edges.length : 0;
+      document.getElementById('addr-count-text').textContent = addrCount
+        ? addrCount + ' saved address' + (addrCount !== 1 ? 'es' : '')
+        : 'Manage shipping addresses';
+
+      const saved = JSON.parse(localStorage.getItem(SAVED_KEY)||'[]');
+      if(saved.length){
+        document.getElementById('saved-count-text').textContent = saved.length + ' saved item' + (saved.length !== 1 ? 's' : '');
+      }
+
+      // Settings form
+      if(!formTouched){
+        document.getElementById('d-fname').value = customer.firstName || '';
+        document.getElementById('d-lname').value = customer.lastName  || '';
+        document.getElementById('d-email').value = customer.email     || '';
+        document.getElementById('d-phone').value = customer.phone     || '';
+      }
+
+      // Reveal
+      document.getElementById('view-loading').style.display = 'none';
+      document.getElementById('view-account').style.display = '';
+  }
+
+  // Paint from the copy kept on this device, then refresh from the shop behind it
+  // (the shop takes 1-3 s to answer; see js/woo-customer.js).
+  async function init(){
+    let shown = false;
+    try {
+      const cached = REVAI_CUSTOMER.getCachedCustomer();
+      if(cached){ render(cached); shown = true; }
+    } catch(e){}
+    try {
+      const customer = await REVAI_CUSTOMER.getCustomer();
+      if(!customer){ window.location.href = 'login.html'; return; }
+      render(customer);
+    } catch(ex){
+      if(!shown) document.getElementById('view-loading').textContent = 'Could not load your account. ' + (ex.message || '');
+    }
+  }
+
+  async function handleSignOut(){
+    await REVAI_CUSTOMER.logout();
+    window.location.href = 'index.html';
+  }
+
+  document.getElementById('details-form').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = document.getElementById('save-btn');
+    const err = document.getElementById('details-error');
+    const msg = document.getElementById('details-saved-msg');
+    err.style.display = 'none';
+    msg.style.display = 'none';
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+
+    const updates = {
+      firstName: document.getElementById('d-fname').value.trim(),
+      lastName:  document.getElementById('d-lname').value.trim(),
+      email:     document.getElementById('d-email').value.trim(),
+      phone:     document.getElementById('d-phone').value.trim() || null
+    };
+
+    try {
+      await REVAI_CUSTOMER.updateCustomer(updates);
+      msg.textContent = '✓ Changes saved successfully';
+      msg.style.display = '';
+      setTimeout(()=>{ msg.style.display='none'; }, 3500);
+    } catch(ex){
+      err.textContent = ex.message || 'Could not save changes';
+      err.style.display = '';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Save Changes';
+    }
+  });
+
+  init();
+</script>
+</body>
+</html>
