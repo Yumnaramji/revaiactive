@@ -216,12 +216,13 @@
     if (CONFIG.skipPages.test(location.pathname)) return false;
     if (!CONFIG.popupPages.test(location.pathname)) return false;
     if (parts().live) return false;
-    var until = parseInt(store(KEY) || '0', 10);
-    if (until && until > now()) return false;
+    try { if (sessionStorage.getItem(SEEN)) return false; } catch (e) {} // already seen in this visit
     try { var bag = JSON.parse(localStorage.getItem('revai_cart_v1') || '[]'); if (bag && bag.length) return false; } catch (e) {}
     return true;
   }
-  function snooze(days) { store(KEY, String(now() + days * 864e5)); }
+  /* once per visit (Yumna, 19 Nov 2026): remembered for this visit only, so it opens again on the next visit. The old 3 / 30 day memory (localStorage) is no longer read */
+  var SEEN = 'rv_po_popup_seen_v1';
+  function snooze() { try { sessionStorage.setItem(SEEN, '1'); } catch (e) {} }
 
   var STEPS = ['Place order', 'Pay before dispatch', 'Delivery'];
   function signedIn() { try { return !!localStorage.getItem('revai_customer_token_v1'); } catch (e) { return false; } }
