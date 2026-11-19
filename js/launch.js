@@ -19,6 +19,7 @@
     snoozeDays: 3,             // closed with X: don't show again for this many days
     doneDays: 30,              // clicked Shop: don't show again for this many days
     skipPages: /(cart|checkout|login|signup|forgot-password|profile|orders|addresses|wishlist)\.html$/i,
+    popupPages: /^\/(index\.html)?$/i,  // pop-up on the homepage only (Yumna, 19 Nov)
     img: '/images/'            // where the pop-up photos live
   };
   if (window.RV_LAUNCH) for (var k in window.RV_LAUNCH) CONFIG[k] = window.RV_LAUNCH[k];
@@ -156,6 +157,7 @@
     if (!CONFIG.popup) return false;
     if (preview) return true;
     if (CONFIG.skipPages.test(location.pathname)) return false;
+    if (!CONFIG.popupPages.test(location.pathname)) return false;
     if (parts().live) return false;
     var until = parseInt(store(KEY) || '0', 10);
     if (until && until > now()) return false;
