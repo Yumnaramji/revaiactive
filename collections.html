@@ -101,7 +101,7 @@
     @media(prefers-reduced-motion:reduce){.fu{opacity:1!important;transform:none!important;transition:none!important}}
   </style>
   <script src="js/mobile-fix.js?v=20261110b" defer></script>
-  <script src="/js/launch.js?v=20261119i" defer></script>
+  <script src="/js/launch.js?v=20261119j" defer></script>
   <link rel="stylesheet" href="css/tailwind.css?v=20260926b"><!-- static Tailwind build (ogtool/tailwind.config.js). Kept LAST in <head>, where the old Play CDN injected its styles, so page styles cascade exactly as before. Re-run the build after adding new utility classes. -->
 </head>
 <body>
@@ -164,7 +164,15 @@
         <a href="collections.html?gender=men&amp;cat=quarter-zips" class="mlink">Quarter Zips</a>
       </div>
     </div>
-    <a href="collections.html?gender=accessories" class="mlink block py-2 text-sm text-gray-700 hover:text-black">Accessories</a>
+    <div class="mgrp">
+      <a href="collections.html?gender=accessories" class="mgrp-head block py-2 text-sm text-gray-700 hover:text-black" aria-expanded="false">Accessories<i class="mgrp-chev" aria-hidden="true"></i></a>
+      <div class="mgrp-sub">
+        <a href="collections.html?gender=accessories" class="mlink all">Shop all accessories</a>
+        <a href="collections.html?gender=accessories&amp;cat=socks" class="mlink">Socks</a>
+        <a href="collections.html?gender=accessories&amp;cat=caps" class="mlink">Caps</a>
+        <a href="collections.html?gender=accessories&amp;cat=bags" class="mlink">Bags</a>
+      </div>
+    </div>
     <div class="my-3 border-t border-gray-100"></div>
     <a href="about.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">About Us</a>
     <a href="technology.html" class="mlink block py-2 text-base font-medium text-gray-700 hover:text-black">Technology</a>
@@ -387,7 +395,7 @@
       </div>
 
       <!-- Ankle Socks -->
-      <div class="prod-card fu d2" data-gender="unisex">
+      <div class="prod-card fu d2" data-gender="unisex" data-cat="socks">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/cards/ankle-socks.jpg" srcset="images/cards/ankle-socks.jpg 540w, images/ankle-socks.jpg 1086w" sizes="(max-width:767px) 50vw, 300px" alt="Ankle Socks" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <img src="images/cards/ankle-socks-three-quarter.jpg" srcset="images/cards/ankle-socks-three-quarter.jpg 540w, images/ankle-socks-three-quarter.jpg 1086w" sizes="(max-width:767px) 50vw, 300px" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
@@ -402,7 +410,7 @@
       </div>
 
       <!-- Lifestyle Cap -->
-      <div class="prod-card fu d3" data-gender="unisex">
+      <div class="prod-card fu d3" data-gender="unisex" data-cat="caps">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/cards/lifestyle-cap.jpg" srcset="images/cards/lifestyle-cap.jpg 540w, images/lifestyle-cap.jpg 1086w" sizes="(max-width:767px) 50vw, 300px" alt="Lifestyle Cap" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <img src="images/cards/lifestyle-cap-side.jpg" srcset="images/cards/lifestyle-cap-side.jpg 540w, images/lifestyle-cap-side.jpg 1086w" sizes="(max-width:767px) 50vw, 300px" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
@@ -416,7 +424,7 @@
       </div>
 
       <!-- 30L Gym Bag -->
-      <div class="prod-card fu" data-gender="unisex">
+      <div class="prod-card fu" data-gender="unisex" data-cat="bags">
         <div class="relative" style="aspect-ratio:3/4;overflow:hidden;background:#f3f4f6;">
           <img loading="lazy" decoding="async" src="images/cards/gym-bag.jpg" srcset="images/cards/gym-bag.jpg 540w, images/gym-bag.jpg 1086w" sizes="(max-width:767px) 50vw, 300px" alt="30L Gym Bag" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           <img src="images/cards/gym-bag-three-quarter.jpg" srcset="images/cards/gym-bag-three-quarter.jpg 540w, images/gym-bag-three-quarter.jpg 1086w" sizes="(max-width:767px) 50vw, 300px" alt="" aria-hidden="true" class="card-hover-img" loading="lazy" decoding="async">
@@ -707,13 +715,15 @@ document.querySelectorAll('.prod-card').forEach(function(card){
   var subDefault = sub ? sub.textContent : '';
   if(!cards.length) return;
 
-  var CATS = {leggings:'Leggings','sports-bras':'Sports Bras',tops:'Tops',jackets:'Jackets',tshirts:'T-Shirts',shorts:'Shorts',pants:'Pants','quarter-zips':'Quarter Zips'};
+  var CATS = {leggings:'Leggings','sports-bras':'Sports Bras',tops:'Tops',jackets:'Jackets',tshirts:'T-Shirts',shorts:'Shorts',pants:'Pants','quarter-zips':'Quarter Zips',socks:'Socks',caps:'Caps',bags:'Bags'};
+  var ACC = {socks:1,caps:1,bags:1}; // accessory categories (19 Nov 2026): valid under Accessories only
   var cat = (new URLSearchParams(window.location.search).get('cat') || '').toLowerCase();
   if(!CATS[cat]) cat = '';
 
   function apply(gender){
     if(VALID.indexOf(gender) === -1) gender = 'all';
-    if(gender !== 'women' && gender !== 'men') cat = '';
+    if(gender !== 'women' && gender !== 'men' && gender !== 'accessories') cat = '';
+    if(cat && (gender === 'accessories') !== !!ACC[cat]) cat = '';
     cards.forEach(function(card){
       var cg = card.getAttribute('data-gender');
       // accessories = the unisex cards only; Women / Men show clothing only (Yumna, 5 Oct 2026)
@@ -721,6 +731,7 @@ document.querySelectorAll('.prod-card').forEach(function(card){
       var show = (gender === 'all') || (cg === gender) || (cg === 'unisex');
       // ?cat= from the menu's category lists (5 Nov 2026): that category only, no accessories
       if(cat && (gender === 'women' || gender === 'men')) show = (cg === gender) && (card.getAttribute('data-cat') === cat);
+      if(cat && gender === 'accessories') show = (cg === 'unisex') && (card.getAttribute('data-cat') === cat);
       card.style.display = show ? '' : 'none';
     });
     // Names (10 Nov 2026): in the All view the women's and men's tees both read "T-Shirt", side by side at the same

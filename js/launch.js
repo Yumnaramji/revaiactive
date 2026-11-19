@@ -61,7 +61,7 @@
   '.rvq .cd{display:flex;justify-content:center;gap:8px}' +
   '.rvq .tl{display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:8px}' +
   '.rvq .n{font-variant-numeric:tabular-nums;font-weight:600;line-height:1}.rvq .lb{line-height:1}' +
-  '.rvq-head{position:relative;z-index:60;background:#fff;padding:10px 0 0}' +
+  '.rvq-head{position:relative;z-index:1;background:#fff;padding:10px 0 0}' +
   '.rvq-head .tl{width:68px;height:52px;background:rgba(10,10,10,.05);color:#0a0a0a}' +
   '.rvq-head .n{font-size:19px}.rvq-head .lb{margin-top:5px;font-size:9.5px;color:#6b7280}' +
   '.rvq-head.in{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:0;background:none}' +
