@@ -93,7 +93,7 @@
   '.rvp .base{position:absolute;z-index:1;left:4.4cqw;right:4.4cqw;bottom:4.6cqw;display:flex;justify-content:space-between;margin:0;font-size:max(8.5px,2.15cqw);letter-spacing:.2em;text-transform:uppercase;color:#fff}' +
   /* phones: same layout as a sheet from the bottom */
   '@media(max-width:640px){' +
-    '.rvp{left:0;right:0;top:auto;bottom:0;width:100%;transform:translateY(100%)}.rvp.on{transform:none}' +
+    '.rvp{left:0;right:0;top:auto;bottom:0;width:100%;max-width:calc(100vh * .96);max-width:calc(100dvh * .96);margin:0 auto;transform:translateY(100%)}.rvp.on{transform:none}' +
     '.rvp .top{height:auto;padding-top:7.5cqw}.rvp .logo{width:18cqw}.rvp .vl{height:6cqw;margin:3cqw 0}' +
     '.rvp .sub{margin-top:2.6cqw}.rvp .steps{width:90cqw;margin:6cqw 0 6.5cqw}.rvp .steps small{margin-bottom:2cqw}' +
     '.rvp .fab{height:auto;padding:10cqw 0 calc(19cqw + env(safe-area-inset-bottom))}.rvp .btn{min-width:52cqw}.rvp .acct{margin-top:3.6cqw}' +
