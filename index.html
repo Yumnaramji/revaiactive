@@ -79,7 +79,7 @@
     #home-hero .hero-mw{margin:0 0 clamp(8px,1vw,14px);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#fff;opacity:.85} /* 1 Nov (Yumna): WOMEN · MEN under the eyebrow, in the eyebrow's own style (option 2; was option D, 15px light); links to Shop All by gender */
     #home-hero .hero-mw a{color:#fff;text-decoration:none}
     #home-hero .hero-mw a:hover{text-decoration:underline;text-underline-offset:3px}
-        #home-hero .hero-title{margin:0 0 clamp(12px,1.5vw,22px);font-size:clamp(22px,3.25vw,48px);font-weight:300;letter-spacing:-.02em;line-height:1.05;color:#fff}
+        #home-hero .hero-title{margin:0 0 clamp(12px,1.5vw,22px);font-size:calc(clamp(22px,3.25vw,48px) - .5px);font-weight:300;letter-spacing:-.02em;line-height:1.05;color:#fff}
     #home-hero .hero-btn{display:inline-block;border:1px solid #fff;color:#fff;font-size:clamp(11px,.9vw,13px);font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:clamp(9px,.9vw,13px) clamp(18px,2.1vw,30px);text-decoration:none;transition:background .2s,color .2s}
     #home-hero .hero-btn:hover{background:#fff;color:#0a0a0a}
     #home-hero .hv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%}
@@ -98,7 +98,7 @@
        Phones: the photo is a square crop (her and the bag, centred) and the words sit UNDER it on white, in
        black, with a solid Shop now button. Nothing overlaps the photograph. Eyebrow 11px (was 9px).
        This block must stay BELOW the .hv img / .hv video rules above, or their position:absolute wins. */
-    @media(min-width:768px) and (max-width:1023px){#home-hero .hero-title{font-size:max(21px,2.85vw)}} /* tablets: a touch smaller so "you" clears the bag with air to spare */
+    @media(min-width:768px) and (max-width:1023px){#home-hero .hero-title{font-size:calc(max(21px,2.85vw) - .5px)}} /* tablets: a touch smaller so "you" clears the bag with air to spare */
     @media(max-width:767px){
       #home-hero .hv{aspect-ratio:auto;background:none;overflow:visible}
       #home-hero .hv img{position:static;display:block;width:100%;height:auto;aspect-ratio:1/1;object-position:50% 50%}
@@ -107,7 +107,7 @@
       #home-hero .hero-eyeb{font-size:11px;margin-bottom:8px;color:#6b7280;opacity:1}
       #home-hero .hero-mw{font-size:11px;margin-bottom:12px;color:#0a0a0a;opacity:1}
       #home-hero .hero-mw a{color:#0a0a0a}
-      #home-hero .hero-title{font-size:30px;margin-bottom:18px;color:#0a0a0a}
+      #home-hero .hero-title{font-size:29.5px;margin-bottom:18px;color:#0a0a0a}
       #home-hero .hero-btn{font-size:12px;padding:13px 28px;background:#0a0a0a;border-color:#0a0a0a;color:#fff}
     }
     /* ===== HOMEPAGE v2 — film hero + shopfront (8 Aug 2026) ===== */
@@ -420,7 +420,7 @@
          Specs given to Yumna: desktop 1920x1080 (subject in the middle 1920x820), phone 1080x1350, MP4 H.264,
          no sound, 8-15 s loop, under 8MB / 4MB, plus a poster JPG of each. -->
     <div class="hv">
-      <img src="images/hero-photo.jpg" alt="" fetchpriority="high" decoding="async"><div class="hero-shade"></div><div class="hero-copy"><p class="hero-eyeb">Collection 01</p><p class="hero-mw"><a href="collections.html?gender=women">Women</a> · <a href="collections.html?gender=men">Men</a></p><p class="hero-title">A return to you</p><a class="hero-btn" href="collections.html">Shop now</a></div><!-- Hero photo (28 Oct 2026, Yumna) in place of the video. To bring the video back, swap this line for:
+      <img src="images/hero-photo.jpg" alt="" fetchpriority="high" decoding="async"><div class="hero-shade"></div><div class="hero-copy"><p class="hero-eyeb">Collection 01</p><p class="hero-mw"><a href="collections.html?gender=women">Women</a> · <a href="collections.html?gender=men">Men</a></p><p class="hero-title">A Return To You</p><a class="hero-btn" href="collections.html">Shop now</a></div><!-- Hero photo (28 Oct 2026, Yumna) in place of the video. To bring the video back, swap this line for:
            <video autoplay muted loop playsinline preload="auto" poster="images/hero-video-poster.jpg"><source src="images/hero-video.mp4" type="video/mp4"></video> -->
       
     </div>
