@@ -15,7 +15,7 @@
     ctaText: 'Shop now',
     signupUrl: '/signup.html',   // small "New here? Create an account" line under the button (Yumna, 18 Nov)
     cta: 'link',                // 'box' outlined button · 'link' underlined words + arrow · 'circle' words + arrow in a ring · 'rule' words between two fine lines
-    delayMs: 1500,             // pop-up waits this long after the page loads
+    delayMs: 1250,             // pop-up waits this long after the page loads
     snoozeDays: 3,             // closed with X: don't show again for this many days
     doneDays: 30,              // clicked Shop: don't show again for this many days
     skipPages: /(cart|checkout|login|signup|forgot-password|profile|orders|addresses|wishlist)\.html$/i,
