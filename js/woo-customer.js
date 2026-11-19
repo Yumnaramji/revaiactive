@@ -54,7 +54,7 @@
     let res;
     try {
       res = await fetch(api() + path, { method, headers, body: body === undefined ? undefined : JSON.stringify(body) });
-    } catch(e){ throw new Error('Could not reach the shop. Check your connection and try again.'); }
+    } catch(e){ throw new Error('Could not reach the shop. Check your connection and try again'); }
     let json = null;
     try { json = await res.json(); } catch(e){ json = null; }
     if(res.status === 401 && auth !== false){ clearToken(); }
