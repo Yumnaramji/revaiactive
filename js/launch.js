@@ -303,6 +303,8 @@
   function start() {
     buildBar();
     if (shouldShow()) setTimeout(buildPopup, CONFIG.delayMs);
+    /* Back button: the browser can bring the homepage back exactly as it was left, pop-up still open. Once it has been closed or used, take it away */
+    window.addEventListener('pageshow', function (e) { if (e.persisted && pop && !preview && !shouldShow()) close(false); });
     tick();
     setInterval(function () { if (!document.hidden) tick(); }, 1000);
     document.addEventListener('visibilitychange', function () { if (!document.hidden) tick(); });
