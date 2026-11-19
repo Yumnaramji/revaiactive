@@ -269,6 +269,7 @@
   let prepBusy = 0;
   let prepTimer = null;
   let prepWanted = null;
+  let prepBlocked = false;
 
   function wooBag() {
     if ((window.REVAI_CHECKOUT || 'woo') !== 'woo' || !window.REVAI_WOO) return null;
@@ -286,9 +287,11 @@
     const payload = btoa(JSON.stringify({ items: items }))
       .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
     const tok = (window.REVAI_CUSTOMER && window.REVAI_CUSTOMER.getToken && window.REVAI_CUSTOMER.getToken()) || null;
+    const q = '?revai-cart=' + payload + (tok ? '&revai-token=' + encodeURIComponent(tok.accessToken) : '');
     return {
       base: WOO.base, items: items, unmapped: unmapped,
-      url: WOO.base + '/?revai-cart=' + payload + (tok ? '&revai-token=' + encodeURIComponent(tok.accessToken) : ''),
+      url: WOO.base + '/' + q,              // background build (the shop answers with a short redirect)
+      go: WOO.base + '/checkout/' + q,      // the tap: the shop rebuilds the bag and shows checkout in ONE page load
       sig: payload + (tok ? '|in' : '|guest'),
       want: items.map(function(i) { return i.v + 'x' + i.q; }).sort().join(',')
     };
@@ -307,7 +310,9 @@
     // The answer is a redirect the browser won't let this page read, so the request
     // "fails" here even though the shop has rebuilt the bag. The read-back below decides.
     try { await fetch(bag.url, { credentials: 'include', redirect: 'manual' }); } catch (e) {}
-    const res = await fetch(bag.base + '/wp-json/wc/store/v1/cart', { credentials: 'include', headers: { 'Accept': 'application/json' } });
+    let res;
+    try { res = await fetch(bag.base + '/wp-json/wc/store/v1/cart', { credentials: 'include', headers: { 'Accept': 'application/json' } }); }
+    catch (e) { prepBlocked = true; return; }   // the shop can't be read from this address (a preview copy): stop trying on this page
     if (!res.ok) return;
     const data = await res.json();
     const got = (data.items || []).map(function(i) { return i.id + 'x' + i.quantity; }).sort().join(',');
@@ -319,7 +324,7 @@
     prepTimer = setTimeout(function() {
       prepTimer = null;
       const bag = wooBag();
-      if (!bag || bag.unmapped || !bag.items.length) return;
+      if (prepBlocked || !bag || bag.unmapped || !bag.items.length) return;
       prepWanted = bag.sig;
       if (shopReady(bag.sig)) return;
       prepBusy++;
@@ -421,23 +426,13 @@
         }
         // The shop server is slow to answer, so say so instead of leaving the button looking stuck.
         if (btn) { btn.textContent = 'Opening checkout…'; btn.disabled = true; }
-        // A background build is still running: let it finish (it is the same work the
-        // full link would start again), but never wait long.
-        if (!shopReady(bag.sig) && (prepBusy > 0 || prepTimer)) {
-          if (prepTimer) prepareCheckout(0);
-          await new Promise(function(done) {
-            const giveUp = setTimeout(done, 6000);
-            (function wait() {
-              if (prepBusy === 0 && !prepTimer) { clearTimeout(giveUp); done(); return; }
-              setTimeout(wait, 100);
-            })();
-          });
-        }
-        // Confirmed on the shop: one request instead of two. The mark is used once, so a
-        // later tap (back button, second order) always re-checks.
+        // Never wait here: leave the page at once. If the background build has confirmed
+        // this bag on the shop, open checkout as it is; otherwise the link carries the bag
+        // and the shop rebuilds it while it draws checkout (one page load either way).
+        // The mark is used once, so a later tap (back button, second order) always re-checks.
         const direct = shopReady(bag.sig);
         clearShopReady();
-        window.location.href = direct ? bag.base + '/checkout/' : bag.url;
+        window.location.href = direct ? bag.base + '/checkout/' : bag.go;
         return;
       }
 
@@ -526,4 +521,27 @@
   });
   // The bag page has its own Checkout button and no drawer to open first.
   if (document.getElementById('cart-page-checkout')) prepareCheckout(0);
+
+  // ── Keep the shop awake ──────────────────────────────────────────────────────
+  // The shop server goes to sleep after about a minute with no visitors, and the first
+  // request after that takes 6 s or more. So: wake it shortly after any page opens, and
+  // while this tab is in view with something in the bag, get the bag ready on the shop
+  // and nudge the server every 50 s. The nudge is a plain request whose answer is ignored.
+  function wakeShop() {
+    if ((window.REVAI_CHECKOUT || 'woo') !== 'woo' || !window.REVAI_WOO) return;
+    try { fetch(window.REVAI_WOO.base + '/?revai-ping=1', { mode: 'no-cors', credentials: 'include', cache: 'no-store' }).catch(function() {}); } catch (e) {}
+  }
+  function keepShopReady() {
+    if (document.visibilityState !== 'visible') return;
+    const bag = wooBag();
+    if (!bag || !bag.items.length) return;
+    if (prepBlocked || bag.unmapped || shopReady(bag.sig)) { wakeShop(); return; }
+    prepareCheckout(0);
+  }
+  setTimeout(function() {
+    const bag = wooBag();
+    if (bag && bag.items.length && !bag.unmapped) prepareCheckout(0); else wakeShop();
+  }, 1200);
+  setInterval(keepShopReady, 50000);
+  document.addEventListener('visibilitychange', keepShopReady);
 })();
