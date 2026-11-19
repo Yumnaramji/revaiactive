@@ -244,7 +244,7 @@
 
   function start() {
     buildBar();
-    if (shouldShow()) setTimeout(buildPopup, preview ? 300 : CONFIG.delayMs);
+    if (shouldShow()) setTimeout(buildPopup, CONFIG.delayMs);
     tick();
     setInterval(function () { if (!document.hidden) tick(); }, 1000);
     document.addEventListener('visibilitychange', function () { if (!document.hidden) tick(); });
