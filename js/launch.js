@@ -11,7 +11,7 @@
     launchLabel: 'Friday 27 November',
     popup: true,               // welcome pop-up on / off
     bar: true,                 // countdown bar on / off
-    barStyle: 'band',          // 'band' = the timer repeats across the bar and drifts sideways (Yumna, 19 Nov) · 'classic' = one still timer in the middle
+    barStyle: 'header',        // 'header' = four squares inside the white header, no bar (Yumna, 19 Nov) · 'band' = black bar, the timer drifts sideways · 'classic' = black bar, one still timer
     shopUrl: '/collections.html',
     ctaText: 'Shop now',
     signupUrl: '/signup.html',   // small "New here? Create an account" line under the button (Yumna, 18 Nov)
@@ -54,6 +54,18 @@
   '.rvb .u{color:#8a8a92;margin:0 10px 0 2px}' +
   '.rvb .rv-sr,.rvp .rv-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}' +
   '@media(max-width:640px){.rvb{height:34px;line-height:34px;font-size:11.5px}.rvb .u{margin-right:8px}}' +
+  /* header squares: no bar. Laptops: four light grey squares inside the header, centred between the logo and the icons.
+     Phones and tablets: a white row above the logo row, same white, so both read as one header. Unit names only, no other words */
+  '.rvq{font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;pointer-events:none}' +
+  '.rvq .rv-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}' +
+  '.rvq .cd{display:flex;justify-content:center;gap:8px}' +
+  '.rvq .tl{display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:8px}' +
+  '.rvq .n{font-variant-numeric:tabular-nums;font-weight:600;line-height:1}.rvq .lb{line-height:1}' +
+  '.rvq-head{position:relative;z-index:60;background:#fff;padding:10px 0 0}' +
+  '.rvq-head .tl{width:68px;height:52px;background:rgba(10,10,10,.05);color:#0a0a0a}' +
+  '.rvq-head .n{font-size:19px}.rvq-head .lb{margin-top:5px;font-size:9.5px;color:#6b7280}' +
+  '.rvq-head.in{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:0;background:none}' +
+  '.rvq-head.in .cd{gap:6px}.rvq-head.in .tl{width:62px;height:44px}.rvq-head.in .n{font-size:16px}.rvq-head.in .lb{margin-top:4px;font-size:8.5px;letter-spacing:.02em}' +
   /* moving band: the timer repeats along the bar with wide gaps and drifts slowly to the left; no logo, no words */
   '.rvb-m{height:40px;line-height:40px;text-align:left}.rvb-m .cd{display:block;letter-spacing:0}' +
   '.rvb-m .tr{display:inline-flex;align-items:center;height:40px;white-space:nowrap;will-change:transform}' +
@@ -142,6 +154,28 @@
     var ns = bar.querySelectorAll('.n'), v = [pad(p.d), pad(p.h), pad(p.m), pad(p.s)];
     for (var i = 0; i < ns.length; i++) if (ns[i].textContent !== v[i % 4]) ns[i].textContent = v[i % 4];
   }
+  /* header squares */
+  var SQ = CONFIG.barStyle === 'header';
+  function tilesHTML(p) {
+    var v = [pad(p.d), pad(p.h), pad(p.m), pad(p.s)], l = ['Days', 'Hours', 'Minutes', 'Seconds'], out = '';
+    for (var i = 0; i < 4; i++) out += '<span class="tl"><span class="n">' + v[i] + '</span><span class="lb">' + l[i] + '</span></span>';
+    return out;
+  }
+  function buildSquares(p) {
+    var nav = document.getElementById('nav');
+    bar.className = 'rvq rvq-head';
+    bar.innerHTML = '<div class="cd" aria-hidden="true">' + tilesHTML(p) + '</div><span class="rv-sr">' + ariaWhen + '</span>';
+    var wide = window.matchMedia('(min-width:1024px)');
+    var offset = function () { if (nav && bar && !bar.classList.contains('in')) nav.style.top = Math.max(0, bar.offsetHeight - window.pageYOffset) + 'px'; };
+    var place = function () {
+      if (!bar) return;
+      if (wide.matches && nav) { bar.classList.add('in'); nav.appendChild(bar); nav.style.top = '0px'; }
+      else { bar.classList.remove('in'); document.body.insertBefore(bar, document.body.firstChild); offset(); }
+    };
+    window.addEventListener('scroll', offset, { passive: true });
+    window.addEventListener('resize', place);
+    place();
+  }
   var ariaWhen = 'Countdown to ' + CONFIG.launchLabel + ', 10:00 Nairobi time';
 
   /* ---------- top bar ---------- */
@@ -154,6 +188,7 @@
     bar.setAttribute('role', 'region');
     bar.setAttribute('aria-label', 'Countdown');
     if (p.live) { bar = null; return; }          /* at launch time the bar goes away */
+    if (SQ) { buildSquares(p); return; }
     if (BAND) bar.className = 'rvb rvb-m';
     bar.innerHTML = '<div class="cd" aria-hidden="true">' + (BAND ? bandHTML(p) : barCount(p)) + '</div><span class="rv-sr">' + ariaWhen + '</span>';
     document.body.insertBefore(bar, document.body.firstChild);
@@ -260,7 +295,7 @@
     var p = parts();
     if (bar) {
       if (p.live) { bar.remove(); bar = null; var nv = document.getElementById('nav'); if (nv) nv.style.top = '0px'; }
-      else if (BAND) bandSet(p);
+      else if (BAND || SQ) bandSet(p);
       else bar.querySelector('.cd').innerHTML = barCount(p);
     }
   }
