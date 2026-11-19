@@ -11,6 +11,7 @@
     launchLabel: 'Friday 27 November',
     popup: true,               // welcome pop-up on / off
     bar: true,                 // countdown bar on / off
+    barStyle: 'band',          // 'band' = the timer repeats across the bar and drifts sideways (Yumna, 19 Nov) · 'classic' = one still timer in the middle
     shopUrl: '/collections.html',
     ctaText: 'Shop now',
     signupUrl: '/signup.html',   // small "New here? Create an account" line under the button (Yumna, 18 Nov)
@@ -28,6 +29,7 @@
   var preview = qs.has('rv-popup') || qs.has('rv-bar');
   if (qs.has('rv-popup')) CONFIG.popup = qs.get('rv-popup') !== '0' && qs.get('rv-popup') !== '';
   if (qs.has('rv-cta')) CONFIG.cta = qs.get('rv-cta');
+  if (qs.has('rv-barstyle')) CONFIG.barStyle = qs.get('rv-barstyle');
   if (qs.has('rv-bar')) CONFIG.bar = qs.get('rv-bar') !== '0' && qs.get('rv-bar') !== '';
 
   var LAUNCH = Date.parse(CONFIG.launch);
@@ -52,6 +54,14 @@
   '.rvb .u{color:#8a8a92;margin:0 10px 0 2px}' +
   '.rvb .rv-sr,.rvp .rv-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}' +
   '@media(max-width:640px){.rvb{height:34px;line-height:34px;font-size:11.5px}.rvb .u{margin-right:8px}}' +
+  /* moving band: the timer repeats along the bar with wide gaps and drifts slowly to the left; no logo, no words */
+  '.rvb-m{height:40px;line-height:40px;text-align:left}.rvb-m .cd{display:block;letter-spacing:0}' +
+  '.rvb-m .tr{display:inline-flex;align-items:center;height:40px;white-space:nowrap;will-change:transform}' +
+  '@keyframes rvmq{to{transform:translateX(-50%)}}' +
+  '@media(prefers-reduced-motion:no-preference){.rvb-m .tr{animation:rvmq 200s linear infinite}}' +
+  '.rvb-m .it{display:inline-block;line-height:1;letter-spacing:.14em;margin-right:334px}' +
+  '.rvb-m .n{font-size:13px}.rvb-m .u{font-size:10px;margin:0 12px 0 3px}' +
+  '@media(max-width:640px){.rvb-m,.rvb-m .tr{height:36px;line-height:36px}.rvb-m .it{margin-right:256px}.rvb-m .n{font-size:12px}.rvb-m .u{margin-right:12px}}' +
   /* pop-up: built on the approved WhatsApp image (1080x1080). Everything is sized in cqw (1cqw = 1% of the
      pop-up's width), so logo size, gaps and the 61% black / 39% photo split match that image at any size. */
   '.rvp-bg{position:fixed;inset:0;z-index:200;background:rgba(10,10,10,.55);opacity:0;transition:opacity .35s ease;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}' +
@@ -121,6 +131,17 @@
            '<span class="n">' + pad(p.m) + '</span><span class="u">M</span>' +
            '<span class="n">' + pad(p.s) + '</span><span class="u" style="margin-right:0">S</span>';
   }
+  /* moving band: 28 copies in one row = two identical halves, so the loop has no seam */
+  var BAND = CONFIG.barStyle === 'band';
+  function bandHTML(p) {
+    var one = '<span class="it">' + barCount(p) + '</span>', out = '';
+    for (var i = 0; i < 28; i++) out += one;
+    return '<div class="tr">' + out + '</div>';
+  }
+  function bandSet(p) {
+    var ns = bar.querySelectorAll('.n'), v = [pad(p.d), pad(p.h), pad(p.m), pad(p.s)];
+    for (var i = 0; i < ns.length; i++) if (ns[i].textContent !== v[i % 4]) ns[i].textContent = v[i % 4];
+  }
   var ariaWhen = 'Countdown to ' + CONFIG.launchLabel + ', 10:00 Nairobi time';
 
   /* ---------- top bar ---------- */
@@ -133,7 +154,8 @@
     bar.setAttribute('role', 'region');
     bar.setAttribute('aria-label', 'Countdown');
     if (p.live) { bar = null; return; }          /* at launch time the bar goes away */
-    bar.innerHTML = '<div class="cd" aria-hidden="true">' + barCount(p) + '</div><span class="rv-sr">' + ariaWhen + '</span>';
+    if (BAND) bar.className = 'rvb rvb-m';
+    bar.innerHTML = '<div class="cd" aria-hidden="true">' + (BAND ? bandHTML(p) : barCount(p)) + '</div><span class="rv-sr">' + ariaWhen + '</span>';
     document.body.insertBefore(bar, document.body.firstChild);
 
     /* the site header is fixed at the top; push it below the bar and let it rise as the bar scrolls away */
@@ -238,6 +260,7 @@
     var p = parts();
     if (bar) {
       if (p.live) { bar.remove(); bar = null; var nv = document.getElementById('nav'); if (nv) nv.style.top = '0px'; }
+      else if (BAND) bandSet(p);
       else bar.querySelector('.cd').innerHTML = barCount(p);
     }
   }
