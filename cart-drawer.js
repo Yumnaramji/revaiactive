@@ -304,9 +304,46 @@
   }
   function clearShopReady() { try { localStorage.removeItem(READY_KEY); } catch (e) {} }
 
+  // ── Checkout loaded ahead ────────────────────────────────────────────────────
+  // Once the shop has confirmed the bag, and the bag is open (or this is the bag page),
+  // browsers that can (Chrome, Edge, Samsung Internet) load the checkout page in the
+  // background, so the Checkout tap shows it at once instead of waiting 2-4 s for the
+  // shop. The address carries a short code of the bag, so a page loaded for an older
+  // bag is never shown. Other browsers ignore this and open checkout as before.
+  function aheadUrl(bag) {
+    let h = 5381;
+    for (let i = 0; i < bag.sig.length; i++) h = ((h * 33) ^ bag.sig.charCodeAt(i)) >>> 0;
+    return bag.base + '/checkout/?b=' + h.toString(36);
+  }
+  function dropAhead() { const el = document.getElementById('revai-ahead'); if (el) el.remove(); }
+  function wantsCheckout() {
+    const overlay = document.getElementById('revai-cart-overlay');
+    return !!((overlay && overlay.style.display === 'block') || document.getElementById('cart-page-checkout'));
+  }
+  function loadAhead(bag) {
+    try {
+      if (!window.HTMLScriptElement || !HTMLScriptElement.supports || !HTMLScriptElement.supports('speculationrules')) return;
+      if (!wantsCheckout() || !shopReady(bag.sig)) return;
+      const url = aheadUrl(bag);
+      let el = document.getElementById('revai-ahead');
+      if (el && el.getAttribute('data-url') === url) return;
+      if (el) el.remove();
+      el = document.createElement('script');
+      el.type = 'speculationrules';
+      el.id = 'revai-ahead';
+      el.setAttribute('data-url', url);
+      el.textContent = JSON.stringify({
+        prefetch: [{ urls: [url], eagerness: 'immediate' }],
+        prerender: [{ urls: [url], eagerness: 'immediate' }]
+      });
+      document.head.appendChild(el);
+    } catch (e) {}
+  }
+
   async function buildShopCart(bag) {
     if (prepWanted !== bag.sig || shopReady(bag.sig)) return;   // superseded, or already done
     clearShopReady();
+    dropAhead();
     // The answer is a redirect the browser won't let this page read, so the request
     // "fails" here even though the shop has rebuilt the bag. The read-back below decides.
     try { await fetch(bag.url, { credentials: 'include', redirect: 'manual' }); } catch (e) {}
@@ -316,7 +353,7 @@
     if (!res.ok) return;
     const data = await res.json();
     const got = (data.items || []).map(function(i) { return i.id + 'x' + i.quantity; }).sort().join(',');
-    if (got === bag.want) localStorage.setItem(READY_KEY, JSON.stringify({ sig: bag.sig, t: Date.now() }));
+    if (got === bag.want) { localStorage.setItem(READY_KEY, JSON.stringify({ sig: bag.sig, t: Date.now() })); loadAhead(bag); }
   }
   // One build at a time, so an older bag can never land on the shop after a newer one.
   function prepareCheckout(delay) {
@@ -326,7 +363,8 @@
       const bag = wooBag();
       if (prepBlocked || !bag || bag.unmapped || !bag.items.length) return;
       prepWanted = bag.sig;
-      if (shopReady(bag.sig)) return;
+      if (shopReady(bag.sig)) { loadAhead(bag); return; }
+      dropAhead();
       prepBusy++;
       prepChain = prepChain
         .then(function() { return buildShopCart(bag); })
@@ -339,10 +377,10 @@
     resetUpsellCache();
     buildDrawer();
     renderDrawer();
-    prepareCheckout(0);
     const drawer = document.getElementById('revai-cart-drawer');
     const overlay = document.getElementById('revai-cart-overlay');
     overlay.style.display = 'block';
+    prepareCheckout(0);
     requestAnimationFrame(() => { drawer.style.transform = 'translateX(0)'; });
     document.body.style.overflow = 'hidden';
   }
@@ -432,7 +470,7 @@
         // The mark is used once, so a later tap (back button, second order) always re-checks.
         const direct = shopReady(bag.sig);
         clearShopReady();
-        window.location.href = direct ? bag.base + '/checkout/' : bag.go;
+        window.location.href = direct ? aheadUrl(bag) : bag.go;
         return;
       }
 
