@@ -7,8 +7,8 @@
   'use strict';
 
   var CONFIG = {
-    launch: '2026-11-27T10:00:00+03:00',   // Fri 27 Nov 2026, 10:00 Nairobi. The +03:00 makes it right in every visitor's time zone.
-    launchLabel: 'Friday 27 November',
+    launch: '2026-12-03T10:00:00+03:00',   // Thu 3 Dec 2026, 10:00 Nairobi (Yumna, 24 Nov; was Fri 27 Nov). The +03:00 makes it right in every visitor's time zone.
+    launchLabel: 'Thursday 3 December',
     popup: true,               // welcome pop-up on / off
     bar: true,                 // countdown bar on / off
     barStyle: 'header',        // 'header' = four squares inside the white header, no bar (Yumna, 19 Nov) · 'band' = black bar, the timer drifts sideways · 'classic' = black bar, one still timer
