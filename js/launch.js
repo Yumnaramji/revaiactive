@@ -216,8 +216,7 @@
     if (CONFIG.skipPages.test(location.pathname)) return false;
     if (!CONFIG.popupPages.test(location.pathname)) return false;
     if (parts().live) return false;
-    try { if (sessionStorage.getItem(SEEN)) return false; } catch (e) {} // already seen in this visit
-    try { var bag = JSON.parse(localStorage.getItem('revai_cart_v1') || '[]'); if (bag && bag.length) return false; } catch (e) {}
+    /* every homepage load, bag or no bag (Yumna, 25 Nov 2026) */
     return true;
   }
   /* once per visit (Yumna, 19 Nov 2026): remembered for this visit only, so it opens again on the next visit. The old 3 / 30 day memory (localStorage) is no longer read */
